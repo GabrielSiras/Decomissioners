@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://cv24qqxtw1mc"]
+
+[ext_resource type="PackedScene" uid="uid://yqp352ieo0kv" path="res://scenes/Enemies/EnemyBase.tscn" id="1_0e310"]
+[ext_resource type="Script" uid="uid://c2ylxeu84uah5" path="res://scripts/Enemies/RangedEnemy.gd" id="2_w0jok"]
+
+[node name="RangedEnemy" unique_id=951588638 instance=ExtResource("1_0e310")]
+script = ExtResource("2_w0jok")
+attack_range = 250.0
+projectile_scene = null

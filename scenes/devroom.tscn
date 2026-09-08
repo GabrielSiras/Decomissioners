@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://xbs4443vvb7t"]
+
+[ext_resource type="Script" uid="uid://ktrai8ye0vmr" path="res://scripts/GameCamera.gd" id="1_nfg08"]
+[ext_resource type="PackedScene" uid="uid://bh4nxhtcknybg" path="res://scenes/Turrets/TurretBase.tscn" id="2_hs430"]
+[ext_resource type="PackedScene" uid="uid://msr581mrgwu6" path="res://scenes/Enemies/EnemySpawner.tscn" id="3_anjfi"]
+[ext_resource type="PackedScene" uid="uid://b7m5it3iehpqe" path="res://scenes/Enemies/MeleeEnemy.tscn" id="4_ivymc"]
+[ext_resource type="PackedScene" uid="uid://cv24qqxtw1mc" path="res://scenes/Enemies/RangedEnemy.tscn" id="5_qt6sy"]
+
+[node name="Devroom" type="Node2D" unique_id=914026996]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1019936136]
+script = ExtResource("1_nfg08")
+
+[node name="TurretBase" parent="." unique_id=1983909669 instance=ExtResource("2_hs430")]
+position = Vector2(-11, 423)
+
+[node name="EnemySpawner" parent="." unique_id=668967914 node_paths=PackedStringArray("main_target") instance=ExtResource("3_anjfi")]
+position = Vector2(-24, -58)
+enemy_scenes = Array[PackedScene]([ExtResource("4_ivymc"), ExtResource("5_qt6sy")])
+spawn_interval = 1.0
+main_target = NodePath("../TurretBase")

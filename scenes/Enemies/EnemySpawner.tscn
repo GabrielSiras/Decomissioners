@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://msr581mrgwu6"]
+
+[ext_resource type="Script" uid="uid://bydy3ken5vk3o" path="res://scripts/Enemies/EnemySpawner.gd" id="1_mblkx"]
+
+[node name="EnemySpawner" type="Node2D" unique_id=668967914]
+script = ExtResource("1_mblkx")
+
+[node name="SpawnTimer" type="Timer" parent="." unique_id=1010500497]
+
+[node name="SpawnPoints" type="Node2D" parent="." unique_id=1784034775]
+
+[node name="SpawnPoint1" type="Marker2D" parent="SpawnPoints" unique_id=1741276117]
+position = Vector2(21.63, 0)
+
+[node name="SpawnPoint2" type="Marker2D" parent="SpawnPoints" unique_id=1422999507]

@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://bh4nxhtcknybg"]
+
+[ext_resource type="Script" uid="uid://j5mcmv8cci5v" path="res://scripts/Turrets/TurretBase.gd" id="1_7ne02"]
+[ext_resource type="Texture2D" uid="uid://cdkj7ohowsym5" path="res://assets/sprites/enemies/blue-circle.png" id="1_hmnj0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l2wtx"]
+
+[node name="TurretBase" type="Node2D" unique_id=1983909669]
+script = ExtResource("1_7ne02")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1832452873]
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("1_hmnj0")
+
+[node name="RangeArea" type="Area2D" parent="." unique_id=1266258516]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RangeArea" unique_id=619152798]
+scale = Vector2(3.245, 3.245)
+shape = SubResource("CircleShape2D_l2wtx")
+
+[node name="Muzzle" type="Marker2D" parent="." unique_id=1984667933]
+
+[node name="ShootTimer" type="Timer" parent="." unique_id=709223301]
