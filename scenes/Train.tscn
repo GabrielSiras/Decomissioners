@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://cika3a8mjdsiv"]
+
+[ext_resource type="Script" uid="uid://d4g06iyetgrwf" path="res://scripts/Train.gd" id="1_426cx"]
+[ext_resource type="PackedScene" uid="uid://bja643vsev3gy" path="res://assets/models/Train/train.glb" id="1_bs37r"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_v5pwx"]
+size = Vector3(1, 2.0021973, 4.7250977)
+
+[node name="Train" type="Node3D" unique_id=1645749348]
+script = ExtResource("1_426cx")
+
+[node name="Train" parent="." unique_id=1968726023 instance=ExtResource("1_bs37r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2643466, 0, 0.37324953)
+collision_layer = 2
+collision_mask = 9
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Train" unique_id=681119158]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2643466, -0.0013427734, -0.35762453)
+shape = SubResource("BoxShape3D_v5pwx")
+
+[node name="TurretSlots" type="Node3D" parent="." unique_id=308439791]
+
+[node name="Slot1" type="Marker3D" parent="TurretSlots" unique_id=1631346001]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25011474, 1.0040138, -1.4854336)
+
+[node name="Slot2" type="Marker3D" parent="TurretSlots" unique_id=1176289237]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25011474, 1.0040138, -0.17973757)
+
+[node name="Slot3" type="Marker3D" parent="TurretSlots" unique_id=338899562]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25011474, 1.0040138, 1.4490747)

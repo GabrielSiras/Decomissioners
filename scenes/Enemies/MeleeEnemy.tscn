@@ -1,9 +1,10 @@
 [gd_scene format=3 uid="uid://b7m5it3iehpqe"]
 
-[ext_resource type="PackedScene" uid="uid://yqp352ieo0kv" path="res://scenes/Enemies/EnemyBase.tscn" id="1_gll05"]
+[ext_resource type="PackedScene" uid="uid://enj2x687pejl" path="res://scenes/Enemies/EnemyBase.tscn" id="1_gll05"]
 [ext_resource type="Script" uid="uid://b0pox2gxf7n22" path="res://scripts/Enemies/MeeleEnemy.gd" id="2_dme2d"]
 
 [node name="Melee_Enemy" unique_id=951588638 instance=ExtResource("1_gll05")]
 script = ExtResource("2_dme2d")
 melee_damage = 5
 attack_cooldown = 1.0
+attack_range = 2.0

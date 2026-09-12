@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://ctko34egwt71h"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qmg03"]
+albedo_color = Color(1, 1, 0, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_qmg03"]
+radius = 0.1511969
+
+[node name="PlayerProjectile" type="Area3D" unique_id=406387500]
+collision_layer = 16
+collision_mask = 8
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="." unique_id=219951449]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+radial_segments = 8
+rings = 4
+material = SubResource("StandardMaterial3D_qmg03")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1306432205]
+shape = SubResource("SphereShape3D_qmg03")

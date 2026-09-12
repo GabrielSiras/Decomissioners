@@ -1,21 +1,24 @@
-[gd_scene format=3 uid="uid://xbs4443vvb7t"]
+[gd_scene format=3 uid="uid://cymig8bf22o47"]
 
-[ext_resource type="Script" uid="uid://ktrai8ye0vmr" path="res://scripts/GameCamera.gd" id="1_nfg08"]
-[ext_resource type="PackedScene" uid="uid://bh4nxhtcknybg" path="res://scenes/Turrets/TurretBase.tscn" id="2_hs430"]
+[ext_resource type="PackedScene" uid="uid://ccxbyhm6vro5u" path="res://scenes/GameCamera.tscn" id="1_5ij30"]
 [ext_resource type="PackedScene" uid="uid://msr581mrgwu6" path="res://scenes/Enemies/EnemySpawner.tscn" id="3_anjfi"]
-[ext_resource type="PackedScene" uid="uid://b7m5it3iehpqe" path="res://scenes/Enemies/MeleeEnemy.tscn" id="4_ivymc"]
-[ext_resource type="PackedScene" uid="uid://cv24qqxtw1mc" path="res://scenes/Enemies/RangedEnemy.tscn" id="5_qt6sy"]
+[ext_resource type="PackedScene" uid="uid://cika3a8mjdsiv" path="res://scenes/Train.tscn" id="3_hs430"]
 
-[node name="Devroom" type="Node2D" unique_id=914026996]
+[node name="Devroom3d" type="Node3D" unique_id=95222864]
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1019936136]
-script = ExtResource("1_nfg08")
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=585664753]
+size = Vector3(100, 0.5, 100)
 
-[node name="TurretBase" parent="." unique_id=1983909669 instance=ExtResource("2_hs430")]
-position = Vector2(-11, 423)
+[node name="GameCamera" parent="." unique_id=1770089720 instance=ExtResource("1_5ij30")]
 
-[node name="EnemySpawner" parent="." unique_id=668967914 node_paths=PackedStringArray("main_target") instance=ExtResource("3_anjfi")]
-position = Vector2(-24, -58)
-enemy_scenes = Array[PackedScene]([ExtResource("4_ivymc"), ExtResource("5_qt6sy")])
-spawn_interval = 1.0
-main_target = NodePath("../TurretBase")
+[node name="EnemySpawner" parent="." unique_id=456115132 node_paths=PackedStringArray("main_target") instance=ExtResource("3_anjfi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4815459, 4.895586, -0.5150012)
+main_target = NodePath("../Train")
+
+[node name="Train" parent="." unique_id=1645749348 instance=ExtResource("3_hs430")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1849166497]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1922942967]
+transform = Transform3D(-3.7855173e-08, 0.8660254, 0.5, 2.1855694e-08, 0.5, -0.8660254, -1, -2.1855694e-08, -3.7855173e-08, 0, 5, 0)

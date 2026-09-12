@@ -1,23 +1,29 @@
 [gd_scene format=3 uid="uid://bh4nxhtcknybg"]
 
 [ext_resource type="Script" uid="uid://j5mcmv8cci5v" path="res://scripts/Turrets/TurretBase.gd" id="1_7ne02"]
-[ext_resource type="Texture2D" uid="uid://cdkj7ohowsym5" path="res://assets/sprites/enemies/blue-circle.png" id="1_hmnj0"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_l2wtx"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hmnj0"]
+albedo_color = Color(1, 0, 0, 1)
 
-[node name="TurretBase" type="Node2D" unique_id=1983909669]
+[sub_resource type="SphereShape3D" id="SphereShape3D_qmg03"]
+radius = 2.4009984
+
+[node name="TurretBase" type="Node3D" unique_id=90108018]
 script = ExtResource("1_7ne02")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1832452873]
-scale = Vector2(0.05, 0.05)
-texture = ExtResource("1_hmnj0")
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1161389508]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.023658752, 0.1735611, -0.011474609)
+size = Vector3(0.2, 0.2, 1)
+material = SubResource("StandardMaterial3D_hmnj0")
 
-[node name="RangeArea" type="Area2D" parent="." unique_id=1266258516]
+[node name="RangeArea" type="Area3D" parent="." unique_id=615499785]
+collision_layer = 0
+collision_mask = 8
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RangeArea" unique_id=619152798]
-scale = Vector2(3.245, 3.245)
-shape = SubResource("CircleShape2D_l2wtx")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RangeArea" unique_id=1991760536]
+shape = SubResource("SphereShape3D_qmg03")
 
-[node name="Muzzle" type="Marker2D" parent="." unique_id=1984667933]
+[node name="Muzzle" type="Marker3D" parent="." unique_id=143445419]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.16583312, 0.49504954)
 
 [node name="ShootTimer" type="Timer" parent="." unique_id=709223301]

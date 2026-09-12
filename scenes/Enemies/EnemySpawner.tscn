@@ -1,15 +1,29 @@
 [gd_scene format=3 uid="uid://msr581mrgwu6"]
 
 [ext_resource type="Script" uid="uid://bydy3ken5vk3o" path="res://scripts/Enemies/EnemySpawner.gd" id="1_mblkx"]
+[ext_resource type="PackedScene" uid="uid://b7m5it3iehpqe" path="res://scenes/Enemies/MeleeEnemy.tscn" id="2_3c3br"]
+[ext_resource type="PackedScene" uid="uid://cv24qqxtw1mc" path="res://scenes/Enemies/RangedEnemy.tscn" id="3_1ymdl"]
 
-[node name="EnemySpawner" type="Node2D" unique_id=668967914]
+[node name="EnemySpawner" type="Node3D" unique_id=456115132]
 script = ExtResource("1_mblkx")
+enemy_scenes = Array[PackedScene]([ExtResource("2_3c3br"), ExtResource("3_1ymdl")])
 
 [node name="SpawnTimer" type="Timer" parent="." unique_id=1010500497]
 
-[node name="SpawnPoints" type="Node2D" parent="." unique_id=1784034775]
+[node name="SpawnPoints" type="Node3D" parent="." unique_id=764055103]
 
-[node name="SpawnPoint1" type="Marker2D" parent="SpawnPoints" unique_id=1741276117]
-position = Vector2(21.63, 0)
+[node name="SpawnPoint1" type="Marker3D" parent="SpawnPoints" unique_id=1624153966]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2463655, 0, 0)
+gizmo_extents = 1.0
 
-[node name="SpawnPoint2" type="Marker2D" parent="SpawnPoints" unique_id=1422999507]
+[node name="SpawnPoint2" type="Marker3D" parent="SpawnPoints" unique_id=608318823]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8835735, 0, -1.8238211)
+gizmo_extents = 1.0
+
+[node name="SpawnPoint3" type="Marker3D" parent="SpawnPoints" unique_id=258240530]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8835735, 0, 2.2617865)
+gizmo_extents = 1.0
+
+[node name="SpawnPoint4" type="Marker3D" parent="SpawnPoints" unique_id=50874867]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.112376, 0, 0.0692687)
+gizmo_extents = 1.0

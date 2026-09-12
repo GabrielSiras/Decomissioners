@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://ccxbyhm6vro5u"]
+
+[ext_resource type="Script" uid="uid://ktrai8ye0vmr" path="res://scripts/GameCamera.gd" id="1_mwehd"]
+
+[node name="GameCamera" type="Camera3D" unique_id=1770089720]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 15, 0)
+script = ExtResource("1_mwehd")
