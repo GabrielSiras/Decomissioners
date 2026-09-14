@@ -2,6 +2,10 @@ class_name Train
 extends Node3D
 
 @onready var turret_slots_container: Node3D = $TurretSlots
+@export var defeat_menu: DefeatMenu
+@export var max_health: int = 100
+@onready var current_health: int = max_health
+@export var current_armor: int = 10
 
 var slots_status: Dictionary = {}
 
@@ -44,3 +48,20 @@ func place_turret(turret_scene: PackedScene, cost: int) -> bool:
 	else:
 		print("Metal insuficiente para construir a torreta!")
 		return false
+
+func take_damage(amount: int) -> void:
+	if current_health <= 0:
+		return
+	
+	var armor_reduction_percent: float = clamp(current_armor, 0, 100) / 100.0
+	var damage_multiplier: float = 1.0 - armor_reduction_percent
+	var final_damage: int = max(0, roundi(amount * damage_multiplier))
+	current_health -= final_damage
+	print(name, " recebeu ", final_damage, " de dano! (Dano bruto: ", amount, " | Armadura: ", current_armor, "%) | Vida: ", current_health)
+	
+	if current_health <= 0:
+		die()
+
+func die() -> void:
+	if(defeat_menu):
+		defeat_menu.show_defeat()

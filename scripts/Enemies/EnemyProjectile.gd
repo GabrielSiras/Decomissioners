@@ -5,7 +5,7 @@ extends Area3D
 @export var lifetime: float = 4.0
 
 var target_position: Vector3 = Vector3.ZERO
-var damage_amount: int = 1
+var damage_amount: int = 5
 var direction: Vector3 = Vector3.ZERO
 
 func _ready() -> void:
@@ -22,11 +22,22 @@ func _physics_process(delta: float) -> void:
 	global_position += direction * speed * delta
 
 func _on_body_entered(body: Node3D) -> void:
-	if body.has_method("take_damage"):
-		body.take_damage(damage_amount)
-		queue_free()
+	_apply_damage_to(body)
 
 func _on_area_entered(area: Area3D) -> void:
-	if area.has_method("take_damage"):
-		area.take_damage(damage_amount)
+	_apply_damage_to(area)
+		
+func _apply_damage_to(target: Node3D) -> void:
+	if target is EnemyBase or target is EnemyProjectile:
+		return
+
+	if target.has_method("take_damage"):
+		target.take_damage(damage_amount)
 		queue_free()
+		return
+		
+	var parent = target.get_parent()
+	if parent and parent.has_method("take_damage"):
+		parent.take_damage(damage_amount)
+		queue_free()
+		return

@@ -3,7 +3,7 @@ extends EnemyBase
 
 @export var attack_range: float = 10.0
 @export var attack_cooldown: float = 2.0
-@export var ranged_damage: int = 1
+@export var ranged_damage: int = 5
 @export var enemy_projectile_scene: PackedScene
 
 @onready var muzzle: Marker3D = $Muzzle

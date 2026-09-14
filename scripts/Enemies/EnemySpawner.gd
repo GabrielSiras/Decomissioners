@@ -6,7 +6,6 @@ extends Node3D
 
 @export var spawn_interval: float = 2.0
 
-## Referência ao alvo principal 3D (ex: a Torre/Base do jogador)
 @export var main_target: Node3D 
 
 @onready var spawn_timer: Timer = $SpawnTimer

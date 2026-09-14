@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://bvuisrwp77067"]
+
+[ext_resource type="Script" uid="uid://c2ucr5o2gewwk" path="res://scripts/UI-UX/UI/DefeatMenu.gd" id="1_e6ufj"]
+
+[node name="DefeatMenu" type="CanvasLayer" unique_id=501164214]
+process_mode = 3
+script = ExtResource("1_e6ufj")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1717976344]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1428995238]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=1604656681]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer" unique_id=2060262318]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "You died!"
+
+[node name="RestartButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1624649614]
+layout_mode = 2
+text = "Restart?"
+
+[node name="MainMenuButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=136625840]
+layout_mode = 2
+text = "MainMenu"

@@ -3,11 +3,17 @@
 [ext_resource type="PackedScene" uid="uid://ccxbyhm6vro5u" path="res://scenes/GameCamera.tscn" id="1_5ij30"]
 [ext_resource type="PackedScene" uid="uid://msr581mrgwu6" path="res://scenes/Enemies/EnemySpawner.tscn" id="3_anjfi"]
 [ext_resource type="PackedScene" uid="uid://cika3a8mjdsiv" path="res://scenes/Train.tscn" id="3_hs430"]
+[ext_resource type="PackedScene" uid="uid://bvuisrwp77067" path="res://scenes/UI-UX/UI/DefeatMenu.tscn" id="4_do01s"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vnlg1"]
+albedo_color = Color(1, 0.6509804, 1, 1)
 
 [node name="Devroom3d" type="Node3D" unique_id=95222864]
 
 [node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=585664753]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17966223, 0, 0)
 size = Vector3(100, 0.5, 100)
+material = SubResource("StandardMaterial3D_vnlg1")
 
 [node name="GameCamera" parent="." unique_id=1770089720 instance=ExtResource("1_5ij30")]
 
@@ -15,10 +21,13 @@ size = Vector3(100, 0.5, 100)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4815459, 4.895586, -0.5150012)
 main_target = NodePath("../Train")
 
-[node name="Train" parent="." unique_id=1645749348 instance=ExtResource("3_hs430")]
+[node name="Train" parent="." unique_id=1645749348 node_paths=PackedStringArray("defeat_menu") instance=ExtResource("3_hs430")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+defeat_menu = NodePath("../DefeatMenu")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1849166497]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1922942967]
 transform = Transform3D(-3.7855173e-08, 0.8660254, 0.5, 2.1855694e-08, 0.5, -0.8660254, -1, -2.1855694e-08, -3.7855173e-08, 0, 5, 0)
+
+[node name="DefeatMenu" parent="." unique_id=501164214 instance=ExtResource("4_do01s")]

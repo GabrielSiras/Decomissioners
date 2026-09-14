@@ -2,7 +2,7 @@ class_name PlayerProjectile
 extends Area3D
 
 @export var speed: float = 15.0
-@export var lifetime: float = 5.0 # Segundos até sumir se não acertar nada
+@export var lifetime: float = 5.0
 
 var target_node: Node3D = null
 var damage_amount: int = 2

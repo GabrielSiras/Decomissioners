@@ -8,7 +8,7 @@
 script = ExtResource("2_w0jok")
 attack_range = 250.0
 attack_cooldown = 2.0
-ranged_damage = 1
+ranged_damage = 10
 enemy_projectile_scene = ExtResource("3_i3af6")
 
 [node name="Muzzle" type="Marker3D" parent="." index="2" unique_id=880355141]
