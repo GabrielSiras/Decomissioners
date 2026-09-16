@@ -1,14 +1,20 @@
 class_name GameCamera
 extends Camera3D
 
-@export var fixed_y_height: float = 15.0
+@export var target: Node3D
+@export var fixed_y_height: float = 40.0
+@export var offset: Vector3 = Vector3(0, 0, 0)
 
 func _ready() -> void:
 	make_current()
-	
 	rotation_degrees = Vector3(-75, 0, 0)
-	
 	global_position.y = fixed_y_height
+
+func _physics_process(_delta: float) -> void:
+	if is_instance_valid(target):
+		global_position.x = target.global_position.x + offset.x
+		global_position.z = target.global_position.z + offset.z
+		global_position.y = fixed_y_height
 
 func set_height(new_height: float) -> void:
 	fixed_y_height = new_height

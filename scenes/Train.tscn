@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dvkcs568x08bd" path="res://assets/models/Train/train.glb" id="1_bs37r"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_v5pwx"]
-size = Vector3(7.131836, 8.65625, 18.342041)
+size = Vector3(8.793152, 8.65625, 19.89302)
 
 [node name="Train" type="Node3D" unique_id=1645749348]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
@@ -13,7 +13,7 @@ script = ExtResource("1_426cx")
 [node name="Train" parent="." unique_id=1968726023 instance=ExtResource("1_bs37r")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Train" unique_id=681119158]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00014641881, 2.3248785, 0.007089615)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.09088752, 2.3248785, -0.11738396)
 shape = SubResource("BoxShape3D_v5pwx")
 
 [node name="TurretSlots" type="Node3D" parent="." unique_id=308439791]
