@@ -4,25 +4,29 @@
 [ext_resource type="PackedScene" uid="uid://dvkcs568x08bd" path="res://assets/models/Train/train.glb" id="1_bs37r"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_v5pwx"]
-size = Vector3(8.793152, 8.65625, 19.89302)
+size = Vector3(4.8913198, 5.016693, 11.56994)
 
-[node name="Train" type="Node3D" unique_id=1645749348]
+[node name="Train" type="CharacterBody3D" unique_id=423923195]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+collision_layer = 2
+collision_mask = 0
 script = ExtResource("1_426cx")
 
-[node name="Train" parent="." unique_id=1968726023 instance=ExtResource("1_bs37r")]
+[node name="Model3D" parent="." unique_id=1968726023 instance=ExtResource("1_bs37r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.62828755, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Train" unique_id=681119158]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.09088752, 2.3248785, -0.11738396)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=681119158]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.07296729, 2.1915846, -0.12326574)
 shape = SubResource("BoxShape3D_v5pwx")
 
 [node name="TurretSlots" type="Node3D" parent="." unique_id=308439791]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.18613958, 0)
 
 [node name="Slot1" type="Marker3D" parent="TurretSlots" unique_id=1631346001]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.016108215, 7.3640575, -4.8926115)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.25, 0)
 
-[node name="Slot2" type="Marker3D" parent="TurretSlots" unique_id=1176289237]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.016108215, 7.3640575, 0.0084095)
+[node name="Slot3" type="Marker3D" parent="TurretSlots" unique_id=1257062042]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.25, 2.95)
 
-[node name="Slot3" type="Marker3D" parent="TurretSlots" unique_id=338899562]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.016108215, 7.3640575, 4.8857903)
+[node name="Slot2" type="Marker3D" parent="TurretSlots" unique_id=446277822]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.25, -2.9544833)

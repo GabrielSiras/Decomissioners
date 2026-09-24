@@ -2,7 +2,10 @@ extends Node
 
 signal metal_changed(new_amount: int)
 
-@export var total_metal: int = 0
+var total_metal: int = 0:
+	set(value):
+		total_metal = value
+		metal_changed.emit(total_metal)
 
 func add_metal(amount: int) -> void:
 	total_metal += amount

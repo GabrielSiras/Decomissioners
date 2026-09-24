@@ -27,6 +27,13 @@ window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 window/handheld/orientation=5
 
+[layer_names]
+
+3d_physics/layer_1="World"
+3d_physics/layer_2="Player"
+3d_physics/layer_4="Enemies"
+3d_physics/layer_5="Projectiles"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"

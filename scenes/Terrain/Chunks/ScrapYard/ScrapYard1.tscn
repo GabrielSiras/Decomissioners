@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://bhcxxqqp3c2pf"]
+
+[ext_resource type="PackedScene" uid="uid://co0873avr2nj8" path="res://scenes/Terrain/Chunks/ChunkBase.tscn" id="1_na46e"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hdswf"]
+albedo_color = Color(0.62352943, 0.24313726, 0.13333334, 1)
+
+[node name="ChunkBase" unique_id=528281881 instance=ExtResource("1_na46e")]
+
+[node name="Middle" parent="." index="0" unique_id=55557733]
+material = SubResource("StandardMaterial3D_hdswf")

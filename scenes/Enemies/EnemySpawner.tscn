@@ -6,7 +6,9 @@
 
 [node name="EnemySpawner" type="Node3D" unique_id=456115132]
 script = ExtResource("1_mblkx")
-enemy_scenes = Array[PackedScene]([ExtResource("2_3c3br"), ExtResource("3_1ymdl")])
+desolation_enemies = Array[PackedScene]([ExtResource("2_3c3br"), ExtResource("3_1ymdl")])
+scrap_enemies = Array[PackedScene]([ExtResource("2_3c3br"), ExtResource("3_1ymdl")])
+factory_enemies = Array[PackedScene]([ExtResource("2_3c3br"), ExtResource("3_1ymdl")])
 
 [node name="SpawnTimer" type="Timer" parent="." unique_id=1010500497]
 

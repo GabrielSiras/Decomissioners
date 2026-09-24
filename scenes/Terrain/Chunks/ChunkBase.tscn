@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://co0873avr2nj8"]
+
+[ext_resource type="Script" uid="uid://g20y0ykhr8hx" path="res://scripts/Terrain/Chunk/ChunkBase.gd" id="1_yah7j"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qmg03"]
+size = Vector3(8.974706, 0.10028222, 50.001648)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ykh0f"]
+size = Vector3(2.9942627, 0.10118103, 50.004883)
+
+[node name="ChunkBase" type="Node3D" unique_id=528281881]
+script = ExtResource("1_yah7j")
+
+[node name="Middle" type="CSGBox3D" parent="." unique_id=55557733]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0048724785, 0)
+size = Vector3(9, 0.1, 50)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Middle" unique_id=2085419100]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Middle/StaticBody3D" unique_id=1760790205]
+shape = SubResource("BoxShape3D_qmg03")
+
+[node name="Spawnpoints" type="Node3D" parent="." unique_id=1355647624]
+
+[node name="LeftSpawn1" type="Marker3D" parent="Spawnpoints" unique_id=1510017689]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0.5, -12.5)
+
+[node name="LeftSpawn2" type="Marker3D" parent="Spawnpoints" unique_id=705980004]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0.5, 9.875)
+
+[node name="RightSpawn2" type="Marker3D" parent="Spawnpoints" unique_id=816608467]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0.5, 9.875)
+
+[node name="RightSpawn1" type="Marker3D" parent="Spawnpoints" unique_id=226042562]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0.5, -12.5)
+
+[node name="Left" type="CSGBox3D" parent="." unique_id=927662262]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0.005, 0)
+size = Vector3(3, 0.1, 50)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Left" unique_id=1147207914]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Left/StaticBody3D" unique_id=1431543129]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0048217773, -0.0005264329, -0.0017089844)
+shape = SubResource("BoxShape3D_ykh0f")
+
+[node name="Right" type="CSGBox3D" parent="." unique_id=931049434]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0.005, 0)
+size = Vector3(3, 0.1, 50)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Right" unique_id=1285237719]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Right/StaticBody3D" unique_id=2128272752]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0048217773, -0.0005264329, -0.0017089844)
+shape = SubResource("BoxShape3D_ykh0f")

@@ -44,7 +44,6 @@ func _update_progress() -> void:
 		return
 		
 	var current_distance = global_position.distance_to(destination_node.global_position)
-	print("Distância até o destino: ", current_distance)
 	var distance_traveled = total_distance - current_distance
 	var progress_percentage = (distance_traveled / total_distance) * 100.0
 	
