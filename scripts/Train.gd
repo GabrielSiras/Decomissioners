@@ -10,6 +10,8 @@ extends Node3D
 @export var current_armor: int = 10
 @export var progress_bar: CanvasLayer
 @export var destination_node: Node3D
+@export var emp_radius: float = 12.0
+@export var emp_force: float = 25.0 
 
 var slots_status: Dictionary = {}
 var current_speed_factor: float = 0.0
@@ -28,9 +30,9 @@ func _ready() -> void:
 	if speed_lever:
 		speed_lever.speed_changed.connect(_on_speed_changed)
 	
-	for child in turret_slots_container.get_children():
-		if child is Marker3D:
-			slots_status[child] = null
+	if is_instance_valid(turret_slots_container):
+		for slot in turret_slots_container.get_children():
+			slots_status[slot] = null
 
 func _physics_process(delta: float) -> void:
 	var actual_speed = max_speed * current_speed_factor
@@ -72,7 +74,6 @@ func _on_destination_reached() -> void:
 func _on_speed_changed(factor: float) -> void:
 	current_speed_factor = factor
 
-## lista com os Marker3D que ainda estão sem torreta
 func get_available_slots() -> Array[Marker3D]:
 	var available: Array[Marker3D] = []
 	for slot in slots_status.keys():
@@ -80,30 +81,50 @@ func get_available_slots() -> Array[Marker3D]:
 			available.append(slot)
 	return available
 
-## nova torreta no primeiro slot disponível se houver Metal suficiente
-func place_turret(turret_scene: PackedScene, cost: int) -> bool:
-	var free_slots = get_available_slots()
-	
-	if free_slots.is_empty():
-		print("Todos os slots do trem estão ocupados!")
+func place_turret_at_slot(target_slot: Node3D, turret_scene: PackedScene, cost: int) -> bool:
+	if not slots_status.has(target_slot):
+		print("Slot inválido!")
+		return false
+		
+	if slots_status[target_slot] != null:
+		print("Este slot já está ocupado!")
 		return false
 
-	# Tenta gastar o metal c/Autoload
 	if MetalManager.spend_metal(cost):
-		var target_slot: Marker3D = free_slots[0]
 		var turret_instance = turret_scene.instantiate()
 		
-		# Posicionando a torretin exatament no marker3d
-		turret_instance.global_position = target_slot.global_position
-		add_child(turret_instance)
+		target_slot.add_child(turret_instance)
 		
-		# Marcando o slot como ocupado pela nova torreta
+		turret_instance.position = Vector3.ZERO
+		turret_instance.rotation = Vector3.ZERO
+		
 		slots_status[target_slot] = turret_instance
-		print("Torreta construída com sucesso!")
+		print("Torre construída com sucesso no slot!")
 		return true
 	else:
-		print("Metal insuficiente para construir a torreta!")
+		print("Metal insuficiente para construir a torre!")
 		return false
+
+func demolish_turret_at_slot(target_slot: Node3D) -> void:
+	if not slots_status.has(target_slot) or slots_status[target_slot] == null:
+		return
+		
+	var turret_instance = slots_status[target_slot]
+	
+	# 30% de reembolso
+	var refund_amount: int = 0
+	if "build_cost" in turret_instance:
+		refund_amount = int(turret_instance.build_cost * 0.3)
+	
+	if MetalManager.has_method("add_metal"):
+		MetalManager.add_metal(refund_amount)
+	elif MetalManager.has_method("gain_metal"):
+		MetalManager.gain_metal(refund_amount)
+	
+	turret_instance.queue_free()
+	slots_status[target_slot] = null
+	
+	print("Torre demolida! Reembolso de ", refund_amount, " moedas de metal.")
 
 func take_damage(amount: int) -> void:
 	if current_health <= 0:
@@ -121,3 +142,19 @@ func take_damage(amount: int) -> void:
 func die() -> void:
 	if(defeat_menu):
 		defeat_menu.show_defeat()
+
+func trigger_emp() -> void:
+	print("⚡ PULSO EMP ATIVADO!")
+	
+	var enemies = get_tree().get_nodes_in_group("enemies")
+	
+	for enemy in enemies:
+		if is_instance_valid(enemy) and enemy is Node3D:
+			var distance = global_position.distance_to(enemy.global_position)
+			
+			if distance <= emp_radius:
+				var push_dir = (enemy.global_position - global_position).normalized()
+				push_dir.y = 0
+				
+				if enemy.has_method("apply_knockback"):
+					enemy.apply_knockback(push_dir * emp_force)

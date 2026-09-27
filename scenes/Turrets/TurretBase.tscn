@@ -1,15 +1,17 @@
 [gd_scene format=3 uid="uid://bh4nxhtcknybg"]
 
 [ext_resource type="Script" uid="uid://j5mcmv8cci5v" path="res://scripts/Turrets/TurretBase.gd" id="1_7ne02"]
+[ext_resource type="PackedScene" uid="uid://ctko34egwt71h" path="res://scenes/Turrets/PlayerProjectile.tscn" id="2_7ne02"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hmnj0"]
 albedo_color = Color(1, 0, 0, 1)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_qmg03"]
-radius = 2.4009984
+radius = 17.923092
 
 [node name="TurretBase" type="Node3D" unique_id=90108018]
 script = ExtResource("1_7ne02")
+projectile_scene = ExtResource("2_7ne02")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1161389508]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.023658752, 0.1735611, -0.011474609)

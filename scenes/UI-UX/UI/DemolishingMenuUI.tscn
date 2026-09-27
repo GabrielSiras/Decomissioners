@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://bnhwjmce2un5i"]
+
+[ext_resource type="Script" uid="uid://bomobpcc77il8" path="res://scripts/UI-UX/UI/DemolishingMenuUI.gd" id="1_ptki6"]
+
+[node name="DemolishingMenuUI" type="Control" unique_id=1660696465]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_ptki6")
+
+[node name="RadialPanel" type="Control" parent="." unique_id=143959330]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ButtonDemolish" type="Button" parent="RadialPanel" unique_id=1442711378]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Sell?"

@@ -2,9 +2,13 @@
 
 [ext_resource type="Script" uid="uid://d4g06iyetgrwf" path="res://scripts/Train.gd" id="1_426cx"]
 [ext_resource type="PackedScene" uid="uid://dvkcs568x08bd" path="res://assets/models/Train/train.glb" id="1_bs37r"]
+[ext_resource type="Script" uid="uid://btdr4h44kf6nb" path="res://scripts/Turrets/TurretSlot.gd" id="3_8tskr"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_v5pwx"]
 size = Vector3(4.8913198, 5.016693, 11.56994)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qmg03"]
+size = Vector3(1.8770142, 0.44702148, 1.8653564)
 
 [node name="Train" type="CharacterBody3D" unique_id=423923195]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
@@ -22,11 +26,26 @@ shape = SubResource("BoxShape3D_v5pwx")
 [node name="TurretSlots" type="Node3D" parent="." unique_id=308439791]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.18613958, 0)
 
-[node name="Slot1" type="Marker3D" parent="TurretSlots" unique_id=1631346001]
+[node name="Slot1" type="Area3D" parent="TurretSlots" unique_id=407812847]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.25, 0)
+script = ExtResource("3_8tskr")
 
-[node name="Slot3" type="Marker3D" parent="TurretSlots" unique_id=1257062042]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.25, 2.95)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TurretSlots/Slot1" unique_id=1209113503]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.012786865, -0.21154785, -0.0028686523)
+shape = SubResource("BoxShape3D_qmg03")
 
-[node name="Slot2" type="Marker3D" parent="TurretSlots" unique_id=446277822]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.25, -2.9544833)
+[node name="Slot2" type="Area3D" parent="TurretSlots" unique_id=1229692041]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.25, -2.9530952)
+script = ExtResource("3_8tskr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TurretSlots/Slot2" unique_id=1424274093]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.012786865, -0.21154785, -0.0028686523)
+shape = SubResource("BoxShape3D_qmg03")
+
+[node name="Slot3" type="Area3D" parent="TurretSlots" unique_id=1258880075]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.25, 2.951308)
+script = ExtResource("3_8tskr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TurretSlots/Slot3" unique_id=2131601118]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.012786865, -0.21154785, -0.0028686523)
+shape = SubResource("BoxShape3D_qmg03")

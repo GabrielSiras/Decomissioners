@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bh8ga6kvm36f"]
+
+[ext_resource type="Script" uid="uid://s71bnu4dy2pl" path="res://scripts/Skills/EMP/EmpPulse.gd" id="1_dmc0m"]
+
+[node name="EmpPulse" type="Node3D" unique_id=1915837714]
+script = ExtResource("1_dmc0m")

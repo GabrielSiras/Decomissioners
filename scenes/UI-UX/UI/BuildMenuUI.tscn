@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://7vml8gkbdtrb"]
+
+[ext_resource type="Script" uid="uid://c7vrl3svytbsm" path="res://scripts/UI-UX/UI/BuildMenuUI.gd" id="1_ly6h3"]
+
+[node name="BuildMenuUI" type="Control" unique_id=1796876524]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_ly6h3")
+
+[node name="RadialPanel" type="Control" parent="." unique_id=961902928]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ButtonTurret1" type="Button" parent="RadialPanel" unique_id=2013880621]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "torre1"
+
+[node name="ButtonTurret2" type="Button" parent="RadialPanel" unique_id=861224002]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "torre2"
+
+[node name="ButtonTurret3" type="Button" parent="RadialPanel" unique_id=337346439]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "torre3"
+
+[node name="ButtonTurret4" type="Button" parent="RadialPanel" unique_id=290782043]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "torre4"
+
+[node name="CloseButton" type="Button" parent="RadialPanel" unique_id=1689192879]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0

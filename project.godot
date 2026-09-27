@@ -33,6 +33,7 @@ window/handheld/orientation=5
 3d_physics/layer_2="Player"
 3d_physics/layer_4="Enemies"
 3d_physics/layer_5="Projectiles"
+3d_physics/layer_6="Skills"
 
 [physics]
 

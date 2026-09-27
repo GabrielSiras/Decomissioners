@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://dlk4tve5trsps"]
+
+[ext_resource type="Script" uid="uid://d3t6aygtwup4e" path="res://scripts/Skills/SkillBase.gd" id="1_ytsn0"]
+
+[node name="SkillBase" type="Button" unique_id=834700005]
+offset_right = 8.0
+offset_bottom = 8.0
+script = ExtResource("1_ytsn0")

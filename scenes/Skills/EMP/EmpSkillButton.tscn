@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://d1euxj5pok2vx"]
+
+[ext_resource type="PackedScene" uid="uid://dlk4tve5trsps" path="res://scenes/Skills/SkillBase.tscn" id="1_vwtl0"]
+[ext_resource type="Script" uid="uid://dmmpysunnt0uh" path="res://scripts/Skills/EMP/EmpSkillButton.gd" id="2_rxs3e"]
+[ext_resource type="PackedScene" uid="uid://bh8ga6kvm36f" path="res://scenes/Skills/EMP/EmpPulse.tscn" id="3_b4ius"]
+
+[node name="EmpSkillButton" unique_id=834700005 instance=ExtResource("1_vwtl0")]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -31.0
+offset_right = 42.0
+offset_bottom = 0.0
+grow_vertical = 0
+text = "EMP"
+script = ExtResource("2_rxs3e")
+emp_pulse_scene = ExtResource("3_b4ius")

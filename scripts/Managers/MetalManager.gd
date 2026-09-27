@@ -2,7 +2,7 @@ extends Node
 
 signal metal_changed(new_amount: int)
 
-var total_metal: int = 0:
+var total_metal: int = 1000:
 	set(value):
 		total_metal = value
 		metal_changed.emit(total_metal)

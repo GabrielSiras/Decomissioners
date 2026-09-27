@@ -2,7 +2,8 @@ class_name TurretBase
 extends Node3D
 
 @export var fire_rate: float = 0.5
-@export var damage: int = 2
+@export var damage: int = 10
+@export var build_cost: int = 50
 @export var projectile_scene: PackedScene
 
 @onready var range_area: Area3D = $RangeArea
@@ -30,6 +31,7 @@ func _process(_delta: float) -> void:
 		look_at(target_pos, Vector3.UP)
 		
 		if shoot_timer.is_stopped():
+			shoot()
 			shoot_timer.start()
 	else:
 		shoot_timer.stop()

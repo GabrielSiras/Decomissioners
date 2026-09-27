@@ -22,40 +22,49 @@ func _physics_process(delta: float) -> void:
 	if not is_instance_valid(target):
 		return
 
-	var distance_to_target = global_position.distance_to(target.global_position)
+	var ai_velocity: Vector3 = Vector3.ZERO
 	var target_pos = target.global_position
 	target_pos.y = global_position.y
 
-	if distance_to_target > attack_range:
-		is_attacking = false
-		attack_timer.stop()
-		
-		var direction = (target.global_position - global_position).normalized()
-		direction.y = 0 
-		velocity = direction * (speed * 1.3)
-	
-	else:
-		var train_speed: float = 0.0
-		if "current_speed" in target:
-			train_speed = target.current_speed
-		elif "speed" in target:
-			train_speed = target.speed
+	if knockback_velocity.length() < 2.0:
+		var distance_to_target = global_position.distance_to(target.global_position)
 
-		if distance_to_target > min_distance:
+		if distance_to_target > attack_range:
+			is_attacking = false
+			attack_timer.stop()
+			
 			var direction = (target.global_position - global_position).normalized()
-			direction.y = 0
-			velocity = direction * speed
-		else:
-			velocity = Vector3(0, 0, -train_speed)
+			direction.y = 0.0
+			ai_velocity = direction * (speed * 1.3)
 		
-		if not is_attacking:
-			is_attacking = true
-			attack_timer.start()
+		else:
+			var train_speed: float = 0.0
+			if "current_speed" in target:
+				train_speed = target.current_speed
+			elif "speed" in target:
+				train_speed = target.speed
 
-	if global_position.distance_squared_to(target_pos) > 0.01:
-		look_at(target_pos, Vector3.UP)
+			if distance_to_target > min_distance:
+				var direction = (target.global_position - global_position).normalized()
+				direction.y = 0.0
+				ai_velocity = direction * speed
+			else:
+				ai_velocity = Vector3(0, 0, -train_speed)
+			
+			if not is_attacking:
+				is_attacking = true
+				attack_timer.start()
 
+		if global_position.distance_squared_to(target_pos) > 0.01:
+			look_at(target_pos, Vector3.UP)
+
+	velocity = ai_velocity + knockback_velocity
 	move_and_slide()
+
+	if knockback_velocity.length() > 0.01:
+		knockback_velocity = knockback_velocity.move_toward(Vector3.ZERO, knockback_friction * delta)
+	else:
+		knockback_velocity = Vector3.ZERO
 
 func _on_attack_timer_timeout() -> void:
 	shoot_at_target()
