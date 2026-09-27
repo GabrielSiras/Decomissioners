@@ -1,5 +1,126 @@
 [gd_scene format=3 uid="uid://x2uj51mwckp5"]
 
+[ext_resource type="Texture2D" uid="uid://duj7n4gkvuyfl" path="res://assets/VFX Textures/Shockwave Texture.png" id="1_2s4jh"]
+[ext_resource type="Texture2D" uid="uid://by8gbat4yhu3u" path="res://assets/VFX Textures/SmokeValue.png" id="1_hf1lp"]
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_dep8j"]
+input_name = "vertex"
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_srarc"]
+input_name = "normal"
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_6syer"]
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_4pmvk"]
+expanded_output_ports = [0]
+texture = ExtResource("1_hf1lp")
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_7wfuk"]
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_ruyvn"]
+default_input_values = [0, 0.0, 1, 0.5]
+operator = 2
+
+[sub_resource type="VisualShader" id="VisualShader_srarc"]
+nodes/vertex/0/position = Vector2(360, 220)
+nodes/vertex/2/node = SubResource("VisualShaderNodeInput_dep8j")
+nodes/vertex/2/position = Vector2(-360, 180)
+nodes/vertex/3/node = SubResource("VisualShaderNodeInput_srarc")
+nodes/vertex/3/position = Vector2(-680, 360)
+nodes/vertex/4/node = SubResource("VisualShaderNodeVectorOp_6syer")
+nodes/vertex/4/position = Vector2(80, 160)
+nodes/vertex/5/node = SubResource("VisualShaderNodeTexture_4pmvk")
+nodes/vertex/5/position = Vector2(-880, 600)
+nodes/vertex/6/node = SubResource("VisualShaderNodeVectorOp_7wfuk")
+nodes/vertex/6/position = Vector2(-220, 420)
+nodes/vertex/7/node = SubResource("VisualShaderNodeFloatOp_ruyvn")
+nodes/vertex/7/position = Vector2(-540, 640)
+nodes/vertex/connections = PackedInt32Array(2, 0, 4, 0, 4, 0, 0, 0, 3, 0, 6, 0, 6, 0, 4, 1, 5, 1, 7, 0, 7, 0, 6, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hf1lp"]
+render_priority = 0
+shader = SubResource("VisualShader_srarc")
+
+[sub_resource type="Curve" id="Curve_jofub"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_7th88"]
+curve = SubResource("Curve_jofub")
+
+[sub_resource type="Curve" id="Curve_2s4jh"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1e-05, 0.4971751), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_3blxd"]
+curve = SubResource("Curve_2s4jh")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_iujhx"]
+lifetime_randomness = 1.0
+emission_shape = 2
+emission_sphere_radius = 0.5
+use_rotation_3d = true
+rotation_3d_min = Vector3(0.5, 0.5, 0.5)
+rotation_3d_max = Vector3(1.5, 1.5, 1.5)
+gravity = Vector3(0, 0.5, 0)
+scale_min = 0.19999999
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_3blxd")
+color = Color(0.41215247, 0.41215247, 0.41215247, 1)
+alpha_curve = SubResource("CurveTexture_7th88")
+
+[sub_resource type="SphereMesh" id="SphereMesh_7th88"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gtaj1"]
+transparency = 1
+blend_mode = 1
+cull_mode = 2
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_color = Color(3.446, 3.446, 3.446, 1)
+albedo_texture = ExtResource("1_2s4jh")
+
+[sub_resource type="Curve" id="Curve_2h1es"]
+_data = [Vector2(0, 1), 0.0, 0.06649691, 0, 0, Vector2(1, 0), -1.7555176, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_5jj58"]
+curve = SubResource("Curve_2h1es")
+
+[sub_resource type="Curve" id="Curve_hf1lp"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1e-05, 0), 2.886371, 2.886371, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_rmsqy"]
+curve = SubResource("Curve_hf1lp")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qomhq"]
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -2.2351742e-06
+radial_accel_max = -2.2351742e-06
+scale_min = 2.0
+scale_max = 2.5
+scale_curve = SubResource("CurveTexture_rmsqy")
+color = Color(1.0367595, 0.3984967, 0.10357528, 1)
+alpha_curve = SubResource("CurveTexture_5jj58")
+
+[sub_resource type="QuadMesh" id="QuadMesh_pmwcf"]
+orientation = 1
+
 [node name="ExplosionVFX" type="Node3D" unique_id=369015673]
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=2092418715]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2051994206]
+
+[node name="SmokeVFX" type="GPUParticles3D" parent="." unique_id=549134297]
+material_override = SubResource("ShaderMaterial_hf1lp")
+amount = 30
+lifetime = 3.0
+process_material = SubResource("ParticleProcessMaterial_iujhx")
+draw_pass_1 = SubResource("SphereMesh_7th88")
+
+[node name="ShockwaveVFX" type="GPUParticles3D" parent="." unique_id=2092418715]
+material_override = SubResource("StandardMaterial3D_gtaj1")
+amount = 1
+lifetime = 1.5
+process_material = SubResource("ParticleProcessMaterial_qomhq")
+draw_pass_1 = SubResource("QuadMesh_pmwcf")
