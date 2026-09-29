@@ -2,7 +2,7 @@ class_name SkillBase
 extends Button
 
 @export var cooldown_time: float = 0.1
-@export var train: Train
+@export var train: TrainHead
 @onready var cooldown_timer: Timer = Timer.new()
 
 var is_on_cooldown: bool = false

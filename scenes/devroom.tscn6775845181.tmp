@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cymig8bf22o47"]
 
 [ext_resource type="PackedScene" uid="uid://ccxbyhm6vro5u" path="res://scenes/GameCamera.tscn" id="1_5ij30"]
+[ext_resource type="PackedScene" uid="uid://fncocs5exowh" path="res://scenes/Enemies/RangedEnemies/MachineGun/MachineGun.tscn" id="2_yxgwb"]
 [ext_resource type="PackedScene" uid="uid://msr581mrgwu6" path="res://scenes/Enemies/EnemySpawner.tscn" id="3_anjfi"]
 [ext_resource type="PackedScene" uid="uid://cika3a8mjdsiv" path="res://scenes/Player/Train/Train.tscn" id="3_hs430"]
 [ext_resource type="PackedScene" uid="uid://bvuisrwp77067" path="res://scenes/UI-UX/UI/DefeatMenu.tscn" id="4_do01s"]
@@ -18,18 +19,16 @@
 [ext_resource type="PackedScene" uid="uid://bh4nxhtcknybg" path="res://scenes/Turrets/TurretBase.tscn" id="15_fxyqj"]
 [ext_resource type="PackedScene" uid="uid://bnhwjmce2un5i" path="res://scenes/UI-UX/UI/DemolishingMenuUI.tscn" id="16_h8k66"]
 [ext_resource type="PackedScene" uid="uid://d1euxj5pok2vx" path="res://scenes/Player/Skills/EMP/EmpSkillButton.tscn" id="17_558wr"]
-[ext_resource type="PackedScene" uid="uid://b6kis3qguxedq" path="res://scenes/Player/Wagon/Wagon.tscn" id="19_c0ium"]
 
 [node name="Devroom3d" type="Node3D" unique_id=95222864]
 
-[node name="EnemySpawner" parent="." unique_id=456115132 node_paths=PackedStringArray("terrain_manager", "main_target", "spawn_points_container") instance=ExtResource("3_anjfi")]
+[node name="EnemySpawner" parent="." unique_id=456115132 node_paths=PackedStringArray("terrain_manager", "spawn_points_container") instance=ExtResource("3_anjfi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6493196, 1.251749, 0.36621284)
 visible = false
 terrain_manager = NodePath("../TerrainManager")
-main_target = NodePath("../Player/TrainHead")
-desolation_enemies = Array[PackedScene]([])
-scrap_enemies = Array[PackedScene]([])
-factory_enemies = Array[PackedScene]([])
+desolation_enemies = Array[PackedScene]([ExtResource("2_yxgwb")])
+scrap_enemies = Array[PackedScene]([ExtResource("2_yxgwb")])
+factory_enemies = Array[PackedScene]([ExtResource("2_yxgwb")])
 spawn_points_container = NodePath(".")
 
 [node name="DestinationPoint" type="Marker3D" parent="." unique_id=949491284]
@@ -40,12 +39,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -600)
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1922942967]
 transform = Transform3D(-0.7071068, 0.61237246, 0.35355338, 0.68301266, 0.7209159, 0.11736255, -0.18301266, 0.3244693, -0.9280227, 0, 5, 0)
 
-[node name="TerrainManager" parent="." unique_id=1209588191 node_paths=PackedStringArray("train", "destination_node") instance=ExtResource("7_m03md")]
-train = NodePath("../Player/TrainHead")
+[node name="TerrainManager" parent="." unique_id=1209588191 node_paths=PackedStringArray("destination_node") instance=ExtResource("7_m03md")]
 destination_node = NodePath("../DestinationPoint")
 desolation_scenes = Array[PackedScene]([ExtResource("8_78ea8"), ExtResource("9_h3fqt")])
 scrap_scenes = Array[PackedScene]([ExtResource("10_fxyqj"), ExtResource("11_h8k66")])
 factory_scenes = Array[PackedScene]([ExtResource("12_558wr"), ExtResource("13_yxgwb")])
+
+[node name="GameCamera" parent="." unique_id=1770089720 instance=ExtResource("1_5ij30")]
+transform = Transform3D(1, 0, 0, 0, 0.5039789, 0.863716, 0, -0.863716, 0.5039789, 0, 16.535116, 4.774544)
+v_offset = 3.705
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=1368257838]
 
@@ -63,40 +65,22 @@ metal_manager = NodePath(".")
 
 [node name="TrainProgressBar" parent="HUD" unique_id=1161455226 instance=ExtResource("6_ivymc")]
 
-[node name="BuildMenuUI" parent="HUD" unique_id=1796876524 node_paths=PackedStringArray("train") instance=ExtResource("14_h3fqt")]
+[node name="BuildMenuUI" parent="HUD" unique_id=1796876524 instance=ExtResource("14_h3fqt")]
 offset_left = 3.0
 offset_right = 3.0
-train = NodePath("../../Player/TrainHead")
 turret_1_scene = ExtResource("15_fxyqj")
 turret_2_scene = ExtResource("15_fxyqj")
 turret_3_scene = ExtResource("15_fxyqj")
 turret_4_scene = ExtResource("15_fxyqj")
 
-[node name="DemolishingMenuUI" parent="HUD" unique_id=1660696465 node_paths=PackedStringArray("train") instance=ExtResource("16_h8k66")]
-train = NodePath("../../Player/TrainHead")
+[node name="DemolishingMenuUI" parent="HUD" unique_id=1660696465 instance=ExtResource("16_h8k66")]
 
 [node name="Skills" type="CanvasLayer" parent="." unique_id=799799759]
 
-[node name="EmpSkillButton" parent="Skills" unique_id=834700005 node_paths=PackedStringArray("train") instance=ExtResource("17_558wr")]
-train = NodePath("../../Player/TrainHead")
+[node name="EmpSkillButton" parent="Skills" unique_id=834700005 instance=ExtResource("17_558wr")]
 
-[node name="Player" type="Node3D" parent="." unique_id=163302227]
-
-[node name="TrainHead" parent="Player" unique_id=423923195 node_paths=PackedStringArray("wagons", "defeat_menu", "speed_lever", "progress_bar", "destination_node") instance=ExtResource("3_hs430")]
-max_speed = 8.0
-wagons = [NodePath("Wagon"), NodePath("Wagon2")]
-defeat_menu = NodePath("../../HUD/DefeatMenu")
-speed_lever = NodePath("../../HUD/SpeedLever")
-progress_bar = NodePath("../../HUD/TrainProgressBar")
-destination_node = NodePath("../../DestinationPoint")
-
-[node name="Wagon" parent="Player/TrainHead" unique_id=659263558 instance=ExtResource("19_c0ium")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.084, 4.2603464)
-
-[node name="Wagon2" parent="Player/TrainHead" unique_id=1728178988 instance=ExtResource("19_c0ium")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.084, 9.283)
-
-[node name="GameCamera" parent="Player" unique_id=1770089720 node_paths=PackedStringArray("target") instance=ExtResource("1_5ij30")]
-transform = Transform3D(0.99991435, 0.013089597, -1.0106151e-05, 0, 0.0007720748, 0.9999997, 0.013089601, -0.99991405, 0.0007720087, 0.048287738, 18.14456, 4.264213)
-v_offset = -6.0
-target = NodePath("../TrainHead")
+[node name="TrainHead" parent="." unique_id=423923195 node_paths=PackedStringArray("defeat_menu", "speed_lever", "progress_bar", "destination_node") instance=ExtResource("3_hs430")]
+defeat_menu = NodePath("../HUD/DefeatMenu")
+speed_lever = NodePath("../HUD/SpeedLever")
+progress_bar = NodePath("../HUD/TrainProgressBar")
+destination_node = NodePath("../DestinationPoint")

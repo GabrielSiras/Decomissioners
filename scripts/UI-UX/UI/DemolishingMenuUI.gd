@@ -1,7 +1,7 @@
 class_name DemolishingMenuUI
 extends Control
 
-@export var train: Train
+@export var train: TrainHead
 @export var menu_offset_y: float = 65.0 
 
 @onready var radial_panel: Control = $RadialPanel

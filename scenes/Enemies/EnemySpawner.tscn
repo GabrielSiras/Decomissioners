@@ -2,13 +2,15 @@
 
 [ext_resource type="Script" uid="uid://bydy3ken5vk3o" path="res://scripts/Enemies/EnemySpawner.gd" id="1_mblkx"]
 [ext_resource type="PackedScene" uid="uid://b7m5it3iehpqe" path="res://scenes/Enemies/MeleeEnemy.tscn" id="2_3c3br"]
-[ext_resource type="PackedScene" uid="uid://cv24qqxtw1mc" path="res://scenes/Enemies/RangedEnemy.tscn" id="3_1ymdl"]
+[ext_resource type="PackedScene" uid="uid://cv24qqxtw1mc" path="res://scenes/Enemies/RangedEnemies/RangedEnemy.tscn" id="3_1ymdl"]
+[ext_resource type="PackedScene" uid="uid://fncocs5exowh" path="res://scenes/Enemies/RangedEnemies/MachineGun/MachineGun.tscn" id="4_1ymdl"]
 
 [node name="EnemySpawner" type="Node3D" unique_id=456115132]
 script = ExtResource("1_mblkx")
 desolation_enemies = Array[PackedScene]([ExtResource("2_3c3br"), ExtResource("3_1ymdl")])
 scrap_enemies = Array[PackedScene]([ExtResource("2_3c3br"), ExtResource("3_1ymdl")])
 factory_enemies = Array[PackedScene]([ExtResource("2_3c3br"), ExtResource("3_1ymdl")])
+machine_gun_scene = ExtResource("4_1ymdl")
 
 [node name="SpawnTimer" type="Timer" parent="." unique_id=1010500497]
 

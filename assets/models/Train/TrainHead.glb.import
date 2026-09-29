@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://caubjr7ag7owr"
-path="res://.godot/imported/testeinimigo.glb-a262a7c16fa39c66f9d33cdd7f8ab70b.scn"
+uid="uid://dn6xiuvp8y7jk"
+path="res://.godot/imported/TrainHead.glb-8869e6d92687130cebb594bbb261cb84.scn"
 
 [deps]
 
-source_file="res://assets/models/Enemies/testeinimigo.glb"
-dest_files=["res://.godot/imported/testeinimigo.glb-a262a7c16fa39c66f9d33cdd7f8ab70b.scn"]
+source_file="res://assets/models/Train/TrainHead.glb"
+dest_files=["res://.godot/imported/TrainHead.glb-8869e6d92687130cebb594bbb261cb84.scn"]
 
 [params]
 
@@ -19,7 +19,7 @@ nodes/root_script=null
 mesh_library/use_node_names_as_mesh_names=false
 array_mesh/deduplicate_surfaces=true
 nodes/apply_root_scale=true
-nodes/root_scale=1.0
+nodes/root_scale=0.25
 nodes/import_as_skeleton_bones=false
 nodes/use_name_suffixes=true
 nodes/use_node_type_suffixes=true

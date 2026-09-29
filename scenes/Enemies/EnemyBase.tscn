@@ -2,18 +2,12 @@
 
 [ext_resource type="Script" uid="uid://bt8iofqqh1ko3" path="res://scripts/Enemies/EnemyBase.gd" id="1_hp0o2"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ykh0f"]
-albedo_color = Color(0.9999998, 0.15492225, 0.93508726, 1)
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_qmg03"]
 
 [node name="EnemyBase3d" type="CharacterBody3D" unique_id=57215611]
 collision_layer = 8
 collision_mask = 11
 script = ExtResource("1_hp0o2")
-
-[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1654591248]
-material = SubResource("StandardMaterial3D_ykh0f")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1838556396]
 shape = SubResource("BoxShape3D_qmg03")

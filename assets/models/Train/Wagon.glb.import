@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://dvkcs568x08bd"
-path="res://.godot/imported/train.glb-de7e9ab0c9d5fd8f98da117d0fd29874.scn"
+path="res://.godot/imported/Wagon.glb-33655a43316f9c047b1fa65ac74aa8a3.scn"
 
 [deps]
 
-source_file="res://assets/models/Train/train.glb"
-dest_files=["res://.godot/imported/train.glb-de7e9ab0c9d5fd8f98da117d0fd29874.scn"]
+source_file="res://assets/models/Train/Wagon.glb"
+dest_files=["res://.godot/imported/Wagon.glb-33655a43316f9c047b1fa65ac74aa8a3.scn"]
 
 [params]
 
@@ -19,7 +19,7 @@ nodes/root_script=null
 mesh_library/use_node_names_as_mesh_names=false
 array_mesh/deduplicate_surfaces=true
 nodes/apply_root_scale=true
-nodes/root_scale=0.6
+nodes/root_scale=0.25
 nodes/import_as_skeleton_bones=false
 nodes/use_name_suffixes=true
 nodes/use_node_type_suffixes=true

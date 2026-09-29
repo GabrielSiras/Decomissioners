@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b5uaoekqxle82"]
 
-[ext_resource type="Script" uid="uid://c408vt1axluud" path="res://scripts/Enemies/EnemyProjectile.gd" id="1_i13m6"]
+[ext_resource type="Script" uid="uid://c408vt1axluud" path="res://scripts/Enemies/RangedEnemies/EnemyProjectile.gd" id="1_i13m6"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qmg03"]
 albedo_color = Color(0, 0, 1, 1)

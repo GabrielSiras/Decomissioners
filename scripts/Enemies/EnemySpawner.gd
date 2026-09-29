@@ -15,6 +15,12 @@ extends Node3D
 
 @onready var spawn_timer: Timer = $SpawnTimer
 
+@export_category("Cena da MachineGun")
+@export var machine_gun_scene: PackedScene
+@export var shoulder_x_offset: float = 4.5
+@export var spawn_z_behind: float = 30.0
+@export_range(0.0, 1.0) var machine_gun_spawn_chance: float = 1.0 # 100%
+
 var active_enemy_pool: Array[PackedScene] = []
 var fallback_spawn_points: Array[Marker3D] = []
 
@@ -50,7 +56,10 @@ func _on_zone_changed(new_zone: TerrainManager.Zone) -> void:
 	print("EnemySpawner: Onda alterada para ", TerrainManager.Zone.keys()[new_zone], " | Intervalo: ", spawn_timer.wait_time, "s")
 
 func _on_spawn_timer_timeout() -> void:
-	spawn_enemy()
+	if machine_gun_scene and randf() < machine_gun_spawn_chance:
+		try_spawn_machine_gun()
+	else:
+		spawn_enemy()
 
 func spawn_enemy() -> void:
 	if active_enemy_pool.is_empty():
@@ -65,8 +74,37 @@ func spawn_enemy() -> void:
 	var spawn_transform: Transform3D = _get_chunk_spawn_transform()
 
 	get_parent().add_child(enemy_instance)
-	
 	enemy_instance.global_transform = spawn_transform
+
+func try_spawn_machine_gun(train: Node3D = null) -> void:
+	var target_train = train if is_instance_valid(train) else main_target
+	
+	if not is_instance_valid(target_train) or not machine_gun_scene:
+		return
+		
+	var base_spd = target_train.base_speed if "base_speed" in target_train else 5.0
+	var curr_spd = target_train.current_speed if "current_speed" in target_train else 5.0
+	
+	if curr_spd > base_spd:
+		print("Spawn de MachineGun bloqueado: Trem acima da velocidade base.")
+		return
+
+	var mg = machine_gun_scene.instantiate()
+	get_parent().add_child(mg)
+	
+	var spawn_pos = Vector3(
+		target_train.global_position.x + shoulder_x_offset,
+		0.0,
+		target_train.global_position.z + spawn_z_behind
+	)
+	mg.global_position = spawn_pos
+	
+	if mg.has_method("setup_target"):
+		mg.setup_target(target_train)
+	elif "target" in mg:
+		mg.target = target_train
+		
+	print("✅ MachineGun spawnada no acostamento!")
 
 func _get_chunk_spawn_transform() -> Transform3D:
 	var train_z: float = 0.0
@@ -85,5 +123,3 @@ func _get_chunk_spawn_transform() -> Transform3D:
 	var fallback_pos = Vector3(side_x, 0.5, train_z - 35.0)
 	
 	return Transform3D(Basis(), fallback_pos)
-
-	return Transform3D.IDENTITY

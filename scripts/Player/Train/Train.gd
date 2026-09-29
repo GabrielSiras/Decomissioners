@@ -1,17 +1,21 @@
-class_name Train
+class_name TrainHead
 extends Node3D
 
+@export_category("Train Status")
 @onready var turret_slots_container: Node3D = $TurretSlots
-@export var defeat_menu: DefeatMenu
-@export var max_health: int = 100
+@export var max_health: int = 200
 @export var max_speed: float = 15.0
-@export var speed_lever: SpeedLever
 @onready var current_health: int = max_health
 @export var current_armor: int = 10
+@export var wagons: Array[Wagon] = []
+@export_category("MENUs/HUDs")
+@export var defeat_menu: DefeatMenu
+@export var speed_lever: SpeedLever
 @export var progress_bar: CanvasLayer
 @export var destination_node: Node3D
+@export_category("EMP SKILL")
 @export var emp_radius: float = 12.0
-@export var emp_force: float = 25.0 
+@export var emp_force: float = 25.0
 
 var slots_status: Dictionary = {}
 var current_speed_factor: float = 0.0
@@ -23,6 +27,8 @@ func _ready() -> void:
 	add_to_group("player_base")
 	
 	start_position = global_position
+	
+	_update_wagons_list()
 	
 	if is_instance_valid(destination_node):
 		total_distance = start_position.distance_to(destination_node.global_position)
@@ -40,6 +46,12 @@ func _physics_process(delta: float) -> void:
 	global_position += velocity * delta
 	
 	_update_progress()
+
+func _update_wagons_list() -> void:
+	wagons.clear()
+	for child in get_children():
+		if child is Wagon:
+			wagons.append(child)
 
 func _update_progress() -> void:
 	if not progress_bar or not is_instance_valid(destination_node) or total_distance <= 0.0:

@@ -31,7 +31,10 @@ func _on_body_entered(body: Node3D) -> void:
 
 func _on_area_entered(area: Area3D) -> void:
 	_apply_damage_to(area)
-		
+
+func set_direction(dir: Vector3) -> void:
+	direction = dir.normalized()
+
 func _apply_damage_to(target: Node3D) -> void:
 	if target is EnemyBase or target is EnemyProjectile:
 		return

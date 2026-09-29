@@ -1,7 +1,7 @@
 class_name BuildMenuUI
 extends Control
 
-@export var train: Train
+@export var train: TrainHead
 @export var turret_1_scene: PackedScene
 @export var turret_1_cost: int = 50
 
