@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://cgp7u735pspoe"]
+
+[ext_resource type="Shader" uid="uid://dvry4ke0le6oc" path="res://scenes/VFX/ExplosionCloudShader.tres" id="1_wtm14"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_wtm14")
+shader_parameter/Panning_Speed = Vector2(0, 0.5)
+shader_parameter/Cloud_Intensity = 0.15
+shader_parameter/ExplosionColor = Color(1.222858, 0.429157, 0, 1)

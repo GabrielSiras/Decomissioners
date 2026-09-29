@@ -2,70 +2,82 @@
 
 [ext_resource type="Texture2D" uid="uid://d0wjp8txrh3vo" path="res://assets/VFX Textures/T_PerlinNoise_46_inv.png" id="1_mhnnr"]
 
-[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_mhnnr"]
-linked_parent_graph_frame = 14
-parameter_name = "ExplosionController"
-hint = 1
-min = -1.0
-
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_cqjpg"]
-noise_type = 3
-frequency = 0.0129
-fractal_gain = 0.01
+noise_type = 2
+frequency = 0.0138
+offset = Vector3(0, -126.32, 0)
+fractal_octaves = 4
+fractal_gain = 0.0
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_mhnnr"]
 noise = SubResource("FastNoiseLite_cqjpg")
+seamless = true
+seamless_blend_skirt = 1.0
 
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_mhnnr"]
 expanded_output_ports = [0]
 linked_parent_graph_frame = 15
 texture = SubResource("NoiseTexture2D_mhnnr")
+texture_type = 1
 
 [sub_resource type="VisualShaderNodeSmoothStep" id="VisualShaderNodeSmoothStep_cqjpg"]
 linked_parent_graph_frame = 15
 
-[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_mqekw"]
-linked_parent_graph_frame = 15
-parameter_name = "CloudAlpha"
-hint = 1
-min = -1.0
-
 [sub_resource type="VisualShaderNodeFrame" id="VisualShaderNodeFrame_mhnnr"]
-size = Vector2(1024.0009, 1253.0005)
+size = Vector2(1024, 1253)
 title = "Emission Controls"
 tint_color_enabled = true
 tint_color = Color(0.66796875, 0.3261974, 0.14089966, 0.75)
-attached_nodes = PackedInt32Array(4, 7, 10, 8, 9, 5, 6)
+attached_nodes = PackedInt32Array(4, 7, 6, 8, 9, 5, 17)
 
 [sub_resource type="VisualShaderNodeFrame" id="VisualShaderNodeFrame_cqjpg"]
-size = Vector2(644.0001, 753)
+size = Vector2(844, 713)
 title = "Alpha Controls"
 tint_color_enabled = true
 tint_color = Color(0.2421875, 0.2421875, 0.2421875, 0.75)
-attached_nodes = PackedInt32Array(11, 12, 13)
+attached_nodes = PackedInt32Array(11, 12, 18, 20, 19)
 
 [sub_resource type="VisualShaderNodeFrame" id="VisualShaderNodeFrame_mqekw"]
-size = Vector2(664.0005, 530)
+size = Vector2(693, 498)
 title = "Smoke Color Controls"
 tint_color_enabled = true
 tint_color = Color(0.05078125, 0.05078125, 0.05078125, 0.75)
 attached_nodes = PackedInt32Array(2, 3)
 
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_mhnnr"]
+expanded_output_ports = [0]
+linked_parent_graph_frame = 14
+input_name = "color"
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_mqekw"]
+expanded_output_ports = [0]
+linked_parent_graph_frame = 15
+input_name = "color"
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_mhnnr"]
+linked_parent_graph_frame = 15
+operator = 2
+
 [sub_resource type="Gradient" id="Gradient_mhnnr"]
-colors = PackedColorArray(0.16571221, 0.055147134, 0.017602498, 1, 0.46187514, 0.28589904, 0.22104147, 1)
+offsets = PackedFloat32Array(0.0071174377, 1)
+colors = PackedColorArray(0.091819145, 0.021428404, 0.006605449, 1, 0.34228033, 0.2050541, 0.15444595, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_t3tk6"]
 gradient = SubResource("Gradient_mhnnr")
 
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_cqjpg"]
+expanded_output_ports = [0]
 linked_parent_graph_frame = 16
 texture = SubResource("GradientTexture1D_t3tk6")
 texture_type = 1
 
+[sub_resource type="VisualShaderNodeProximityFade" id="VisualShaderNodeProximityFade_cqjpg"]
+linked_parent_graph_frame = 15
+
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_hf1lp"]
-noise_type = 3
-frequency = 0.0088
-offset = Vector3(0, 507.46, 0)
+noise_type = 2
+seed = 2
+frequency = 0.0148
 fractal_octaves = 10
 fractal_lacunarity = 0.0
 fractal_gain = 0.0
@@ -76,7 +88,7 @@ fractal_ping_pong_strength = 1.0
 noise = SubResource("FastNoiseLite_hf1lp")
 
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_7et35"]
-output_port_for_preview = 0
+expanded_output_ports = [0]
 linked_parent_graph_frame = 16
 texture = SubResource("NoiseTexture2D_mqekw")
 texture_type = 1
@@ -89,7 +101,7 @@ default_value = Color(1.2228577, 0.42915735, 0, 1)
 
 [sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_hfep0"]
 linked_parent_graph_frame = 14
-constant = 10.0
+constant = 25.0
 
 [sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_6f2af"]
 linked_parent_graph_frame = 14
@@ -161,6 +173,7 @@ default_input_values = [0, 0.0, 1, 0.2]
 operator = 2
 
 [resource]
+modes/cull = 2
 nodes/vertex/2/node = SubResource("VisualShaderNodeInput_hfep0")
 nodes/vertex/2/position = Vector2(-520, 60)
 nodes/vertex/3/node = SubResource("VisualShaderNodeInput_6f2af")
@@ -183,7 +196,7 @@ nodes/vertex/12/node = SubResource("VisualShaderNodeFloatParameter_7et35")
 nodes/vertex/12/position = Vector2(-1200, 860)
 nodes/vertex/13/node = SubResource("VisualShaderNodeVec2Parameter_ieign")
 nodes/vertex/13/position = Vector2(-2500, 660)
-nodes/vertex/connections = PackedInt32Array(3, 0, 6, 0, 6, 0, 7, 1, 2, 0, 7, 0, 7, 0, 0, 0, 8, 0, 5, 0, 5, 1, 9, 0, 9, 0, 6, 1, 10, 0, 11, 0, 11, 0, 8, 2, 12, 0, 9, 1, 13, 0, 11, 1)
+nodes/vertex/connections = PackedInt32Array(6, 0, 7, 1, 8, 0, 5, 0, 5, 1, 9, 0, 9, 0, 6, 1, 11, 0, 8, 2, 12, 0, 9, 1, 13, 0, 11, 1, 7, 0, 0, 0, 2, 0, 7, 0, 3, 0, 6, 0, 10, 0, 11, 0)
 nodes/fragment/0/position = Vector2(460, 520)
 nodes/fragment/2/node = SubResource("VisualShaderNodeTexture_cqjpg")
 nodes/fragment/2/position = Vector2(-340, -160)
@@ -201,18 +214,22 @@ nodes/fragment/8/node = SubResource("VisualShaderNodeSmoothStep_ddnpb")
 nodes/fragment/8/position = Vector2(-520, 1820)
 nodes/fragment/9/node = SubResource("VisualShaderNodeTexture_oin5r")
 nodes/fragment/9/position = Vector2(-860, 1980)
-nodes/fragment/10/node = SubResource("VisualShaderNodeFloatParameter_mhnnr")
-nodes/fragment/10/position = Vector2(-900, 1660)
 nodes/fragment/11/node = SubResource("VisualShaderNodeTexture_mhnnr")
 nodes/fragment/11/position = Vector2(-740, 640)
 nodes/fragment/12/node = SubResource("VisualShaderNodeSmoothStep_cqjpg")
 nodes/fragment/12/position = Vector2(-380, 520)
-nodes/fragment/13/node = SubResource("VisualShaderNodeFloatParameter_mqekw")
-nodes/fragment/13/position = Vector2(-780, 320)
 nodes/fragment/14/node = SubResource("VisualShaderNodeFrame_mhnnr")
 nodes/fragment/14/position = Vector2(-1020, 1120)
 nodes/fragment/15/node = SubResource("VisualShaderNodeFrame_cqjpg")
 nodes/fragment/15/position = Vector2(-820, 280)
 nodes/fragment/16/node = SubResource("VisualShaderNodeFrame_mqekw")
 nodes/fragment/16/position = Vector2(-580, -240)
-nodes/fragment/connections = PackedInt32Array(2, 0, 0, 0, 3, 0, 2, 0, 4, 0, 6, 0, 5, 0, 6, 1, 6, 0, 7, 0, 8, 0, 7, 1, 7, 0, 0, 5, 10, 0, 8, 0, 9, 1, 8, 2, 11, 1, 12, 2, 13, 0, 12, 0, 12, 0, 0, 1)
+nodes/fragment/17/node = SubResource("VisualShaderNodeInput_mhnnr")
+nodes/fragment/17/position = Vector2(-920, 1720)
+nodes/fragment/18/node = SubResource("VisualShaderNodeInput_mqekw")
+nodes/fragment/18/position = Vector2(-760, 360)
+nodes/fragment/19/node = SubResource("VisualShaderNodeFloatOp_mhnnr")
+nodes/fragment/19/position = Vector2(-160, 600)
+nodes/fragment/20/node = SubResource("VisualShaderNodeProximityFade_cqjpg")
+nodes/fragment/20/position = Vector2(-380, 800)
+nodes/fragment/connections = PackedInt32Array(4, 0, 6, 0, 5, 0, 6, 1, 6, 0, 7, 0, 8, 0, 7, 1, 9, 1, 8, 2, 11, 1, 12, 2, 20, 0, 19, 1, 12, 0, 19, 0, 7, 0, 0, 5, 19, 0, 0, 1, 17, 1, 8, 0, 2, 0, 0, 0, 3, 1, 2, 0, 18, 4, 12, 0)
