@@ -32,17 +32,26 @@ func _ready() -> void:
 	btn_turret_3.pressed.connect(_on_turret_3_selected)
 	btn_turret_4.pressed.connect(_on_turret_4_selected)
 
-	
 	_organize_radial_buttons()
 	
 	if is_instance_valid(train):
 		if not train.is_node_ready():
 			await train.ready
 		
-		if train.turret_slots_container:
-			for slot in train.turret_slots_container.get_children():
-				if slot.has_signal("slot_clicked"):
-					slot.slot_clicked.connect(_on_slot_clicked)
+		_connect_all_slots()
+
+func _connect_all_slots() -> void:
+	if train.turret_slots_container:
+		_connect_container_slots(train.turret_slots_container)
+		
+	for wagon in train.wagons:
+		if is_instance_valid(wagon) and wagon.has_node("TurretSlots"):
+			_connect_container_slots(wagon.get_node("TurretSlots"))
+
+func _connect_container_slots(container: Node3D) -> void:
+	for slot in container.get_children():
+		if slot.has_signal("slot_clicked") and not slot.slot_clicked.is_connected(_on_slot_clicked):
+			slot.slot_clicked.connect(_on_slot_clicked)
 
 func _process(_delta: float) -> void:
 	if visible and is_instance_valid(current_slot):

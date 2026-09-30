@@ -10,3 +10,7 @@ func _ready() -> void:
 
 func _on_slider_value_changed(new_value: float) -> void:
 	speed_changed.emit(new_value)
+
+func update_slider_visual(factor: float) -> void:
+	if is_instance_valid(v_slider):
+		v_slider.set_value_no_signal(factor)

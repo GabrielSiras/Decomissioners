@@ -19,7 +19,7 @@ extends Node3D
 @export var machine_gun_scene: PackedScene
 @export var shoulder_x_offset: float = 4.5
 @export var spawn_z_behind: float = 30.0
-@export_range(0.0, 1.0) var machine_gun_spawn_chance: float = 1.0 # 100%
+@export_range(0.0, 1.0) var machine_gun_spawn_chance: float = 0.1 # 100%
 
 var active_enemy_pool: Array[PackedScene] = []
 var fallback_spawn_points: Array[Marker3D] = []
@@ -68,7 +68,9 @@ func spawn_enemy() -> void:
 	var random_enemy_scene: PackedScene = active_enemy_pool.pick_random()
 	var enemy_instance = random_enemy_scene.instantiate()
 
-	if "target" in enemy_instance:
+	if enemy_instance.has_method("setup_target"):
+		enemy_instance.setup_target(main_target)
+	elif "target" in enemy_instance:
 		enemy_instance.target = main_target
 
 	var spawn_transform: Transform3D = _get_chunk_spawn_transform()
@@ -119,7 +121,8 @@ func _get_chunk_spawn_transform() -> Transform3D:
 					if chunk_sp.origin != Vector3.ZERO:
 						return chunk_sp
 
-	var side_x = [-6.0, 6.0].pick_random()
-	var fallback_pos = Vector3(side_x, 0.5, train_z - 35.0)
+	var side_x = [-6.0, 6.0].pick_random() + randf_range(-1.0, 1.0)
+	var spawn_z = train_z - randf_range(30.0, 40.0)
+	var fallback_pos = Vector3(side_x, 0.5, spawn_z)
 	
 	return Transform3D(Basis(), fallback_pos)

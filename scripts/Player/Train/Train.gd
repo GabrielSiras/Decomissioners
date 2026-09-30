@@ -8,6 +8,7 @@ extends Node3D
 @onready var current_health: int = max_health
 @export var current_armor: int = 10
 @export var wagons: Array[Wagon] = []
+@export var current_speed: float = 0.0
 @export_category("MENUs/HUDs")
 @export var defeat_menu: DefeatMenu
 @export var speed_lever: SpeedLever
@@ -25,10 +26,11 @@ var total_distance: float = 0.0
 
 func _ready() -> void:
 	add_to_group("player_base")
-	
 	start_position = global_position
 	
 	_update_wagons_list()
+	
+	current_speed = max_speed * current_speed_factor
 	
 	if is_instance_valid(destination_node):
 		total_distance = start_position.distance_to(destination_node.global_position)
@@ -36,14 +38,56 @@ func _ready() -> void:
 	if speed_lever:
 		speed_lever.speed_changed.connect(_on_speed_changed)
 	
+	_register_all_slots()
+
+func _clean_wagons_list() -> void:
+	wagons = wagons.filter(func(w): return is_instance_valid(w) and not w.is_queued_for_deletion())
+
+func rearrange_wagons() -> void:
+	wagons = wagons.filter(func(w): return is_instance_valid(w) and not w.is_queued_for_deletion())
+	
+	if wagons.is_empty():
+		return
+		
+	if "target" in wagons[0]:
+		wagons[0].target = self
+		
+	for i in range(1, wagons.size()):
+		if "target" in wagons[i]:
+			wagons[i].target = wagons[i - 1]
+
+func get_train_center_position() -> Vector3:
+	_clean_wagons_list()
+	
+	if wagons.is_empty():
+		return global_position
+		
+	var last_wagon = wagons[-1]
+	if is_instance_valid(last_wagon):
+		return (global_position + last_wagon.global_position) * 0.5
+		
+	return global_position
+
+func _register_all_slots() -> void:
+	slots_status.clear()
+	
 	if is_instance_valid(turret_slots_container):
 		for slot in turret_slots_container.get_children():
 			slots_status[slot] = null
+			
+	for wagon in wagons:
+		if is_instance_valid(wagon) and wagon.has_node("TurretSlots"):
+			for slot in wagon.get_node("TurretSlots").get_children():
+				slots_status[slot] = null
 
 func _physics_process(delta: float) -> void:
-	var actual_speed = max_speed * current_speed_factor
+	var actual_speed = max(0.0, current_speed)
 	velocity = -global_transform.basis.z * actual_speed
 	global_position += velocity * delta
+	
+	if speed_lever and max_speed > 0.0:
+		var visual_factor = clamp(current_speed / max_speed, 0.0, 1.0)
+		speed_lever.update_slider_visual(visual_factor)
 	
 	_update_progress()
 
@@ -85,6 +129,7 @@ func _on_destination_reached() -> void:
 	
 func _on_speed_changed(factor: float) -> void:
 	current_speed_factor = factor
+	current_speed = max_speed * current_speed_factor
 
 func get_available_slots() -> Array[Marker3D]:
 	var available: Array[Marker3D] = []
