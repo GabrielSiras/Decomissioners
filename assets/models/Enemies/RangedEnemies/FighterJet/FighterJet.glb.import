@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://gl7i0ifrwsun"
-path="res://.godot/imported/caça.glb-6f201f297b3f8cc2bbafe9f4c2cb3422.scn"
+path="res://.godot/imported/FighterJet.glb-f7338a993a1bd9b1774aa30151be47e9.scn"
 
 [deps]
 
-source_file="res://assets/models/Enemies/RangedEnemies/Caça/caça.glb"
-dest_files=["res://.godot/imported/caça.glb-6f201f297b3f8cc2bbafe9f4c2cb3422.scn"]
+source_file="res://assets/models/Enemies/RangedEnemies/FighterJet/FighterJet.glb"
+dest_files=["res://.godot/imported/FighterJet.glb-f7338a993a1bd9b1774aa30151be47e9.scn"]
 
 [params]
 
@@ -19,7 +19,7 @@ nodes/root_script=null
 mesh_library/use_node_names_as_mesh_names=false
 array_mesh/deduplicate_surfaces=true
 nodes/apply_root_scale=true
-nodes/root_scale=1.0
+nodes/root_scale=0.6
 nodes/import_as_skeleton_bones=false
 nodes/use_name_suffixes=true
 nodes/use_node_type_suffixes=true

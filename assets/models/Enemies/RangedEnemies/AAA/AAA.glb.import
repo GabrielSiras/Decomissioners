@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://cnuw8at86schi"
-path="res://.godot/imported/artilharia.glb-cabd037cc97fddf10c303adae0f63a77.scn"
+path="res://.godot/imported/AAA.glb-d712a79e4a1937b925abdcc4712cd44f.scn"
 
 [deps]
 
-source_file="res://assets/models/Enemies/RangedEnemies/Artilharia/artilharia.glb"
-dest_files=["res://.godot/imported/artilharia.glb-cabd037cc97fddf10c303adae0f63a77.scn"]
+source_file="res://assets/models/Enemies/RangedEnemies/AAA/AAA.glb"
+dest_files=["res://.godot/imported/AAA.glb-d712a79e4a1937b925abdcc4712cd44f.scn"]
 
 [params]
 
@@ -19,7 +19,7 @@ nodes/root_script=null
 mesh_library/use_node_names_as_mesh_names=false
 array_mesh/deduplicate_surfaces=true
 nodes/apply_root_scale=true
-nodes/root_scale=1.0
+nodes/root_scale=0.35
 nodes/import_as_skeleton_bones=false
 nodes/use_name_suffixes=true
 nodes/use_node_type_suffixes=true

@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://ckjdl2ahbor33"]
+
+[ext_resource type="PackedScene" uid="uid://cv24qqxtw1mc" path="res://scenes/Enemies/RangedEnemies/RangedEnemy.tscn" id="1_5j6yr"]
+[ext_resource type="PackedScene" uid="uid://gl7i0ifrwsun" path="res://assets/models/Enemies/RangedEnemies/FighterJet/FighterJet.glb" id="1_cga4l"]
+[ext_resource type="Script" uid="uid://b6vsexmfq84w0" path="res://scripts/Enemies/RangedEnemies/FighterJet/FighterJet.gd" id="2_cga4l"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7pe3l"]
+size = Vector3(3.628292, 0.6051216, 3.6671295)
+
+[node name="FighterJet" unique_id=951588638 instance=ExtResource("1_5j6yr")]
+script = ExtResource("2_cga4l")
+side_distance = 6.0
+height_offset = 1.5
+smooth_speed = 5.0
+burst_count = 3
+fire_rate = 0.2
+switch_time_min = 3.0
+switch_time_max = 6.0
+attack_range = 12.0
+ranged_damage = 5
+
+[node name="Model3D" parent="." index="0" unique_id=172292072 instance=ExtResource("1_cga4l")]
+
+[node name="CollisionShape3D" parent="." index="1" unique_id=1838556396]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.11359596, 0)
+shape = SubResource("BoxShape3D_7pe3l")
+
+[node name="Muzzle" parent="." index="2" unique_id=880355141]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.05872476, 0.008116186, 2.06641)

@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://ctyvfr2vuoihj"]
+
+[ext_resource type="PackedScene" uid="uid://cv24qqxtw1mc" path="res://scenes/Enemies/RangedEnemies/RangedEnemy.tscn" id="1_fwk0r"]
+[ext_resource type="Script" uid="uid://bcelx0ag6ujea" path="res://scripts/Enemies/RangedEnemies/AAA/AAA.gd" id="2_275pc"]
+[ext_resource type="PackedScene" uid="uid://cnuw8at86schi" path="res://assets/models/Enemies/RangedEnemies/AAA/AAA.glb" id="2_ddjdu"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_275pc"]
+size = Vector3(1.3231201, 1.201294, 1.0964661)
+
+[node name="AAA" unique_id=951588638 instance=ExtResource("1_fwk0r")]
+script = ExtResource("2_275pc")
+scan_interval = 0.5
+alternate_fire = true
+attack_range = 40.0
+ranged_damage = 5
+max_health = 300
+metal_reward = 100
+
+[node name="Model3D" parent="." index="0" unique_id=715176889 instance=ExtResource("2_ddjdu")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+
+[node name="CollisionShape3D" parent="." index="1" unique_id=1838556396]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.005966902, 0.5048182, -0.32195926)
+shape = SubResource("BoxShape3D_275pc")
+
+[node name="Muzzle" parent="." index="2" unique_id=880355141]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.38738203, 0.8939553, -0.9790003)
+
+[node name="Muzzle2" type="Marker3D" parent="." index="3" unique_id=582924270]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.38737917, 0.8939553, -0.9790003)
