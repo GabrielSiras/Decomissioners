@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://bc2jkojs684ns"]
+
+[ext_resource type="Script" uid="uid://bvpmvide71hxk" path="res://scripts/Player/Skills/Bombardment/Bombardment.gd" id="1_8y1h5"]
+[ext_resource type="PackedScene" uid="uid://x2uj51mwckp5" path="res://scenes/VFX/ExplosionVFX.tscn" id="2_xga24"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_qmg03"]
+height = 0.1
+radial_segments = 12
+rings = 3
+
+[node name="Bombardment" type="Node3D" unique_id=1233679808]
+script = ExtResource("1_8y1h5")
+explosion_effect_scene = ExtResource("2_xga24")
+
+[node name="IndicatorMesh" type="MeshInstance3D" parent="." unique_id=1697505361]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.739663e-05, -0.0029506683, 0.0013206005)
+mesh = SubResource("SphereMesh_qmg03")

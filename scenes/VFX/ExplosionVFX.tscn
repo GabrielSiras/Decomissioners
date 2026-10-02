@@ -1,16 +1,8 @@
 [gd_scene format=3 uid="uid://x2uj51mwckp5"]
 
 [ext_resource type="Texture2D" uid="uid://duj7n4gkvuyfl" path="res://assets/VFX Textures/Shockwave Texture.png" id="1_2s4jh"]
+[ext_resource type="Script" uid="uid://cwc0nh2hg1iri" path="res://scripts/VFX/ExplosionBombardment.gd" id="1_dep8j"]
 [ext_resource type="Material" uid="uid://cgp7u735pspoe" path="res://assets/VFX Textures/MaterialExplosiveCloud.tres" id="2_hf1lp"]
-
-[sub_resource type="Sky" id="Sky_b1lj4"]
-
-[sub_resource type="Environment" id="Environment_13qdw"]
-background_mode = 3
-sky = SubResource("Sky_b1lj4")
-ambient_light_source = 1
-glow_enabled = true
-glow_intensity = 0.5
 
 [sub_resource type="Curve" id="Curve_6ncas"]
 _limits = [-2.0, 1.0, 0.0, 1.0]
@@ -156,9 +148,7 @@ albedo_color = Color(0.646113, 0.5812277, 0.5168093, 1)
 orientation = 1
 
 [node name="ExplosionVFX" type="Node3D" unique_id=369015673]
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1876443053]
-environment = SubResource("Environment_13qdw")
+script = ExtResource("1_dep8j")
 
 [node name="TheBigOne" type="GPUParticles3D" parent="." unique_id=1596458334]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.40087104, 0)
@@ -192,5 +182,6 @@ draw_pass_1 = SubResource("QuadMesh_pmwcf")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=405767991]
 transform = Transform3D(9.062656, 0, 0, 0, 1, 0, 0, 0, 8.892383, 0, 0, 0)
+visible = false
 material_override = SubResource("StandardMaterial3D_iujhx")
 mesh = SubResource("QuadMesh_jofub")

@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://msr581mrgwu6" path="res://scenes/Enemies/EnemySpawner.tscn" id="3_anjfi"]
 [ext_resource type="PackedScene" uid="uid://ckjdl2ahbor33" path="res://scenes/Enemies/RangedEnemies/FighterJet/FighterJet.tscn" id="3_gkwus"]
 [ext_resource type="PackedScene" uid="uid://cika3a8mjdsiv" path="res://scenes/Player/Train/Train.tscn" id="3_hs430"]
-[ext_resource type="PackedScene" uid="uid://bvuisrwp77067" path="res://scenes/UI-UX/UI/DefeatMenu.tscn" id="4_do01s"]
+[ext_resource type="PackedScene" uid="uid://bvuisrwp77067" path="res://scenes/UI-UX/UI/MENUs/DefeatMenu.tscn" id="4_do01s"]
 [ext_resource type="PackedScene" uid="uid://ctyvfr2vuoihj" path="res://scenes/Enemies/RangedEnemies/AAA/AAA.tscn" id="4_f0wih"]
 [ext_resource type="PackedScene" uid="uid://cwu4wqhcnkcuj" path="res://scenes/UI-UX/UI/SpeedLever.tscn" id="5_anjfi"]
 [ext_resource type="PackedScene" uid="uid://csfvqmwgcoymq" path="res://scenes/UI-UX/UI/TrainProgressBar.tscn" id="6_ivymc"]
@@ -17,11 +17,12 @@
 [ext_resource type="PackedScene" uid="uid://clo1skfkq2gfr" path="res://scenes/Terrain/Chunks/ScrapYard/ScrapYard2.tscn" id="11_h8k66"]
 [ext_resource type="PackedScene" uid="uid://dks1v21r0m6w6" path="res://scenes/Terrain/Chunks/Factory/Factory1.tscn" id="12_558wr"]
 [ext_resource type="PackedScene" uid="uid://knbsvydvyrn3" path="res://scenes/Terrain/Chunks/Factory/Factory2.tscn" id="13_yxgwb"]
-[ext_resource type="PackedScene" uid="uid://7vml8gkbdtrb" path="res://scenes/UI-UX/UI/BuildMenuUI.tscn" id="14_h3fqt"]
+[ext_resource type="PackedScene" uid="uid://7vml8gkbdtrb" path="res://scenes/UI-UX/UI/MENUs/BuildMenuUI.tscn" id="14_h3fqt"]
 [ext_resource type="PackedScene" uid="uid://bh4nxhtcknybg" path="res://scenes/Turrets/TurretBase.tscn" id="15_fxyqj"]
-[ext_resource type="PackedScene" uid="uid://bnhwjmce2un5i" path="res://scenes/UI-UX/UI/DemolishingMenuUI.tscn" id="16_h8k66"]
+[ext_resource type="PackedScene" uid="uid://bnhwjmce2un5i" path="res://scenes/UI-UX/UI/MENUs/DemolishingMenuUI.tscn" id="16_h8k66"]
 [ext_resource type="PackedScene" uid="uid://d1euxj5pok2vx" path="res://scenes/Player/Skills/EMP/EmpSkillButton.tscn" id="17_558wr"]
 [ext_resource type="PackedScene" uid="uid://b6kis3qguxedq" path="res://scenes/Player/Wagon/Wagon.tscn" id="19_c0ium"]
+[ext_resource type="PackedScene" uid="uid://rbte6nqh348f" path="res://scenes/Player/Skills/Bombardment/BombardmentSkillButton.tscn" id="20_3f7xg"]
 
 [node name="Devroom3d" type="Node3D" unique_id=95222864]
 
@@ -81,6 +82,9 @@ train = NodePath("../../Player/TrainHead")
 
 [node name="EmpSkillButton" parent="Skills" unique_id=834700005 node_paths=PackedStringArray("train") instance=ExtResource("17_558wr")]
 train = NodePath("../../Player/TrainHead")
+
+[node name="BombardmentSkillButton" parent="Skills" unique_id=246414351 instance=ExtResource("20_3f7xg")]
+bombardment_scene = null
 
 [node name="Player" type="Node3D" parent="." unique_id=163302227]
 

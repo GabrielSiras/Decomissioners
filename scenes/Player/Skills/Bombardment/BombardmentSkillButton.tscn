@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://rbte6nqh348f"]
+
+[ext_resource type="PackedScene" uid="uid://dlk4tve5trsps" path="res://scenes/Player/Skills/SkillBase.tscn" id="1_5uwgk"]
+[ext_resource type="Script" uid="uid://ccpfov3xs4314" path="res://scripts/Player/Skills/Bombardment/BombardmentSkillButton.gd" id="2_u5j7m"]
+[ext_resource type="PackedScene" uid="uid://bc2jkojs684ns" path="res://scenes/Player/Skills/Bombardment/Bombardment.tscn" id="3_8my35"]
+
+[node name="BombardmentSkillButton" unique_id=834700005 instance=ExtResource("1_5uwgk")]
+offset_left = 156.0
+offset_top = 1231.0
+offset_right = 277.0
+offset_bottom = 1262.0
+text = "Bombardment"
+script = ExtResource("2_u5j7m")
+bombardment_scene = ExtResource("3_8my35")
+
+[node name="CooldownTimer" type="Timer" parent="." index="0" unique_id=946769539]
