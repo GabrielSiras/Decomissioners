@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://ca821bnynwdh4"]
+
+[ext_resource type="ArrayMesh" uid="uid://djadm7r6y52fo" path="res://assets/VFX Textures/PlaceholderFire.obj" id="1_c24x4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_alkuo"]
+transparency = 1
+blend_mode = 1
+cull_mode = 2
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+billboard_keep_scale = true
+
+[sub_resource type="Curve" id="Curve_mu4gs"]
+_data = [Vector2(0, 1), 0.0, -0.2611364, 0, 0, Vector2(1, 0), -3.721203, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ksonk"]
+curve = SubResource("Curve_mu4gs")
+
+[sub_resource type="Gradient" id="Gradient_3ddwe"]
+offsets = PackedFloat32Array(0, 0.48034933, 1)
+colors = PackedColorArray(0.89, 0.72371835, 0.36490002, 1, 0.8035749, 0.41846192, 0, 1, 1.1930753, 0.15545975, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_6gwov"]
+gradient = SubResource("Gradient_3ddwe")
+
+[sub_resource type="Curve" id="Curve_mcxtg"]
+_limits = [0.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0, 0.6236559), 0.0, 0.0, 0, 0, Vector2(1, 1.6774194), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_xfksd"]
+curve = SubResource("Curve_mcxtg")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_iujhx"]
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector3(0, 0, 0)
+spread = 20.0
+initial_velocity_min = 15.0
+initial_velocity_max = 15.0
+gravity = Vector3(0, 0, 0)
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_xfksd")
+color_ramp = SubResource("GradientTexture1D_6gwov")
+alpha_curve = SubResource("CurveTexture_ksonk")
+
+[node name="Node3D" type="Node3D" unique_id=134806838]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1280033270]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=1017221490]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7073282, 0)
+material_override = SubResource("StandardMaterial3D_alkuo")
+amount = 25
+lifetime = 0.5
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_iujhx")
+draw_pass_1 = ExtResource("1_c24x4")
