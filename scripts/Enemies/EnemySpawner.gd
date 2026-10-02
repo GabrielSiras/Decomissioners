@@ -75,8 +75,15 @@ func spawn_enemy() -> void:
 
 	var spawn_transform: Transform3D = _get_chunk_spawn_transform()
 
+	if enemy_instance is FighterJet:
+		var side_x = [-20.0, 20.0].pick_random()
+		var train_z = main_target.global_position.z if is_instance_valid(main_target) else 0.0
+		var height_y = 1.5
+		spawn_transform.origin = Vector3(side_x, height_y, train_z)
+
+	enemy_instance.transform = spawn_transform
+	
 	get_parent().add_child(enemy_instance)
-	enemy_instance.global_transform = spawn_transform
 
 func try_spawn_machine_gun(train: Node3D = null) -> void:
 	var target_train = train if is_instance_valid(train) else main_target

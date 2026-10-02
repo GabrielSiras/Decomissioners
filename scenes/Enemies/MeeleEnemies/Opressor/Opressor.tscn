@@ -4,9 +4,8 @@
 [ext_resource type="Script" uid="uid://cxry2hfoibdgj" path="res://scripts/Enemies/MeeleEnemies/Opressor/Opressor.gd" id="2_0qul4"]
 [ext_resource type="PackedScene" uid="uid://btjexdm8223jl" path="res://assets/models/Enemies/MeeleEnemies/Opressor/Opressor.glb" id="3_n5w2r"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qmg03"]
-radius = 0.36669922
-height = 1.0493011
+[sub_resource type="BoxShape3D" id="BoxShape3D_n5w2r"]
+size = Vector3(0.6661377, 0.9404297, 0.65374756)
 
 [node name="Opressor" unique_id=951588638 instance=ExtResource("1_wwta8")]
 script = ExtResource("2_0qul4")
@@ -16,12 +15,12 @@ activation_distance = 18.0
 windup_duration = 0.8
 lunge_speed = 12.0
 lunge_max_duration = 1.0
-grab_distance = 1.5
+grab_distance = 2.5
 train_slow_amount = 2.5
 attack_range = 2.0
 
 [node name="CollisionShape3D" parent="." index="0" unique_id=1838556396]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.42264557, 0)
-shape = SubResource("CapsuleShape3D_qmg03")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0049438477, 0.45243073, -0.003753662)
+shape = SubResource("BoxShape3D_n5w2r")
 
 [node name="Opressor" parent="." index="1" unique_id=1750437609 instance=ExtResource("3_n5w2r")]

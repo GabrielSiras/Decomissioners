@@ -23,7 +23,7 @@ var current_state: State = State.WAITING
 @export var windup_duration: float = 0.8
 @export var lunge_speed: float = 12.0
 @export var lunge_max_duration: float = 1.0
-@export var grab_distance: float = 1.5
+@export var grab_distance: float = 2.5
 @export var train_slow_amount: float = 2.5
 
 @onready var state_timer: Timer = Timer.new()
@@ -237,7 +237,7 @@ func _on_damage_timer_timeout() -> void:
 func _update_facing_direction(active_target: Node3D) -> void:
 	var look_target = Vector3(active_target.global_position.x, global_position.y, active_target.global_position.z)
 	if global_position.distance_squared_to(look_target) > 0.01:
-		look_at(look_target, Vector3.UP)
+		look_at(look_target, Vector3.UP, true)
 
 func _exit_tree() -> void:
 	if is_instance_valid(current_target_wagon) and current_target_wagon.has_method("release_slot"):
