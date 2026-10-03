@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c5qxjkarg4st8"]
 
 [ext_resource type="ArrayMesh" uid="uid://b62jbt08lhx4e" path="res://assets/VFX Textures/PlaceholderBlast.obj" id="1_ksonk"]
+[ext_resource type="Script" uid="uid://q7dfn73cwgj2" path="res://scripts/VFX/Turrets/Blast/PreassureBlastVFX.gd" id="1_mu4gs"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_06qqu"]
 transparency = 1
@@ -44,6 +45,7 @@ point_count = 2
 curve = SubResource("Curve_ksonk")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hpqx0"]
+direction = Vector3(0, 0, -1)
 spread = 0.0
 directional_velocity_min = 50.139984
 directional_velocity_max = 50.139984
@@ -58,10 +60,12 @@ alpha_curve = SubResource("CurveTexture_6ick5")
 emission_curve = SubResource("CurveTexture_42xip")
 
 [node name="Node3D" type="Node3D" unique_id=1629695280]
+script = ExtResource("1_mu4gs")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1416585214]
 
 [node name="PreassureBlast" type="GPUParticles3D" parent="." unique_id=1649617383]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_06qqu")
 emitting = false
 amount = 3
@@ -69,5 +73,6 @@ lifetime = 0.5
 one_shot = true
 explosiveness = 0.7
 fixed_fps = 60
+local_coords = true
 process_material = SubResource("ParticleProcessMaterial_hpqx0")
 draw_pass_1 = ExtResource("1_ksonk")

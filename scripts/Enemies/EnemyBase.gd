@@ -3,10 +3,9 @@ extends CharacterBody3D
 
 @export_group("Stats")
 @export var max_health: int = 30
-@export var current_armor: int = 0
+@export var current_armor: int = 10
 @export var speed: float = 5.0
 @export var metal_reward: int = 5
-
 
 @export_group("Target")
 @export var target: Node3D
@@ -16,9 +15,17 @@ extends CharacterBody3D
 var knockback_velocity: Vector3 = Vector3.ZERO
 @export var knockback_friction: float = 30.0
 
+var is_armor_debuffed: bool = false
+var original_armor: int = 0
+var debuff_timer_left: float = 0.0
+var stun_timer: float = 0.0
+
 func _ready() -> void:
 	current_health = max_health
 	add_to_group("enemies")
+
+func apply_stun(duration: float) -> void:
+	stun_timer = max(stun_timer, duration)
 
 func apply_knockback(impulse: Vector3) -> void:
 	impulse.y = 0.0
@@ -29,9 +36,16 @@ func apply_knockback(impulse: Vector3) -> void:
 	knockback_velocity = impulse
 
 func _physics_process(delta: float) -> void:
+	if is_armor_debuffed:
+		debuff_timer_left -= delta
+		if debuff_timer_left <= 0.0:
+			_remove_armor_debuff()
+
 	var ai_velocity: Vector3 = Vector3.ZERO
 
-	if knockback_velocity.length() < 2.0 and is_instance_valid(target):
+	if stun_timer > 0.0:
+		stun_timer -= delta
+	elif knockback_velocity.length() < 2.0 and is_instance_valid(target):
 		var direction: Vector3 = (target.global_position - global_position).normalized()
 		direction.y = 0.0
 		ai_velocity = direction * speed
@@ -46,6 +60,19 @@ func _physics_process(delta: float) -> void:
 		knockback_velocity = knockback_velocity.move_toward(Vector3.ZERO, knockback_friction * delta)
 	else:
 		knockback_velocity = Vector3.ZERO
+
+func apply_armor_debuff(duration: float) -> void:
+	if not is_armor_debuffed:
+		is_armor_debuffed = true
+		original_armor = current_armor
+		current_armor = 0
+	
+	debuff_timer_left = duration
+
+func _remove_armor_debuff() -> void:
+	if is_armor_debuffed:
+		is_armor_debuffed = false
+		current_armor = original_armor
 
 func take_damage(amount: int) -> void:
 	if current_health <= 0:

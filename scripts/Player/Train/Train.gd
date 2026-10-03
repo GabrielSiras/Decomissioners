@@ -9,6 +9,7 @@ extends Node3D
 @export var current_armor: int = 10
 @export var wagons: Array[Wagon] = []
 @export var current_speed: float = 0.0
+@export var wheel_markers: Array[Marker3D] = []
 @export_category("MENUs/HUDs")
 @export var defeat_menu: DefeatMenu
 @export var speed_lever: SpeedLever
@@ -17,14 +18,21 @@ extends Node3D
 @export_category("EMP SKILL")
 @export var emp_radius: float = 12.0
 @export var emp_force: float = 25.0
-
+@export_category("VFXs")
+@export var brake_vfx_scene: PackedScene
+var brake_vfx_cooldown_timer: float = 0.0
 var slots_status: Dictionary = {}
 var current_speed_factor: float = 0.0
 var velocity: Vector3 = Vector3.ZERO
 var start_position: Vector3
 var total_distance: float = 0.0
 
+
 func _ready() -> void:
+	if is_instance_valid(speed_lever):
+		speed_lever.braked.connect(_on_train_braked)
+		speed_lever.speed_changed.connect(_on_speed_changed)
+
 	add_to_group("player_base")
 	start_position = global_position
 	
@@ -35,10 +43,38 @@ func _ready() -> void:
 	if is_instance_valid(destination_node):
 		total_distance = start_position.distance_to(destination_node.global_position)
 	
-	if speed_lever:
-		speed_lever.speed_changed.connect(_on_speed_changed)
-	
 	_register_all_slots()
+
+func _physics_process(delta: float) -> void:
+	if brake_vfx_cooldown_timer > 0.0:
+		brake_vfx_cooldown_timer -= delta
+
+	var actual_speed = max(0.0, current_speed)
+	velocity = -global_transform.basis.z * actual_speed
+	global_position += velocity * delta
+
+	if speed_lever and max_speed > 0.0:
+		var visual_factor = clamp(current_speed / max_speed, 0.0, 1.0)
+		speed_lever.update_slider_visual(visual_factor)
+
+	_update_progress()
+
+func _on_train_braked() -> void:
+	trigger_brake_vfx()
+
+func trigger_brake_vfx() -> void:
+	if brake_vfx_cooldown_timer > 0.0:
+		return
+
+	if not brake_vfx_scene or wheel_markers.is_empty():
+		return
+
+	brake_vfx_cooldown_timer = 0.4
+
+	for marker in wheel_markers:
+		if is_instance_valid(marker):
+			var vfx = brake_vfx_scene.instantiate()
+			marker.add_child(vfx)
 
 func _clean_wagons_list() -> void:
 	wagons = wagons.filter(func(w): return is_instance_valid(w) and not w.is_queued_for_deletion())
@@ -80,17 +116,6 @@ func _register_all_slots() -> void:
 			for slot in wagon.get_node("TurretSlots").get_children():
 				slots_status[slot] = null
 
-func _physics_process(delta: float) -> void:
-	var actual_speed = max(0.0, current_speed)
-	velocity = -global_transform.basis.z * actual_speed
-	global_position += velocity * delta
-	
-	if speed_lever and max_speed > 0.0:
-		var visual_factor = clamp(current_speed / max_speed, 0.0, 1.0)
-		speed_lever.update_slider_visual(visual_factor)
-	
-	_update_progress()
-
 func _update_wagons_list() -> void:
 	wagons.clear()
 	for child in get_children():
@@ -120,7 +145,7 @@ func _update_progress() -> void:
 func _on_destination_reached() -> void:
 	print("O trem chegou à estação final!")
 	
-	var win_menu_scene = load("res://scenes/UI-UX/UI/WinMenu.tscn")
+	var win_menu_scene = load("res://scenes/UI-UX/UI/MENUs/WinMenu.tscn")
 	if win_menu_scene:
 		var win_menu_instance = win_menu_scene.instantiate()
 		get_tree().current_scene.add_child(win_menu_instance)
@@ -215,3 +240,14 @@ func trigger_emp() -> void:
 				
 				if enemy.has_method("apply_knockback"):
 					enemy.apply_knockback(push_dir * emp_force)
+
+func play_brake_vfx(vfx_scene: PackedScene, spawn_point: Node3D) -> void:
+	if not vfx_scene or not is_instance_valid(spawn_point):
+		return
+
+	var vfx = vfx_scene.instantiate()
+	
+	spawn_point.add_child(vfx)
+	
+	vfx.position = Vector3.ZERO
+	vfx.rotation = Vector3.ZERO

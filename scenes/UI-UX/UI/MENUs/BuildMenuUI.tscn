@@ -21,19 +21,19 @@ grow_vertical = 2
 layout_mode = 0
 offset_right = 8.0
 offset_bottom = 8.0
-text = "torre1"
+text = "MachineGun"
 
 [node name="ButtonTurret2" type="Button" parent="RadialPanel" unique_id=861224002]
 layout_mode = 0
 offset_right = 8.0
 offset_bottom = 8.0
-text = "torre2"
+text = "Incendiary"
 
 [node name="ButtonTurret3" type="Button" parent="RadialPanel" unique_id=337346439]
 layout_mode = 0
 offset_right = 8.0
 offset_bottom = 8.0
-text = "torre3"
+text = "Blast"
 
 [node name="ButtonTurret4" type="Button" parent="RadialPanel" unique_id=290782043]
 layout_mode = 0

@@ -7,7 +7,7 @@
 albedo_color = Color(1, 0, 0, 1)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_qmg03"]
-radius = 17.923092
+radius = 5.3845696
 
 [node name="TurretBase" type="Node3D" unique_id=90108018]
 script = ExtResource("1_7ne02")

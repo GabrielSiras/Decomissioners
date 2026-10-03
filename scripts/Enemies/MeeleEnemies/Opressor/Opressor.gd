@@ -164,6 +164,8 @@ func _process_latched(active_target: Node3D) -> void:
 	var train_node = _find_train_speed_node()
 	if train_node:
 		train_node.current_speed = max(2.0, train_node.current_speed - (train_slow_amount * get_physics_process_delta_time()))
+		if train_node.has_method("trigger_brake_vfx"):
+			train_node.trigger_brake_vfx()
 
 func _process_cooldown(active_target: Node3D, train_spd: float) -> void:
 	var target_x = active_target.global_position.x + shoulder_x_offset
@@ -219,6 +221,8 @@ func _latch_to_wagon() -> void:
 	var train_node = _find_train_speed_node()
 	if train_node:
 		print("🛑 Opressor AGARROU no trem! Velocidade atual: ", snapped(train_node.current_speed, 0.01))
+		if train_node.has_method("trigger_brake_vfx"):
+			train_node.trigger_brake_vfx()
 
 func _miss_lunge() -> void:
 	current_state = State.COOLDOWN

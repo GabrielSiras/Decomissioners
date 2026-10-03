@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://ctf6nkrlj66ni"]
 
 [ext_resource type="Texture2D" uid="uid://dg3gjisem7ypx" path="res://assets/VFX Textures/Spark Texture.png" id="1_amxb6"]
+[ext_resource type="Script" uid="uid://vbi5lrtil1m5" path="res://scripts/VFX/Train/Break/BreakSparksVFX.gd" id="2_a6gar"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7th88"]
 transparency = 1
@@ -43,6 +44,8 @@ amount = 50
 lifetime = 0.8
 randomness = 1.0
 fixed_fps = 60
+local_coords = true
 trail_lifetime = 0.01
 process_material = SubResource("ParticleProcessMaterial_iujhx")
 draw_pass_1 = SubResource("QuadMesh_jofub")
+script = ExtResource("2_a6gar")

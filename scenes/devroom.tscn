@@ -19,9 +19,12 @@
 [ext_resource type="PackedScene" uid="uid://knbsvydvyrn3" path="res://scenes/Terrain/Chunks/Factory/Factory2.tscn" id="13_yxgwb"]
 [ext_resource type="PackedScene" uid="uid://7vml8gkbdtrb" path="res://scenes/UI-UX/UI/MENUs/BuildMenuUI.tscn" id="14_h3fqt"]
 [ext_resource type="PackedScene" uid="uid://bh4nxhtcknybg" path="res://scenes/Turrets/TurretBase.tscn" id="15_fxyqj"]
+[ext_resource type="PackedScene" uid="uid://ctf6nkrlj66ni" path="res://scenes/VFX/BreakSparksVFX.tscn" id="15_renfr"]
 [ext_resource type="PackedScene" uid="uid://bnhwjmce2un5i" path="res://scenes/UI-UX/UI/MENUs/DemolishingMenuUI.tscn" id="16_h8k66"]
-[ext_resource type="PackedScene" uid="uid://d1euxj5pok2vx" path="res://scenes/Player/Skills/EMP/EmpSkillButton.tscn" id="17_558wr"]
+[ext_resource type="PackedScene" uid="uid://drqt5gc0jk617" path="res://scenes/Turrets/MachineGun/MachineGun.tscn" id="17_f1oeb"]
+[ext_resource type="PackedScene" uid="uid://dlibrupci2v80" path="res://scenes/Turrets/Incendiary/Incendiary.tscn" id="18_estu5"]
 [ext_resource type="PackedScene" uid="uid://b6kis3qguxedq" path="res://scenes/Player/Wagon/Wagon.tscn" id="19_c0ium"]
+[ext_resource type="PackedScene" uid="uid://d0d2up8nwdif3" path="res://scenes/Turrets/Blast/Blast.tscn" id="19_renfr"]
 [ext_resource type="PackedScene" uid="uid://rbte6nqh348f" path="res://scenes/Player/Skills/Bombardment/BombardmentSkillButton.tscn" id="20_3f7xg"]
 
 [node name="Devroom3d" type="Node3D" unique_id=95222864]
@@ -63,6 +66,7 @@ metal_manager = NodePath(".")
 [node name="DefeatMenu" parent="HUD" unique_id=501164214 instance=ExtResource("4_do01s")]
 
 [node name="SpeedLever" parent="HUD" unique_id=425152856 instance=ExtResource("5_anjfi")]
+ui_brake_vfx_scene = ExtResource("15_renfr")
 
 [node name="TrainProgressBar" parent="HUD" unique_id=1161455226 instance=ExtResource("6_ivymc")]
 
@@ -70,9 +74,9 @@ metal_manager = NodePath(".")
 offset_left = 3.0
 offset_right = 3.0
 train = NodePath("../../Player/TrainHead")
-turret_1_scene = ExtResource("15_fxyqj")
-turret_2_scene = ExtResource("15_fxyqj")
-turret_3_scene = ExtResource("15_fxyqj")
+turret_1_scene = ExtResource("17_f1oeb")
+turret_2_scene = ExtResource("18_estu5")
+turret_3_scene = ExtResource("19_renfr")
 turret_4_scene = ExtResource("15_fxyqj")
 
 [node name="DemolishingMenuUI" parent="HUD" unique_id=1660696465 node_paths=PackedStringArray("train") instance=ExtResource("16_h8k66")]
@@ -80,11 +84,7 @@ train = NodePath("../../Player/TrainHead")
 
 [node name="Skills" type="CanvasLayer" parent="." unique_id=799799759]
 
-[node name="EmpSkillButton" parent="Skills" unique_id=834700005 node_paths=PackedStringArray("train") instance=ExtResource("17_558wr")]
-train = NodePath("../../Player/TrainHead")
-
 [node name="BombardmentSkillButton" parent="Skills" unique_id=246414351 instance=ExtResource("20_3f7xg")]
-bombardment_scene = null
 
 [node name="Player" type="Node3D" parent="." unique_id=163302227]
 
