@@ -40,7 +40,8 @@ spread = 20.0
 initial_velocity_min = 15.0
 initial_velocity_max = 15.0
 gravity = Vector3(0, 0, 0)
-scale_max = 1.5
+scale_min = 0.29999998
+scale_max = 0.59999996
 scale_curve = SubResource("CurveTexture_xfksd")
 color_ramp = SubResource("GradientTexture1D_6gwov")
 alpha_curve = SubResource("CurveTexture_ksonk")
@@ -49,8 +50,8 @@ alpha_curve = SubResource("CurveTexture_ksonk")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1280033270]
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=1017221490]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7073282, 0)
+[node name="Flames" type="GPUParticles3D" parent="." unique_id=1017221490]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0.7073282, 0)
 material_override = SubResource("StandardMaterial3D_alkuo")
 amount = 25
 lifetime = 0.5

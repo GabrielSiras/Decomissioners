@@ -38,7 +38,7 @@ curve = SubResource("Curve_e4fcl")
 
 [sub_resource type="Curve" id="Curve_ksonk"]
 _limits = [0.0, 2.0, 0.0, 1.0]
-_data = [Vector2(0, 0.22000003), 0.0, 0.0, 0, 0, Vector2(1, 2), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0.22000003), 0.0, 0.0, 0, 0, Vector2(1, 1.0000001), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="CurveTexture" id="CurveTexture_ksonk"]
@@ -52,7 +52,7 @@ directional_velocity_max = 50.139984
 directional_velocity_curve = SubResource("CurveXYZTexture_hpqx0")
 gravity = Vector3(0, 0, 0)
 use_scale_3d = true
-scale_3d_min = Vector3(1, 1, 2)
+scale_3d_min = Vector3(1, 1, 1)
 scale_3d_max = Vector3(1, 1, 2)
 scale_curve = SubResource("CurveTexture_ksonk")
 color = Color(0.72156864, 0.9490196, 0.9137255, 1)
@@ -65,7 +65,7 @@ script = ExtResource("1_mu4gs")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1416585214]
 
 [node name="PreassureBlast" type="GPUParticles3D" parent="." unique_id=1649617383]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+transform = Transform3D(-1.4424758e-08, 0, 0.33, 0, 0.33, 0, -0.33, 0, -1.4424758e-08, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_06qqu")
 emitting = false
 amount = 3

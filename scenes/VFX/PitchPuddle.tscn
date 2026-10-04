@@ -1,0 +1,103 @@
+[gd_scene format=3 uid="uid://br5631g8ldnui"]
+
+[ext_resource type="ArrayMesh" uid="uid://t3lb1k1uvd30" path="res://assets/VFX Textures/PitchPuddle.obj" id="1_qwlct"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_7th88"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qwlct"]
+cull_mode = 2
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+billboard_keep_scale = true
+grow = true
+
+[sub_resource type="Gradient" id="Gradient_6ri6c"]
+colors = PackedColorArray(0.081579186, 0.058836073, 0.053094037, 1, 0.34, 0.21085666, 0.15980001, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_qwlct"]
+gradient = SubResource("Gradient_6ri6c")
+
+[sub_resource type="Curve" id="Curve_cw55t"]
+_data = [Vector2(1e-05, 0.27956992), 1.3710763, 1.3710763, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_3blxd"]
+curve = SubResource("Curve_cw55t")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jofub"]
+lifetime_randomness = 0.3
+emission_shape = 1
+emission_sphere_radius = 0.3
+direction = Vector3(1, 0.3, 0)
+spread = 13.0
+initial_velocity_min = 8.0
+initial_velocity_max = 8.0
+scale_curve = SubResource("CurveTexture_3blxd")
+color_ramp = SubResource("GradientTexture1D_qwlct")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iujhx"]
+transparency = 1
+cull_mode = 2
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+billboard_keep_scale = true
+grow = true
+
+[sub_resource type="Curve" id="Curve_tldko"]
+_data = [Vector2(0.86279684, 1), 0.0, -0.091270424, 0, 0, Vector2(1, 0), -20.582428, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_no5cr"]
+curve = SubResource("Curve_tldko")
+
+[sub_resource type="Curve" id="Curve_qwlct"]
+_data = [Vector2(0, 0), 1.3710763, 7.738963, 0, 0, Vector2(0.3693931, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.8013245), -0.50198656, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_6ri6c"]
+curve = SubResource("Curve_qwlct")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kcpym"]
+lifetime_randomness = 0.2
+particle_flag_rotate_y = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 0.2
+emission_ring_radius = 3.0
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
+direction = Vector3(0, 0, 0)
+spread = 30.0
+gravity = Vector3(0, 0, 0)
+use_scale_3d = true
+scale_3d_min = Vector3(4, 4, 6)
+scale_3d_max = Vector3(4, 4, 6)
+scale_min = 4.0
+scale_max = 4.0
+scale_curve = SubResource("CurveTexture_6ri6c")
+color = Color(0.46, 0.38157, 0.3174, 1)
+alpha_curve = SubResource("CurveTexture_no5cr")
+
+[node name="Node3D" type="Node3D" unique_id=644485583]
+
+[node name="Floor" type="MeshInstance3D" parent="." unique_id=1351109608]
+transform = Transform3D(8.577577, 0, 0, 0, 0.99999994, 0, 0, 0, 43.092403, 3.7271066, -0.0013155937, 0)
+mesh = SubResource("PlaneMesh_7th88")
+
+[node name="PitchFlow" type="GPUParticles3D" parent="." unique_id=1937476159]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.96465254, 1.468031, 8.357769)
+material_override = SubResource("StandardMaterial3D_qwlct")
+amount = 10
+lifetime = 0.8
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_jofub")
+draw_pass_1 = ExtResource("1_qwlct")
+
+[node name="PitchPuddles" type="GPUParticles3D" parent="." unique_id=1178535724]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 4.542646, 0.25381863, 13.105965)
+material_override = SubResource("StandardMaterial3D_iujhx")
+amount = 20
+lifetime = 3.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_kcpym")
+draw_pass_1 = ExtResource("1_qwlct")

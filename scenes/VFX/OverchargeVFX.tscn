@@ -1,0 +1,108 @@
+[gd_scene format=3 uid="uid://cg4kvaldnrav4"]
+
+[ext_resource type="Texture2D" uid="uid://duj7n4gkvuyfl" path="res://assets/VFX Textures/Shockwave Texture.png" id="1_lalbb"]
+[ext_resource type="Texture2D" uid="uid://dg3gjisem7ypx" path="res://assets/VFX Textures/Spark Texture.png" id="2_0b2i2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7th88"]
+albedo_color = Color(0.34407577, 0.34407574, 0.34407574, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_7th88"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lalbb"]
+transparency = 1
+blend_mode = 1
+cull_mode = 2
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_texture = ExtResource("1_lalbb")
+emission_enabled = true
+emission = Color(0.82680726, 0.06849986, 9.62615e-08, 1)
+emission_energy_multiplier = 5.0
+
+[sub_resource type="Gradient" id="Gradient_0b2i2"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(0.8784314, 0.15294118, 0, 1, 1, 0.6509804, 0.05882353, 1, 0.8784314, 0.15294118, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_5ha3b"]
+gradient = SubResource("Gradient_0b2i2")
+
+[sub_resource type="Curve" id="Curve_spekt"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.50001, 0.5), -0.030243097, -0.030243097, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_spekt"]
+curve = SubResource("Curve_spekt")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0b2i2"]
+gravity = Vector3(0, 0, 0)
+scale_min = 2.5
+scale_max = 2.5
+scale_curve = SubResource("CurveTexture_spekt")
+color_ramp = SubResource("GradientTexture1D_5ha3b")
+
+[sub_resource type="QuadMesh" id="QuadMesh_678kg"]
+orientation = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_spekt"]
+transparency = 1
+blend_mode = 1
+cull_mode = 2
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_texture = ExtResource("2_0b2i2")
+
+[sub_resource type="Curve" id="Curve_5ha3b"]
+_data = [Vector2(0, 1), 0.0, -0.89952177, 0, 0, Vector2(0.5224587, 0), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.20155945, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_7th88"]
+curve = SubResource("Curve_5ha3b")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_i70g2"]
+lifetime_randomness = 1.0
+particle_flag_align_y = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 0)
+emission_ring_height = 0.1
+emission_ring_radius = 0.8
+emission_ring_inner_radius = 0.5
+emission_ring_cone_angle = 90.0
+direction = Vector3(0, 0, 0)
+spread = 0.0
+radial_velocity_min = 1.9999776
+radial_velocity_max = 1.9999776
+gravity = Vector3(0, 0, 0)
+scale_min = 0.79999995
+color = Color(1.9754877, 1.2056346, 0, 1)
+alpha_curve = SubResource("CurveTexture_7th88")
+
+[sub_resource type="QuadMesh" id="QuadMesh_snua7"]
+size = Vector2(0.4, 0.8)
+
+[node name="Node3D" type="Node3D" unique_id=1334931082]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1638443443]
+transform = Transform3D(2.1956034, 0, 0, 0, 1, 0, 0, 0, 2.2458744, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_7th88")
+mesh = SubResource("PlaneMesh_7th88")
+
+[node name="OverchargeIndicator" type="GPUParticles3D" parent="." unique_id=1107114369]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.59512717, 0)
+material_override = SubResource("StandardMaterial3D_lalbb")
+amount = 3
+lifetime = 0.5
+explosiveness = 0.7
+process_material = SubResource("ParticleProcessMaterial_0b2i2")
+draw_pass_1 = SubResource("QuadMesh_678kg")
+
+[node name="Sparks" type="GPUParticles3D" parent="." unique_id=1516175078]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.6583868, 0)
+material_override = SubResource("StandardMaterial3D_spekt")
+amount = 50
+lifetime = 0.7
+randomness = 1.0
+fixed_fps = 60
+local_coords = true
+trail_lifetime = 0.01
+process_material = SubResource("ParticleProcessMaterial_i70g2")
+draw_pass_1 = SubResource("QuadMesh_snua7")
