@@ -11,6 +11,13 @@ extends TurretBase
 @export_range(0.0, 1.0) var stun_chance: float = 0.1
 @export var stun_duration: float = 1.5
 
+func _ready() -> void:
+	super._ready()
+	#apply_level_stats(current_level)
+	
+	if has_node("Model3D"):
+		$Model3D.rotate_y(PI)
+
 func shoot() -> void:
 	var forward_dir: Vector3 = -global_transform.basis.z
 	if is_instance_valid(muzzle):

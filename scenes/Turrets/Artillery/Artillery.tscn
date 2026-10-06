@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://dqcassbdhp1tv"]
+
+[ext_resource type="PackedScene" uid="uid://bh4nxhtcknybg" path="res://scenes/Turrets/TurretBase.tscn" id="1_7woeq"]
+[ext_resource type="Script" uid="uid://closdnspatm1w" path="res://scripts/Turrets/Artillery/Artillery.gd" id="2_1poxa"]
+[ext_resource type="PackedScene" uid="uid://dt0dq4m0aoir" path="res://scenes/Turrets/Artillery/ArilleryShell.tscn" id="3_1t0n3"]
+[ext_resource type="PackedScene" uid="uid://csnyfsqmykvk" path="res://assets/models/Turrets/ART1.glb" id="4_jg5b4"]
+
+[node name="Artillery" unique_id=90108018 instance=ExtResource("1_7woeq")]
+script = ExtResource("2_1poxa")
+current_level = 1
+aoe_radius = 5.0
+shell_scene = ExtResource("3_1t0n3")
+flying_group_name = "flying"
+fire_rate = 5.0
+projectile_scene = null
+
+[node name="Model3D" parent="." index="3" unique_id=1339852201 instance=ExtResource("4_jg5b4")]

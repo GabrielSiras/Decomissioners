@@ -1,11 +1,42 @@
 [gd_scene format=3 uid="uid://knbsvydvyrn3"]
 
 [ext_resource type="PackedScene" uid="uid://co0873avr2nj8" path="res://scenes/Terrain/Chunks/ChunkBase.tscn" id="1_hm40m"]
+[ext_resource type="PackedScene" uid="uid://d2nv5j6ise6hb" path="res://assets/models/Terrain/OUT2terreno.glb" id="2_y6r0u"]
+[ext_resource type="PackedScene" uid="uid://2mlal7jqwqwv" path="res://assets/models/Terrain/terrain2.glb" id="3_gt2na"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4o2gu"]
-albedo_color = Color(0.15542555, 0.15542555, 0.15542555, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3dx6c"]
+albedo_color = Color(0.30394292, 0.30394292, 0.30394292, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qmg03"]
+size = Vector3(50.004517, 1, 8.97998)
 
 [node name="ChunkBase" unique_id=528281881 instance=ExtResource("1_hm40m")]
 
 [node name="Middle" parent="." index="0" unique_id=55557733]
-material = SubResource("StandardMaterial3D_4o2gu")
+visible = false
+material = SubResource("StandardMaterial3D_3dx6c")
+
+[node name="Left" parent="." index="2" unique_id=927662262]
+visible = false
+
+[node name="Right" parent="." index="3" unique_id=931049434]
+visible = false
+
+[node name="Left2" parent="." index="4" unique_id=1011026248 instance=ExtResource("2_y6r0u")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -7, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Left2" index="2" unique_id=1396762487]
+
+[node name="Right2" parent="." index="5" unique_id=1073124065 instance=ExtResource("2_y6r0u")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 7, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Right2" index="2" unique_id=775274308]
+
+[node name="Middle2" parent="." index="6" unique_id=898298638 instance=ExtResource("3_gt2na")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Middle2" index="3" unique_id=1713380546]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Middle2/StaticBody3D" index="0" unique_id=2141600609]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.10354e-05, 0, -0.0057373047)
+shape = SubResource("BoxShape3D_qmg03")

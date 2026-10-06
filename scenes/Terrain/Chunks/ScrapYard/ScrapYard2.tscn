@@ -1,11 +1,53 @@
 [gd_scene format=3 uid="uid://clo1skfkq2gfr"]
 
 [ext_resource type="PackedScene" uid="uid://co0873avr2nj8" path="res://scenes/Terrain/Chunks/ChunkBase.tscn" id="1_0bq40"]
+[ext_resource type="PackedScene" uid="uid://cocy7hfytp1ws" path="res://assets/models/Terrain/terrain3.glb" id="2_quxj7"]
+[ext_resource type="PackedScene" uid="uid://bdbsro5h874no" path="res://assets/models/Terrain/OUT3terreno.glb" id="3_o83ku"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_na46e"]
-albedo_color = Color(0.37244678, 0.1328147, 0.06364257, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hdswf"]
+albedo_color = Color(0.62352943, 0.24313726, 0.13333334, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qmg03"]
+size = Vector3(49.991585, 1, 9.000549)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ykh0f"]
+size = Vector3(49.999664, 1, 5.0057373)
 
 [node name="ChunkBase" unique_id=528281881 instance=ExtResource("1_0bq40")]
 
 [node name="Middle" parent="." index="0" unique_id=55557733]
-material = SubResource("StandardMaterial3D_na46e")
+visible = false
+material = SubResource("StandardMaterial3D_hdswf")
+
+[node name="Left" parent="." index="2" unique_id=927662262]
+visible = false
+
+[node name="Right" parent="." index="3" unique_id=931049434]
+visible = false
+
+[node name="Middle2" parent="." index="4" unique_id=337810950 instance=ExtResource("2_quxj7")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Middle2" index="3" unique_id=345976260]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Middle2/StaticBody3D" index="0" unique_id=1099694741]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0069084167, 0, -0.0050354)
+shape = SubResource("BoxShape3D_qmg03")
+
+[node name="Right2" parent="." index="5" unique_id=253438711 instance=ExtResource("3_o83ku")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 7, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Right2" index="2" unique_id=1625956030]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Right2/StaticBody3D" index="0" unique_id=804410667]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0006256103, 0, 0.0014038086)
+shape = SubResource("BoxShape3D_ykh0f")
+
+[node name="Left2" parent="." index="6" unique_id=1338638917 instance=ExtResource("3_o83ku")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -7, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Left2" index="2" unique_id=1423166048]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Left2/StaticBody3D" index="0" unique_id=159941350]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0006256103, 0, 0.0014038086)
+shape = SubResource("BoxShape3D_ykh0f")

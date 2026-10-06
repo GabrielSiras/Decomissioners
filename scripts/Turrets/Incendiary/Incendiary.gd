@@ -12,6 +12,10 @@ var is_firing: bool = false
 
 func _ready() -> void:
 	super._ready()
+	#apply_level_stats(current_level)
+	
+	if has_node("Model3D"):
+		$Model3D.rotate_y(PI)
 	
 	if is_instance_valid(flame_vfx):
 		_set_flame_vfx_active(false)

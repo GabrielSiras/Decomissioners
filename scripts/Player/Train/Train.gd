@@ -10,16 +10,20 @@ extends Node3D
 @export var wagons: Array[Wagon] = []
 @export var current_speed: float = 0.0
 @export var wheel_markers: Array[Marker3D] = []
+
 @export_category("MENUs/HUDs")
 @export var defeat_menu: DefeatMenu
 @export var speed_lever: SpeedLever
 @export var progress_bar: CanvasLayer
 @export var destination_node: Node3D
+
 @export_category("EMP SKILL")
 @export var emp_radius: float = 12.0
 @export var emp_force: float = 25.0
+
 @export_category("VFXs")
 @export var brake_vfx_scene: PackedScene
+
 var brake_vfx_cooldown_timer: float = 0.0
 var slots_status: Dictionary = {}
 var current_speed_factor: float = 0.0
@@ -29,15 +33,16 @@ var total_distance: float = 0.0
 
 
 func _ready() -> void:
+	add_to_group("wagons")
+	add_to_group("player_base")
+	add_to_group("player_targets")
+
 	if is_instance_valid(speed_lever):
 		speed_lever.braked.connect(_on_train_braked)
 		speed_lever.speed_changed.connect(_on_speed_changed)
 
-	add_to_group("player_base")
 	start_position = global_position
-	
 	_update_wagons_list()
-	
 	current_speed = max_speed * current_speed_factor
 	
 	if is_instance_valid(destination_node):
@@ -132,24 +137,17 @@ func _update_progress() -> void:
 	
 	if progress_bar.has_method("update_progress"):
 		progress_bar.update_progress(progress_percentage)
-		
 	elif progress_bar.has_node("ProgressBar"):
 		progress_bar.get_node("ProgressBar").value = progress_percentage
-	
-	elif progress_bar.has_method("update_progress"):
-		progress_bar.update_progress(progress_percentage)
-	
+
 	if current_distance <= 1.2:
 		_on_destination_reached()
 
 func _on_destination_reached() -> void:
-	print("O trem chegou à estação final!")
-	
 	var win_menu_scene = load("res://scenes/UI-UX/UI/MENUs/WinMenu.tscn")
 	if win_menu_scene:
 		var win_menu_instance = win_menu_scene.instantiate()
 		get_tree().current_scene.add_child(win_menu_instance)
-		
 		get_tree().paused = true
 	
 func _on_speed_changed(factor: float) -> void:
@@ -164,36 +162,23 @@ func get_available_slots() -> Array[Marker3D]:
 	return available
 
 func place_turret_at_slot(target_slot: Node3D, turret_scene: PackedScene, cost: int) -> bool:
-	if not slots_status.has(target_slot):
-		print("Slot inválido!")
-		return false
-		
-	if slots_status[target_slot] != null:
-		print("Este slot já está ocupado!")
+	if not slots_status.has(target_slot) or slots_status[target_slot] != null:
 		return false
 
 	if MetalManager.spend_metal(cost):
 		var turret_instance = turret_scene.instantiate()
-		
 		target_slot.add_child(turret_instance)
-		
 		turret_instance.position = Vector3.ZERO
 		turret_instance.rotation = Vector3.ZERO
-		
 		slots_status[target_slot] = turret_instance
-		print("Torre construída com sucesso no slot!")
 		return true
-	else:
-		print("Metal insuficiente para construir a torre!")
-		return false
+	return false
 
 func demolish_turret_at_slot(target_slot: Node3D) -> void:
 	if not slots_status.has(target_slot) or slots_status[target_slot] == null:
 		return
 		
 	var turret_instance = slots_status[target_slot]
-	
-	# 30% de reembolso
 	var refund_amount: int = 0
 	if "build_cost" in turret_instance:
 		refund_amount = int(turret_instance.build_cost * 0.3)
@@ -205,8 +190,30 @@ func demolish_turret_at_slot(target_slot: Node3D) -> void:
 	
 	turret_instance.queue_free()
 	slots_status[target_slot] = null
-	
-	print("Torre demolida! Reembolso de ", refund_amount, " moedas de metal.")
+
+func apply_supercharge_to_turrets(damage_mult: float, speed_mult: float, duration: float) -> void:	
+	if not is_instance_valid(turret_slots_container):
+		return
+
+	for slot in turret_slots_container.get_children():
+		var turret_instance = slots_status.get(slot)
+		
+		if not is_instance_valid(turret_instance):
+			turret_instance = _find_turret_in_slot(slot)
+			if is_instance_valid(turret_instance):
+				slots_status[slot] = turret_instance
+
+		if is_instance_valid(turret_instance) and turret_instance.has_method("apply_supercharge"):
+			turret_instance.apply_supercharge(damage_mult, speed_mult, duration)
+
+func _find_turret_in_slot(slot: Node) -> Node:
+	for child in slot.get_children():
+		if child.has_method("apply_supercharge") or child is TurretBase:
+			return child
+		for sub_child in child.get_children():
+			if sub_child.has_method("apply_supercharge") or sub_child is TurretBase:
+				return sub_child
+	return null
 
 func take_damage(amount: int) -> void:
 	if current_health <= 0:
@@ -216,7 +223,6 @@ func take_damage(amount: int) -> void:
 	var damage_multiplier: float = 1.0 - armor_reduction_percent
 	var final_damage: int = max(0, roundi(amount * damage_multiplier))
 	current_health -= final_damage
-	print(name, " recebeu ", final_damage, " de dano! (Dano bruto: ", amount, " | Armadura: ", current_armor, "%) | Vida: ", current_health)
 	
 	if current_health <= 0:
 		die()
@@ -226,28 +232,36 @@ func die() -> void:
 		defeat_menu.show_defeat()
 
 func trigger_emp() -> void:
-	print("⚡ PULSO EMP ATIVADO!")
-	
 	var enemies = get_tree().get_nodes_in_group("enemies")
-	
 	for enemy in enemies:
 		if is_instance_valid(enemy) and enemy is Node3D:
 			var distance = global_position.distance_to(enemy.global_position)
-			
 			if distance <= emp_radius:
 				var push_dir = (enemy.global_position - global_position).normalized()
 				push_dir.y = 0
-				
 				if enemy.has_method("apply_knockback"):
 					enemy.apply_knockback(push_dir * emp_force)
 
 func play_brake_vfx(vfx_scene: PackedScene, spawn_point: Node3D) -> void:
 	if not vfx_scene or not is_instance_valid(spawn_point):
 		return
-
 	var vfx = vfx_scene.instantiate()
-	
 	spawn_point.add_child(vfx)
-	
 	vfx.position = Vector3.ZERO
 	vfx.rotation = Vector3.ZERO
+
+func has_any_turret() -> bool:
+	if not is_instance_valid(turret_slots_container):
+		return false
+
+	for slot in turret_slots_container.get_children():
+		var turret_instance = slots_status.get(slot)
+		if not is_instance_valid(turret_instance):
+			turret_instance = _find_turret_in_slot(slot)
+			if is_instance_valid(turret_instance):
+				slots_status[slot] = turret_instance
+		
+		if is_instance_valid(turret_instance):
+			return true
+			
+	return false

@@ -35,7 +35,16 @@ func _ready() -> void:
 	
 	if is_instance_valid(turret_slots_container):
 		for slot in turret_slots_container.get_children():
-			slots_status[slot] = null
+			slots_status[slot] = _find_turret_in_slot(slot)
+
+func _find_turret_in_slot(slot: Node) -> Node:
+	for child in slot.get_children():
+		if child.has_method("apply_supercharge") or child is TurretBase:
+			return child
+		for sub_child in child.get_children():
+			if sub_child.has_method("apply_supercharge") or sub_child is TurretBase:
+				return sub_child
+	return null
 
 func _physics_process(delta: float) -> void:
 	if not is_instance_valid(target):
@@ -57,7 +66,6 @@ func place_turret_at_slot(target_slot: Node3D, turret_scene: PackedScene, cost: 
 		turret_instance.position = Vector3.ZERO
 		turret_instance.rotation = Vector3.ZERO
 		slots_status[target_slot] = turret_instance
-		print("Torre construída no vagão!")
 		return true
 	return false
 
@@ -115,3 +123,34 @@ func destroy_wagon() -> void:
 		train_head.call_deferred("rearrange_wagons")
 		
 	queue_free()
+
+func apply_supercharge_to_turrets(damage_mult: float, speed_mult: float, duration: float) -> void:
+	if not is_instance_valid(turret_slots_container):
+		return
+
+	for slot in turret_slots_container.get_children():
+		var turret_instance = slots_status.get(slot)
+		
+		if not is_instance_valid(turret_instance):
+			turret_instance = _find_turret_in_slot(slot)
+			if is_instance_valid(turret_instance):
+				slots_status[slot] = turret_instance
+		
+		if is_instance_valid(turret_instance) and turret_instance.has_method("apply_supercharge"):
+			turret_instance.apply_supercharge(damage_mult, speed_mult, duration)
+
+func has_any_turret() -> bool:
+	if not is_instance_valid(turret_slots_container):
+		return false
+
+	for slot in turret_slots_container.get_children():
+		var turret_instance = slots_status.get(slot)
+		if not is_instance_valid(turret_instance):
+			turret_instance = _find_turret_in_slot(slot)
+			if is_instance_valid(turret_instance):
+				slots_status[slot] = turret_instance
+		
+		if is_instance_valid(turret_instance):
+			return true
+			
+	return false

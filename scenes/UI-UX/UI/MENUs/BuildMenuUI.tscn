@@ -39,7 +39,7 @@ text = "Blast"
 layout_mode = 0
 offset_right = 8.0
 offset_bottom = 8.0
-text = "torre4"
+text = "Artillery"
 
 [node name="CloseButton" type="Button" parent="RadialPanel" unique_id=1689192879]
 layout_mode = 0

@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bh4nxhtcknybg" path="res://scenes/Turrets/TurretBase.tscn" id="1_3hars"]
 [ext_resource type="Script" uid="uid://5jwjovk8qlm5" path="res://scripts/Turrets/Blast/Blast.gd" id="2_6d5vp"]
 [ext_resource type="PackedScene" uid="uid://c5qxjkarg4st8" path="res://scenes/VFX/PreassureBlastVFX.tscn" id="3_juufq"]
+[ext_resource type="PackedScene" uid="uid://7jcw7nxtim4t" path="res://assets/models/Turrets/BLA1.glb" id="4_ert8d"]
 
 [node name="Blast" unique_id=90108018 instance=ExtResource("1_3hars")]
 script = ExtResource("2_6d5vp")
@@ -10,5 +11,9 @@ push_force = 25.0
 arc_angle_degrees = 180.0
 push_straight_forward = true
 blast_vfx_scene = ExtResource("3_juufq")
+stun_chance = 0.1
+stun_duration = 1.5
 fire_rate = 5.0
 projectile_scene = null
+
+[node name="Model3D" parent="." index="0" unique_id=680316971 instance=ExtResource("4_ert8d")]

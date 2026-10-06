@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://dt0dq4m0aoir"]
+
+[ext_resource type="PackedScene" uid="uid://ctko34egwt71h" path="res://scenes/Turrets/PlayerProjectile.tscn" id="1_3no1i"]
+[ext_resource type="Script" uid="uid://kjmbgmheau8c" path="res://scripts/Turrets/Artillery/ArilleryShell.gd" id="2_i2gej"]
+[ext_resource type="PackedScene" uid="uid://bmim5hpyj0ca1" path="res://scenes/VFX/ExplosionVFXArtillery.tscn" id="3_jlwev"]
+
+[node name="PlayerProjectile" unique_id=406387500 instance=ExtResource("1_3no1i")]
+script = ExtResource("2_i2gej")
+aoe_radius = 5.0
+arc_height = 8.0
+explosion_vfx_scene = ExtResource("3_jlwev")

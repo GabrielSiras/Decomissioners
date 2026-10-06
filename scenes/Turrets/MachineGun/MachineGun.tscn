@@ -2,13 +2,11 @@
 
 [ext_resource type="PackedScene" uid="uid://bh4nxhtcknybg" path="res://scenes/Turrets/TurretBase.tscn" id="1_yfucs"]
 [ext_resource type="Script" uid="uid://djccrgmald5ns" path="res://scripts/Turrets/MachineGun/MachineGun.gd" id="2_budth"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_budth"]
+[ext_resource type="PackedScene" uid="uid://j5hf1m42s8gn" path="res://assets/models/Turrets/MAC1.glb" id="3_1qmuy"]
 
 [node name="MachineGunTurret" unique_id=90108018 instance=ExtResource("1_yfucs")]
 script = ExtResource("2_budth")
 fire_rate = 0.2
 damage = 2
 
-[node name="CSGBox3D" parent="." index="0" unique_id=1161389508]
-material = SubResource("StandardMaterial3D_budth")
+[node name="Model3D" parent="." index="3" unique_id=1537201245 instance=ExtResource("3_1qmuy")]

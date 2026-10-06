@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://d3x5pnba5lgn7"]
+
+[ext_resource type="Script" uid="uid://ctuc564pfbc6x" path="res://scripts/Player/Skills/SuperCharge/SuperCharge.gd" id="1_jrvi7"]
+
+[node name="SuperCharge" type="Node" unique_id=1304615714]
+script = ExtResource("1_jrvi7")

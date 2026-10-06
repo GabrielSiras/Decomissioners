@@ -87,6 +87,19 @@ func take_damage(amount: int) -> void:
 	if current_health <= 0:
 		die()
 
+func take_damage_with_pen(amount: int, armor_pen: float) -> void:
+	if current_health <= 0:
+		return
+
+	var effective_armor: float = current_armor * (1.0 - armor_pen)
+	var armor_reduction_percent: float = clamp(effective_armor, 0.0, 100.0) / 100.0
+	
+	var final_damage: int = max(1, roundi(amount * (1.0 - armor_reduction_percent)))
+	current_health -= final_damage
+	
+	if current_health <= 0:
+		die()
+
 func die() -> void:
 	MetalManager.add_metal(metal_reward)
 	queue_free()

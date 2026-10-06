@@ -2,6 +2,7 @@ class_name FighterJet
 extends RangedEnemy
 
 @export_category("Voo e Posicionamento")
+@export var is_flying: bool = true
 @export var side_distance: float = 6.0
 @export var height_offset: float = 1.5
 @export var smooth_speed: float = 5.0
@@ -19,6 +20,8 @@ var is_on_left_side: bool = true
 
 func _ready() -> void:
 	super._ready()
+	
+	add_to_group("flying")
 	
 	is_on_left_side = global_position.x < 0
 	side_distance = -abs(side_distance) if is_on_left_side else abs(side_distance)

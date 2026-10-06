@@ -1,11 +1,53 @@
 [gd_scene format=3 uid="uid://dtoiyc323yjph"]
 
 [ext_resource type="PackedScene" uid="uid://co0873avr2nj8" path="res://scenes/Terrain/Chunks/ChunkBase.tscn" id="1_hgopj"]
+[ext_resource type="PackedScene" uid="uid://d20qrhw4g1hch" path="res://assets/models/Terrain/terrain1.glb" id="2_8w7a0"]
+[ext_resource type="PackedScene" uid="uid://xgfggk87cxvb" path="res://assets/models/Terrain/OUT1terreno.glb" id="3_bvp70"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kf3da"]
 albedo_color = Color(0.64705884, 0.5254902, 0.38431373, 1)
 
-[node name="ChunkBase" unique_id=528281881 instance=ExtResource("1_hgopj")]
+[sub_resource type="BoxShape3D" id="BoxShape3D_ykh0f"]
+size = Vector3(5, 0.99575424, 50.004883)
+
+[node name="Desolation1" unique_id=528281881 instance=ExtResource("1_hgopj")]
 
 [node name="Middle" parent="." index="0" unique_id=55557733]
+visible = false
 material = SubResource("StandardMaterial3D_kf3da")
+
+[node name="Left" parent="." index="2" unique_id=927662262]
+visible = false
+
+[node name="Right" parent="." index="3" unique_id=931049434]
+visible = false
+
+[node name="Middle2" parent="." index="4" unique_id=1111842084 instance=ExtResource("2_8w7a0")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Middle2" index="2" unique_id=288278018]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2.6226832e-07, 0.005, 6)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Middle2/StaticBody3D" index="0" unique_id=365236772]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.0005026, -0.0018215226, -0.0017089844)
+shape = SubResource("BoxShape3D_ykh0f")
+
+[node name="Left2" parent="." index="5" unique_id=736269885 instance=ExtResource("3_bvp70")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -7, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Left2" index="2" unique_id=670337584]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2.6226832e-07, 0.005, 6)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Left2/StaticBody3D" index="0" unique_id=1446491170]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.99724, -0.0005264329, -0.0017089844)
+shape = SubResource("BoxShape3D_ykh0f")
+
+[node name="Right2" parent="." index="6" unique_id=918050720 instance=ExtResource("3_bvp70")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 7, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Right2" index="2" unique_id=76587130]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2.6226832e-07, 0.005, 6)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Right2/StaticBody3D" index="0" unique_id=825614272]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.0045643, -0.0005264329, -0.0017089845)
+shape = SubResource("BoxShape3D_ykh0f")

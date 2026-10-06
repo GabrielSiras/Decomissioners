@@ -83,6 +83,7 @@ size = Vector2(0.4, 0.8)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1638443443]
 transform = Transform3D(2.1956034, 0, 0, 0, 1, 0, 0, 0, 2.2458744, 0, 0, 0)
+visible = false
 material_override = SubResource("StandardMaterial3D_7th88")
 mesh = SubResource("PlaneMesh_7th88")
 
@@ -92,6 +93,8 @@ material_override = SubResource("StandardMaterial3D_lalbb")
 amount = 3
 lifetime = 0.5
 explosiveness = 0.7
+fixed_fps = 60
+local_coords = true
 process_material = SubResource("ParticleProcessMaterial_0b2i2")
 draw_pass_1 = SubResource("QuadMesh_678kg")
 
