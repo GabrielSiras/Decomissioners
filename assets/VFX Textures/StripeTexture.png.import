@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://d3ff7h3c0ji6i"
 path.s3tc="res://.godot/imported/StripeTexture.png-612342f5b0785d40209e6a0d6219e6ba.s3tc.ctex"
+path.etc2="res://.godot/imported/StripeTexture.png-612342f5b0785d40209e6a0d6219e6ba.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/VFX Textures/StripeTexture.png"
-dest_files=["res://.godot/imported/StripeTexture.png-612342f5b0785d40209e6a0d6219e6ba.s3tc.ctex"]
+dest_files=["res://.godot/imported/StripeTexture.png-612342f5b0785d40209e6a0d6219e6ba.s3tc.ctex", "res://.godot/imported/StripeTexture.png-612342f5b0785d40209e6a0d6219e6ba.etc2.ctex"]
 
 [params]
 

@@ -73,6 +73,8 @@ metal_manager = NodePath(".")
 ui_brake_vfx_scene = ExtResource("15_renfr")
 
 [node name="TrainProgressBar" parent="HUD" unique_id=1161455226 instance=ExtResource("6_ivymc")]
+offset = Vector2(0, -80)
+transform = Transform2D(1, 0, 0, 1, 0, -80)
 
 [node name="BuildMenuUI" parent="HUD" unique_id=1796876524 node_paths=PackedStringArray("train") instance=ExtResource("14_h3fqt")]
 offset_left = 3.0
@@ -89,28 +91,29 @@ train = NodePath("../../Player/TrainHead")
 [node name="Skills" type="CanvasLayer" parent="." unique_id=799799759]
 
 [node name="BombardmentSkillButton" parent="Skills" unique_id=246414351 instance=ExtResource("20_3f7xg")]
-offset_left = 236.0
-offset_top = 1098.0
-offset_right = 357.0
-offset_bottom = 1190.0
+offset_left = 32.0
+offset_top = 966.0
+offset_right = 153.0
+offset_bottom = 1058.0
 
 [node name="SuperChargeSkillButton" parent="Skills" unique_id=834700005 node_paths=PackedStringArray("train") instance=ExtResource("24_575n3")]
-offset_left = 30.0
-offset_top = 1100.0
-offset_right = 138.0
-offset_bottom = 1191.0
+offset_left = 40.0
+offset_top = 1161.0
+offset_right = 148.0
+offset_bottom = 1252.0
 supercharge_skill_scene = ExtResource("25_x2gxx")
 train = NodePath("../../Player/TrainHead")
 
 [node name="BlackPitchSkillButton" parent="Skills" unique_id=66681180 instance=ExtResource("26_o13ra")]
-offset_left = 452.0
-offset_top = 1108.0
-offset_right = 543.0
-offset_bottom = 1186.0
+offset_left = 46.0
+offset_top = 1070.0
+offset_right = 137.0
+offset_bottom = 1148.0
 
 [node name="Player" type="Node3D" parent="." unique_id=163302227]
 
 [node name="TrainHead" parent="Player" unique_id=423923195 node_paths=PackedStringArray("wagons", "defeat_menu", "speed_lever", "progress_bar", "destination_node", "next_gate") instance=ExtResource("3_hs430")]
+max_health = 300
 wagons = [NodePath("Wagon"), NodePath("Wagon2")]
 defeat_menu = NodePath("../../HUD/DefeatMenu")
 speed_lever = NodePath("../../HUD/SpeedLever")
@@ -120,9 +123,11 @@ next_gate = NodePath("../../Gate")
 
 [node name="Wagon" parent="Player/TrainHead" unique_id=659263558 instance=ExtResource("19_c0ium")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.084, 4.2603464)
+max_health = 200
 
 [node name="Wagon2" parent="Player/TrainHead" unique_id=1728178988 instance=ExtResource("19_c0ium")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.084, 9.283)
+max_health = 200
 
 [node name="GameCamera" parent="Player" unique_id=1770089720 node_paths=PackedStringArray("target") instance=ExtResource("1_5ij30")]
 transform = Transform3D(0.99991435, 0.013089597, -1.0106151e-05, 0, 0.0007720748, 0.9999997, 0.013089601, -0.99991405, 0.0007720087, 0.048287738, 18.14456, 4.264213)
@@ -130,4 +135,4 @@ v_offset = -6.0
 target = NodePath("../TrainHead")
 
 [node name="Gate" parent="." unique_id=284149379 instance=ExtResource("30_r5xrb")]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, -514.22034)
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, -337.17242)

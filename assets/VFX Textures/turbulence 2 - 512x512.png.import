@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://b1mu7lxykr2n5"
 path.s3tc="res://.godot/imported/turbulence 2 - 512x512.png-7cc265b6afcfcc7633642cb404d80aa8.s3tc.ctex"
+path.etc2="res://.godot/imported/turbulence 2 - 512x512.png-7cc265b6afcfcc7633642cb404d80aa8.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/VFX Textures/turbulence 2 - 512x512.png"
-dest_files=["res://.godot/imported/turbulence 2 - 512x512.png-7cc265b6afcfcc7633642cb404d80aa8.s3tc.ctex"]
+dest_files=["res://.godot/imported/turbulence 2 - 512x512.png-7cc265b6afcfcc7633642cb404d80aa8.s3tc.ctex", "res://.godot/imported/turbulence 2 - 512x512.png-7cc265b6afcfcc7633642cb404d80aa8.etc2.ctex"]
 
 [params]
 
