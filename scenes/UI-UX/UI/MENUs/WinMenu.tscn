@@ -27,10 +27,12 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="ColorRect/CenterContainer/VBoxContainer" unique_id=48392741]
 layout_mode = 2
+theme_override_font_sizes/font_size = 50
 text = "Well Done!"
 
 [node name="MenuButton" type="Button" parent="ColorRect/CenterContainer/VBoxContainer" unique_id=2072980644]
 layout_mode = 2
+theme_override_font_sizes/font_size = 50
 text = "Menu"
 
 [connection signal="pressed" from="ColorRect/CenterContainer/VBoxContainer/MenuButton" to="." method="_on_menu_button_pressed"]

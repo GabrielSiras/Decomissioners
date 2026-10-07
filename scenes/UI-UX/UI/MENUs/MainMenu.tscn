@@ -1,6 +1,15 @@
 [gd_scene format=3 uid="uid://cm1sj4qhjgj5v"]
 
 [ext_resource type="Script" uid="uid://5sx4ttr6a5ve" path="res://scripts/UI-UX/UI/MainMenu.gd" id="1_vnlg1"]
+[ext_resource type="Script" uid="uid://v4lwcwcnu7dg" path="res://scripts/VFX/VFXPrewarmer.gd" id="2_6sobg"]
+[ext_resource type="PackedScene" uid="uid://ctf6nkrlj66ni" path="res://scenes/VFX/BreakSparksVFX.tscn" id="3_bbtx1"]
+[ext_resource type="PackedScene" uid="uid://x2uj51mwckp5" path="res://scenes/VFX/ExplosionVFX.tscn" id="4_vbfru"]
+[ext_resource type="PackedScene" uid="uid://bmim5hpyj0ca1" path="res://scenes/VFX/ExplosionVFXArtillery.tscn" id="5_2qtn0"]
+[ext_resource type="PackedScene" uid="uid://ca821bnynwdh4" path="res://scenes/VFX/FlamethrowerVFX.tscn" id="6_3v7yo"]
+[ext_resource type="PackedScene" uid="uid://cg4kvaldnrav4" path="res://scenes/VFX/OverchargeVFX.tscn" id="7_mrldo"]
+[ext_resource type="PackedScene" uid="uid://be8hg483hedqw" path="res://scenes/VFX/PitchPuddleLeft.tscn" id="8_huahg"]
+[ext_resource type="PackedScene" uid="uid://br5631g8ldnui" path="res://scenes/VFX/PitchPuddleRight.tscn" id="9_vg3fa"]
+[ext_resource type="PackedScene" uid="uid://c5qxjkarg4st8" path="res://scenes/VFX/PreassureBlastVFX.tscn" id="10_i5cg6"]
 
 [node name="MainMenu" type="CanvasLayer" unique_id=809505831]
 script = ExtResource("1_vnlg1")
@@ -25,10 +34,16 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer" unique_id=1632104544]
 layout_mode = 2
+theme_override_font_sizes/font_size = 50
 text = "DECOMISSIONERS"
 
 [node name="StartButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=2031048237]
 layout_mode = 2
+theme_override_font_sizes/font_size = 50
 text = "START"
+
+[node name="VFXPrewarmer" type="Node3D" parent="." unique_id=1764005957]
+script = ExtResource("2_6sobg")
+vfx_scenes = Array[PackedScene]([ExtResource("3_bbtx1"), ExtResource("4_vbfru"), ExtResource("5_2qtn0"), ExtResource("6_3v7yo"), ExtResource("7_mrldo"), ExtResource("8_huahg"), ExtResource("9_vg3fa"), ExtResource("10_i5cg6")])
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
