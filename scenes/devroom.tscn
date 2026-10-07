@@ -30,6 +30,14 @@
 [ext_resource type="PackedScene" uid="uid://d3x5pnba5lgn7" path="res://scenes/Player/Skills/SuperCharge/SuperCharge.tscn" id="25_x2gxx"]
 [ext_resource type="PackedScene" uid="uid://bo42gfpujkmpc" path="res://scenes/Player/Skills/BlackPitch/BlackPitchSkillButton.tscn" id="26_o13ra"]
 [ext_resource type="PackedScene" uid="uid://r635qxesdoa5" path="res://assets/models/Gate/Gate.glb" id="30_r5xrb"]
+[ext_resource type="Script" uid="uid://v4lwcwcnu7dg" path="res://scripts/VFX/VFXPrewarmer.gd" id="31_2o5xf"]
+[ext_resource type="PackedScene" uid="uid://x2uj51mwckp5" path="res://scenes/VFX/ExplosionVFX.tscn" id="32_00cxa"]
+[ext_resource type="PackedScene" uid="uid://bmim5hpyj0ca1" path="res://scenes/VFX/ExplosionVFXArtillery.tscn" id="33_rlhrf"]
+[ext_resource type="PackedScene" uid="uid://ca821bnynwdh4" path="res://scenes/VFX/FlamethrowerVFX.tscn" id="34_6duhf"]
+[ext_resource type="PackedScene" uid="uid://cg4kvaldnrav4" path="res://scenes/VFX/OverchargeVFX.tscn" id="35_m2u7m"]
+[ext_resource type="PackedScene" uid="uid://be8hg483hedqw" path="res://scenes/VFX/PitchPuddleLeft.tscn" id="36_s7t06"]
+[ext_resource type="PackedScene" uid="uid://br5631g8ldnui" path="res://scenes/VFX/PitchPuddleRight.tscn" id="37_67kke"]
+[ext_resource type="PackedScene" uid="uid://c5qxjkarg4st8" path="res://scenes/VFX/PreassureBlastVFX.tscn" id="38_xyp8h"]
 
 [node name="Devroom3d" type="Node3D" unique_id=95222864]
 
@@ -130,9 +138,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.084, 9.283)
 max_health = 200
 
 [node name="GameCamera" parent="Player" unique_id=1770089720 node_paths=PackedStringArray("target") instance=ExtResource("1_5ij30")]
-transform = Transform3D(0.99991435, 0.013089597, -1.0106151e-05, 0, 0.0007720748, 0.9999997, 0.013089601, -0.99991405, 0.0007720087, 0.048287738, 18.14456, 4.264213)
+transform = Transform3D(0.99991435, 0.013089597, -1.0106151e-05, 0, 0.0007720748, 0.9999997, 0.013089601, -0.99991405, 0.0007720087, 0.048, 22, 4.264)
 v_offset = -6.0
 target = NodePath("../TrainHead")
 
 [node name="Gate" parent="." unique_id=284149379 instance=ExtResource("30_r5xrb")]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, -337.17242)
+
+[node name="VFXPrewarmer" type="Node3D" parent="." unique_id=503405006]
+script = ExtResource("31_2o5xf")
+vfx_scenes = Array[PackedScene]([ExtResource("15_renfr"), ExtResource("32_00cxa"), ExtResource("33_rlhrf"), ExtResource("34_6duhf"), ExtResource("35_m2u7m"), ExtResource("36_s7t06"), ExtResource("37_67kke"), ExtResource("38_xyp8h")])
