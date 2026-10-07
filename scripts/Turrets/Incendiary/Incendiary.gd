@@ -60,3 +60,11 @@ func _set_flame_vfx_active(active: bool) -> void:
 	var particles = flame_vfx.find_children("*", "GPUParticles3D") + flame_vfx.find_children("*", "CPUParticles3D")
 	for p in particles:
 		p.emitting = active
+
+func _on_impact(target_area: Node3D) -> void:
+	if target_area is PitchPuddle:
+		target_area.ignite()
+	elif target_area.has_method("ignite"):
+		target_area.ignite()
+
+	var space_state = get_world_3d().direct_space_state

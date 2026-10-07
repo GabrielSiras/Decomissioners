@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://d0r4y001bdpps"]
+
+[ext_resource type="Script" uid="uid://6531dfuo4ar8" path="res://scripts/Player/Skills/BlackPitch/PitchPuddle.gd" id="1_i61di"]
+[ext_resource type="PackedScene" uid="uid://be8hg483hedqw" path="res://scenes/VFX/PitchPuddleLeft.tscn" id="2_i61di"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qmg03"]
+size = Vector3(8.930527, 1, 13.762444)
+
+[node name="PitchPuddle" type="Area3D" unique_id=618528578]
+script = ExtResource("1_i61di")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=448016395]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9865656, 0.25733614, 13.051663)
+shape = SubResource("BoxShape3D_qmg03")
+
+[node name="Visuals" type="Node3D" parent="." unique_id=519882036]
+
+[node name="Node3D" parent="Visuals" unique_id=644485583 instance=ExtResource("2_i61di")]

@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://bo42gfpujkmpc"]
+
+[ext_resource type="PackedScene" uid="uid://dlk4tve5trsps" path="res://scenes/Player/Skills/SkillBase.tscn" id="1_sb3mo"]
+[ext_resource type="Script" uid="uid://bb5k24ln401vo" path="res://scripts/Player/Skills/BlackPitch/BlackPitchSkillButton.gd" id="2_pdwsd"]
+[ext_resource type="Script" uid="uid://dpofd1ox42pwy" path="res://scripts/Player/Skills/BlackPitch/PitchSkill.gd" id="3_nqbpf"]
+[ext_resource type="PackedScene" uid="uid://br5631g8ldnui" path="res://scenes/VFX/PitchPuddleRight.tscn" id="4_nqbpf"]
+
+[node name="BlackPitchSkillButton" unique_id=834700005 node_paths=PackedStringArray("pitch_skill_node") instance=ExtResource("1_sb3mo")]
+offset_left = 32.0
+offset_top = 960.0
+offset_right = 123.0
+offset_bottom = 1038.0
+text = "BlackPitch"
+script = ExtResource("2_pdwsd")
+pitch_skill_node = NodePath("PitchSkill")
+cooldown_duration = 10.0
+
+[node name="PitchSkill" type="Node3D" parent="." index="0" unique_id=92291517]
+script = ExtResource("3_nqbpf")
+right_puddle_scene = ExtResource("4_nqbpf")
