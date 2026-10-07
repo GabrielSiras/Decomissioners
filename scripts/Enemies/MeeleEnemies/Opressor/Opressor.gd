@@ -24,7 +24,7 @@ var current_state: State = State.WAITING
 @export var lunge_speed: float = 12.0
 @export var lunge_max_duration: float = 1.0
 @export var grab_distance: float = 2.5
-@export var train_slow_amount: float = 2.5
+@export var train_slow_amount: float = 1.0
 
 @onready var state_timer: Timer = Timer.new()
 @onready var damage_timer: Timer = Timer.new()
@@ -32,6 +32,7 @@ var current_state: State = State.WAITING
 var current_target_wagon: Node3D = null
 var assigned_slot_index: int = -1
 var slot_z_offset: float = 0.0
+var attached_slow: bool = false
 
 func _ready() -> void:
 	super._ready()
@@ -162,8 +163,11 @@ func _process_latched(active_target: Node3D) -> void:
 	velocity = Vector3.ZERO
 
 	var train_node = _find_train_speed_node()
-	if train_node:
-		train_node.current_speed = max(2.0, train_node.current_speed - (train_slow_amount * get_physics_process_delta_time()))
+	if train_node and attached_slow == false:
+		train_node.max_speed -= train_slow_amount
+		train_node.current_speed = train_node.max_speed * train_node.current_speed_factor
+		attached_slow = true
+		
 		if train_node.has_method("trigger_brake_vfx"):
 			train_node.trigger_brake_vfx()
 
@@ -232,6 +236,13 @@ func _detach_from_wagon() -> void:
 	if current_state == State.LATCHED:
 		damage_timer.stop()
 		current_state = State.COOLDOWN
+		
+		if attached_slow == true:
+			var train_node = _find_train_speed_node()
+			train_node.max_speed += train_slow_amount
+			train_node.current_speed = train_node.max_speed * train_node.current_speed_factor
+			attached_slow = false
+		
 		state_timer.start(attack_cooldown)
 
 func _on_damage_timer_timeout() -> void:
@@ -246,3 +257,7 @@ func _update_facing_direction(active_target: Node3D) -> void:
 func _exit_tree() -> void:
 	if is_instance_valid(current_target_wagon) and current_target_wagon.has_method("release_slot"):
 		current_target_wagon.release_slot(self)
+
+func die() -> void:
+	_detach_from_wagon()
+	super()

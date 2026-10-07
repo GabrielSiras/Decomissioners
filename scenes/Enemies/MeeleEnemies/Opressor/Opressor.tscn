@@ -16,7 +16,7 @@ windup_duration = 0.8
 lunge_speed = 12.0
 lunge_max_duration = 1.0
 grab_distance = 2.5
-train_slow_amount = 2.5
+train_slow_amount = 1.0
 attack_range = 2.0
 
 [node name="CollisionShape3D" parent="." index="0" unique_id=1838556396]

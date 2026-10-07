@@ -4,18 +4,20 @@ extends Node3D
 @export_category("Train Status")
 @onready var turret_slots_container: Node3D = $TurretSlots
 @export var max_health: int = 200
-@export var max_speed: float = 15.0
+@export var max_speed: float = 8.0
 @onready var current_health: int = max_health
 @export var current_armor: int = 10
 @export var wagons: Array[Wagon] = []
 @export var current_speed: float = 0.0
 @export var wheel_markers: Array[Marker3D] = []
+@export var brake_distance: float = 20.0
 
 @export_category("MENUs/HUDs")
 @export var defeat_menu: DefeatMenu
 @export var speed_lever: SpeedLever
 @export var progress_bar: CanvasLayer
 @export var destination_node: Node3D
+@export var next_gate: Node3D
 
 @export_category("EMP SKILL")
 @export var emp_radius: float = 12.0
@@ -30,6 +32,7 @@ var current_speed_factor: float = 0.0
 var velocity: Vector3 = Vector3.ZERO
 var start_position: Vector3
 var total_distance: float = 0.0
+var approaching_gate: bool = true
 
 
 func _ready() -> void:
@@ -61,7 +64,11 @@ func _physics_process(delta: float) -> void:
 	if speed_lever and max_speed > 0.0:
 		var visual_factor = clamp(current_speed / max_speed, 0.0, 1.0)
 		speed_lever.update_slider_visual(visual_factor)
-
+		
+	if global_position.distance_to(next_gate.global_position)-5 <= brake_distance * current_speed_factor and approaching_gate == true:
+		brake_at_gate()
+		
+	print(max_speed)
 	_update_progress()
 
 func _on_train_braked() -> void:
@@ -265,3 +272,17 @@ func has_any_turret() -> bool:
 			return true
 			
 	return false
+
+func brake_at_gate() -> void:
+	speed_lever.v_slider.editable = false
+	speed_lever.v_slider.value -= 0.05
+	speed_lever.visible = false
+	
+	if current_speed_factor == 0.0:
+		approaching_gate = false
+		await get_tree().create_timer(15).timeout
+		
+		next_gate.visible = false
+		speed_lever.v_slider.value = 0.2
+		speed_lever.v_slider.editable = true
+		speed_lever.visible = true

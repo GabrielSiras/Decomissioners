@@ -28,6 +28,7 @@
 [ext_resource type="PackedScene" uid="uid://dqcassbdhp1tv" path="res://scenes/Turrets/Artillery/Artillery.tscn" id="21_renfr"]
 [ext_resource type="PackedScene" uid="uid://d3ap83csv51de" path="res://scenes/Player/Skills/SuperCharge/SuperChargeSkillButton.tscn" id="24_575n3"]
 [ext_resource type="PackedScene" uid="uid://d3x5pnba5lgn7" path="res://scenes/Player/Skills/SuperCharge/SuperCharge.tscn" id="25_x2gxx"]
+[ext_resource type="PackedScene" uid="uid://r635qxesdoa5" path="res://assets/models/Gate/Gate.glb" id="29_o13ra"]
 
 [node name="Devroom3d" type="Node3D" unique_id=95222864]
 
@@ -102,13 +103,13 @@ train = NodePath("../../Player/TrainHead")
 
 [node name="Player" type="Node3D" parent="." unique_id=163302227]
 
-[node name="TrainHead" parent="Player" unique_id=423923195 node_paths=PackedStringArray("wagons", "defeat_menu", "speed_lever", "progress_bar", "destination_node") instance=ExtResource("3_hs430")]
-max_speed = 8.0
+[node name="TrainHead" parent="Player" unique_id=423923195 node_paths=PackedStringArray("wagons", "defeat_menu", "speed_lever", "progress_bar", "destination_node", "next_gate") instance=ExtResource("3_hs430")]
 wagons = [NodePath("Wagon"), NodePath("Wagon2")]
 defeat_menu = NodePath("../../HUD/DefeatMenu")
 speed_lever = NodePath("../../HUD/SpeedLever")
 progress_bar = NodePath("../../HUD/TrainProgressBar")
 destination_node = NodePath("../../DestinationPoint")
+next_gate = NodePath("../../GateA")
 
 [node name="Wagon" parent="Player/TrainHead" unique_id=659263558 instance=ExtResource("19_c0ium")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.084, 4.2603464)
@@ -120,3 +121,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.084, 9.283)
 transform = Transform3D(0.99991435, 0.013089597, -1.0106151e-05, 0, 0.0007720748, 0.9999997, 0.013089601, -0.99991405, 0.0007720087, 0.048287738, 18.14456, 4.264213)
 v_offset = -6.0
 target = NodePath("../TrainHead")
+
+[node name="GateA" parent="." unique_id=284149379 instance=ExtResource("29_o13ra")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, -86.82666)
