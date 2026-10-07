@@ -2,8 +2,8 @@ class_name PitchPuddle
 extends Area3D
 
 @export_category("Configurações do Piche")
-@export var puddle_duration: float = 4.0  # Tempo que a poça fica ativa no chão
-@export var fade_duration: float = 0.3    # Tempo da animação de sumir
+@export var puddle_duration: float = 4.0
+@export var fade_duration: float = 0.3
 @export var move_slow_ratio: float = 0.5
 @export var attack_slow_ratio: float = 0.5
 
@@ -26,7 +26,6 @@ func _ready() -> void:
 	if is_instance_valid(fire_vfx):
 		fire_vfx.hide()
 
-	# Inicia o tempo de vida da poça
 	get_tree().create_timer(puddle_duration, false).timeout.connect(_start_fade_out)
 
 func _start_fade_out() -> void:
@@ -34,26 +33,21 @@ func _start_fade_out() -> void:
 		return
 	is_fading = true
 
-	# 1. Remove os debuffs dos inimigos imediatamente
 	for enemy in ground_enemies_inside:
 		if is_instance_valid(enemy):
 			_remove_puddle_debuff(enemy)
 	ground_enemies_inside.clear()
 
-	# 2. Desativa detecção de área para não afetar novos inimigos enquanto some
 	monitoring = false
 	monitorable = false
 
-	# 3. Para de emitir novas partículas em todos os nós filhos para evaporar limpo
 	_stop_particles(self)
 
-	# 4. Transição suave (Tween) encolhendo a escala até 0
 	var tween = create_tween().set_parallel(true)
 	tween.tween_property(self, "scale", Vector3(0.001, 0.001, 0.001), fade_duration)\
 		.set_trans(Tween.TRANS_QUAD)\
 		.set_ease(Tween.EASE_IN)
 
-	# 5. Espera o Tween terminar para deletar o nó com segurança
 	await tween.finished
 	queue_free()
 

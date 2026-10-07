@@ -12,7 +12,6 @@ func _ready() -> void:
 	
 	original_button_text = text if text != "" else "BlackPitch"
 	
-	# Se a classe pai não criou o Timer, criamos aqui sem redefinir a variável:
 	if not is_instance_valid(cooldown_timer):
 		cooldown_timer = Timer.new()
 		cooldown_timer.one_shot = true
