@@ -24,7 +24,7 @@ var current_state: State = State.WAITING
 @export var lunge_speed: float = 12.0
 @export var lunge_max_duration: float = 1.0
 @export var grab_distance: float = 2.5
-@export var train_slow_amount: float = 1.0
+@export var train_slow_amount: float = 2.0
 
 @onready var state_timer: Timer = Timer.new()
 @onready var damage_timer: Timer = Timer.new()

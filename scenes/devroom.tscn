@@ -28,11 +28,8 @@
 [ext_resource type="PackedScene" uid="uid://dqcassbdhp1tv" path="res://scenes/Turrets/Artillery/Artillery.tscn" id="21_renfr"]
 [ext_resource type="PackedScene" uid="uid://d3ap83csv51de" path="res://scenes/Player/Skills/SuperCharge/SuperChargeSkillButton.tscn" id="24_575n3"]
 [ext_resource type="PackedScene" uid="uid://d3x5pnba5lgn7" path="res://scenes/Player/Skills/SuperCharge/SuperCharge.tscn" id="25_x2gxx"]
-<<<<<<< HEAD
-[ext_resource type="PackedScene" uid="uid://r635qxesdoa5" path="res://assets/models/Gate/Gate.glb" id="29_o13ra"]
-=======
 [ext_resource type="PackedScene" uid="uid://bo42gfpujkmpc" path="res://scenes/Player/Skills/BlackPitch/BlackPitchSkillButton.tscn" id="26_o13ra"]
->>>>>>> 898aa53e9cdd8735df62bc600fc44aaa443a4d8a
+[ext_resource type="PackedScene" uid="uid://r635qxesdoa5" path="res://assets/models/Gate/Gate.glb" id="30_r5xrb"]
 
 [node name="Devroom3d" type="Node3D" unique_id=95222864]
 
@@ -119,7 +116,7 @@ defeat_menu = NodePath("../../HUD/DefeatMenu")
 speed_lever = NodePath("../../HUD/SpeedLever")
 progress_bar = NodePath("../../HUD/TrainProgressBar")
 destination_node = NodePath("../../DestinationPoint")
-next_gate = NodePath("../../GateA")
+next_gate = NodePath("../../Gate")
 
 [node name="Wagon" parent="Player/TrainHead" unique_id=659263558 instance=ExtResource("19_c0ium")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.084, 4.2603464)
@@ -132,5 +129,5 @@ transform = Transform3D(0.99991435, 0.013089597, -1.0106151e-05, 0, 0.0007720748
 v_offset = -6.0
 target = NodePath("../TrainHead")
 
-[node name="GateA" parent="." unique_id=284149379 instance=ExtResource("29_o13ra")]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, -86.82666)
+[node name="Gate" parent="." unique_id=284149379 instance=ExtResource("30_r5xrb")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, -514.22034)

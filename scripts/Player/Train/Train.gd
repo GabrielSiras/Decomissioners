@@ -280,7 +280,7 @@ func brake_at_gate() -> void:
 	
 	if current_speed_factor == 0.0:
 		approaching_gate = false
-		await get_tree().create_timer(15).timeout
+		await get_tree().create_timer(10).timeout
 		
 		next_gate.visible = false
 		speed_lever.v_slider.value = 0.2
