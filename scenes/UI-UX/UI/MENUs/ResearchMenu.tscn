@@ -1,0 +1,126 @@
+[gd_scene format=3 uid="uid://wu0v8ih35qrr"]
+
+[ext_resource type="Script" uid="uid://bjmglh54rtcjj" path="res://scripts/UI-UX/UI/UpgradeResearchOverlay.gd" id="1_y3y1i"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y3y1i"]
+content_margin_left = 15.0
+content_margin_top = 40.0
+content_margin_right = 15.0
+content_margin_bottom = 5.0
+bg_color = Color(0.20784314, 0.28627452, 0.21176471, 1)
+border_width_left = 7
+border_width_top = 7
+border_width_right = 7
+border_color = Color(0.7411765, 0.49019608, 0.29803923, 1)
+border_blend = true
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+corner_detail = 10
+anti_aliasing = false
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_xrivr"]
+size = Vector2(50, 50)
+
+[sub_resource type="LabelSettings" id="LabelSettings_13qdw"]
+font_size = 50
+
+[node name="Control" type="Control" unique_id=974220128]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BG" type="ColorRect" parent="." unique_id=1442725506]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.3673842, 0.57735777, 0.43962106, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BG" unique_id=1187242219]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.07
+anchor_top = 0.13
+anchor_right = 0.92999995
+anchor_bottom = 0.7601563
+metadata/_edit_use_anchors_ = true
+
+[node name="UpgradeListAttributes" type="ItemList" parent="BG/VBoxContainer" unique_id=616634880]
+custom_maximum_size = Vector2(-1, 400)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 15
+theme_override_constants/outline_size = 20
+theme_override_constants/line_separation = 5
+theme_override_constants/icon_margin = 5
+theme_override_font_sizes/font_size = 30
+theme_override_styles/panel = SubResource("StyleBoxFlat_y3y1i")
+max_text_lines = 2
+item_count = 5
+max_columns = 3
+same_column_width = true
+icon_mode = 0
+fixed_icon_size = Vector2i(100, 100)
+item_0/text = "Life"
+item_0/icon = SubResource("PlaceholderTexture2D_xrivr")
+item_1/text = "Armor"
+item_1/icon = SubResource("PlaceholderTexture2D_xrivr")
+item_2/text = "Potency"
+item_2/icon = SubResource("PlaceholderTexture2D_xrivr")
+item_3/text = "Wagon Size"
+item_3/icon = SubResource("PlaceholderTexture2D_xrivr")
+item_4/text = "Acceleration"
+item_4/icon = SubResource("PlaceholderTexture2D_xrivr")
+metadata/_edit_use_anchors_ = true
+
+[node name="UpgradeListSkills" type="ItemList" parent="BG/VBoxContainer" unique_id=725564404]
+custom_maximum_size = Vector2(-1, 230)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 15
+theme_override_constants/outline_size = 15
+theme_override_constants/line_separation = 5
+theme_override_constants/icon_margin = 15
+theme_override_font_sizes/font_size = 24
+theme_override_styles/panel = SubResource("StyleBoxFlat_y3y1i")
+allow_search = false
+max_text_lines = 2
+item_count = 3
+max_columns = 3
+same_column_width = true
+fixed_column_width = 175
+icon_mode = 0
+fixed_icon_size = Vector2i(100, 100)
+item_0/text = "Bombardment"
+item_0/icon = SubResource("PlaceholderTexture2D_xrivr")
+item_1/text = "Pitch"
+item_1/icon = SubResource("PlaceholderTexture2D_xrivr")
+item_2/text = "Supercharge"
+item_2/icon = SubResource("PlaceholderTexture2D_xrivr")
+metadata/_edit_use_anchors_ = true
+
+[node name="MenuTitle" type="Label" parent="." unique_id=2012057994]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.08055556
+anchor_top = 0.05859375
+anchor_right = 0.69166666
+anchor_bottom = 0.1125
+grow_horizontal = 2
+text = "Upgrade Research"
+label_settings = SubResource("LabelSettings_13qdw")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=687512325]
+
+[node name="UpgradeDescriptionBox" type="CanvasLayer" parent="CanvasLayer" unique_id=773231749]
+script = ExtResource("1_y3y1i")
+metadata/_custom_type_script = "uid://bjmglh54rtcjj"
