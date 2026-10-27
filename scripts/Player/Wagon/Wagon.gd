@@ -24,6 +24,11 @@ var health_bar: HealthBarUI = null
 @export var max_slots: int = 3
 @export var slot_z_offsets: Array[float] = [1.5, 0.0, -1.5]
 
+@export_category("Metal Storage")
+@export var metal_capacity: int = 300
+@export var starting_metal: int = 300
+var stored_metal: int = 0
+
 @onready var turret_slots_container: Node3D = $TurretSlots
 @export var bar_offset: Vector3 = Vector3(0, 1.5, 2)
 var camera: Camera3D
@@ -32,6 +37,9 @@ var assigned_enemies: Array[Node3D] = []
 var slots_status: Dictionary = {}
 
 func _ready() -> void:
+	stored_metal = min(starting_metal, metal_capacity)
+	MetalManager.register_storage(self)
+	
 	add_to_group("wagons")
 	add_to_group("player_targets")
 	
@@ -62,6 +70,15 @@ func _find_turret_in_slot(slot: Node) -> Node:
 
 func _process(_delta: float) -> void:
 	_update_bar_position()
+
+func _physics_process(delta: float) -> void:
+	if not is_instance_valid(target):
+		return
+		
+	var target_pos = target.global_position + (target.global_transform.basis.z * follow_distance)
+	
+	global_position = global_position.lerp(target_pos, follow_speed * delta)
+	global_basis = global_basis.slerp(target.global_basis, follow_speed * delta)
 
 func _update_bar_position() -> void:
 	var camera := get_viewport().get_camera_3d()

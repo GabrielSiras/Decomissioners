@@ -9,10 +9,8 @@ var health: float = 0.0:
 		var previous_health = health
 		health = new_val
 		
-		# Atualiza a barra principal
 		self.value = health
 		
-		# Obtém o damage_bar de forma segura caso o @onready ainda não tenha corrido
 		var d_bar = damage_bar if is_instance_valid(damage_bar) else get_node_or_null("DamageBar")
 		
 		if health < previous_health:

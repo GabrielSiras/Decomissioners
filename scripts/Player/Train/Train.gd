@@ -33,6 +33,11 @@ var health_bar: HealthBarUI = null
 @export_category("VFXs")
 @export var brake_vfx_scene: PackedScene
 
+@export_category("Metal Storage")
+@export var metal_capacity: int = 300
+@export var starting_metal: int = 300
+var stored_metal: int = 0
+
 var brake_vfx_cooldown_timer: float = 0.0
 var slots_status: Dictionary = {}
 var current_speed_factor: float = 0.0
@@ -49,6 +54,8 @@ var approaching_gate: bool = true
 
 
 func _ready() -> void:
+	stored_metal = min(starting_metal, metal_capacity)
+	MetalManager.register_storage(self)
 	add_to_group("wagons")
 	add_to_group("player_base")
 	add_to_group("player_targets")
