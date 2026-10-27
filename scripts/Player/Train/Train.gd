@@ -3,8 +3,9 @@ extends Node3D
 
 @export_category("Train Status")
 @onready var turret_slots_container: Node3D = $TurretSlots
-@export var max_health: int = 200
 @export var max_speed: float = 8.0
+var health_bar: HealthBarUI = null
+@export var max_health: int = 200
 @onready var current_health: int = max_health
 @export var current_armor: int = 10
 @export var wagons: Array[Wagon] = []
@@ -18,6 +19,12 @@ extends Node3D
 @export var progress_bar: CanvasLayer
 @export var destination_node: Node3D
 @export var next_gate: Node3D
+
+@export_category("UI Health Bars")
+@export var health_bar_scene: PackedScene
+@export var bar_min_size: Vector2 = Vector2(80, 16)
+@export var bar_offset: Vector3 = Vector3(0, 1.5, 1.2)
+
 
 @export_category("EMP SKILL")
 @export var emp_radius: float = 12.0
@@ -33,12 +40,22 @@ var velocity: Vector3 = Vector3.ZERO
 var start_position: Vector3
 var total_distance: float = 0.0
 var approaching_gate: bool = true
+@export var health: float = 200.0:
+	set(value):
+		health = clamp(value, 0.0, float(max_health))
+		if is_instance_valid(health_bar):
+			health_bar.health = health
+		current_health = int(health)
 
 
 func _ready() -> void:
 	add_to_group("wagons")
 	add_to_group("player_base")
 	add_to_group("player_targets")
+	
+	health = float(max_health)
+	if is_instance_valid(health_bar) and health_bar.has_method("init_health"):
+		health_bar.init_health(float(max_health))
 
 	if is_instance_valid(speed_lever):
 		speed_lever.braked.connect(_on_train_braked)
@@ -46,12 +63,53 @@ func _ready() -> void:
 
 	start_position = global_position
 	_update_wagons_list()
+	_setup_health_bars()
 	current_speed = max_speed * current_speed_factor
 	
 	if is_instance_valid(destination_node):
 		total_distance = start_position.distance_to(destination_node.global_position)
 	
 	_register_all_slots()
+
+func _process(_delta: float) -> void:
+	_update_bar_position()
+	
+func _update_bar_position() -> void:
+	var camera := get_viewport().get_camera_3d()
+	if not is_instance_valid(health_bar) or not is_instance_valid(camera):
+		return
+	var world_pos = global_position + bar_offset
+	health_bar.visible = not camera.is_position_behind(world_pos)
+	if health_bar.visible:
+		health_bar.position = camera.unproject_position(world_pos) - health_bar.size * 0.5
+
+func _setup_health_bars() -> void:
+	var hud_container = get_tree().current_scene.find_child("HealthBarsLayer", true, false)
+	if not hud_container:
+		print("⚠️ HealthBarsLayer não encontrado na HUD!")
+		return
+
+	for child in hud_container.get_children():
+		child.queue_free()
+
+	if health_bar_scene:
+		var head_bar = health_bar_scene.instantiate()
+		hud_container.add_child(head_bar)
+		_prepare_bar(head_bar)
+		head_bar.init_health(float(max_health))
+		health_bar = head_bar
+
+	for wagon in wagons:
+		if is_instance_valid(wagon) and health_bar_scene:
+			var wagon_bar = health_bar_scene.instantiate()
+			hud_container.add_child(wagon_bar)
+			_prepare_bar(wagon_bar)
+			wagon_bar.init_health(float(wagon.max_health))
+			wagon.health_bar = wagon_bar
+
+func _prepare_bar(bar: Control) -> void:
+	bar.custom_minimum_size = bar_min_size
+	bar.size = bar_min_size
 
 func _physics_process(delta: float) -> void:
 	if brake_vfx_cooldown_timer > 0.0:
@@ -223,15 +281,16 @@ func _find_turret_in_slot(slot: Node) -> Node:
 	return null
 
 func take_damage(amount: int) -> void:
-	if current_health <= 0:
+	if health <= 0:
 		return
 	
 	var armor_reduction_percent: float = clamp(current_armor, 0, 100) / 100.0
 	var damage_multiplier: float = 1.0 - armor_reduction_percent
-	var final_damage: int = max(0, roundi(amount * damage_multiplier))
-	current_health -= final_damage
+	var final_damage: float = max(0.0, float(amount) * damage_multiplier)
 	
-	if current_health <= 0:
+	health -= final_damage
+	
+	if health <= 0:
 		die()
 
 func die() -> void:

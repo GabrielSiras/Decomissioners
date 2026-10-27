@@ -5,6 +5,14 @@ extends Node3D
 @export var max_health: int = 100
 @export var current_armor: int = 0
 @onready var current_health: int = max_health
+@export var health_bar_scene: PackedScene
+var health_bar: HealthBarUI = null
+@export var health: float = 100.0:
+	set(value):
+		health = clamp(value, 0.0, float(max_health))
+		if is_instance_valid(health_bar):
+			health_bar.health = health
+		current_health = int(health)
 
 @export_category("Movement & Following")
 @export var target: Node3D
@@ -17,6 +25,8 @@ extends Node3D
 @export var slot_z_offsets: Array[float] = [1.5, 0.0, -1.5]
 
 @onready var turret_slots_container: Node3D = $TurretSlots
+@export var bar_offset: Vector3 = Vector3(0, 1.5, 2)
+var camera: Camera3D
 
 var assigned_enemies: Array[Node3D] = []
 var slots_status: Dictionary = {}
@@ -24,6 +34,8 @@ var slots_status: Dictionary = {}
 func _ready() -> void:
 	add_to_group("wagons")
 	add_to_group("player_targets")
+	
+	health = float(max_health)
 	
 	if not is_instance_valid(train_head):
 		var parent = get_parent()
@@ -36,6 +48,8 @@ func _ready() -> void:
 	if is_instance_valid(turret_slots_container):
 		for slot in turret_slots_container.get_children():
 			slots_status[slot] = _find_turret_in_slot(slot)
+	
+	camera = get_viewport().get_camera_3d()
 
 func _find_turret_in_slot(slot: Node) -> Node:
 	for child in slot.get_children():
@@ -46,15 +60,21 @@ func _find_turret_in_slot(slot: Node) -> Node:
 				return sub_child
 	return null
 
-func _physics_process(delta: float) -> void:
-	if not is_instance_valid(target):
+func _process(_delta: float) -> void:
+	_update_bar_position()
+
+func _update_bar_position() -> void:
+	var camera := get_viewport().get_camera_3d()
+	if not is_instance_valid(health_bar) or not is_instance_valid(camera):
 		return
-		
-	var target_pos = target.global_position + (target.global_transform.basis.z * follow_distance)
-	
-	global_position = global_position.lerp(target_pos, follow_speed * delta)
-	
-	global_basis = global_basis.slerp(target.global_basis, follow_speed * delta)
+	var world_pos = global_position + bar_offset
+	health_bar.visible = not camera.is_position_behind(world_pos)
+	if health_bar.visible:
+		health_bar.position = camera.unproject_position(world_pos) - health_bar.size * 0.5
+
+func _exit_tree() -> void:
+	if is_instance_valid(health_bar):
+		health_bar.queue_free()
 
 func place_turret_at_slot(target_slot: Node3D, turret_scene: PackedScene, cost: int) -> bool:
 	if not slots_status.has(target_slot) or slots_status[target_slot] != null:
@@ -109,10 +129,15 @@ func get_slot_z_offset(slot_index: int) -> float:
 	return 0.0
 
 func take_damage(amount: int) -> void:
+	if health <= 0:
+		return
+		
 	var armor_reduction: float = clamp(current_armor, 0, 100) / 100.0
-	var final_damage: int = max(1, roundi(amount * (1.0 - armor_reduction)))
-	current_health -= final_damage
-	if current_health <= 0:
+	var final_damage: float = max(1.0, float(amount) * (1.0 - armor_reduction))
+	
+	health -= final_damage
+	
+	if health <= 0:
 		destroy_wagon()
 
 func destroy_wagon() -> void:

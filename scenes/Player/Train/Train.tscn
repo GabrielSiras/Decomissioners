@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d4g06iyetgrwf" path="res://scripts/Player/Train/Train.gd" id="1_426cx"]
 [ext_resource type="PackedScene" uid="uid://dn6xiuvp8y7jk" path="res://assets/models/Train/TrainHead.glb" id="2_8tskr"]
+[ext_resource type="PackedScene" uid="uid://cpdwiwgu4gw4f" path="res://scenes/UI-UX/UI/HealthBar.tscn" id="2_sktq5"]
 [ext_resource type="PackedScene" uid="uid://ctf6nkrlj66ni" path="res://scenes/VFX/BreakSparksVFX.tscn" id="2_wj5ji"]
 [ext_resource type="Script" uid="uid://btdr4h44kf6nb" path="res://scripts/Turrets/TurretSlot.gd" id="3_8tskr"]
 
@@ -16,6 +17,7 @@ collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_426cx")
 wheel_markers = [NodePath("Marker3D"), NodePath("Marker3D2")]
+health_bar_scene = ExtResource("2_sktq5")
 brake_vfx_scene = ExtResource("2_wj5ji")
 
 [node name="Model3D" parent="." unique_id=1468624311 instance=ExtResource("2_8tskr")]

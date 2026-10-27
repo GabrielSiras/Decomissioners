@@ -96,6 +96,17 @@ turret_4_scene = ExtResource("21_renfr")
 [node name="DemolishingMenuUI" parent="HUD" unique_id=1660696465 node_paths=PackedStringArray("train") instance=ExtResource("16_h8k66")]
 train = NodePath("../../Player/TrainHead")
 
+[node name="HealthBarsLayer" type="CanvasLayer" parent="HUD" unique_id=1059687408]
+
+[node name="HBoxContainer" type="Control" parent="HUD/HealthBarsLayer" unique_id=434984801]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
 [node name="Skills" type="CanvasLayer" parent="." unique_id=799799759]
 
 [node name="BombardmentSkillButton" parent="Skills" unique_id=246414351 instance=ExtResource("20_3f7xg")]
