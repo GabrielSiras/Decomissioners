@@ -114,6 +114,7 @@ offset_left = 32.0
 offset_top = 966.0
 offset_right = 153.0
 offset_bottom = 1058.0
+cooldown_time = 15.0
 
 [node name="SuperChargeSkillButton" parent="Skills" unique_id=834700005 node_paths=PackedStringArray("train") instance=ExtResource("24_575n3")]
 offset_left = 40.0

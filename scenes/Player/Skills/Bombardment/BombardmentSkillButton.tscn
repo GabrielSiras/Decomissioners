@@ -3,6 +3,15 @@
 [ext_resource type="PackedScene" uid="uid://dlk4tve5trsps" path="res://scenes/Player/Skills/SkillBase.tscn" id="1_5uwgk"]
 [ext_resource type="Script" uid="uid://ccpfov3xs4314" path="res://scripts/Player/Skills/Bombardment/BombardmentSkillButton.gd" id="2_u5j7m"]
 [ext_resource type="PackedScene" uid="uid://bc2jkojs684ns" path="res://scenes/Player/Skills/Bombardment/Bombardment.tscn" id="3_8my35"]
+[ext_resource type="AudioStream" uid="uid://c2n3dn564sbmb" path="res://assets/audios/SFX/Skills/Bombardment/DistantExplosionVariation1.wav" id="4_51kuq"]
+[ext_resource type="AudioStream" uid="uid://b7vuoycbd1s0n" path="res://assets/audios/SFX/Skills/Bombardment/DistantExplosionVariation2.wav" id="5_640q7"]
+[ext_resource type="AudioStream" uid="uid://b3q0dk5cx5cke" path="res://assets/audios/SFX/Skills/Bombardment/DistantExplosionVariation3.wav" id="6_n86lb"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_3ja3k"]
+streams_count = 3
+stream_0/stream = ExtResource("4_51kuq")
+stream_1/stream = ExtResource("5_640q7")
+stream_2/stream = ExtResource("6_n86lb")
 
 [node name="BombardmentSkillButton" unique_id=834700005 instance=ExtResource("1_5uwgk")]
 offset_left = 156.0
@@ -14,3 +23,7 @@ script = ExtResource("2_u5j7m")
 bombardment_scene = ExtResource("3_8my35")
 
 [node name="CooldownTimer" type="Timer" parent="." index="0" unique_id=946769539]
+
+[node name="SkillSound" type="AudioStreamPlayer" parent="." index="1" unique_id=1726425558]
+stream = SubResource("AudioStreamRandomizer_3ja3k")
+bus = &"SFX"

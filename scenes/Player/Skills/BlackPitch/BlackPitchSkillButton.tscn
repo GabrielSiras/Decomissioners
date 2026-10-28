@@ -4,6 +4,15 @@
 [ext_resource type="Script" uid="uid://bb5k24ln401vo" path="res://scripts/Player/Skills/BlackPitch/BlackPitchSkillButton.gd" id="2_pdwsd"]
 [ext_resource type="Script" uid="uid://dpofd1ox42pwy" path="res://scripts/Player/Skills/BlackPitch/PitchSkill.gd" id="3_nqbpf"]
 [ext_resource type="PackedScene" uid="uid://br5631g8ldnui" path="res://scenes/VFX/PitchPuddleRight.tscn" id="4_nqbpf"]
+[ext_resource type="AudioStream" uid="uid://dwpajlp5hbi5o" path="res://assets/audios/SFX/Skills/BlackPitch/BlackPitchSpillingVariation1.wav" id="5_3ja3k"]
+[ext_resource type="AudioStream" uid="uid://c44vusr1tj6qt" path="res://assets/audios/SFX/Skills/BlackPitch/BlackPitchSpillingVariation2.wav" id="6_o46au"]
+[ext_resource type="AudioStream" uid="uid://bebkm1c0425yr" path="res://assets/audios/SFX/Skills/BlackPitch/BlackPitchSpillingVariation3.wav" id="7_4ddpu"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_qmg03"]
+streams_count = 3
+stream_0/stream = ExtResource("5_3ja3k")
+stream_1/stream = ExtResource("6_o46au")
+stream_2/stream = ExtResource("7_4ddpu")
 
 [node name="BlackPitchSkillButton" unique_id=834700005 node_paths=PackedStringArray("pitch_skill_node") instance=ExtResource("1_sb3mo")]
 offset_left = 32.0
@@ -18,3 +27,7 @@ cooldown_duration = 10.0
 [node name="PitchSkill" type="Node3D" parent="." index="0" unique_id=92291517]
 script = ExtResource("3_nqbpf")
 right_puddle_scene = ExtResource("4_nqbpf")
+
+[node name="SkillSound" type="AudioStreamPlayer" parent="." index="1" unique_id=2121972123]
+stream = SubResource("AudioStreamRandomizer_qmg03")
+bus = &"SFX"

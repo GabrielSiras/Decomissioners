@@ -5,6 +5,7 @@ extends Button
 @export var cooldown_time: float = 15.0
 
 @onready var cooldown_timer: Timer = $CooldownTimer
+@onready var skill_sound: AudioStreamPlayer = $SkillSound
 
 var active_bombardment: Bombardment = null
 
@@ -30,6 +31,7 @@ func _on_skill_executed() -> void:
 	active_bombardment = null
 	disabled = true
 	cooldown_timer.start()
+	skill_sound.play()
 
 func _on_skill_cancelled() -> void:
 	active_bombardment = null

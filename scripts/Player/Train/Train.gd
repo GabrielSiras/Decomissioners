@@ -132,8 +132,7 @@ func _physics_process(delta: float) -> void:
 		
 	if global_position.distance_to(next_gate.global_position)-5 <= brake_distance * current_speed_factor and approaching_gate == true:
 		brake_at_gate()
-		
-	print(max_speed)
+
 	_update_progress()
 
 func _on_train_braked() -> void:

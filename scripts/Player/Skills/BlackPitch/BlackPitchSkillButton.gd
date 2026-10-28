@@ -5,6 +5,8 @@ extends SkillBase
 @export var pitch_skill_node: PitchSkill
 @export var cooldown_duration: float = 10.0
 
+@onready var skill_sound: AudioStreamPlayer = $SkillSound
+
 var original_button_text: String = ""
 
 func _ready() -> void:
@@ -39,6 +41,7 @@ func _on_pressed() -> void:
 
 	if is_instance_valid(pitch_skill_node):
 		pitch_skill_node.execute_skill(train_head)
+		skill_sound.play()
 		_start_cooldown()
 	else:
 		print("❌ O nó 'PitchSkill' não foi atribuído no botão!")
