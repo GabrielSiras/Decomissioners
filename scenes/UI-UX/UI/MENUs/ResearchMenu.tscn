@@ -1,7 +1,5 @@
 [gd_scene format=3 uid="uid://wu0v8ih35qrr"]
 
-[ext_resource type="Script" uid="uid://bjmglh54rtcjj" path="res://scripts/UI-UX/UI/UpgradeResearchOverlay.gd" id="1_y3y1i"]
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y3y1i"]
 content_margin_left = 15.0
 content_margin_top = 40.0
@@ -11,8 +9,8 @@ bg_color = Color(0.20784314, 0.28627452, 0.21176471, 1)
 border_width_left = 7
 border_width_top = 7
 border_width_right = 7
-border_color = Color(0.7411765, 0.49019608, 0.29803923, 1)
-border_blend = true
+border_width_bottom = 7
+border_color = Color(0, 0, 0, 1)
 corner_radius_top_left = 30
 corner_radius_top_right = 30
 corner_radius_bottom_right = 30
@@ -25,6 +23,36 @@ size = Vector2(50, 50)
 
 [sub_resource type="LabelSettings" id="LabelSettings_13qdw"]
 font_size = 50
+outline_size = 20
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n1jlh"]
+bg_color = Color(0.27735, 0.37235847, 0.33902073, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y3y1i"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_7buhx"]
+size = Vector2(30, 30)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_w8s82"]
+color = Color(0.7254902, 0.7254902, 0.7254902, 0.6313726)
+grow_begin = 0.0
+grow_end = 0.0
+thickness = 6
+vertical = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cpbve"]
+content_margin_left = 10.0
+content_margin_top = 5.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.1953, 0.63, 0.47060993, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [node name="Control" type="Control" unique_id=974220128]
 layout_mode = 3
@@ -43,16 +71,26 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.3673842, 0.57735777, 0.43962106, 1)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="BG" unique_id=1187242219]
+[node name="ScrollContainer" type="ScrollContainer" parent="BG" unique_id=1360142226]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.07
-anchor_top = 0.13
-anchor_right = 0.92999995
-anchor_bottom = 0.7601563
+anchor_left = 0.060000002
+anchor_top = 0.13000001
+anchor_right = 0.94
+anchor_bottom = 0.8275938
+offset_top = -1.5258789e-05
+offset_right = -0.2000122
+offset_bottom = -0.32006836
+draw_focus_border = true
 metadata/_edit_use_anchors_ = true
 
-[node name="UpgradeListAttributes" type="ItemList" parent="BG/VBoxContainer" unique_id=616634880]
+[node name="VBoxContainer" type="VBoxContainer" parent="BG/ScrollContainer" unique_id=1187242219]
+custom_minimum_size = Vector2(0, 1030)
+layout_mode = 2
+size_flags_horizontal = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="AttributesBlock" type="ItemList" parent="BG/ScrollContainer/VBoxContainer" unique_id=616634880]
 custom_maximum_size = Vector2(-1, 400)
 layout_mode = 2
 size_flags_vertical = 3
@@ -81,7 +119,18 @@ item_4/text = "Acceleration"
 item_4/icon = SubResource("PlaceholderTexture2D_xrivr")
 metadata/_edit_use_anchors_ = true
 
-[node name="UpgradeListSkills" type="ItemList" parent="BG/VBoxContainer" unique_id=725564404]
+[node name="GridContainer" type="GridContainer" parent="BG/ScrollContainer/VBoxContainer/AttributesBlock" unique_id=470095780]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="BG/ScrollContainer/VBoxContainer/AttributesBlock/GridContainer" unique_id=2055586117]
+layout_mode = 2
+
+[node name="SkillsBlock" type="ItemList" parent="BG/ScrollContainer/VBoxContainer" unique_id=725564404]
 custom_maximum_size = Vector2(-1, 230)
 layout_mode = 2
 size_flags_vertical = 3
@@ -108,19 +157,164 @@ item_2/text = "Supercharge"
 item_2/icon = SubResource("PlaceholderTexture2D_xrivr")
 metadata/_edit_use_anchors_ = true
 
+[node name="TurretsBlock" type="ItemList" parent="BG/ScrollContainer/VBoxContainer" unique_id=312202012]
+custom_maximum_size = Vector2(-1, 400)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 15
+theme_override_constants/outline_size = 15
+theme_override_constants/line_separation = 5
+theme_override_constants/icon_margin = 15
+theme_override_font_sizes/font_size = 24
+theme_override_styles/panel = SubResource("StyleBoxFlat_y3y1i")
+allow_search = false
+max_text_lines = 2
+item_count = 4
+max_columns = 3
+same_column_width = true
+fixed_column_width = 175
+icon_mode = 0
+fixed_icon_size = Vector2i(100, 100)
+item_0/text = "Machinegun"
+item_0/icon = SubResource("PlaceholderTexture2D_xrivr")
+item_1/text = "Incendiary"
+item_1/icon = SubResource("PlaceholderTexture2D_xrivr")
+item_2/text = "Artillery"
+item_2/icon = SubResource("PlaceholderTexture2D_xrivr")
+item_3/text = "Blast"
+item_3/icon = SubResource("PlaceholderTexture2D_xrivr")
+metadata/_edit_use_anchors_ = true
+
 [node name="MenuTitle" type="Label" parent="." unique_id=2012057994]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.08055556
-anchor_top = 0.05859375
-anchor_right = 0.69166666
-anchor_bottom = 0.1125
+anchor_left = 0.31666666
+anchor_top = 0.0578125
+anchor_right = 0.92777777
+anchor_bottom = 0.11171875
 grow_horizontal = 2
 text = "Upgrade Research"
 label_settings = SubResource("LabelSettings_13qdw")
+metadata/_edit_use_anchors_ = true
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=687512325]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=659302412]
+layer = 2
 
-[node name="UpgradeDescriptionBox" type="CanvasLayer" parent="CanvasLayer" unique_id=773231749]
-script = ExtResource("1_y3y1i")
-metadata/_custom_type_script = "uid://bjmglh54rtcjj"
+[node name="DescriptionBoxBG" type="PanelContainer" parent="CanvasLayer" unique_id=1738657044]
+anchors_preset = -1
+anchor_top = 0.8148438
+anchor_right = 1.0
+anchor_bottom = 1.0015625
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_n1jlh")
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/DescriptionBoxBG" unique_id=1761606466]
+layout_mode = 2
+
+[node name="Panel2" type="Panel" parent="CanvasLayer/DescriptionBoxBG/VBoxContainer" unique_id=544087455]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_y3y1i")
+
+[node name="DescriptionBox" type="HBoxContainer" parent="CanvasLayer/DescriptionBoxBG/VBoxContainer" unique_id=1741472986]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="IconMargin" type="MarginContainer" parent="CanvasLayer/DescriptionBoxBG/VBoxContainer/DescriptionBox" unique_id=16965796]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/DescriptionBoxBG/VBoxContainer/DescriptionBox/IconMargin" unique_id=1189045832]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 20
+
+[node name="Icon" type="TextureRect" parent="CanvasLayer/DescriptionBoxBG/VBoxContainer/DescriptionBox/IconMargin/VBoxContainer" unique_id=515714599]
+custom_minimum_size = Vector2(100, 100)
+custom_maximum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("PlaceholderTexture2D_7buhx")
+
+[node name="UpgradeLabel" type="Label" parent="CanvasLayer/DescriptionBoxBG/VBoxContainer/DescriptionBox/IconMargin/VBoxContainer" unique_id=818896312]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 24
+text = "Upgrade Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VSeparator" type="VSeparator" parent="CanvasLayer/DescriptionBoxBG/VBoxContainer/DescriptionBox" unique_id=547773781]
+layout_mode = 2
+theme_override_constants/separation = 30
+theme_override_styles/separator = SubResource("StyleBoxLine_w8s82")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/DescriptionBoxBG/VBoxContainer/DescriptionBox" unique_id=209385123]
+layout_mode = 2
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="Label2" type="Label" parent="CanvasLayer/DescriptionBoxBG/VBoxContainer/DescriptionBox/MarginContainer" unique_id=1082868166]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 20
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris mollis imperdiet nisi, ut maximus eros ultrices quis. Integer vel porttitor tortor. In molestie quam ligula. Etiam ut libero massa. Suspendisse nisl libero, sagittis sit amet sem et, auctor pharetra dolor. Praesent non erat vel magna pulvinar pretium et at augue.
+
+"
+autowrap_mode = 1
+clip_text = true
+text_overrun_behavior = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/DescriptionBoxBG/VBoxContainer/DescriptionBox" unique_id=1738125047]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="CanvasLayer/DescriptionBoxBG/VBoxContainer/DescriptionBox/VBoxContainer" unique_id=1569894157]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+size_flags_stretch_ratio = 1.49
+theme_override_font_sizes/font_size = 30
+text = "Metal Cost"
+horizontal_alignment = 1
+autowrap_mode = 1
+
+[node name="Button" type="Button" parent="CanvasLayer/DescriptionBoxBG/VBoxContainer/DescriptionBox/VBoxContainer" unique_id=174398303]
+custom_minimum_size = Vector2(170, 0)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_cpbve")
+text = "Research"
+
+[node name="Panel" type="Panel" parent="CanvasLayer/DescriptionBoxBG/VBoxContainer" unique_id=1074041325]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_y3y1i")
+
+[node name="Button" type="Button" parent="." unique_id=2133390813]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.072222225
+anchor_top = 0.0734375
+anchor_right = 0.22638889
+anchor_bottom = 0.10703125
+theme_override_font_sizes/font_size = 24
+text = "Return"
+icon_alignment = 1
+expand_icon = true
+metadata/_edit_use_anchors_ = true
