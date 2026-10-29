@@ -42,6 +42,7 @@ var applied_slow: float = 0.0
 var wait_time: float = 0.0
 
 func _ready() -> void:
+	add_to_group("enemies")
 	super._ready()
 	
 	if randf() < 0.5:

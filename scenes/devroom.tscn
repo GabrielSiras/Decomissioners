@@ -26,7 +26,9 @@
 [ext_resource type="PackedScene" uid="uid://d0d2up8nwdif3" path="res://scenes/Turrets/Blast/Blast.tscn" id="19_renfr"]
 [ext_resource type="PackedScene" uid="uid://rbte6nqh348f" path="res://scenes/Player/Skills/Bombardment/BombardmentSkillButton.tscn" id="20_3f7xg"]
 [ext_resource type="PackedScene" uid="uid://dqcassbdhp1tv" path="res://scenes/Turrets/Artillery/Artillery.tscn" id="21_renfr"]
+[ext_resource type="Script" uid="uid://dq8gqvsd8dy4l" path="res://scripts/UI-UX/UI/ThreatIndicators.gd" id="23_00cxa"]
 [ext_resource type="PackedScene" uid="uid://d3ap83csv51de" path="res://scenes/Player/Skills/SuperCharge/SuperChargeSkillButton.tscn" id="24_575n3"]
+[ext_resource type="PackedScene" uid="uid://d0e5brxkmnx60" path="res://scenes/UI-UX/UI/ThreatIndicator.tscn" id="24_rlhrf"]
 [ext_resource type="PackedScene" uid="uid://d3x5pnba5lgn7" path="res://scenes/Player/Skills/SuperCharge/SuperCharge.tscn" id="25_x2gxx"]
 [ext_resource type="PackedScene" uid="uid://bo42gfpujkmpc" path="res://scenes/Player/Skills/BlackPitch/BlackPitchSkillButton.tscn" id="26_o13ra"]
 [ext_resource type="PackedScene" uid="uid://r635qxesdoa5" path="res://assets/models/Gate/Gate.glb" id="30_r5xrb"]
@@ -197,6 +199,16 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="ThreatIndicators" type="Control" parent="HUD" unique_id=878018071 node_paths=PackedStringArray("train")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+script = ExtResource("23_00cxa")
+indicator_scene = ExtResource("24_rlhrf")
+train = NodePath("../../Player/TrainHead")
 
 [node name="Skills" type="CanvasLayer" parent="." unique_id=799799759]
 
