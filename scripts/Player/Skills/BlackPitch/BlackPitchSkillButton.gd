@@ -29,6 +29,7 @@ func _process(_delta: float) -> void:
 func _on_pressed() -> void:
 	if is_on_cooldown:
 		print("⚠️ Habilidade em cooldown!")
+		# indicador visual...
 		return
 
 	var train_head = get_tree().get_first_node_in_group("train_head")

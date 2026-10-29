@@ -31,12 +31,12 @@ var stored_metal: int = 0
 
 @onready var turret_slots_container: Node3D = $TurretSlots
 @export var bar_offset: Vector3 = Vector3(0, 1.5, 2)
-var camera: Camera3D
 
-var assigned_enemies: Array[Node3D] = []
 var slots_status: Dictionary = {}
+@onready var slot_owners: Array = _make_slots()
 
 func _ready() -> void:
+	slot_owners.resize(max_slots)
 	stored_metal = min(starting_metal, metal_capacity)
 	MetalManager.register_storage(self)
 	
@@ -57,7 +57,10 @@ func _ready() -> void:
 		for slot in turret_slots_container.get_children():
 			slots_status[slot] = _find_turret_in_slot(slot)
 	
-	camera = get_viewport().get_camera_3d()
+func _make_slots() -> Array:
+	var arr := []
+	arr.resize(max_slots)
+	return arr
 
 func _find_turret_in_slot(slot: Node) -> Node:
 	for child in slot.get_children():
@@ -123,22 +126,23 @@ func demolish_turret_at_slot(target_slot: Node3D) -> void:
 	turret_instance.queue_free()
 	slots_status[target_slot] = null
 
-func _clean_dead_enemies() -> void:
-	assigned_enemies = assigned_enemies.filter(func(e): return is_instance_valid(e))
-
 func has_available_slot() -> bool:
-	_clean_dead_enemies()
-	return assigned_enemies.size() < max_slots
+	for o in slot_owners:
+		if not is_instance_valid(o):
+			return true
+	return false
 
 func occupy_slot(enemy: Node3D) -> int:
-	_clean_dead_enemies()
-	if assigned_enemies.size() < max_slots:
-		assigned_enemies.append(enemy)
-		return assigned_enemies.size() - 1
+	for i in slot_owners.size():
+		if not is_instance_valid(slot_owners[i]):
+			slot_owners[i] = enemy
+			return i
 	return -1
 
 func release_slot(enemy: Node3D) -> void:
-	assigned_enemies.erase(enemy)
+	var idx := slot_owners.find(enemy)
+	if idx >= 0:
+		slot_owners[idx] = null
 
 func get_slot_z_offset(slot_index: int) -> float:
 	if slot_index >= 0 and slot_index < slot_z_offsets.size():

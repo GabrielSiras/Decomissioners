@@ -18,8 +18,8 @@ colors = PackedColorArray(0.081579186, 0.058836073, 0.053094037, 1, 0.34, 0.2108
 gradient = SubResource("Gradient_6ri6c")
 
 [sub_resource type="Curve" id="Curve_cw55t"]
-_data = [Vector2(1e-05, 0.27956992), 1.3710763, 1.3710763, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 2
+_data = [Vector2(1e-05, 0.27956992), 1.3710763, 1.3710763, 0, 0, Vector2(0.2027027, 1), 0.0, 0.0, 0, 0, Vector2(0.7027027, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
 
 [sub_resource type="CurveTexture" id="CurveTexture_3blxd"]
 curve = SubResource("Curve_cw55t")
@@ -51,8 +51,8 @@ point_count = 2
 curve = SubResource("Curve_tldko")
 
 [sub_resource type="Curve" id="Curve_qwlct"]
-_data = [Vector2(0, 0), 1.3710763, 7.738963, 0, 0, Vector2(0.3693931, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.8013245), -0.50198656, 0.0, 0, 0]
-point_count = 3
+_data = [Vector2(0, 0), 1.3710763, 7.738963, 0, 0, Vector2(0.19594595, 1), 0.0, 0.0, 0, 0, Vector2(0.7027027, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -5.2446003, 0.0, 0, 0]
+point_count = 4
 
 [sub_resource type="CurveTexture" id="CurveTexture_6ri6c"]
 curve = SubResource("Curve_qwlct")
@@ -88,17 +88,22 @@ mesh = SubResource("PlaneMesh_7th88")
 [node name="PitchFlow" type="GPUParticles3D" parent="." unique_id=1937476159]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -0.96465254, 1.468031, 8.357769)
 material_override = SubResource("StandardMaterial3D_qwlct")
+emitting = false
 amount = 10
 lifetime = 0.8
+one_shot = true
 fixed_fps = 60
+local_coords = true
 process_material = SubResource("ParticleProcessMaterial_jofub")
 draw_pass_1 = ExtResource("1_n34c7")
 
 [node name="PitchPuddles" type="GPUParticles3D" parent="." unique_id=1178535724]
 transform = Transform3D(0.1, 0, 0, 0, -4.371139e-09, 0.1, 0, -0.1, -4.371139e-09, -5.693879, 0.623, 13.106)
 material_override = SubResource("StandardMaterial3D_iujhx")
+emitting = false
 amount = 20
 lifetime = 3.0
+one_shot = true
 fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_kcpym")
 draw_pass_1 = ExtResource("1_n34c7")

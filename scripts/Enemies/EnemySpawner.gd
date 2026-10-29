@@ -15,6 +15,10 @@ extends Node3D
 
 @onready var spawn_timer: Timer = $SpawnTimer
 
+@export_category("Distância de Spawn")
+@export var min_spawn_distance: float = 50.0
+@export var max_spawn_distance: float = 90.0
+
 @export_category("Cena da MachineGun")
 @export var machine_gun_scene: PackedScene
 @export var shoulder_x_offset: float = 4.5
@@ -112,8 +116,6 @@ func try_spawn_machine_gun(train: Node3D = null) -> void:
 		mg.setup_target(target_train)
 	elif "target" in mg:
 		mg.target = target_train
-		
-	print("✅ MachineGun spawnada no acostamento!")
 
 func _get_chunk_spawn_transform() -> Transform3D:
 	var train_z: float = 0.0
@@ -121,15 +123,20 @@ func _get_chunk_spawn_transform() -> Transform3D:
 		train_z = terrain_manager.train.global_position.z
 
 	if is_instance_valid(terrain_manager) and not terrain_manager.active_chunks.is_empty():
+		var candidates: Array[Transform3D] = []
 		for chunk in terrain_manager.active_chunks:
-			if chunk.global_position.z < train_z:
-				if chunk.has_method("get_random_spawn_transform"):
-					var chunk_sp = chunk.get_random_spawn_transform()
-					if chunk_sp.origin != Vector3.ZERO:
-						return chunk_sp
+			if not is_instance_valid(chunk) or not chunk.has_method("get_random_spawn_transform"):
+				continue
+			var chunk_sp: Transform3D = chunk.get_random_spawn_transform()
+			if chunk_sp.origin == Vector3.ZERO:
+				continue
+			var dist: float = train_z - chunk_sp.origin.z
+			if dist >= min_spawn_distance and dist <= max_spawn_distance:
+				candidates.append(chunk_sp)
+		
+		if not candidates.is_empty():
+			return candidates.pick_random()
 
 	var side_x = [-6.0, 6.0].pick_random() + randf_range(-1.0, 1.0)
-	var spawn_z = train_z - randf_range(30.0, 40.0)
-	var fallback_pos = Vector3(side_x, 0.5, spawn_z)
-	
-	return Transform3D(Basis(), fallback_pos)
+	var spawn_z = train_z - randf_range(min_spawn_distance, max_spawn_distance)
+	return Transform3D(Basis(), Vector3(side_x, 0.5, spawn_z))

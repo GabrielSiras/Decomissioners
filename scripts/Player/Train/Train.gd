@@ -38,6 +38,7 @@ var health_bar: HealthBarUI = null
 @export var starting_metal: int = 300
 var stored_metal: int = 0
 
+var base_max_speed: float = 0.0
 var brake_vfx_cooldown_timer: float = 0.0
 var slots_status: Dictionary = {}
 var current_speed_factor: float = 0.0
@@ -54,6 +55,7 @@ var approaching_gate: bool = true
 
 
 func _ready() -> void:
+	base_max_speed = max_speed
 	stored_metal = min(starting_metal, metal_capacity)
 	MetalManager.register_storage(self)
 	add_to_group("wagons")
@@ -126,8 +128,8 @@ func _physics_process(delta: float) -> void:
 	velocity = -global_transform.basis.z * actual_speed
 	global_position += velocity * delta
 
-	if speed_lever and max_speed > 0.0:
-		var visual_factor = clamp(current_speed / max_speed, 0.0, 1.0)
+	if speed_lever and base_max_speed > 0.0:
+		var visual_factor = clamp(current_speed / base_max_speed, 0.0, 1.0)
 		speed_lever.update_slider_visual(visual_factor)
 		
 	if global_position.distance_to(next_gate.global_position)-5 <= brake_distance * current_speed_factor and approaching_gate == true:
