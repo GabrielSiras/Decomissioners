@@ -238,11 +238,19 @@ func _find_train_speed_node() -> Node:
 		node = node.get_parent()
 	return null
 
+func _set_latched_flag(active: bool) -> void:
+	if active:
+		add_to_group("latched_opressors")
+	else:
+		remove_from_group("latched_opressors")
+	get_tree().call_group("latch_counter", "refresh")
+
 func _latch_to_wagon() -> void:
 	state_timer.stop()
 	current_state = State.LATCHED
 	damage_timer.start()
 	_apply_slow()
+	_set_latched_flag(true)
 	var train_node = _find_train_speed_node()
 	if train_node and train_node.has_method("trigger_brake_vfx"):
 		train_node.trigger_brake_vfx()
@@ -256,6 +264,7 @@ func _detach_from_wagon() -> void:
 		damage_timer.stop()
 		current_state = State.COOLDOWN
 		_release_slow()
+		_set_latched_flag(false)
 		state_timer.start(attack_cooldown)
 
 func _on_damage_timer_timeout() -> void:
@@ -269,6 +278,8 @@ func _update_facing_direction(active_target: Node3D) -> void:
 
 func _exit_tree() -> void:
 	_release_slow()
+	if is_in_group("latched_opressors"):
+		_set_latched_flag(false)
 	if is_instance_valid(current_target_wagon) and current_target_wagon.has_method("release_slot"):
 		current_target_wagon.release_slot(self)
 
