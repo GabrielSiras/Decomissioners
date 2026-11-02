@@ -16,6 +16,8 @@
 [ext_resource type="PackedScene" uid="uid://bqyjiu7fk0j5q" path="res://scenes/UI-UX/UI/MetalAmount.tscn" id="11_78ea8"]
 [ext_resource type="PackedScene" uid="uid://clo1skfkq2gfr" path="res://scenes/Terrain/Chunks/ScrapYard/ScrapYard2.tscn" id="11_h8k66"]
 [ext_resource type="PackedScene" uid="uid://dks1v21r0m6w6" path="res://scenes/Terrain/Chunks/Factory/Factory1.tscn" id="12_558wr"]
+[ext_resource type="Script" uid="uid://bqljmeua3bmn" path="res://scripts/UI-UX/UI/OverlayButton.gd" id="12_s7t06"]
+[ext_resource type="PackedScene" uid="uid://bpeqxuc0a7dmw" path="res://scenes/UI-UX/UI/MENUs/SettingsOverlay.tscn" id="13_67kke"]
 [ext_resource type="PackedScene" uid="uid://knbsvydvyrn3" path="res://scenes/Terrain/Chunks/Factory/Factory2.tscn" id="13_yxgwb"]
 [ext_resource type="PackedScene" uid="uid://7vml8gkbdtrb" path="res://scenes/UI-UX/UI/MENUs/BuildMenuUI.tscn" id="14_h3fqt"]
 [ext_resource type="PackedScene" uid="uid://ctf6nkrlj66ni" path="res://scenes/VFX/BreakSparksVFX.tscn" id="15_renfr"]
@@ -41,6 +43,26 @@
 [ext_resource type="PackedScene" uid="uid://be8hg483hedqw" path="res://scenes/VFX/PitchPuddleLeft.tscn" id="36_s7t06"]
 [ext_resource type="ArrayMesh" uid="uid://t3lb1k1uvd30" path="res://assets/VFX Textures/PitchPuddle.obj" id="37_2o5xf"]
 [ext_resource type="PackedScene" uid="uid://c5qxjkarg4st8" path="res://scenes/VFX/PreassureBlastVFX.tscn" id="38_xyp8h"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xyp8h"]
+bg_color = Color(0.16924527, 0.1692453, 0.16924527, 0.627451)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4t28q"]
+bg_color = Color(0.16862746, 0.16862746, 0.16862746, 0.627451)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1s5dl"]
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_7th88"]
 
@@ -160,6 +182,25 @@ scrap_scenes = Array[PackedScene]([ExtResource("10_fxyqj"), ExtResource("11_h8k6
 factory_scenes = Array[PackedScene]([ExtResource("12_558wr"), ExtResource("13_yxgwb")])
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=1368257838]
+
+[node name="SettingsButton" type="Button" parent="HUD" unique_id=165633768]
+custom_minimum_size = Vector2(80, 80)
+anchors_preset = -1
+anchor_left = 0.8625
+anchor_top = 0.0171875
+anchor_right = 0.9736111
+anchor_bottom = 0.0796875
+grow_horizontal = 0
+size_flags_horizontal = 8
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_xyp8h")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_4t28q")
+theme_override_styles/hover = SubResource("StyleBoxFlat_1s5dl")
+text = "CFG"
+expand_icon = true
+script = ExtResource("12_s7t06")
+overlay = ExtResource("13_67kke")
+metadata/_edit_use_anchors_ = true
 
 [node name="MetalAmount" parent="HUD" unique_id=1226120583 node_paths=PackedStringArray("metal_manager") instance=ExtResource("11_78ea8")]
 offset_left = 15.0
@@ -315,3 +356,5 @@ transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, -337.17242)
 [node name="VFXPrewarmer" type="Node3D" parent="." unique_id=503405006]
 script = ExtResource("31_2o5xf")
 vfx_scenes = Array[PackedScene]([ExtResource("15_renfr"), ExtResource("32_00cxa"), ExtResource("33_rlhrf"), ExtResource("34_6duhf"), ExtResource("35_m2u7m"), ExtResource("36_s7t06"), SubResource("PackedScene_00cxa"), ExtResource("38_xyp8h")])
+
+[connection signal="pressed" from="HUD/SettingsButton" to="HUD/SettingsButton" method="_on_button_pressed"]

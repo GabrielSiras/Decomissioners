@@ -1,8 +1,9 @@
 class_name MainMenu
-extends CanvasLayer
+extends Control
 @onready var metal_click: AudioStreamPlayer = $MetalClick
-@onready var start_button: Button = $CenterContainer/VBoxContainer/StartButton
 @onready var start_timer: Timer = $StartTimer
+
+@export var start_button: Button
 
 func _ready() -> void:
 	pass
@@ -18,3 +19,10 @@ func _on_start_button_pressed() -> void:
 	start_timer.start()
 	await start_timer.timeout
 	get_tree().change_scene_to_file("res://scenes/devroom.tscn")
+	
+func _on_research_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/UI-UX/UI/MENUs/ResearchMenu.tscn")
+	
+func _on_railmap_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/UI-UX/UI/MENUs/RailmapMenu.tscn")
+	

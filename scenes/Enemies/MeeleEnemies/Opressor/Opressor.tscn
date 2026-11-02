@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ob2mgpgp7mo3"]
 
 [ext_resource type="PackedScene" uid="uid://b7m5it3iehpqe" path="res://scenes/Enemies/MeeleEnemies/MeleeEnemy.tscn" id="1_wwta8"]
-[ext_resource type="Script" uid="uid://cxry2hfoibdgj" path="res://scripts/Enemies/MeeleEnemies/Opressor/Opressor.gd" id="2_0qul4"]
+[ext_resource type="Script" uid="uid://cxry2hfoibdgj" path="res://scripts/Enemies/MeleeEnemies/Opressor/Opressor.gd" id="2_0qul4"]
 [ext_resource type="PackedScene" uid="uid://btjexdm8223jl" path="res://assets/models/Enemies/MeeleEnemies/Opressor/Opressor.glb" id="3_n5w2r"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_n5w2r"]
