@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://bpeqxuc0a7dmw"]
 
-[ext_resource type="Script" uid="uid://fncjlmwlct88" path="res://scripts/UI-UX/UI/OverlayMenu.gd" id="1_3vgu1"]
+[ext_resource type="Script" uid="uid://fncjlmwlct88" path="res://scripts/UI-UX/UI/SettingsOverlay.gd" id="1_3vgu1"]
+[ext_resource type="Script" uid="uid://cg2dhtun7xnii" path="res://scripts/UI-UX/UI/VolumeController.gd" id="2_n3ybm"]
+[ext_resource type="Script" uid="uid://krf7hqe3dhy7" path="res://scripts/UI-UX/UI/Exit_Button.gd" id="3_7ixq3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7th88"]
 bg_color = Color(0.2436, 0.40619326, 0.58, 1)
@@ -9,10 +11,24 @@ corner_radius_top_right = 25
 corner_radius_bottom_right = 25
 corner_radius_bottom_left = 25
 
-[node name="SettingsOverlay" type="CanvasLayer" unique_id=2106756084 node_paths=PackedStringArray("close_button")]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7th88"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jofub"]
+bg_color = Color(0, 0, 0, 0.32941177)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7ixq3"]
+bg_color = Color(0, 0, 0, 0.36078432)
+
+[node name="SettingsOverlay" type="CanvasLayer" unique_id=2106756084 node_paths=PackedStringArray("close_button", "exit_box")]
 layer = 2
+visible = false
 script = ExtResource("1_3vgu1")
 close_button = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/CloseButton")
+exit_box = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/ExitBox")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1644122026]
 anchors_preset = 15
@@ -22,7 +38,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.25882354)
 
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=327230831]
+[node name="MarginContainer" type="CenterContainer" parent="." unique_id=1964236544]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -30,12 +46,9 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_constants/margin_left = 80
-theme_override_constants/margin_top = 80
-theme_override_constants/margin_right = 80
-theme_override_constants/margin_bottom = 80
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer" unique_id=700824239]
+custom_minimum_size = Vector2(600, 300)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_7th88")
 
@@ -48,6 +61,7 @@ theme_override_constants/margin_bottom = 40
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer" unique_id=1222735534]
 layout_mode = 2
+theme_override_constants/separation = 21
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=990584906]
 layout_mode = 2
@@ -57,7 +71,9 @@ custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 4.7
-theme_override_font_sizes/font_size = 60
+theme_override_colors/font_outline_color = Color(0.10747974, 0.10747973, 0.107479684, 1)
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 50
 text = "SETTINGS"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -69,3 +85,102 @@ size_flags_horizontal = 6
 size_flags_vertical = 4
 theme_override_font_sizes/font_size = 40
 text = "X"
+
+[node name="PaddingTop" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1776058764]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_7th88")
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=21317292]
+custom_minimum_size = Vector2(0, 210)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_jofub")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer" unique_id=788217163]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer" unique_id=246578427]
+layout_mode = 2
+
+[node name="VolumeLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1350231790]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Volume"
+horizontal_alignment = 1
+
+[node name="EffectsContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=2004424127]
+layout_mode = 2
+
+[node name="EffectsLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/EffectsContainer" unique_id=1929648029]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 40
+text = "Effects"
+vertical_alignment = 1
+
+[node name="EffectsSlider" type="HSlider" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/EffectsContainer" unique_id=59549221]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+size_flags_stretch_ratio = 1.75
+max_value = 1.0
+step = 0.05
+value = 1.0
+scrollable = false
+script = ExtResource("2_n3ybm")
+
+[node name="MusicContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=2042464756]
+layout_mode = 2
+
+[node name="MusicLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MusicContainer" unique_id=806730608]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 40
+text = "Music"
+vertical_alignment = 1
+
+[node name="MusicSlider" type="HSlider" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MusicContainer" unique_id=794650309]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+size_flags_stretch_ratio = 1.75
+max_value = 1.0
+step = 0.05
+value = 1.0
+editable = false
+scrollable = false
+
+[node name="PaddingBottom" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=545623190]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_7th88")
+
+[node name="ExitBox" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=663082822]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 100
+
+[node name="RailmapButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/ExitBox" unique_id=13020477]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_7ixq3")
+text = "RAILMAP"
+script = ExtResource("3_7ixq3")
+
+[node name="QuitButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/ExitBox" unique_id=324483676]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_7ixq3")
+text = "QUIT"
+script = ExtResource("3_7ixq3")
+
+[connection signal="value_changed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/EffectsContainer/EffectsSlider" to="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/EffectsContainer/EffectsSlider" method="_on_volume_changed"]

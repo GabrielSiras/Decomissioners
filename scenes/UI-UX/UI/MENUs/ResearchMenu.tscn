@@ -862,6 +862,7 @@ label_settings = SubResource("LabelSettings_13qdw")
 
 [node name="SelectedUpgradeHUD" type="CanvasLayer" parent="." unique_id=659302412]
 layer = 2
+visible = false
 
 [node name="DescriptionBoxBG" type="PanelContainer" parent="SelectedUpgradeHUD" unique_id=1738657044]
 anchors_preset = -1

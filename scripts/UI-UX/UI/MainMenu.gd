@@ -4,12 +4,7 @@ extends Control
 @onready var start_timer: Timer = $StartTimer
 
 @export var start_button: Button
-
-func _ready() -> void:
-	pass
-
-func _process(delta: float) -> void:
-	pass
+@export var credits_overlay: PackedScene
 
 func _on_start_button_pressed() -> void:
 	start_button.disabled = true
@@ -26,3 +21,6 @@ func _on_research_button_pressed() -> void:
 func _on_railmap_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/UI-UX/UI/MENUs/RailmapMenu.tscn")
 	
+func _on_credits_button_pressed() -> void:
+	var credits_instance = credits_overlay.instantiate()
+	add_child(credits_instance)

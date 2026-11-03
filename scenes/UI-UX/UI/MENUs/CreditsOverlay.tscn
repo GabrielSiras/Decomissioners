@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dlfa75dgt8t8i"]
 
-[ext_resource type="Script" uid="uid://fncjlmwlct88" path="res://scripts/UI-UX/UI/OverlayMenu.gd" id="1_ritqy"]
+[ext_resource type="Script" uid="uid://vepd2h0rol1p" path="res://scripts/UI-UX/UI/CreditsOverlay.gd" id="1_ritqy"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jglur"]
 bg_color = Color(0.66, 0.2904, 0.48752, 1)

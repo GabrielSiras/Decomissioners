@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://5sx4ttr6a5ve" path="res://scripts/UI-UX/UI/MainMenu.gd" id="1_vnlg1"]
 [ext_resource type="AudioStream" uid="uid://ma7spr0eraxc" path="res://assets/audios/SFX/UI/MetalClick/MetalClick.wav" id="2_6sobg"]
 [ext_resource type="Script" uid="uid://bqljmeua3bmn" path="res://scripts/UI-UX/UI/OverlayButton.gd" id="2_bbtx1"]
-[ext_resource type="PackedScene" uid="uid://bpeqxuc0a7dmw" path="res://scenes/UI-UX/UI/MENUs/SettingsOverlay.tscn" id="3_vbfru"]
 [ext_resource type="PackedScene" uid="uid://dlfa75dgt8t8i" path="res://scenes/UI-UX/UI/MENUs/CreditsOverlay.tscn" id="4_2qtn0"]
 
 [sub_resource type="Gradient" id="Gradient_6sobg"]
@@ -45,6 +44,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_vnlg1")
 start_button = NodePath("MarginContainer/VBoxContainer/ContinueButton")
+credits_overlay = ExtResource("4_2qtn0")
 
 [node name="BG" type="TextureRect" parent="." unique_id=1094865795]
 layout_mode = 1
@@ -81,7 +81,6 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_3v7yo")
 text = "CFG"
 expand_icon = true
 script = ExtResource("2_bbtx1")
-overlay = ExtResource("3_vbfru")
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1632104544]
 layout_mode = 2
@@ -100,8 +99,9 @@ size_flags_stretch_ratio = 0.5
 theme_override_styles/panel = SubResource("StyleBoxEmpty_6sobg")
 
 [node name="ContinueButton" type="Button" parent="MarginContainer/VBoxContainer" unique_id=2031048237]
-custom_minimum_size = Vector2(0, 120)
+custom_minimum_size = Vector2(400, 120)
 layout_mode = 2
+size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxFlat_iujhx")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_2qtn0")
@@ -109,8 +109,9 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_3v7yo")
 text = "CONTINUE"
 
 [node name="RailmapButton" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1531250187]
-custom_minimum_size = Vector2(0, 120)
+custom_minimum_size = Vector2(400, 120)
 layout_mode = 2
+size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxFlat_iujhx")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_2qtn0")
@@ -118,8 +119,9 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_3v7yo")
 text = "RAILMAP"
 
 [node name="ResearchButton" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1523753206]
-custom_minimum_size = Vector2(0, 120)
+custom_minimum_size = Vector2(400, 120)
 layout_mode = 2
+size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxFlat_iujhx")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_2qtn0")
@@ -127,15 +129,14 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_3v7yo")
 text = "RESEARCH"
 
 [node name="CreditsButton" type="Button" parent="MarginContainer/VBoxContainer" unique_id=554847561]
-custom_minimum_size = Vector2(0, 120)
+custom_minimum_size = Vector2(400, 120)
 layout_mode = 2
+size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxFlat_iujhx")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_2qtn0")
 theme_override_styles/hover = SubResource("StyleBoxFlat_3v7yo")
 text = "CREDITS"
-script = ExtResource("2_bbtx1")
-overlay = ExtResource("4_2qtn0")
 
 [node name="PanelContainer2" type="PanelContainer" parent="MarginContainer/VBoxContainer" unique_id=659430211]
 layout_mode = 2
@@ -153,4 +154,4 @@ wait_time = 0.3
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ContinueButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/RailmapButton" to="." method="_on_railmap_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ResearchButton" to="." method="_on_research_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/CreditsButton" to="MarginContainer/VBoxContainer/CreditsButton" method="_on_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]

@@ -15,10 +15,15 @@ run/main_scene="uid://cm1sj4qhjgj5v"
 config/features=PackedStringArray("4.7", "Mobile")
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="uid://4804eo1361x8"
+
 [autoload]
 
 MetalManager="*uid://dg4ql240lgtft"
 UpgradeManager="*uid://c366ig4appbex"
+SettingsOverlay="*uid://bpeqxuc0a7dmw"
 
 [display]
 
