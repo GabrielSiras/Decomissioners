@@ -88,8 +88,11 @@ func _update_hud(button_name: String) -> void:
 			upgrade_description.text = "Unlocks a higher level of the Blast turret."
 			upgrade_cost.text = str(blast_turret)
 
-func _on_return_button_pressed() -> void:
+func _on_main_menu_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/UI-UX/UI/MENUs/MainMenu.tscn")
+	
+func _on_railmap_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/UI-UX/UI/MENUs/RailmapMenu.tscn")
 
 func _turn_off_hud() -> void:
 	selected_upgrade_hud.visible = false

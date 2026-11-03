@@ -24,6 +24,7 @@ corner_radius_bottom_left = 25
 bg_color = Color(0, 0, 0, 0.36078432)
 
 [node name="SettingsOverlay" type="CanvasLayer" unique_id=2106756084 node_paths=PackedStringArray("close_button", "exit_box")]
+process_mode = 3
 layer = 2
 visible = false
 script = ExtResource("1_3vgu1")

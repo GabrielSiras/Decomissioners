@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://j7jfeae4pirx" path="res://scripts/UI-UX/UI/RailmapMenu.gd" id="1_fchaj"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xrivr"]
+
 [node name="RailmapMenu" type="Control" unique_id=785803109]
 layout_mode = 3
 anchors_preset = 15
@@ -28,42 +30,182 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 50
-theme_override_constants/margin_top = 150
+theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 50
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/MarginContainer" unique_id=1497948971]
+[node name="VBoxContainer2" type="VBoxContainer" parent="ColorRect/MarginContainer" unique_id=2125746242]
 layout_mode = 2
 
-[node name="FactoryButton" type="Button" parent="ColorRect/MarginContainer/VBoxContainer" unique_id=1428535782]
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer2" unique_id=1755097140]
+layout_mode = 2
+theme_override_constants/separation = 30
+metadata/_edit_use_anchors_ = true
+
+[node name="ReturnButton" type="Button" parent="ColorRect/MarginContainer/VBoxContainer2/HBoxContainer" unique_id=54558216]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 30
+text = "Main"
+icon_alignment = 1
+expand_icon = true
+metadata/_edit_use_anchors_ = true
+
+[node name="ResearchButton" type="Button" parent="ColorRect/MarginContainer/VBoxContainer2/HBoxContainer" unique_id=1060498732]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 30
+text = "Research"
+icon_alignment = 1
+expand_icon = true
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="ColorRect/MarginContainer/VBoxContainer2/HBoxContainer" unique_id=1270681628]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.09
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 50
+text = "RAILMAP"
+horizontal_alignment = 2
+
+[node name="Padding" type="Panel" parent="ColorRect/MarginContainer/VBoxContainer2" unique_id=1376079668]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_xrivr")
+
+[node name="PanelContainer" type="HBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer2" unique_id=1525054728]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="BiomeButtons" type="VBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer2/PanelContainer" unique_id=1497948971]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="FactoryButton" type="Button" parent="ColorRect/MarginContainer/VBoxContainer2/PanelContainer/BiomeButtons" unique_id=1428535782]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 80
 text = "Factory"
 
-[node name="JunkyardButton" type="Button" parent="ColorRect/MarginContainer/VBoxContainer" unique_id=1078319801]
+[node name="JunkyardButton" type="Button" parent="ColorRect/MarginContainer/VBoxContainer2/PanelContainer/BiomeButtons" unique_id=1078319801]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 80
 text = "Junkyard"
 
-[node name="WastesButton" type="Button" parent="ColorRect/MarginContainer/VBoxContainer" unique_id=472258507]
+[node name="WastesButton" type="Button" parent="ColorRect/MarginContainer/VBoxContainer2/PanelContainer/BiomeButtons" unique_id=472258507]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 80
 text = "Wastes"
 
-[node name="ReturnButton" type="Button" parent="ColorRect" unique_id=54558216]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.07212533
-anchor_top = 0.05546875
-anchor_right = 0.27648577
-anchor_bottom = 0.1
-theme_override_font_sizes/font_size = 30
-text = "Return"
-icon_alignment = 1
-expand_icon = true
-metadata/_edit_use_anchors_ = true
+[node name="FactoryButtons" type="PanelContainer" parent="ColorRect/MarginContainer/VBoxContainer2/PanelContainer" unique_id=91686635]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
 
-[connection signal="pressed" from="ColorRect/ReturnButton" to="." method="_on_return_button_pressed"]
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect/MarginContainer/VBoxContainer2/PanelContainer/FactoryButtons" unique_id=1144052469]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer2/PanelContainer/FactoryButtons/MarginContainer" unique_id=500669959]
+layout_mode = 2
+
+[node name="TextureRec" type="TextureRect" parent="ColorRect/MarginContainer/VBoxContainer2/PanelContainer/FactoryButtons/MarginContainer/VBoxContainer" unique_id=263870757]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="Gate3Button" type="Button" parent="ColorRect/MarginContainer/VBoxContainer2/PanelContainer/FactoryButtons/MarginContainer/VBoxContainer" unique_id=1968400194]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Gate2Button" type="Button" parent="ColorRect/MarginContainer/VBoxContainer2/PanelContainer/FactoryButtons/MarginContainer/VBoxContainer" unique_id=665659855]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Gate1Button" type="Button" parent="ColorRect/MarginContainer/VBoxContainer2/PanelContainer/FactoryButtons/MarginContainer/VBoxContainer" unique_id=708124263]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TrackStartButton" type="Button" parent="ColorRect/MarginContainer/VBoxContainer2/PanelContainer/FactoryButtons/MarginContainer/VBoxContainer" unique_id=2067743016]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+
+[node name="JunkyardPanel" type="PanelContainer" parent="ColorRect/MarginContainer/VBoxContainer2/PanelContainer" unique_id=1858305238]
+visible = false
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect/MarginContainer/VBoxContainer2/PanelContainer/JunkyardPanel" unique_id=2057896184]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer2/PanelContainer/JunkyardPanel/MarginContainer" unique_id=1483198138]
+layout_mode = 2
+
+[node name="TextureRec" type="TextureRect" parent="ColorRect/MarginContainer/VBoxContainer2/PanelContainer/JunkyardPanel/MarginContainer/VBoxContainer" unique_id=1543851152]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="Gate3Button" type="Button" parent="ColorRect/MarginContainer/VBoxContainer2/PanelContainer/JunkyardPanel/MarginContainer/VBoxContainer" unique_id=1920632316]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Gate2Button" type="Button" parent="ColorRect/MarginContainer/VBoxContainer2/PanelContainer/JunkyardPanel/MarginContainer/VBoxContainer" unique_id=735535145]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Gate1Button" type="Button" parent="ColorRect/MarginContainer/VBoxContainer2/PanelContainer/JunkyardPanel/MarginContainer/VBoxContainer" unique_id=886034741]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TrackStartButton" type="Button" parent="ColorRect/MarginContainer/VBoxContainer2/PanelContainer/JunkyardPanel/MarginContainer/VBoxContainer" unique_id=1815400729]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+
+[node name="WastesPanel" type="PanelContainer" parent="ColorRect/MarginContainer/VBoxContainer2/PanelContainer" unique_id=12430359]
+visible = false
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect/MarginContainer/VBoxContainer2/PanelContainer/WastesPanel" unique_id=696824104]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer2/PanelContainer/WastesPanel/MarginContainer" unique_id=1031377935]
+layout_mode = 2
+
+[node name="TextureRec" type="TextureRect" parent="ColorRect/MarginContainer/VBoxContainer2/PanelContainer/WastesPanel/MarginContainer/VBoxContainer" unique_id=1753132324]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="Gate3Button" type="Button" parent="ColorRect/MarginContainer/VBoxContainer2/PanelContainer/WastesPanel/MarginContainer/VBoxContainer" unique_id=853080388]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Gate2Button" type="Button" parent="ColorRect/MarginContainer/VBoxContainer2/PanelContainer/WastesPanel/MarginContainer/VBoxContainer" unique_id=1069330891]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Gate1Button" type="Button" parent="ColorRect/MarginContainer/VBoxContainer2/PanelContainer/WastesPanel/MarginContainer/VBoxContainer" unique_id=1088759177]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TrackStartButton" type="Button" parent="ColorRect/MarginContainer/VBoxContainer2/PanelContainer/WastesPanel/MarginContainer/VBoxContainer" unique_id=2146350914]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+
+[connection signal="pressed" from="ColorRect/MarginContainer/VBoxContainer2/HBoxContainer/ReturnButton" to="." method="_on_return_button_pressed"]
+[connection signal="pressed" from="ColorRect/MarginContainer/VBoxContainer2/HBoxContainer/ResearchButton" to="." method="_on_research_button_pressed"]
