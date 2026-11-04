@@ -1,0 +1,55 @@
+[gd_resource type="Resource" script_class="SpawnConfig" format=3 uid="uid://cqrla766sidlm"]
+
+[ext_resource type="Script" uid="uid://chglphm85ewn7" path="res://scripts/Enemies/SpawnPhase.gd" id="1_ygjp1"]
+[ext_resource type="Script" uid="uid://b50kb6ke0c27l" path="res://scripts/Enemies/SpawnEntry.gd" id="2_giof1"]
+[ext_resource type="PackedScene" uid="uid://fncocs5exowh" path="res://scenes/Enemies/RangedEnemies/MachineGun/MachineGun.tscn" id="3_or6q8"]
+[ext_resource type="PackedScene" uid="uid://ctyvfr2vuoihj" path="res://scenes/Enemies/RangedEnemies/AAA/AAA.tscn" id="4_ojk0m"]
+[ext_resource type="PackedScene" uid="uid://ob2mgpgp7mo3" path="res://scenes/Enemies/MeeleEnemies/Opressor/Opressor.tscn" id="5_c3vw5"]
+[ext_resource type="PackedScene" uid="uid://ckjdl2ahbor33" path="res://scenes/Enemies/RangedEnemies/FighterJet/FighterJet.tscn" id="6_wijja"]
+[ext_resource type="Script" uid="uid://ct7j7u2b66eba" path="res://scripts/Enemies/SpawnConfig.gd" id="7_jdbfw"]
+
+[sub_resource type="Resource" id="Resource_1s5dl"]
+script = ExtResource("2_giof1")
+scene = ExtResource("3_or6q8")
+mode = 1
+metadata/_custom_type_script = "uid://b50kb6ke0c27l"
+
+[sub_resource type="Resource" id="Resource_xyp8h"]
+script = ExtResource("2_giof1")
+scene = ExtResource("4_ojk0m")
+weight = 2.0
+metadata/_custom_type_script = "uid://b50kb6ke0c27l"
+
+[sub_resource type="Resource" id="Resource_67kke"]
+script = ExtResource("1_ygjp1")
+phase_name = "Level01"
+entries = Array[ExtResource("2_giof1")]([SubResource("Resource_1s5dl"), SubResource("Resource_xyp8h")])
+metadata/_custom_type_script = "uid://chglphm85ewn7"
+
+[sub_resource type="Resource" id="Resource_j0jy3"]
+script = ExtResource("2_giof1")
+scene = ExtResource("5_c3vw5")
+metadata/_custom_type_script = "uid://b50kb6ke0c27l"
+
+[sub_resource type="Resource" id="Resource_7mbxg"]
+script = ExtResource("1_ygjp1")
+phase_name = "Level02"
+entries = Array[ExtResource("2_giof1")]([SubResource("Resource_j0jy3")])
+metadata/_custom_type_script = "uid://chglphm85ewn7"
+
+[sub_resource type="Resource" id="Resource_4t28q"]
+script = ExtResource("2_giof1")
+scene = ExtResource("6_wijja")
+mode = 2
+metadata/_custom_type_script = "uid://b50kb6ke0c27l"
+
+[sub_resource type="Resource" id="Resource_3ccey"]
+script = ExtResource("1_ygjp1")
+phase_name = "Level03"
+entries = Array[ExtResource("2_giof1")]([SubResource("Resource_4t28q")])
+metadata/_custom_type_script = "uid://chglphm85ewn7"
+
+[resource]
+script = ExtResource("7_jdbfw")
+phases = Array[ExtResource("1_ygjp1")]([SubResource("Resource_67kke"), SubResource("Resource_7mbxg"), SubResource("Resource_3ccey")])
+metadata/_custom_type_script = "uid://ct7j7u2b66eba"
