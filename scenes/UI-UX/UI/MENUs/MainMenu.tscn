@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://cm1sj4qhjgj5v"]
+[gd_scene format=3 uid="uid://hq81bv8t86gt"]
 
 [ext_resource type="Script" uid="uid://5sx4ttr6a5ve" path="res://scripts/UI-UX/UI/MainMenu.gd" id="1_vnlg1"]
 [ext_resource type="AudioStream" uid="uid://ma7spr0eraxc" path="res://assets/audios/SFX/UI/MetalClick/MetalClick.wav" id="2_6sobg"]
@@ -108,6 +108,16 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_2qtn0")
 theme_override_styles/hover = SubResource("StyleBoxFlat_3v7yo")
 text = "CONTINUE"
 
+[node name="LevelSelectButton" type="Button" parent="MarginContainer/VBoxContainer" unique_id=365477064]
+custom_minimum_size = Vector2(400, 120)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_iujhx")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_2qtn0")
+theme_override_styles/hover = SubResource("StyleBoxFlat_3v7yo")
+text = "LEVEL SELECT"
+
 [node name="RailmapButton" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1531250187]
 custom_minimum_size = Vector2(400, 120)
 layout_mode = 2
@@ -152,6 +162,7 @@ wait_time = 0.3
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/SettingsButton" to="MarginContainer/VBoxContainer/SettingsButton" method="_on_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ContinueButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/LevelSelectButton" to="." method="_on_level_select_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/RailmapButton" to="." method="_on_railmap_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/ResearchButton" to="." method="_on_research_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]

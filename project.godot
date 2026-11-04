@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Decomissioners"
-run/main_scene="uid://cm1sj4qhjgj5v"
+run/main_scene="uid://hq81bv8t86gt"
 config/features=PackedStringArray("4.7", "Mobile")
 config/icon="res://icon.svg"
 
@@ -24,6 +24,7 @@ buses/default_bus_layout="uid://4804eo1361x8"
 MetalManager="*uid://dg4ql240lgtft"
 UpgradeManager="*uid://c366ig4appbex"
 SettingsOverlay="*uid://bpeqxuc0a7dmw"
+GameProgress="*uid://c0rafkaqfr7o5"
 
 [display]
 
@@ -36,6 +37,10 @@ window/handheld/orientation=5
 [filesystem]
 
 import/blender/enabled=false
+
+[global_group]
+
+hide_on_end=""
 
 [layer_names]
 

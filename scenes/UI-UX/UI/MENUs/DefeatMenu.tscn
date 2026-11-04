@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bvuisrwp77067"]
 
 [ext_resource type="Script" uid="uid://c2ucr5o2gewwk" path="res://scripts/UI-UX/UI/DefeatMenu.gd" id="1_e6ufj"]
+[ext_resource type="AudioStream" uid="uid://ma7spr0eraxc" path="res://assets/audios/SFX/UI/MetalClick/MetalClick.wav" id="2_bxqvk"]
 
 [node name="DefeatMenu" type="CanvasLayer" unique_id=501164214]
 process_mode = 3
@@ -12,7 +13,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 1)
+color = Color(0.27022192, 0.27022192, 0.2702219, 1)
 
 [node name="CenterContainer" type="CenterContainer" parent="." unique_id=1428995238]
 anchors_preset = 15
@@ -27,12 +28,19 @@ layout_mode = 2
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer" unique_id=2060262318]
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 64
 text = "You died!"
 
 [node name="RestartButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1624649614]
 layout_mode = 2
+theme_override_font_sizes/font_size = 64
 text = "Restart?"
 
 [node name="MainMenuButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=136625840]
 layout_mode = 2
+theme_override_font_sizes/font_size = 64
 text = "MainMenu"
+
+[node name="MetalClick" type="AudioStreamPlayer" parent="." unique_id=1373154973]
+stream = ExtResource("2_bxqvk")
+bus = &"SFX"

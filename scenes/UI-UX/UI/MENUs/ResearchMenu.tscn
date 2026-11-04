@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://lfn2xwkyjmn3" path="res://scripts/UI-UX/UI/ResearchMenu.gd" id="1_y3y1i"]
 [ext_resource type="Script" uid="uid://dw84xe7kmcfhw" path="res://scripts/UI-UX/UI/UpgradeButton.gd" id="2_7buhx"]
+[ext_resource type="AudioStream" uid="uid://ma7spr0eraxc" path="res://assets/audios/SFX/UI/MetalClick/MetalClick.wav" id="3_w8s82"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xrivr"]
 bg_color = Color(0.36862746, 0.5764706, 0.4392157, 1)
@@ -963,6 +964,13 @@ text = "Research"
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_y3y1i")
+
+[node name="MetalClick" type="AudioStreamPlayer" parent="." unique_id=1088797488]
+stream = ExtResource("3_w8s82")
+bus = &"SFX"
+
+[node name="StartTimer" type="Timer" parent="." unique_id=1650363744]
+wait_time = 0.3
 
 [connection signal="pressed" from="PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/RailmapButton" to="." method="_on_railmap_button_pressed"]

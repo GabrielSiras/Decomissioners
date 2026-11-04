@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bycg4vnrs6si6"]
 
 [ext_resource type="Script" uid="uid://sckgogse5rxl" path="res://scripts/UI-UX/UI/WinMenu.gd" id="1_7sdtr"]
+[ext_resource type="AudioStream" uid="uid://ma7spr0eraxc" path="res://assets/audios/SFX/UI/MetalClick/MetalClick.wav" id="2_wqpd4"]
 
 [node name="WinMenu" type="CanvasLayer" unique_id=1146696141]
 process_mode = 3
@@ -30,9 +31,22 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Well Done!"
 
+[node name="NextButton" type="Button" parent="ColorRect/CenterContainer/VBoxContainer" unique_id=750095139]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "NEXT LEVEL
+"
+
 [node name="MenuButton" type="Button" parent="ColorRect/CenterContainer/VBoxContainer" unique_id=2072980644]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Menu"
+
+[node name="MetalClick" type="AudioStreamPlayer" parent="." unique_id=1951237289]
+stream = ExtResource("2_wqpd4")
+bus = &"SFX"
+
+[node name="StartTimer" type="Timer" parent="." unique_id=254165725]
+wait_time = 0.3
 
 [connection signal="pressed" from="ColorRect/CenterContainer/VBoxContainer/MenuButton" to="." method="_on_menu_button_pressed"]

@@ -38,6 +38,10 @@ var health_bar: HealthBarUI = null
 @export var starting_metal: int = 300
 var stored_metal: int = 0
 
+@export_category("Level")
+@export var level_id: String = "level01"
+var level_finished: bool = false
+
 var base_max_speed: float = 0.0
 var brake_vfx_cooldown_timer: float = 0.0
 var slots_status: Dictionary = {}
@@ -53,8 +57,8 @@ var approaching_gate: bool = true
 			health_bar.health = health
 		current_health = int(health)
 
-
 func _ready() -> void:
+	GameProgress.current_level_id = level_id
 	base_max_speed = max_speed
 	stored_metal = min(starting_metal, metal_capacity)
 	MetalManager.register_storage(self)
@@ -217,6 +221,12 @@ func _update_progress() -> void:
 		_on_destination_reached()
 
 func _on_destination_reached() -> void:
+	if level_finished:
+		return
+	level_finished = true
+
+	GameProgress.complete_level(level_id)
+
 	var win_menu_scene = load("res://scenes/UI-UX/UI/MENUs/WinMenu.tscn")
 	if win_menu_scene:
 		var win_menu_instance = win_menu_scene.instantiate()
