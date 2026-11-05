@@ -25,6 +25,7 @@ MetalManager="*uid://dg4ql240lgtft"
 UpgradeManager="*uid://c366ig4appbex"
 SettingsOverlay="*uid://bpeqxuc0a7dmw"
 GameProgress="*uid://c0rafkaqfr7o5"
+CheckpointManager="*uid://bjh0cla3jsfm2"
 
 [display]
 

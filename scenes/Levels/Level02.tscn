@@ -26,6 +26,8 @@
 [ext_resource type="PackedScene" uid="uid://d0e5brxkmnx60" path="res://scenes/UI-UX/UI/ThreatIndicator.tscn" id="24_yaddl"]
 [ext_resource type="Script" uid="uid://hyimrqv45s4t" path="res://scripts/UI-UX/UI/LatchCounter.gd" id="25_1g53u"]
 [ext_resource type="PackedScene" uid="uid://rbte6nqh348f" path="res://scenes/Player/Skills/Bombardment/BombardmentSkillButton.tscn" id="26_0hx2x"]
+[ext_resource type="Script" uid="uid://dol2c1fb8x4ju" path="res://scripts/UI-UX/UI/CheckpointIndicator.gd" id="26_f84fw"]
+[ext_resource type="Script" uid="uid://dso8mes67pgwk" path="res://scripts/UI-UX/LoadingSpinner.gd" id="27_b5lsf"]
 [ext_resource type="PackedScene" uid="uid://d3ap83csv51de" path="res://scenes/Player/Skills/SuperCharge/SuperChargeSkillButton.tscn" id="27_rk435"]
 [ext_resource type="PackedScene" uid="uid://d3x5pnba5lgn7" path="res://scenes/Player/Skills/SuperCharge/SuperCharge.tscn" id="28_fa6ml"]
 [ext_resource type="PackedScene" uid="uid://bo42gfpujkmpc" path="res://scenes/Player/Skills/BlackPitch/BlackPitchSkillButton.tscn" id="29_tubrp"]
@@ -299,6 +301,40 @@ theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 45
 text = "1"
 
+[node name="CheckpointIndicator" type="Control" parent="HUD" unique_id=611174343 node_paths=PackedStringArray("spinner", "label") groups=["hide_on_end"]]
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+script = ExtResource("26_f84fw")
+spinner = NodePath("VBoxContainer/LoadingSpinner")
+label = NodePath("VBoxContainer/Label")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/CheckpointIndicator" unique_id=49023829]
+layout_mode = 0
+offset_left = -120.0
+offset_top = -20.0
+offset_right = -80.0
+offset_bottom = 20.0
+
+[node name="LoadingSpinner" type="Control" parent="HUD/CheckpointIndicator/VBoxContainer" unique_id=1256441167]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("27_b5lsf")
+metadata/_custom_type_script = "uid://dso8mes67pgwk"
+
+[node name="Label" type="Label" parent="HUD/CheckpointIndicator/VBoxContainer" unique_id=1866161918]
+layout_mode = 2
+size_flags_horizontal = 4
+
 [node name="Skills" type="CanvasLayer" parent="." unique_id=799799759 groups=["hide_on_end"]]
 
 [node name="BombardmentSkillButton" parent="Skills" unique_id=246414351 instance=ExtResource("26_0hx2x")]
@@ -324,9 +360,10 @@ offset_bottom = 1148.0
 
 [node name="Player" type="Node3D" parent="." unique_id=163302227]
 
-[node name="TrainHead" parent="Player" unique_id=423923195 node_paths=PackedStringArray("wagons", "defeat_menu", "speed_lever", "progress_bar", "destination_node", "next_gate") instance=ExtResource("30_06yrh")]
+[node name="TrainHead" parent="Player" unique_id=423923195 node_paths=PackedStringArray("wagons", "checkpoint_indicator", "defeat_menu", "speed_lever", "progress_bar", "destination_node", "next_gate") instance=ExtResource("30_06yrh")]
 max_health = 300
 wagons = [NodePath("Wagon"), NodePath("Wagon2")]
+checkpoint_indicator = NodePath("../../HUD/CheckpointIndicator")
 defeat_menu = NodePath("../../HUD/DefeatMenu")
 speed_lever = NodePath("../../HUD/SpeedLever")
 progress_bar = NodePath("../../HUD/TrainProgressBar")

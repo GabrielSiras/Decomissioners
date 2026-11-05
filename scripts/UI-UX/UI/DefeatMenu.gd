@@ -42,6 +42,7 @@ func _on_main_menu_button_pressed() -> void:
 		push_warning("DefeatMenu: cena não encontrada: " + main_menu_path)
 		return
 	await _play_click_and_wait()
+	CheckpointManager.clear()
 	get_tree().paused = false
 	get_tree().change_scene_to_file(main_menu_path)
 

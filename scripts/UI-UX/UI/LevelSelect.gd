@@ -19,6 +19,7 @@ extends Control
 var is_changing: bool = false
 
 func _ready() -> void:
+	CheckpointManager.clear()
 	get_tree().paused = false
 	back_button.pressed.connect(_go_to.bind(main_menu_path))
 

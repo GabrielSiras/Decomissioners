@@ -12,6 +12,8 @@ var health_bar: HealthBarUI = null
 @export var current_speed: float = 0.0
 @export var wheel_markers: Array[Marker3D] = []
 @export var brake_distance: float = 20.0
+@export var checkpoint_indicator: CheckpointIndicator
+@export var gate_wait_time: float = 10.0
 
 @export_category("MENUs/HUDs")
 @export var defeat_menu: DefeatMenu
@@ -24,7 +26,6 @@ var health_bar: HealthBarUI = null
 @export var health_bar_scene: PackedScene
 @export var bar_min_size: Vector2 = Vector2(80, 16)
 @export var bar_offset: Vector3 = Vector3(0, 1.5, 1.2)
-
 
 @export_category("EMP SKILL")
 @export var emp_radius: float = 12.0
@@ -83,6 +84,32 @@ func _ready() -> void:
 		total_distance = start_position.distance_to(destination_node.global_position)
 	
 	_register_all_slots()
+	_apply_checkpoint()
+
+func _apply_checkpoint() -> void:
+	if not CheckpointManager.has_checkpoint(level_id):
+		return
+	var d: Dictionary = CheckpointManager.data
+
+	global_position = d["position"]
+	health = d["health"]
+
+	var saved: Dictionary = {}
+	for w in d["wagons"]:
+		saved[w["name"]] = w
+	for w in wagons.duplicate():
+		if saved.has(String(w.name)):
+			w.health = saved[String(w.name)]["health"]
+			w.stored_metal = saved[String(w.name)]["metal"]
+		else:
+			remove_child(w)
+			w.queue_free()
+	_update_wagons_list()
+	rearrange_wagons()
+
+	if is_instance_valid(next_gate):
+		next_gate.visible = false
+	approaching_gate = false
 
 func _process(_delta: float) -> void:
 	_update_bar_position()
@@ -226,6 +253,7 @@ func _on_destination_reached() -> void:
 	level_finished = true
 
 	GameProgress.complete_level(level_id)
+	CheckpointManager.clear()
 
 	var win_menu_scene = load("res://scenes/UI-UX/UI/MENUs/WinMenu.tscn")
 	if win_menu_scene:
@@ -354,11 +382,19 @@ func brake_at_gate() -> void:
 	speed_lever.v_slider.editable = false
 	speed_lever.v_slider.value -= 0.05
 	speed_lever.visible = false
-	
+
 	if current_speed_factor == 0.0:
 		approaching_gate = false
-		await get_tree().create_timer(10).timeout
-		
+		CheckpointManager.save_checkpoint(self)
+		if is_instance_valid(checkpoint_indicator):
+			checkpoint_indicator.show_waiting()
+
+		await get_tree().create_timer(gate_wait_time).timeout
+		if not is_inside_tree():
+			return
+
+		if is_instance_valid(checkpoint_indicator):
+			checkpoint_indicator.show_done()
 		next_gate.visible = false
 		speed_lever.v_slider.value = 0.2
 		speed_lever.v_slider.editable = true
