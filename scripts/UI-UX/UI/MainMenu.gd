@@ -52,7 +52,7 @@ func _on_railmap_button_pressed() -> void:
 	_go_to("res://scenes/UI-UX/UI/MENUs/RailmapMenu.tscn")
 
 func _on_level_select_button_pressed() -> void:
-	_go_to("res://scenes/UI-UX/UI/MENUs/LevelSelect.tscn")
+	_go_to("res://scenes/UI-UX/UI/MENUs/RailmapMenu.tscn")
 
 func _on_credits_button_pressed() -> void:
 	if is_changing:
