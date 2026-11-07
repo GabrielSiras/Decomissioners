@@ -5,12 +5,51 @@
 [ext_resource type="PackedScene" uid="uid://cpdwiwgu4gw4f" path="res://scenes/UI-UX/UI/HealthBar.tscn" id="2_sktq5"]
 [ext_resource type="PackedScene" uid="uid://ctf6nkrlj66ni" path="res://scenes/VFX/BreakSparksVFX.tscn" id="2_wj5ji"]
 [ext_resource type="Script" uid="uid://btdr4h44kf6nb" path="res://scripts/Turrets/TurretSlot.gd" id="3_8tskr"]
+[ext_resource type="ArrayMesh" uid="uid://t3lb1k1uvd30" path="res://assets/VFX Textures/PitchPuddle.obj" id="6_f7wff"]
+[ext_resource type="Script" uid="uid://jqr2plejfl1v" path="res://scripts/Player/Skills/BlackPitch/PitchZone.gd" id="7_nyxcj"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_v5pwx"]
 size = Vector3(2.3468585, 2.0921226, 6.0096235)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qmg03"]
 size = Vector3(0.77924347, 0.18231201, 0.7755203)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nyxcj"]
+cull_mode = 2
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+billboard_keep_scale = true
+grow = true
+
+[sub_resource type="Gradient" id="Gradient_nf4b6"]
+colors = PackedColorArray(0.081579186, 0.058836073, 0.053094037, 1, 0.34, 0.21085666, 0.15980001, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_n34c7"]
+gradient = SubResource("Gradient_nf4b6")
+
+[sub_resource type="Curve" id="Curve_yvv78"]
+_data = [Vector2(1e-05, 0.27956992), 1.3710763, 1.3710763, 0, 0, Vector2(0.2027027, 1), 0.0, 0.0, 0, 0, Vector2(0.7027027, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_bf2pp"]
+curve = SubResource("Curve_yvv78")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pf61c"]
+lifetime_randomness = 0.3
+emission_shape = 1
+emission_sphere_radius = 0.3
+direction = Vector3(1, 0.3, 0)
+spread = 13.0
+initial_velocity_min = 8.0
+initial_velocity_max = 8.0
+scale_curve = SubResource("CurveTexture_bf2pp")
+color_ramp = SubResource("GradientTexture1D_n34c7")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_psmbb"]
+size = Vector3(3.0708008, 0.5830078, 4.965576)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sjg42"]
+size = Vector3(3.071167, 0.58239746, 4.958618)
 
 [node name="TrainHead" type="CharacterBody3D" unique_id=423923195 node_paths=PackedStringArray("wheel_markers")]
 collision_layer = 2
@@ -63,5 +102,40 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9609299, -0.16015494, 1.19
 [node name="LeftWindowMarker" type="Marker3D" parent="." unique_id=567838373]
 transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -0.958, 0.988, -9.59)
 
+[node name="PitchFlow" type="GPUParticles3D" parent="LeftWindowMarker" unique_id=468957189]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -0.7481504, 1.4680312, 8.357769)
+material_override = SubResource("StandardMaterial3D_nyxcj")
+emitting = false
+amount = 40
+lifetime = 0.8
+one_shot = true
+fixed_fps = 0
+process_material = SubResource("ParticleProcessMaterial_pf61c")
+draw_pass_1 = ExtResource("6_f7wff")
+
+[node name="Area3D" type="Area3D" parent="LeftWindowMarker" unique_id=637231306]
+script = ExtResource("7_nyxcj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LeftWindowMarker/Area3D" unique_id=1515584657]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6991808, -1.031163, 8.909279)
+shape = SubResource("BoxShape3D_psmbb")
+
 [node name="RightWindowMarker" type="Marker3D" parent="." unique_id=768177988]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.957, 0.988, -9.59)
+
+[node name="PitchFlow" type="GPUParticles3D" parent="RightWindowMarker" unique_id=468784966]
+transform = Transform3D(1, 0, 1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 0.66860986, 1.4680312, 8.357769)
+material_override = SubResource("StandardMaterial3D_nyxcj")
+emitting = false
+amount = 40
+lifetime = 0.8
+one_shot = true
+fixed_fps = 0
+process_material = SubResource("ParticleProcessMaterial_pf61c")
+draw_pass_1 = ExtResource("6_f7wff")
+
+[node name="Area3D" type="Area3D" parent="RightWindowMarker" unique_id=280156782]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RightWindowMarker/Area3D" unique_id=339871976]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7984824, -1.0293579, 8.898825)
+shape = SubResource("BoxShape3D_sjg42")

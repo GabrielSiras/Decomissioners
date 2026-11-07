@@ -93,6 +93,10 @@ func _spawn(entry: SpawnEntry) -> void:
 		_:
 			t = _get_chunk_spawn_transform()
 
+	if entry.use_lane:
+		var lane_side: float = [-1.0, 1.0].pick_random()
+		t.origin.x = main_target.global_position.x + lane_side * randf_range(entry.lane_min_x, entry.lane_max_x)
+
 	enemy.transform = t
 	get_parent().add_child(enemy)
 

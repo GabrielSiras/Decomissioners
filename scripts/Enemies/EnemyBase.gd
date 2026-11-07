@@ -31,6 +31,8 @@ var original_armor: int = 0
 var debuff_timer_left: float = 0.0
 var stun_timer: float = 0.0
 var _model_size: float = 1.0
+var _slow_count: int = 0
+var _base_speed: float = -1.0
 
 func _ready() -> void:
 	current_health = max_health
@@ -41,6 +43,18 @@ func _ready() -> void:
 		_compute_bar_offset()
 	else:
 		_bar_world_offset = bar_offset
+
+func apply_slow(move_ratio: float, _attack_ratio: float) -> void:
+	if _base_speed < 0.0:
+		_base_speed = speed
+	_slow_count += 1
+	speed = _base_speed * (1.0 - move_ratio)
+
+func remove_slow() -> void:
+	_slow_count = max(0, _slow_count - 1)
+	if _slow_count == 0 and _base_speed >= 0.0:
+		speed = _base_speed
+		_base_speed = -1.0
 
 func _compute_bar_offset() -> void:
 	var meshes := find_children("*", "VisualInstance3D", true, false)

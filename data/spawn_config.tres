@@ -12,12 +12,16 @@
 script = ExtResource("2_giof1")
 scene = ExtResource("3_or6q8")
 mode = 1
+lane_min_x = 2.5
+lane_max_x = 3.5
 metadata/_custom_type_script = "uid://b50kb6ke0c27l"
 
 [sub_resource type="Resource" id="Resource_xyp8h"]
 script = ExtResource("2_giof1")
 scene = ExtResource("4_ojk0m")
 weight = 2.0
+lane_min_x = 4.5
+lane_max_x = 9.5
 metadata/_custom_type_script = "uid://b50kb6ke0c27l"
 
 [sub_resource type="Resource" id="Resource_67kke"]
@@ -29,6 +33,8 @@ metadata/_custom_type_script = "uid://chglphm85ewn7"
 [sub_resource type="Resource" id="Resource_j0jy3"]
 script = ExtResource("2_giof1")
 scene = ExtResource("5_c3vw5")
+lane_min_x = 2.5
+lane_max_x = 3.5
 metadata/_custom_type_script = "uid://b50kb6ke0c27l"
 
 [sub_resource type="Resource" id="Resource_7mbxg"]
@@ -41,6 +47,8 @@ metadata/_custom_type_script = "uid://chglphm85ewn7"
 script = ExtResource("2_giof1")
 scene = ExtResource("6_wijja")
 mode = 2
+lane_min_x = 4.5
+lane_max_x = 9.5
 metadata/_custom_type_script = "uid://b50kb6ke0c27l"
 
 [sub_resource type="Resource" id="Resource_3ccey"]

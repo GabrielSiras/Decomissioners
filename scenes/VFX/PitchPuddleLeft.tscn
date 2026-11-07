@@ -14,14 +14,14 @@ grow = true
 [sub_resource type="Gradient" id="Gradient_6ri6c"]
 colors = PackedColorArray(0.081579186, 0.058836073, 0.053094037, 1, 0.34, 0.21085666, 0.15980001, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_qwlct"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_n34c7"]
 gradient = SubResource("Gradient_6ri6c")
 
 [sub_resource type="Curve" id="Curve_cw55t"]
 _data = [Vector2(1e-05, 0.27956992), 1.3710763, 1.3710763, 0, 0, Vector2(0.2027027, 1), 0.0, 0.0, 0, 0, Vector2(0.7027027, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 4
 
-[sub_resource type="CurveTexture" id="CurveTexture_3blxd"]
+[sub_resource type="CurveTexture" id="CurveTexture_bf2pp"]
 curve = SubResource("Curve_cw55t")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jofub"]
@@ -32,8 +32,8 @@ direction = Vector3(1, 0.3, 0)
 spread = 13.0
 initial_velocity_min = 8.0
 initial_velocity_max = 8.0
-scale_curve = SubResource("CurveTexture_3blxd")
-color_ramp = SubResource("GradientTexture1D_qwlct")
+scale_curve = SubResource("CurveTexture_bf2pp")
+color_ramp = SubResource("GradientTexture1D_n34c7")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iujhx"]
 transparency = 1

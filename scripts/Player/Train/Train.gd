@@ -151,7 +151,7 @@ func _prepare_bar(bar: Control) -> void:
 	bar.custom_minimum_size = bar_min_size
 	bar.size = bar_min_size
 
-func _physics_process(delta: float) -> void:
+func _physics_process(delta: float) -> void:	
 	if brake_vfx_cooldown_timer > 0.0:
 		brake_vfx_cooldown_timer -= delta
 
@@ -167,6 +167,14 @@ func _physics_process(delta: float) -> void:
 		brake_at_gate()
 
 	_update_progress()
+
+func get_z_range() -> Vector2:
+	var head_z: float = global_position.z
+	var tail_z: float = head_z
+	for w in wagons:
+		if is_instance_valid(w):
+			tail_z = max(tail_z, w.global_position.z)
+	return Vector2(head_z, tail_z)
 
 func _on_train_braked() -> void:
 	trigger_brake_vfx()
