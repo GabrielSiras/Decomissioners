@@ -22,10 +22,10 @@ buses/default_bus_layout="uid://4804eo1361x8"
 [autoload]
 
 MetalManager="*uid://dg4ql240lgtft"
-UpgradeManager="*uid://c366ig4appbex"
 SettingsOverlay="*uid://bpeqxuc0a7dmw"
 GameProgress="*uid://c0rafkaqfr7o5"
 CheckpointManager="*uid://bjh0cla3jsfm2"
+UpgradeManager="*uid://sj7wli8gf0nj"
 
 [display]
 
