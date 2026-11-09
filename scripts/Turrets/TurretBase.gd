@@ -14,6 +14,7 @@ extends Node3D
 @onready var muzzle: Marker3D = $Muzzle
 @onready var shoot_timer: Timer = $ShootTimer
 
+var turret_level: int = 1
 var current_target: Node3D = null
 var enemies_in_range: Array[Node3D] = []
 

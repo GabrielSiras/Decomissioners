@@ -4,8 +4,10 @@ extends CanvasLayer
 @export var click_delay: float = 0.55
 @export var random_pitch: bool = true
 
-@onready var menu_button: Button = $ColorRect/CenterContainer/VBoxContainer/MenuButton
-@onready var next_button: Button = $ColorRect/CenterContainer/VBoxContainer/NextButton
+@export var railmap_button: Button
+@export var research_button: Button
+@export var next_button: Button
+
 @onready var metal_click: AudioStreamPlayer = $MetalClick
 
 var is_changing: bool = false
@@ -24,7 +26,7 @@ func _go_to(scene_path: String) -> void:
 		return
 
 	is_changing = true
-	menu_button.disabled = true
+	railmap_button.disabled = true
 	next_button.disabled = true
 
 	if random_pitch:

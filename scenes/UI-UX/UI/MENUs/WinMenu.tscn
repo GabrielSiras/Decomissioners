@@ -3,9 +3,20 @@
 [ext_resource type="Script" uid="uid://sckgogse5rxl" path="res://scripts/UI-UX/UI/WinMenu.gd" id="1_7sdtr"]
 [ext_resource type="AudioStream" uid="uid://ma7spr0eraxc" path="res://assets/audios/SFX/UI/MetalClick/MetalClick.wav" id="2_wqpd4"]
 
-[node name="WinMenu" type="CanvasLayer" unique_id=1146696141]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xrivr"]
+bg_color = Color(0.66, 0.31724003, 0.15840001, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_xrivr"]
+size = Vector2(30, 30)
+
+[node name="WinMenu" type="CanvasLayer" unique_id=1146696141 node_paths=PackedStringArray("next_button")]
 process_mode = 3
 script = ExtResource("1_7sdtr")
+next_button = NodePath("ColorRect/CenterContainer/PanelContainer/CenterContainer/VBoxContainer/VBoxContainer/NextButton")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1990424947]
 anchors_preset = 15
@@ -13,7 +24,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0.20784314, 0, 1)
+color = Color(0, 0, 0, 0.17254902)
 
 [node name="CenterContainer" type="CenterContainer" parent="ColorRect" unique_id=505519242]
 layout_mode = 1
@@ -23,24 +34,103 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/CenterContainer" unique_id=2091126303]
+[node name="PanelContainer" type="PanelContainer" parent="ColorRect/CenterContainer" unique_id=325861398]
+custom_minimum_size = Vector2(550, 700)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xrivr")
+
+[node name="CenterContainer" type="CenterContainer" parent="ColorRect/CenterContainer/PanelContainer" unique_id=1444645677]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="ColorRect/CenterContainer/VBoxContainer" unique_id=48392741]
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/CenterContainer/PanelContainer/CenterContainer" unique_id=2091126303]
 layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Label" type="Label" parent="ColorRect/CenterContainer/PanelContainer/CenterContainer/VBoxContainer" unique_id=48392741]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/outline_size = 20
 theme_override_font_sizes/font_size = 50
-text = "Well Done!"
+text = "LEVEL COMPLETED"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="NextButton" type="Button" parent="ColorRect/CenterContainer/VBoxContainer" unique_id=750095139]
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect/CenterContainer/PanelContainer/CenterContainer/VBoxContainer" unique_id=1955895066]
 layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_right = 50
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/CenterContainer/PanelContainer/CenterContainer/VBoxContainer/MarginContainer" unique_id=1255018629]
+layout_mode = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="ColorRect/CenterContainer/PanelContainer/CenterContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=1042862747]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.82
+show_percentage = false
+
+[node name="Label" type="Label" parent="ColorRect/CenterContainer/PanelContainer/CenterContainer/VBoxContainer/MarginContainer/HBoxContainer/ProgressBar" unique_id=652122810]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 24
+text = "1500"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ProgressBar2" type="ProgressBar" parent="ColorRect/CenterContainer/PanelContainer/CenterContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=297886120]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+show_percentage = false
+
+[node name="Label" type="Label" parent="ColorRect/CenterContainer/PanelContainer/CenterContainer/VBoxContainer/MarginContainer/HBoxContainer/ProgressBar2" unique_id=437199473]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 24
+text = "2000	"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect/CenterContainer/PanelContainer/CenterContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=661027255]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+texture = SubResource("PlaceholderTexture2D_xrivr")
+stretch_mode = 6
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/CenterContainer/PanelContainer/CenterContainer/VBoxContainer" unique_id=505536768]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="NextButton" type="Button" parent="ColorRect/CenterContainer/PanelContainer/CenterContainer/VBoxContainer/VBoxContainer" unique_id=750095139]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 50
 text = "NEXT LEVEL
 "
 
-[node name="MenuButton" type="Button" parent="ColorRect/CenterContainer/VBoxContainer" unique_id=2072980644]
+[node name="ResearchButton" type="Button" parent="ColorRect/CenterContainer/PanelContainer/CenterContainer/VBoxContainer/VBoxContainer" unique_id=321778967]
+custom_minimum_size = Vector2(350, 0)
 layout_mode = 2
+size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 50
-text = "Menu"
+text = "RESEARCH"
+
+[node name="MenuButton" type="Button" parent="ColorRect/CenterContainer/PanelContainer/CenterContainer/VBoxContainer/VBoxContainer" unique_id=2072980644]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 50
+text = "RAILMAP"
 
 [node name="MetalClick" type="AudioStreamPlayer" parent="." unique_id=1951237289]
 stream = ExtResource("2_wqpd4")
@@ -49,4 +139,4 @@ bus = &"SFX"
 [node name="StartTimer" type="Timer" parent="." unique_id=254165725]
 wait_time = 0.3
 
-[connection signal="pressed" from="ColorRect/CenterContainer/VBoxContainer/MenuButton" to="." method="_on_menu_button_pressed"]
+[connection signal="pressed" from="ColorRect/CenterContainer/PanelContainer/CenterContainer/VBoxContainer/VBoxContainer/MenuButton" to="." method="_on_menu_button_pressed"]

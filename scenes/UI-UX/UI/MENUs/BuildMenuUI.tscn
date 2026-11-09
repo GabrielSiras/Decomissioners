@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://c7vrl3svytbsm" path="res://scripts/UI-UX/UI/BuildMenuUI.gd" id="1_ly6h3"]
 
 [node name="BuildMenuUI" type="Control" unique_id=1796876524]
+z_index = 1
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_ly6h3")
