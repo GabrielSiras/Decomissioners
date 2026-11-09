@@ -4,6 +4,13 @@ extends Control
 @export var train: TrainHead
 @export var menu_offset_y: float = 65.0 
 
+@export_category("SFX")
+@export var random_pitch: bool = true
+@export var pitch_min: float = 0.9
+@export var pitch_max: float = 1.1
+
+@onready var demolish_sound: AudioStreamPlayer = $DemolishSound
+
 @onready var radial_panel: Control = $RadialPanel
 @onready var btn_demolish: Button = $RadialPanel/ButtonDemolish
 
@@ -24,6 +31,13 @@ func _ready() -> void:
 			await train.ready
 		
 		_connect_all_slots()
+
+func _play_demolish_sound() -> void:
+	if not is_instance_valid(demolish_sound):
+		return
+	if random_pitch:
+		demolish_sound.pitch_scale = randf_range(pitch_min, pitch_max)
+	demolish_sound.play()
 
 func _connect_all_slots() -> void:
 	if train.turret_slots_container:
@@ -65,6 +79,7 @@ func _update_button_text() -> void:
 func _on_demolish_selected() -> void:
 	if is_instance_valid(current_slot):
 		train.demolish_turret_at_slot(current_slot)
+		_play_demolish_sound()
 		hide()
 
 func _unhandled_input(event: InputEvent) -> void:

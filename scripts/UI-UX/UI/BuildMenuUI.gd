@@ -14,7 +14,14 @@ extends Control
 @export var turret_4_scene: PackedScene
 @export var turret_4_cost: int = 100
 
-@export var menu_radius: float = 90.0 
+@export var menu_radius: float = 90.0
+
+@export_category("SFX")
+@export var random_pitch: bool = true
+@export var pitch_min: float = 0.9
+@export var pitch_max: float = 1.1
+
+@onready var build_sound: AudioStreamPlayer = $BuildSound
 
 @onready var radial_panel: Control = $RadialPanel
 @onready var btn_turret_1: Button = $RadialPanel/ButtonTurret1
@@ -39,6 +46,13 @@ func _ready() -> void:
 			await train.ready
 		
 		_connect_all_slots()
+
+func _play_build_sound() -> void:
+	if not is_instance_valid(build_sound):
+		return
+	if random_pitch:
+		build_sound.pitch_scale = randf_range(pitch_min, pitch_max)
+	build_sound.play()
 
 func _connect_all_slots() -> void:
 	if train.turret_slots_container:
@@ -78,25 +92,24 @@ func _on_slot_clicked(slot_node: Node3D) -> void:
 		current_slot = slot_node
 		show()
 
+func _try_build(scene: PackedScene, cost: int) -> void:
+	if not is_instance_valid(current_slot):
+		return
+	if train.place_turret_at_slot(current_slot, scene, cost):
+		_play_build_sound()
+		hide()
+
 func _on_turret_1_selected() -> void:
-	if is_instance_valid(current_slot):
-		if train.place_turret_at_slot(current_slot, turret_1_scene, turret_1_cost):
-			hide()
+	_try_build(turret_1_scene, turret_1_cost)
 
 func _on_turret_2_selected() -> void:
-	if is_instance_valid(current_slot):
-		if train.place_turret_at_slot(current_slot, turret_2_scene, turret_2_cost):
-			hide()
+	_try_build(turret_2_scene, turret_2_cost)
 
 func _on_turret_3_selected() -> void:
-	if is_instance_valid(current_slot):
-		if train.place_turret_at_slot(current_slot, turret_3_scene, turret_3_cost):
-			hide()
+	_try_build(turret_3_scene, turret_3_cost)
 
 func _on_turret_4_selected() -> void:
-	if is_instance_valid(current_slot):
-		if train.place_turret_at_slot(current_slot, turret_4_scene, turret_4_cost):
-			hide()
+	_try_build(turret_4_scene, turret_4_cost)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if visible and event is InputEventMouseButton and event.pressed:

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://7vml8gkbdtrb"]
 
 [ext_resource type="Script" uid="uid://c7vrl3svytbsm" path="res://scripts/UI-UX/UI/BuildMenuUI.gd" id="1_ly6h3"]
+[ext_resource type="AudioStream" uid="uid://b0iaa8x4estti" path="res://assets/audios/SFX/Turrets/Building/metal-hitting'n-building.wav" id="2_ofgi3"]
 
 [node name="BuildMenuUI" type="Control" unique_id=1796876524]
 z_index = 1
@@ -46,3 +47,7 @@ text = "Artillery"
 layout_mode = 0
 offset_right = 8.0
 offset_bottom = 8.0
+
+[node name="BuildSound" type="AudioStreamPlayer" parent="." unique_id=826047351]
+stream = ExtResource("2_ofgi3")
+volume_db = -4.0

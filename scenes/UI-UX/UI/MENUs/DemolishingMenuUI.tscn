@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bnhwjmce2un5i"]
 
 [ext_resource type="Script" uid="uid://bomobpcc77il8" path="res://scripts/UI-UX/UI/DemolishingMenuUI.gd" id="1_ptki6"]
+[ext_resource type="AudioStream" uid="uid://ba3l6jqo27gdt" path="res://assets/audios/SFX/Turrets/Demolishing/metal-demolishing-with-money.wav" id="2_4lwce"]
 
 [node name="DemolishingMenuUI" type="Control" unique_id=1660696465]
 layout_mode = 3
@@ -17,3 +18,6 @@ layout_mode = 0
 offset_right = 8.0
 offset_bottom = 8.0
 text = "Sell?"
+
+[node name="DemolishSound" type="AudioStreamPlayer" parent="." unique_id=1371521462]
+stream = ExtResource("2_4lwce")
