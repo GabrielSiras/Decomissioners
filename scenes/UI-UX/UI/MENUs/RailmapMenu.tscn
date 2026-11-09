@@ -5,7 +5,28 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xrivr"]
 
-[node name="RailmapMenu" type="Control" unique_id=785803109]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6jw50"]
+bg_color = Color(3.9370956e-05, 0.1800443, 0.56317705, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kbsot"]
+bg_color = Color(1.5113056e-05, 0.10295107, 0.36075705, 1)
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_kbsot"]
+allow_unpress = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gh26t"]
+bg_color = Color(0, 0.34233615, 0.15255731, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ymt1g"]
+bg_color = Color(0, 0.21848837, 0.08829448, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cpbve"]
+bg_color = Color(0.53158313, 0.25091162, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v4qmk"]
+bg_color = Color(0.37948182, 0.17096534, 1.4439226e-07, 1)
+
+[node name="RailmapMenu" type="Control" unique_id=785803109 node_paths=PackedStringArray("factory_button", "junkyard_button", "wastes_button", "factory_panel", "junkyard_panel", "wastes_panel")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,6 +34,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_fchaj")
+factory_button = NodePath("ColorRect/MarginContainer/VBoxContainer2/PanelContainer/BiomeButtons/FactoryButton")
+junkyard_button = NodePath("ColorRect/MarginContainer/VBoxContainer2/PanelContainer/BiomeButtons/JunkyardButton")
+wastes_button = NodePath("ColorRect/MarginContainer/VBoxContainer2/PanelContainer/BiomeButtons/WastesButton")
+factory_panel = NodePath("ColorRect/MarginContainer/VBoxContainer2/PanelContainer/FactoryPanel")
+junkyard_panel = NodePath("ColorRect/MarginContainer/VBoxContainer2/PanelContainer/JunkyardPanel")
+wastes_panel = NodePath("ColorRect/MarginContainer/VBoxContainer2/PanelContainer/WastesPanel")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=148570472]
 layout_mode = 1
@@ -21,7 +48,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.43163997, 0.2728, 0.44, 1)
+color = Color(0.44, 0.44, 0.44, 1)
 
 [node name="MarginContainer" type="MarginContainer" parent="ColorRect" unique_id=778521579]
 layout_mode = 1
@@ -80,133 +107,137 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_xrivr")
 [node name="PanelContainer" type="HBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer2" unique_id=1525054728]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_constants/separation = 10
 
 [node name="BiomeButtons" type="VBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer2/PanelContainer" unique_id=1497948971]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_constants/separation = 10
 
 [node name="FactoryButton" type="Button" parent="ColorRect/MarginContainer/VBoxContainer2/PanelContainer/BiomeButtons" unique_id=1428535782]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 80
+theme_override_styles/normal = SubResource("StyleBoxFlat_6jw50")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_kbsot")
+theme_override_styles/hover = SubResource("StyleBoxFlat_6jw50")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_kbsot")
 text = "Factory"
 
 [node name="JunkyardButton" type="Button" parent="ColorRect/MarginContainer/VBoxContainer2/PanelContainer/BiomeButtons" unique_id=1078319801]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 80
+theme_override_styles/normal = SubResource("StyleBoxFlat_gh26t")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ymt1g")
+theme_override_styles/hover = SubResource("StyleBoxFlat_gh26t")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_kbsot")
 text = "Junkyard"
 
 [node name="WastesButton" type="Button" parent="ColorRect/MarginContainer/VBoxContainer2/PanelContainer/BiomeButtons" unique_id=472258507]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 80
+theme_override_styles/normal = SubResource("StyleBoxFlat_cpbve")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_v4qmk")
+theme_override_styles/hover = SubResource("StyleBoxFlat_cpbve")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_kbsot")
 text = "Wastes"
 
-[node name="FactoryButtons" type="PanelContainer" parent="ColorRect/MarginContainer/VBoxContainer2/PanelContainer" unique_id=91686635]
-custom_minimum_size = Vector2(160, 0)
-layout_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="ColorRect/MarginContainer/VBoxContainer2/PanelContainer/FactoryButtons" unique_id=1144052469]
-layout_mode = 2
-theme_override_constants/margin_left = 15
-theme_override_constants/margin_top = 15
-theme_override_constants/margin_right = 15
-theme_override_constants/margin_bottom = 15
-
-[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer2/PanelContainer/FactoryButtons/MarginContainer" unique_id=500669959]
-layout_mode = 2
-
-[node name="TextureRec" type="TextureRect" parent="ColorRect/MarginContainer/VBoxContainer2/PanelContainer/FactoryButtons/MarginContainer/VBoxContainer" unique_id=263870757]
-custom_minimum_size = Vector2(0, 100)
-layout_mode = 2
-
-[node name="Gate3Button" type="Button" parent="ColorRect/MarginContainer/VBoxContainer2/PanelContainer/FactoryButtons/MarginContainer/VBoxContainer" unique_id=1968400194]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Gate2Button" type="Button" parent="ColorRect/MarginContainer/VBoxContainer2/PanelContainer/FactoryButtons/MarginContainer/VBoxContainer" unique_id=665659855]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Gate1Button" type="Button" parent="ColorRect/MarginContainer/VBoxContainer2/PanelContainer/FactoryButtons/MarginContainer/VBoxContainer" unique_id=708124263]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="TrackStartButton" type="Button" parent="ColorRect/MarginContainer/VBoxContainer2/PanelContainer/FactoryButtons/MarginContainer/VBoxContainer" unique_id=2067743016]
-custom_minimum_size = Vector2(0, 150)
-layout_mode = 2
-
-[node name="JunkyardPanel" type="PanelContainer" parent="ColorRect/MarginContainer/VBoxContainer2/PanelContainer" unique_id=1858305238]
+[node name="FactoryPanel" type="PanelContainer" parent="ColorRect/MarginContainer/VBoxContainer2/PanelContainer" unique_id=91686635 groups=["Biome Panels"]]
 visible = false
 custom_minimum_size = Vector2(160, 0)
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_6jw50")
 
-[node name="MarginContainer" type="MarginContainer" parent="ColorRect/MarginContainer/VBoxContainer2/PanelContainer/JunkyardPanel" unique_id=2057896184]
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect/MarginContainer/VBoxContainer2/PanelContainer/FactoryPanel" unique_id=1144052469]
 layout_mode = 2
 theme_override_constants/margin_left = 15
-theme_override_constants/margin_top = 15
+theme_override_constants/margin_top = 30
 theme_override_constants/margin_right = 15
-theme_override_constants/margin_bottom = 15
+theme_override_constants/margin_bottom = 30
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer2/PanelContainer/JunkyardPanel/MarginContainer" unique_id=1483198138]
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer2/PanelContainer/FactoryPanel/MarginContainer" unique_id=500669959]
 layout_mode = 2
+theme_override_constants/separation = 25
 
-[node name="TextureRec" type="TextureRect" parent="ColorRect/MarginContainer/VBoxContainer2/PanelContainer/JunkyardPanel/MarginContainer/VBoxContainer" unique_id=1543851152]
-custom_minimum_size = Vector2(0, 100)
-layout_mode = 2
-
-[node name="Gate3Button" type="Button" parent="ColorRect/MarginContainer/VBoxContainer2/PanelContainer/JunkyardPanel/MarginContainer/VBoxContainer" unique_id=1920632316]
+[node name="FinalChallenge" type="Button" parent="ColorRect/MarginContainer/VBoxContainer2/PanelContainer/FactoryPanel/MarginContainer/VBoxContainer" unique_id=2087596583]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Gate2Button" type="Button" parent="ColorRect/MarginContainer/VBoxContainer2/PanelContainer/JunkyardPanel/MarginContainer/VBoxContainer" unique_id=735535145]
+[node name="Gate3Button" type="Button" parent="ColorRect/MarginContainer/VBoxContainer2/PanelContainer/FactoryPanel/MarginContainer/VBoxContainer" unique_id=1968400194]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Gate1Button" type="Button" parent="ColorRect/MarginContainer/VBoxContainer2/PanelContainer/JunkyardPanel/MarginContainer/VBoxContainer" unique_id=886034741]
+[node name="Gate2Button" type="Button" parent="ColorRect/MarginContainer/VBoxContainer2/PanelContainer/FactoryPanel/MarginContainer/VBoxContainer" unique_id=665659855]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="TrackStartButton" type="Button" parent="ColorRect/MarginContainer/VBoxContainer2/PanelContainer/JunkyardPanel/MarginContainer/VBoxContainer" unique_id=1815400729]
-custom_minimum_size = Vector2(0, 150)
+[node name="Gate1Button" type="Button" parent="ColorRect/MarginContainer/VBoxContainer2/PanelContainer/FactoryPanel/MarginContainer/VBoxContainer" unique_id=708124263]
 layout_mode = 2
+size_flags_vertical = 3
 
-[node name="WastesPanel" type="PanelContainer" parent="ColorRect/MarginContainer/VBoxContainer2/PanelContainer" unique_id=12430359]
+[node name="JunkyardPanel" type="PanelContainer" parent="ColorRect/MarginContainer/VBoxContainer2/PanelContainer" unique_id=760394729 groups=["Biome Panels"]]
 visible = false
 custom_minimum_size = Vector2(160, 0)
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_gh26t")
 
-[node name="MarginContainer" type="MarginContainer" parent="ColorRect/MarginContainer/VBoxContainer2/PanelContainer/WastesPanel" unique_id=696824104]
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect/MarginContainer/VBoxContainer2/PanelContainer/JunkyardPanel" unique_id=463208150]
 layout_mode = 2
 theme_override_constants/margin_left = 15
-theme_override_constants/margin_top = 15
+theme_override_constants/margin_top = 30
 theme_override_constants/margin_right = 15
-theme_override_constants/margin_bottom = 15
+theme_override_constants/margin_bottom = 30
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer2/PanelContainer/WastesPanel/MarginContainer" unique_id=1031377935]
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer2/PanelContainer/JunkyardPanel/MarginContainer" unique_id=1438099764]
 layout_mode = 2
+theme_override_constants/separation = 25
 
-[node name="TextureRec" type="TextureRect" parent="ColorRect/MarginContainer/VBoxContainer2/PanelContainer/WastesPanel/MarginContainer/VBoxContainer" unique_id=1753132324]
-custom_minimum_size = Vector2(0, 100)
-layout_mode = 2
-
-[node name="Gate3Button" type="Button" parent="ColorRect/MarginContainer/VBoxContainer2/PanelContainer/WastesPanel/MarginContainer/VBoxContainer" unique_id=853080388]
+[node name="Gate3Button" type="Button" parent="ColorRect/MarginContainer/VBoxContainer2/PanelContainer/JunkyardPanel/MarginContainer/VBoxContainer" unique_id=1216149002]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Gate2Button" type="Button" parent="ColorRect/MarginContainer/VBoxContainer2/PanelContainer/WastesPanel/MarginContainer/VBoxContainer" unique_id=1069330891]
+[node name="Gate2Button" type="Button" parent="ColorRect/MarginContainer/VBoxContainer2/PanelContainer/JunkyardPanel/MarginContainer/VBoxContainer" unique_id=931776661]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Gate1Button" type="Button" parent="ColorRect/MarginContainer/VBoxContainer2/PanelContainer/WastesPanel/MarginContainer/VBoxContainer" unique_id=1088759177]
+[node name="Gate1Button" type="Button" parent="ColorRect/MarginContainer/VBoxContainer2/PanelContainer/JunkyardPanel/MarginContainer/VBoxContainer" unique_id=1553647996]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="TrackStartButton" type="Button" parent="ColorRect/MarginContainer/VBoxContainer2/PanelContainer/WastesPanel/MarginContainer/VBoxContainer" unique_id=2146350914]
-custom_minimum_size = Vector2(0, 150)
+[node name="WastesPanel" type="PanelContainer" parent="ColorRect/MarginContainer/VBoxContainer2/PanelContainer" unique_id=53383151 groups=["Biome Panels"]]
+visible = false
+custom_minimum_size = Vector2(160, 0)
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_cpbve")
+
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect/MarginContainer/VBoxContainer2/PanelContainer/WastesPanel" unique_id=819821406]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer2/PanelContainer/WastesPanel/MarginContainer" unique_id=751472891]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="Gate3Button" type="Button" parent="ColorRect/MarginContainer/VBoxContainer2/PanelContainer/WastesPanel/MarginContainer/VBoxContainer" unique_id=1760721269]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Gate2Button" type="Button" parent="ColorRect/MarginContainer/VBoxContainer2/PanelContainer/WastesPanel/MarginContainer/VBoxContainer" unique_id=332376973]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Gate1Button" type="Button" parent="ColorRect/MarginContainer/VBoxContainer2/PanelContainer/WastesPanel/MarginContainer/VBoxContainer" unique_id=1854535864]
+layout_mode = 2
+size_flags_vertical = 3
 
 [node name="MetalClick" type="AudioStreamPlayer" parent="." unique_id=2096174439]
 stream = ExtResource("2_kbsot")
@@ -217,6 +248,3 @@ wait_time = 0.3
 
 [connection signal="pressed" from="ColorRect/MarginContainer/VBoxContainer2/HBoxContainer/ReturnButton" to="." method="_on_return_button_pressed"]
 [connection signal="pressed" from="ColorRect/MarginContainer/VBoxContainer2/HBoxContainer/ResearchButton" to="." method="_on_research_button_pressed"]
-[connection signal="pressed" from="ColorRect/MarginContainer/VBoxContainer2/PanelContainer/BiomeButtons/FactoryButton" to="." method="_on_factory_button_pressed"]
-[connection signal="pressed" from="ColorRect/MarginContainer/VBoxContainer2/PanelContainer/BiomeButtons/JunkyardButton" to="." method="_on_junkyard_button_pressed"]
-[connection signal="pressed" from="ColorRect/MarginContainer/VBoxContainer2/PanelContainer/BiomeButtons/WastesButton" to="." method="_on_wastes_button_pressed"]

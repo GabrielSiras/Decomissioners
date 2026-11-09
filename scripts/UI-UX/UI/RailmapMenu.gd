@@ -7,18 +7,26 @@ extends Control
 @onready var metal_click: AudioStreamPlayer = $MetalClick
 @onready var start_timer: Timer = $StartTimer
 
-# Ajuste os caminhos se os botões estiverem dentro de containers
-@onready var wastes_button: BaseButton = find_child("WastesButton", true, false)
-@onready var junkyard_button: BaseButton = find_child("JunkyardButton", true, false)
-@onready var factory_button: BaseButton = find_child("FactoryButton", true, false)
+@export_subgroup("Biome Buttons")
+@export var factory_button: Button
+@export var junkyard_button: Button
+@export var wastes_button: Button
+@export_subgroup("Level Panels")
+@export var factory_panel: PanelContainer
+@export var junkyard_panel: PanelContainer
+@export var wastes_panel: PanelContainer
 
 var is_changing: bool = false
 
 func _ready() -> void:
+	factory_button.toggled.connect(_on_biome_button_toggled.bind(factory_panel))
+	junkyard_button.toggled.connect(_on_biome_button_toggled.bind(junkyard_panel))
+	wastes_button.toggled.connect(_on_biome_button_toggled.bind(wastes_panel))
+	
 	CheckpointManager.clear()
 	get_tree().paused = false
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	_apply_locks()
+	#_apply_locks()
 
 # Bloqueia visualmente as fases ainda não liberadas
 func _apply_locks() -> void:
@@ -56,18 +64,24 @@ func _go_to(scene_path: String) -> void:
 func _set_buttons_disabled(value: bool) -> void:
 	for b in find_children("*", "BaseButton", true, false):
 		b.disabled = value
-
+		
+func _on_biome_button_toggled(toggled_state: bool, biome_panel: PanelContainer) -> void:
+	if toggled_state == false:
+		biome_panel.visible = false
+	else:
+		biome_panel.visible = true
+	
 func _on_return_button_pressed() -> void:
 	_go_to("res://scenes/UI-UX/UI/MENUs/MainMenu.tscn")
 
 func _on_research_button_pressed() -> void:
 	_go_to("res://scenes/UI-UX/UI/MENUs/ResearchMenu.tscn")
 
-func _on_wastes_button_pressed() -> void:
-	_go_to(GameProgress.LEVELS["level01"])
-
-func _on_junkyard_button_pressed() -> void:
-	_go_to(GameProgress.LEVELS["level02"])
-
-func _on_factory_button_pressed() -> void:
-	_go_to(GameProgress.LEVELS["level03"])
+#func _on_wastes_button_pressed() -> void:
+	#_go_to(GameProgress.LEVELS["level01"])
+#
+#func _on_junkyard_button_pressed() -> void:
+	#_go_to(GameProgress.LEVELS["level02"])
+#
+#func _on_factory_button_pressed() -> void:
+	#_go_to(GameProgress.LEVELS["level03"])

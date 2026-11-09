@@ -10,6 +10,13 @@ extends TurretBase
 
 var is_firing: bool = false
 
+##Lvl 1, Lvl 2, Lvl 3
+var level_data: Dictionary = {
+	1: {"damage": 25, "debuff_strength": 0.30, "spread_area": 2.0},
+	2: {"damage": 35, "debuff_strength": 0.40, "spread_area": 3.0},
+	3: {"damage": 50, "debuff_strength": 0.50, "spread_area": 4.0}
+}
+
 func _ready() -> void:
 	super._ready()
 	#apply_level_stats(current_level)

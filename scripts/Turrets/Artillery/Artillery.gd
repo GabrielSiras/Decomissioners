@@ -4,17 +4,17 @@ extends TurretBase
 @export_category("Configurações de Nível")
 @export_range(1, 3) var current_level: int = 1
 
-##Lvl 1, Lvl 2, Lvl 3
-var level_data: Dictionary = {
-	1: {"damage": 25, "cooldown": 5.0, "armor_penetration": 0.40, "aoe_radius": 2.0},
-	2: {"damage": 35, "cooldown": 4.0, "armor_penetration": 0.60, "aoe_radius": 3.0},
-	3: {"damage": 50, "cooldown": 3.0, "armor_penetration": 0.80, "aoe_radius": 4.0}
-}
-
 @export_category("Configurações da Artilharia")
 @export var aoe_radius: float = 5.0
 @export var shell_scene: PackedScene
 @export var flying_group_name: String = "flying"
+
+##Lvl 1, Lvl 2, Lvl 3
+var level_data: Dictionary = {
+	1: {"damage": 25, "cooldown": 5.0, "armor_penetration": 0.30, "aoe_radius": 2.0},
+	2: {"damage": 35, "cooldown": 4.0, "armor_penetration": 0.40, "aoe_radius": 3.0},
+	3: {"damage": 50, "cooldown": 3.0, "armor_penetration": 0.50, "aoe_radius": 4.0}
+}
 
 var current_armor_penetration: float = 0.40
 var target: Node3D = null

@@ -11,6 +11,13 @@ extends TurretBase
 @export_range(0.0, 1.0) var stun_chance: float = 0.1
 @export var stun_duration: float = 1.5
 
+##Lvl 1, Lvl 2, Lvl 3
+var level_data: Dictionary = {
+	1: {"stun_chance": 30.0, "stun_duration": 1.0, "cooldown": 5.0, "spread_area": 0},
+	2: {"stun_chance": 40.0, "stun_duration": 1.5, "cooldown": 4.0, "spread_area": 0},
+	3: {"stun_chance": 50.0, "stun_duration": 2.0, "cooldown": 3.0, "spread_area": 0}
+}
+
 func _ready() -> void:
 	super._ready()
 	#apply_level_stats(current_level)
