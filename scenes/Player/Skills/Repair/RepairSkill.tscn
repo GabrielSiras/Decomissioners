@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://d2tayfwtb0eco"]
+
+[ext_resource type="Script" uid="uid://b2hchykrygc2w" path="res://scripts/Player/Skills/Repair/RepairSkill.gd" id="1_7fklk"]
+
+[node name="RepairSkill" type="Node3D" unique_id=2066757651]
+script = ExtResource("1_7fklk")

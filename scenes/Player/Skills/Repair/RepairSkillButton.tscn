@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://bboslj3bs8gj8"]
+
+[ext_resource type="Script" uid="uid://bapjkqhdsjy81" path="res://scripts/Player/Skills/Repair/RepairSkillButton.gd" id="1_kpy8o"]
+
+[node name="RepairSkillButton" type="Button" unique_id=834700005]
+offset_right = 88.0
+offset_bottom = 67.0
+text = "Repair"
+script = ExtResource("1_kpy8o")

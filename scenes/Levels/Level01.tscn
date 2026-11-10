@@ -34,6 +34,8 @@
 [ext_resource type="PackedScene" uid="uid://cika3a8mjdsiv" path="res://scenes/Player/Train/Train.tscn" id="30_rxryt"]
 [ext_resource type="PackedScene" uid="uid://b6kis3qguxedq" path="res://scenes/Player/Wagon/Wagon.tscn" id="31_jys65"]
 [ext_resource type="PackedScene" uid="uid://ccxbyhm6vro5u" path="res://scenes/GameCamera.tscn" id="32_arkqm"]
+[ext_resource type="PackedScene" uid="uid://bboslj3bs8gj8" path="res://scenes/Player/Skills/Repair/RepairSkillButton.tscn" id="32_isk48"]
+[ext_resource type="PackedScene" uid="uid://d2tayfwtb0eco" path="res://scenes/Player/Skills/Repair/RepairSkill.tscn" id="33_hepgf"]
 [ext_resource type="PackedScene" uid="uid://r635qxesdoa5" path="res://assets/models/Gate/Gate.glb" id="33_v3ke2"]
 [ext_resource type="Script" uid="uid://v4lwcwcnu7dg" path="res://scripts/VFX/VFXPrewarmer.gd" id="34_0hpgq"]
 [ext_resource type="PackedScene" uid="uid://x2uj51mwckp5" path="res://scenes/VFX/ExplosionVFX.tscn" id="35_rj7dc"]
@@ -357,11 +359,18 @@ offset_top = 1070.0
 offset_right = 137.0
 offset_bottom = 1148.0
 
+[node name="RepairSkillButton" parent="Skills" unique_id=1594728693 instance=ExtResource("32_isk48")]
+offset_left = 50.0
+offset_top = 889.0
+offset_right = 138.0
+offset_bottom = 956.0
+repair_skill_scene = ExtResource("33_hepgf")
+
 [node name="Player" type="Node3D" parent="." unique_id=163302227]
 
-[node name="TrainHead" parent="Player" unique_id=423923195 node_paths=PackedStringArray("wagons", "checkpoint_indicator", "defeat_menu", "speed_lever", "progress_bar", "destination_node", "next_gate") instance=ExtResource("30_rxryt")]
+[node name="TrainHead" parent="Player" unique_id=423923195 node_paths=PackedStringArray("wheel_markers", "checkpoint_indicator", "defeat_menu", "speed_lever", "progress_bar", "destination_node", "next_gate") instance=ExtResource("30_rxryt")]
 max_health = 300
-wagons = [NodePath("Wagon"), NodePath("Wagon2")]
+wheel_markers = []
 checkpoint_indicator = NodePath("../../HUD/CheckpointIndicator")
 defeat_menu = NodePath("../../HUD/DefeatMenu")
 speed_lever = NodePath("../../HUD/SpeedLever")

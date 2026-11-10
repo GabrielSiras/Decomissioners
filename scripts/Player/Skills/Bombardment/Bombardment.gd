@@ -13,6 +13,8 @@ signal cancelled
 var camera: Camera3D
 
 func _ready() -> void:
+	damage = int(damage * UpgradeManager.pick(UpgradeManager.BOMB_DAMAGE_MULT, "Bombardment"))
+	damage_radius *= UpgradeManager.pick(UpgradeManager.BOMB_RADIUS_MULT, "Bombardment")
 	camera = get_viewport().get_camera_3d()
 	
 	for child in get_children():

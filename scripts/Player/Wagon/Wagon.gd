@@ -32,6 +32,7 @@ var stored_metal: int = 0
 @onready var turret_slots_container: Node3D = $TurretSlots
 @export var bar_offset: Vector3 = Vector3(0, 1.5, 2)
 
+var energy_bar: HealthBarUI = null
 var slots_status: Dictionary = {}
 @onready var slot_owners: Array = _make_slots()
 
@@ -92,22 +93,40 @@ func _update_bar_position() -> void:
 	if health_bar.visible:
 		health_bar.position = camera.unproject_position(world_pos) - health_bar.size * 0.5
 
+func _slot_owner(slot: Node) -> Node:
+	var n: Node = slot.get_parent()
+	while n:
+		if n is Wagon or n == self:
+			return n
+		n = n.get_parent()
+	return self
+
 func _exit_tree() -> void:
 	if is_instance_valid(health_bar):
 		health_bar.queue_free()
+		energy_bar.queue_free()
 
-func place_turret_at_slot(target_slot: Node3D, turret_scene: PackedScene, cost: int) -> bool:
+func place_turret_at_slot(target_slot: Node3D, turret_scene: PackedScene, lvl: int = 1) -> bool:
 	if not slots_status.has(target_slot) or slots_status[target_slot] != null:
 		return false
 
-	if MetalManager.spend_metal(cost):
-		var turret_instance = turret_scene.instantiate()
-		target_slot.add_child(turret_instance)
-		turret_instance.position = Vector3.ZERO
-		turret_instance.rotation = Vector3.ZERO
-		slots_status[target_slot] = turret_instance
-		return true
-	return false
+	var t = turret_scene.instantiate()
+	var owner_node = _slot_owner(target_slot)
+	t.set_level(lvl)
+
+	if lvl > UpgradeManager.level(t.upgrade_key) \
+			or lvl > owner_node.free_energy() \
+			or not MetalManager.spend_metal(t.build_cost):
+		t.free()
+		return false
+
+	target_slot.add_child(t)
+	t.position = Vector3.ZERO
+	t.rotation = Vector3.ZERO
+	t.set_level(lvl)
+	slots_status[target_slot] = t
+	owner_node.update_energy_bar()
+	return true
 
 func demolish_turret_at_slot(target_slot: Node3D) -> void:
 	if not slots_status.has(target_slot) or slots_status[target_slot] == null:
@@ -125,6 +144,7 @@ func demolish_turret_at_slot(target_slot: Node3D) -> void:
 	
 	turret_instance.queue_free()
 	slots_status[target_slot] = null
+	_slot_owner(target_slot).call_deferred("update_energy_bar")
 
 func has_available_slot() -> bool:
 	for o in slot_owners:
@@ -149,12 +169,12 @@ func get_slot_z_offset(slot_index: int) -> float:
 		return slot_z_offsets[slot_index]
 	return 0.0
 
-func take_damage(amount: int) -> void:
+func take_damage(amount: int, penetration: float = 1.0) -> void:
 	if health <= 0:
 		return
-		
-	var armor_reduction: float = clamp(current_armor, 0, 100) / 100.0
-	var final_damage: float = max(1.0, float(amount) * (1.0 - armor_reduction))
+	var pen: float = UpgradeManager.armor_penetration_after_upgrade(penetration)
+	var final_damage: float = maxf(1.0, float(amount) * pen)   # 0.5 * 10 = 5
+	health -= final_damage
 	
 	health -= final_damage
 	
@@ -200,3 +220,19 @@ func has_any_turret() -> bool:
 			return true
 			
 	return false
+
+# energy VV
+
+func energy_capacity() -> int:
+	return UpgradeManager.transmission_power()
+
+func used_energy() -> int:
+	var total := 0
+	for slot in slots_status:
+		var t = slots_status[slot]
+		if is_instance_valid(t) and "turret_level" in t:
+			total += t.turret_level
+	return total
+
+func free_energy() -> int:
+	return energy_capacity() - used_energy()

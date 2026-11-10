@@ -19,6 +19,7 @@ var _burn_acc: float = 0.0
 @onready var fire_vfx: Node3D = $FireVFX if has_node("FireVFX") else null
 
 func _ready() -> void:
+	move_slow_ratio = UpgradeManager.pick(UpgradeManager.PITCH_SLOW, "Pitch")
 	add_to_group("pitch_puddles")
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)

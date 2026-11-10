@@ -30,6 +30,7 @@ extends Control
 @onready var btn_turret_4: Button = $RadialPanel/ButtonTurret4
 
 var current_slot: Node3D = null
+var selected_level: int = 1
 
 func _ready() -> void:
 	hide()
@@ -92,24 +93,27 @@ func _on_slot_clicked(slot_node: Node3D) -> void:
 		current_slot = slot_node
 		show()
 
-func _try_build(scene: PackedScene, cost: int) -> void:
+func _on_level_selected(lvl: int) -> void:
+	selected_level = lvl
+
+func _try_build(scene: PackedScene) -> void:
 	if not is_instance_valid(current_slot):
 		return
-	if train.place_turret_at_slot(current_slot, scene, cost):
+	if train.place_turret_at_slot(current_slot, scene, selected_level):
 		_play_build_sound()
 		hide()
 
 func _on_turret_1_selected() -> void:
-	_try_build(turret_1_scene, turret_1_cost)
+	_try_build(turret_1_scene)
 
 func _on_turret_2_selected() -> void:
-	_try_build(turret_2_scene, turret_2_cost)
+	_try_build(turret_2_scene)
 
 func _on_turret_3_selected() -> void:
-	_try_build(turret_3_scene, turret_3_cost)
+	_try_build(turret_3_scene)
 
 func _on_turret_4_selected() -> void:
-	_try_build(turret_4_scene, turret_4_cost)
+	_try_build(turret_4_scene)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if visible and event is InputEventMouseButton and event.pressed:

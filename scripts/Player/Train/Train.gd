@@ -57,6 +57,9 @@ var approaching_gate: bool = true
 		if is_instance_valid(health_bar):
 			health_bar.health = health
 		current_health = int(health)
+@export var wagon_scene: PackedScene
+
+var energy_bar: HealthBarUI = null
 
 func _ready() -> void:
 	GameProgress.current_level_id = level_id
@@ -122,6 +125,9 @@ func _update_bar_position() -> void:
 	health_bar.visible = not camera.is_position_behind(world_pos)
 	if health_bar.visible:
 		health_bar.position = camera.unproject_position(world_pos) - health_bar.size * 0.5
+	if is_instance_valid(energy_bar):
+		energy_bar.visible = health_bar.visible
+		energy_bar.position = health_bar.position + Vector2(0, health_bar.size.y + 2)
 
 func _setup_health_bars() -> void:
 	var hud_container = get_tree().current_scene.find_child("HealthBarsLayer", true, false)
@@ -150,6 +156,15 @@ func _setup_health_bars() -> void:
 func _prepare_bar(bar: Control) -> void:
 	bar.custom_minimum_size = bar_min_size
 	bar.size = bar_min_size
+
+func _make_energy_bar(owner_node: Node, layer: Control) -> void:
+	var bar: HealthBarUI = health_bar_scene.instantiate()
+	layer.add_child(bar)
+	_prepare_bar(bar)
+	bar.modulate = Color(0.887, 0.552, 0.0, 1.0)
+	bar.init_health(float(owner_node.energy_capacity()))
+	bar.health = float(owner_node.free_energy())
+	owner_node.energy_bar = bar
 
 func _physics_process(delta: float) -> void:	
 	if brake_vfx_cooldown_timer > 0.0:
@@ -195,6 +210,26 @@ func trigger_brake_vfx() -> void:
 
 func _clean_wagons_list() -> void:
 	wagons = wagons.filter(func(w): return is_instance_valid(w) and not w.is_queued_for_deletion())
+
+func _setup_wagon_count() -> void:
+	var wanted: int = UpgradeManager.wagon_limit() - 1
+	_update_wagons_list()
+
+	while wagons.size() > wanted:
+		var old: Wagon = wagons.pop_back()
+		remove_child(old)
+		old.queue_free()
+
+	while wagons.size() < wanted and wagon_scene:
+		var last: Node3D = wagons.back() if not wagons.is_empty() else self
+		var w: Wagon = wagon_scene.instantiate()
+		add_child(w)
+		w.name = "Wagon%d" % (wagons.size() + 1)
+		var dist: float = last.follow_distance if last is Wagon else 3.5
+		w.global_position = last.global_position + last.global_transform.basis.z * dist
+		wagons.append(w)
+
+	rearrange_wagons()
 
 func rearrange_wagons() -> void:
 	wagons = wagons.filter(func(w): return is_instance_valid(w) and not w.is_queued_for_deletion())
@@ -284,14 +319,18 @@ func place_turret_at_slot(target_slot: Node3D, turret_scene: PackedScene, cost: 
 	if not slots_status.has(target_slot) or slots_status[target_slot] != null:
 		return false
 
-	if MetalManager.spend_metal(cost):
-		var turret_instance = turret_scene.instantiate()
-		target_slot.add_child(turret_instance)
-		turret_instance.position = Vector3.ZERO
-		turret_instance.rotation = Vector3.ZERO
-		slots_status[target_slot] = turret_instance
-		return true
-	return false
+	var turret_instance = turret_scene.instantiate()
+	var lvl: int = turret_instance.turret_level if "turret_level" in turret_instance else 1
+
+	if lvl > free_energy() or not MetalManager.spend_metal(cost):
+		turret_instance.free()
+		return false
+
+	target_slot.add_child(turret_instance)
+	turret_instance.position = Vector3.ZERO
+	turret_instance.rotation = Vector3.ZERO
+	slots_status[target_slot] = turret_instance
+	return true
 
 func demolish_turret_at_slot(target_slot: Node3D) -> void:
 	if not slots_status.has(target_slot) or slots_status[target_slot] == null:
@@ -334,14 +373,11 @@ func _find_turret_in_slot(slot: Node) -> Node:
 				return sub_child
 	return null
 
-func take_damage(amount: int) -> void:
+func take_damage(amount: int, penetration: float = 1.0) -> void:
 	if health <= 0:
 		return
-	
-	var armor_reduction_percent: float = clamp(current_armor, 0, 100) / 100.0
-	var damage_multiplier: float = 1.0 - armor_reduction_percent
-	var final_damage: float = max(0.0, float(amount) * damage_multiplier)
-	
+	var pen: float = UpgradeManager.armor_penetration_after_upgrade(penetration)
+	var final_damage: float = maxf(1.0, float(amount) * pen)   # 0.5 * 10 = 5
 	health -= final_damage
 	
 	if health <= 0:
@@ -407,3 +443,22 @@ func brake_at_gate() -> void:
 		speed_lever.v_slider.value = 0.2
 		speed_lever.v_slider.editable = true
 		speed_lever.visible = true
+
+func energy_capacity() -> int:
+	return UpgradeManager.transmission_power()
+
+func used_energy() -> int:
+	var total := 0
+	if is_instance_valid(turret_slots_container):
+		for slot in turret_slots_container.get_children():
+			var t = _find_turret_in_slot(slot)
+			if is_instance_valid(t) and not t.is_queued_for_deletion() and "turret_level" in t:
+				total += t.turret_level
+	return total
+
+func free_energy() -> int:
+	return energy_capacity() - used_energy()
+
+func update_energy_bar() -> void:
+	if is_instance_valid(energy_bar):
+		energy_bar.health = float(free_energy())

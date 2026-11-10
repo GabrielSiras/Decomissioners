@@ -88,12 +88,15 @@ func _update_hud(upgrade_key: String, socket_group: StringName) -> void:
 			"Armor":
 				upgrade_name.text = "Armor"
 				upgrade_description.text = "Increases the Train's and wagons' armor damage reduction."
+				upgrade_description.text += "\n\n" + UpgradeManager.preview(upgrade_key)
 			"Magnetism":
 				upgrade_name.text = "Magnetism"
 				upgrade_description.text = "placeholder"
+				upgrade_description.text += "\n\n" + UpgradeManager.preview(upgrade_key)
 			"Transmission":
 				upgrade_name.text = "Transmission"
 				upgrade_description.text = "placeholder"
+				upgrade_description.text += "\n\n" + UpgradeManager.preview(upgrade_key)
 			"Wagons":
 				upgrade_name.text = "Wagons"
 				upgrade_description.text = "placeholder"
@@ -102,15 +105,19 @@ func _update_hud(upgrade_key: String, socket_group: StringName) -> void:
 			"Bombardment":
 				upgrade_name.text = "Bombardment"
 				upgrade_description.text = "Increases the damage of the Bombardment skill."
+				upgrade_description.text += "\n\n" + UpgradeManager.preview(upgrade_key)
 			"Repair":
 				upgrade_name.text = "Repair"
 				upgrade_description.text = "placeholder"
+				upgrade_description.text += "\n\n" + UpgradeManager.preview(upgrade_key)
 			"Pitch":
 				upgrade_name.text = "Pitch"
 				upgrade_description.text = "Increases the slow effect of the Pitch skill."
+				upgrade_description.text += "\n\n" + UpgradeManager.preview(upgrade_key)
 			"Supercharge":
 				upgrade_name.text = "Supercharge"
 				upgrade_description.text = "Increases the damage and attack speed buff of the Supercharge skill."
+				upgrade_description.text += "\n\n" + UpgradeManager.preview(upgrade_key)
 				
 			# Turrets:
 			"Machinegun":

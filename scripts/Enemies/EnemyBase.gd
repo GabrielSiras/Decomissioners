@@ -22,7 +22,7 @@ var _bar_world_offset: Vector3 = Vector3(0, 1.8, 0)
 @export var screen_offset_pixels: float = 64.0
 
 @onready var current_health: int = max_health
-
+@export var armor_penetration: float = 0.5
 var knockback_velocity: Vector3 = Vector3.ZERO
 @export var knockback_friction: float = 30.0
 
@@ -209,5 +209,5 @@ func take_damage_with_pen(amount: int, armor_pen: float) -> void:
 		die()
 
 func die() -> void:
-	MetalManager.add_metal(metal_reward)
+	MetalManager.add_metal(roundi(metal_reward * UpgradeManager.magnetism_mult()))
 	queue_free()

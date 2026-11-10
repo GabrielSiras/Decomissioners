@@ -73,6 +73,9 @@ func _raycast_select_wagon(screen_pos: Vector2) -> Node3D:
 	return null
 
 func _apply_supercharge_on_wagon(target: Node3D) -> bool:
+	var spd: float = UpgradeManager.pick(UpgradeManager.SUPER_ATK_SPEED, "Supercharge")
+	var dur: float = UpgradeManager.pick(UpgradeManager.SUPER_DURATION, "Supercharge")
+	target.apply_supercharge_to_turrets(damage_multiplier, spd, dur)
 	if not is_instance_valid(target):
 		return false
 

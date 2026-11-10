@@ -14,7 +14,14 @@ extends Node3D
 @onready var muzzle: Marker3D = $Muzzle
 @onready var shoot_timer: Timer = $ShootTimer
 
+
+@export var upgrade_key: String = "Machinegun"
+@export var level_models: Array[Node3D] = []
+@export var damage_per_level: Array[int] = [10, 25, 50]
+@export var fire_rate_per_level: Array[float] = [0.5, 0.4, 0.3]
+@export var cost_per_level: Array[int] = [50, 100, 200]
 var turret_level: int = 1
+
 var current_target: Node3D = null
 var enemies_in_range: Array[Node3D] = []
 
@@ -38,6 +45,7 @@ func _ready() -> void:
 	supercharge_timer.one_shot = true
 	supercharge_timer.timeout.connect(_on_supercharge_ended)
 	add_child(supercharge_timer)
+	set_level(turret_level)
 
 func _process(_delta: float) -> void:
 	enemies_in_range = enemies_in_range.filter(func(e): return is_instance_valid(e))
@@ -54,6 +62,20 @@ func _process(_delta: float) -> void:
 			shoot_timer.start()
 	else:
 		shoot_timer.stop()
+
+func set_level(lvl: int) -> void:
+	turret_level = clampi(lvl, 1, level_models.size())
+	var i := turret_level - 1
+	for m in level_models.size():
+		if is_instance_valid(level_models[m]):
+			level_models[m].visible = (m == i)
+	damage = damage_per_level[i]
+	fire_rate = fire_rate_per_level[i]
+	build_cost = cost_per_level[i]
+	base_damage = damage
+	base_fire_rate = fire_rate
+	if is_instance_valid(shoot_timer):
+		shoot_timer.wait_time = fire_rate
 
 func get_closest_enemy() -> Node3D:
 	var closest: Node3D = null
