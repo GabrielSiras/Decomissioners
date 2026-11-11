@@ -47,6 +47,8 @@
 [ext_resource type="PackedScene" uid="uid://be8hg483hedqw" path="res://scenes/VFX/PitchPuddleLeft.tscn" id="39_atckt"]
 [ext_resource type="ArrayMesh" uid="uid://t3lb1k1uvd30" path="res://assets/VFX Textures/PitchPuddle.obj" id="40_ihxfr"]
 [ext_resource type="PackedScene" uid="uid://c5qxjkarg4st8" path="res://scenes/VFX/PreassureBlastVFX.tscn" id="41_l64dw"]
+[ext_resource type="AudioStream" uid="uid://ma7spr0eraxc" path="res://assets/audios/SFX/UI/MetalClick/MetalClick.wav" id="49_gahfb"]
+[ext_resource type="PackedScene" uid="uid://cbfcat6wbb5fg" path="res://scenes/Player/PreGame.tscn" id="49_psyym"]
 
 [sub_resource type="Environment" id="Environment_ygjp1"]
 ambient_light_source = 3
@@ -345,6 +347,14 @@ metadata/_custom_type_script = "uid://dso8mes67pgwk"
 layout_mode = 2
 size_flags_horizontal = 4
 
+[node name="StartButton" type="Button" parent="HUD" unique_id=102632989 groups=["hide_on_end"]]
+offset_left = 281.0
+offset_top = 1171.0
+offset_right = 499.0
+offset_bottom = 1267.0
+theme_override_font_sizes/font_size = 64
+text = "START"
+
 [node name="Skills" type="CanvasLayer" parent="." unique_id=799799759 groups=["hide_on_end"]]
 
 [node name="BombardmentSkillButton" parent="Skills" unique_id=246414351 instance=ExtResource("26_6mika")]
@@ -402,5 +412,15 @@ transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, -337.17242)
 [node name="VFXPrewarmer" type="Node3D" parent="." unique_id=503405006]
 script = ExtResource("34_0hpgq")
 vfx_scenes = Array[PackedScene]([ExtResource("15_gwoqk"), ExtResource("35_rj7dc"), ExtResource("36_d5ctu"), ExtResource("37_bd1e1"), ExtResource("38_tqg33"), ExtResource("39_atckt"), SubResource("PackedScene_00cxa"), ExtResource("41_l64dw")])
+
+[node name="MetalClick" type="AudioStreamPlayer" parent="." unique_id=562471451]
+stream = ExtResource("49_gahfb")
+
+[node name="PreGame" parent="." unique_id=493743797 node_paths=PackedStringArray("train", "spawner", "speed_lever", "start_button", "click_sound") instance=ExtResource("49_psyym")]
+train = NodePath("../Player/TrainHead")
+spawner = NodePath("../EnemySpawner")
+speed_lever = NodePath("../HUD/SpeedLever")
+start_button = NodePath("../HUD/StartButton")
+click_sound = NodePath("../MetalClick")
 
 [connection signal="pressed" from="HUD/SettingsButton" to="HUD/SettingsButton" method="_on_button_pressed"]

@@ -58,7 +58,7 @@ var approaching_gate: bool = true
 			health_bar.health = health
 		current_health = int(health)
 @export var wagon_scene: PackedScene
-
+var pregame: bool = false
 var energy_bar: HealthBarUI = null
 
 func _ready() -> void:
@@ -174,7 +174,7 @@ func _physics_process(delta: float) -> void:
 	if brake_vfx_cooldown_timer > 0.0:
 		brake_vfx_cooldown_timer -= delta
 
-	var actual_speed = max(0.0, current_speed)
+	var actual_speed: float = 0.0 if pregame else max(0.0, current_speed)
 	velocity = -global_transform.basis.z * actual_speed
 	global_position += velocity * delta
 
@@ -182,9 +182,9 @@ func _physics_process(delta: float) -> void:
 		var visual_factor = clamp(current_speed / base_max_speed, 0.0, 1.0)
 		speed_lever.update_slider_visual(visual_factor)
 		
-	if global_position.distance_to(next_gate.global_position)-5 <= brake_distance * current_speed_factor and approaching_gate == true:
+	if not pregame and global_position.distance_to(next_gate.global_position) - 5 <= brake_distance * current_speed_factor and approaching_gate == true:
 		brake_at_gate()
-
+	
 	_update_progress()
 
 func get_z_range() -> Vector2:

@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cbfcat6wbb5fg"]
+
+[ext_resource type="Script" uid="uid://cgqmxd6n3rfqx" path="res://scripts/Player/PreGameController.gd" id="1_206ms"]
+
+[node name="PreGame" type="Node" unique_id=493743797]
+script = ExtResource("1_206ms")

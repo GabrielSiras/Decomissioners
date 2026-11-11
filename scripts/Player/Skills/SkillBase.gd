@@ -8,6 +8,7 @@ extends Button
 var is_on_cooldown: bool = false
 
 func _ready() -> void:
+	add_to_group("skill_buttons")
 	cooldown_timer.one_shot = true
 	cooldown_timer.wait_time = cooldown_time
 	cooldown_timer.timeout.connect(_on_cooldown_finished)

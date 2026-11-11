@@ -100,6 +100,12 @@ func _spawn(entry: SpawnEntry) -> void:
 	enemy.transform = t
 	get_parent().add_child(enemy)
 
+func start_spawning() -> void:
+	spawn_timer.start()
+
+func stop_spawning() -> void:
+	spawn_timer.stop()
+
 func _get_chunk_spawn_transform() -> Transform3D:
 	var train_z: float = 0.0
 	if is_instance_valid(terrain_manager) and is_instance_valid(terrain_manager.train):
