@@ -59,7 +59,6 @@ func _find_available_slot() -> void:
 func _get_active_target() -> Node3D:
 	return current_target_node if is_instance_valid(current_target_node) else target
 
-
 func _update_movement(active_target: Node3D) -> void:
 	if knockback_velocity.length() >= 2.0:
 		return

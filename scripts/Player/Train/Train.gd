@@ -35,7 +35,7 @@ var health_bar: HealthBarUI = null
 @export var brake_vfx_scene: PackedScene
 
 @export_category("Metal Storage")
-@export var metal_capacity: int = 300
+@export var metal_capacity: int = 1000
 @export var starting_metal: int = 300
 var stored_metal: int = 0
 
@@ -79,7 +79,7 @@ func _ready() -> void:
 		speed_lever.speed_changed.connect(_on_speed_changed)
 
 	start_position = global_position
-	_update_wagons_list()
+	_setup_wagon_count()
 	_setup_health_bars()
 	current_speed = max_speed * current_speed_factor
 	
@@ -377,9 +377,8 @@ func take_damage(amount: int, penetration: float = 1.0) -> void:
 	if health <= 0:
 		return
 	var pen: float = UpgradeManager.armor_penetration_after_upgrade(penetration)
-	var final_damage: float = maxf(1.0, float(amount) * pen)   # 0.5 * 10 = 5
+	var final_damage: float = maxf(1.0, float(amount) * pen)
 	health -= final_damage
-	
 	if health <= 0:
 		die()
 

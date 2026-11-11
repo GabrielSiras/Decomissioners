@@ -368,22 +368,18 @@ repair_skill_scene = ExtResource("33_hepgf")
 
 [node name="Player" type="Node3D" parent="." unique_id=163302227]
 
-[node name="TrainHead" parent="Player" unique_id=423923195 node_paths=PackedStringArray("wheel_markers", "checkpoint_indicator", "defeat_menu", "speed_lever", "progress_bar", "destination_node", "next_gate") instance=ExtResource("30_rxryt")]
+[node name="TrainHead" parent="Player" unique_id=423923195 node_paths=PackedStringArray("checkpoint_indicator", "defeat_menu", "speed_lever", "progress_bar", "destination_node", "next_gate") instance=ExtResource("30_rxryt")]
 max_health = 300
-wheel_markers = []
 checkpoint_indicator = NodePath("../../HUD/CheckpointIndicator")
 defeat_menu = NodePath("../../HUD/DefeatMenu")
 speed_lever = NodePath("../../HUD/SpeedLever")
 progress_bar = NodePath("../../HUD/TrainProgressBar")
 destination_node = NodePath("../../DestinationPoint")
 next_gate = NodePath("../../Gate")
+wagon_scene = ExtResource("31_jys65")
 
-[node name="Wagon" parent="Player/TrainHead" unique_id=659263558 instance=ExtResource("31_jys65")]
+[node name="Wagon1" parent="Player/TrainHead" unique_id=659263558 instance=ExtResource("31_jys65")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.084, 4.2603464)
-max_health = 200
-
-[node name="Wagon2" parent="Player/TrainHead" unique_id=1728178988 instance=ExtResource("31_jys65")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.084, 9.283)
 max_health = 200
 
 [node name="GameCamera" parent="Player" unique_id=1770089720 node_paths=PackedStringArray("target") instance=ExtResource("32_arkqm")]

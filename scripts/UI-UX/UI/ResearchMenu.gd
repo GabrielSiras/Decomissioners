@@ -16,35 +16,38 @@ extends Control
 
 var is_changing: bool = false
 
+const SOCKET_GROUPS := {
+	"Armor": "ArmorSockets",
+	"Artillery": "ArtillerySockets",
+	"Blast": "BlastSockets",
+	"Bombardment": "BombardmentSockets",
+	"Incendiary": "IncendiarySockets",
+	"Machinegun": "MachinegunSockets",
+	"Magnetism": "MagnetismSockets",
+	"Pitch": "PitchSockets",
+	"Repair": "RepairSockets",
+	"Supercharge": "SuperchargeSockets",
+	"Wagons": "WagonsSockets",
+	"Transmission": "TransmissionSockets",
+}
+
 func _ready() -> void:
 	points_label.text = str(UpgradeManager.research_points)
-	
+
 	get_tree().paused = false
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	
-	var upgrade_sockets: Array[Array]
-	upgrade_sockets.append(get_tree().get_nodes_in_group("ArmorSockets"))
-	upgrade_sockets.append(get_tree().get_nodes_in_group("MagnetismSockets"))
-	upgrade_sockets.append(get_tree().get_nodes_in_group("TransmissionSockets"))
-	upgrade_sockets.append(get_tree().get_nodes_in_group("WagonsSocket"))
-	upgrade_sockets.append(get_tree().get_nodes_in_group("BombardmentSockets"))
-	upgrade_sockets.append(get_tree().get_nodes_in_group("RepairSockets"))
-	upgrade_sockets.append(get_tree().get_nodes_in_group("PitchSockets"))
-	upgrade_sockets.append(get_tree().get_nodes_in_group("SuperchargeSockets"))
-	upgrade_sockets.append(get_tree().get_nodes_in_group("MachinegunSockets"))
-	upgrade_sockets.append(get_tree().get_nodes_in_group("ArtillerySockets"))
-	upgrade_sockets.append(get_tree().get_nodes_in_group("BlastSockets"))
-	upgrade_sockets.append(get_tree().get_nodes_in_group("IncendiarySockets"))
-	
-	var i = 0
-	for upgrade in UpgradeManager.upgrades:
-		var s = 0
-		var key_value = UpgradeManager.upgrades[upgrade]
-		while s < key_value["Level"]:
-			upgrade_sockets[i][s].button_pressed = true
-			s += 1
-		i += 1
-	
+
+	_restore_sockets()
+
+func _restore_sockets() -> void:
+	for key in UpgradeManager.upgrades:
+		var group_name: String = SOCKET_GROUPS.get(key, "")
+		var sockets: Array = get_tree().get_nodes_in_group(group_name)
+		var lvl: int = UpgradeManager.upgrades[key]["Level"]
+		if sockets.size() < lvl:
+			push_warning("ResearchMenu: grupo '%s' tem %d sockets, mas o nível é %d" % [group_name, sockets.size(), lvl])
+		for s in mini(lvl, sockets.size()):
+			sockets[s].button_pressed = true
 
 func _go_to(scene_path: String) -> void:
 	if is_changing:

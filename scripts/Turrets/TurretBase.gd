@@ -115,6 +115,7 @@ func apply_supercharge(damage_mult: float, speed_mult: float, duration: float) -
 		base_damage = damage
 		base_fire_rate = fire_rate
 		is_supercharged = true
+		
 
 	damage = int(base_damage * damage_mult)
 	var new_wait_time: float = max(0.05, base_fire_rate / speed_mult)
@@ -139,7 +140,7 @@ func _on_supercharge_ended() -> void:
 	damage = base_damage
 	fire_rate = base_fire_rate
 	shoot_timer.wait_time = base_fire_rate
-
+	
 	_set_incandescent_vfx(false)
 
 	if is_instance_valid(active_vfx_instance):

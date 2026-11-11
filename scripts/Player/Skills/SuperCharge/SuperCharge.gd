@@ -75,18 +75,17 @@ func _raycast_select_wagon(screen_pos: Vector2) -> Node3D:
 func _apply_supercharge_on_wagon(target: Node3D) -> bool:
 	var spd: float = UpgradeManager.pick(UpgradeManager.SUPER_ATK_SPEED, "Supercharge")
 	var dur: float = UpgradeManager.pick(UpgradeManager.SUPER_DURATION, "Supercharge")
-	target.apply_supercharge_to_turrets(damage_multiplier, spd, dur)
+	var dmg: float = UpgradeManager.pick(UpgradeManager.SUPER_DAMAGE_MULT, "Supercharge")
+	target.apply_supercharge_to_turrets(dmg, spd, dur)
 	if not is_instance_valid(target):
 		return false
 
 	if target.has_method("has_any_turret"):
 		if not target.has_any_turret():
-			print("O alvo '", target.name, "' não possui nenhuma torre construída!")
 			return false
 
 	if target.has_method("apply_supercharge_to_turrets"):
 		target.apply_supercharge_to_turrets(damage_multiplier, attack_speed_multiplier, duration)
-		print("Sobrecarga aplicada com sucesso em: ", target.name)
 		return true
 
 	return false

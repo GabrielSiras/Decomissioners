@@ -19,7 +19,7 @@ func launch(train_node: Node3D, start_pos: Vector3, extra: float, space: float, 
 	spacing = space
 	drop_duration = duration
 	global_position = start_pos
-	rotation.y = PI   # modelo com a frente em +Z; se voar de ré, apague esta linha
+	rotation.y = PI
 
 func _physics_process(delta: float) -> void:
 	var train_spd: float = train.current_speed if is_instance_valid(train) and "current_speed" in train else 8.0

@@ -33,7 +33,9 @@
 [ext_resource type="PackedScene" uid="uid://bo42gfpujkmpc" path="res://scenes/Player/Skills/BlackPitch/BlackPitchSkillButton.tscn" id="29_tubrp"]
 [ext_resource type="PackedScene" uid="uid://cika3a8mjdsiv" path="res://scenes/Player/Train/Train.tscn" id="30_06yrh"]
 [ext_resource type="PackedScene" uid="uid://b6kis3qguxedq" path="res://scenes/Player/Wagon/Wagon.tscn" id="31_1ytg8"]
+[ext_resource type="PackedScene" uid="uid://bboslj3bs8gj8" path="res://scenes/Player/Skills/Repair/RepairSkillButton.tscn" id="32_0b68w"]
 [ext_resource type="PackedScene" uid="uid://ccxbyhm6vro5u" path="res://scenes/GameCamera.tscn" id="32_1qny7"]
+[ext_resource type="PackedScene" uid="uid://d2tayfwtb0eco" path="res://scenes/Player/Skills/Repair/RepairSkill.tscn" id="33_ihiu8"]
 [ext_resource type="PackedScene" uid="uid://r635qxesdoa5" path="res://assets/models/Gate/Gate.glb" id="33_l8q2u"]
 [ext_resource type="Script" uid="uid://v4lwcwcnu7dg" path="res://scripts/VFX/VFXPrewarmer.gd" id="34_c8eai"]
 [ext_resource type="PackedScene" uid="uid://x2uj51mwckp5" path="res://scenes/VFX/ExplosionVFX.tscn" id="35_7jwx1"]
@@ -358,24 +360,28 @@ offset_top = 1070.0
 offset_right = 137.0
 offset_bottom = 1148.0
 
+[node name="RepairSkillButton" parent="Skills" unique_id=489350858 instance=ExtResource("32_0b68w")]
+offset_left = 50.0
+offset_top = 889.0
+offset_right = 138.0
+offset_bottom = 956.0
+repair_skill_scene = ExtResource("33_ihiu8")
+
 [node name="Player" type="Node3D" parent="." unique_id=163302227]
 
 [node name="TrainHead" parent="Player" unique_id=423923195 node_paths=PackedStringArray("wagons", "checkpoint_indicator", "defeat_menu", "speed_lever", "progress_bar", "destination_node", "next_gate") instance=ExtResource("30_06yrh")]
 max_health = 300
-wagons = [NodePath("Wagon"), NodePath("Wagon2")]
+wagons = [NodePath("Wagon1"), null]
 checkpoint_indicator = NodePath("../../HUD/CheckpointIndicator")
 defeat_menu = NodePath("../../HUD/DefeatMenu")
 speed_lever = NodePath("../../HUD/SpeedLever")
 progress_bar = NodePath("../../HUD/TrainProgressBar")
 destination_node = NodePath("../../DestinationPoint")
 next_gate = NodePath("../../Gate")
+wagon_scene = ExtResource("31_1ytg8")
 
-[node name="Wagon" parent="Player/TrainHead" unique_id=659263558 instance=ExtResource("31_1ytg8")]
+[node name="Wagon1" parent="Player/TrainHead" unique_id=659263558 instance=ExtResource("31_1ytg8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.084, 4.2603464)
-max_health = 200
-
-[node name="Wagon2" parent="Player/TrainHead" unique_id=1728178988 instance=ExtResource("31_1ytg8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.084, 9.283)
 max_health = 200
 
 [node name="GameCamera" parent="Player" unique_id=1770089720 node_paths=PackedStringArray("target") instance=ExtResource("32_1qny7")]

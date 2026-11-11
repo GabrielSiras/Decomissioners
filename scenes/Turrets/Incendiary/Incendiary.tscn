@@ -11,9 +11,12 @@ script = ExtResource("2_34g8i")
 cone_angle_degrees = 60.0
 flame_vfx = NodePath("FlamethrowerVFX")
 debuff_duration = 2.0
+cone_angle_per_level = Array[float]([60.0, 70.0, 80.0])
+debuff_duration_per_level = Array[float]([2.0, 2.5, 3.0])
 fire_rate = 0.2
 damage = 1
 projectile_scene = null
+upgrade_key = "Incendiary"
 
 [node name="FlamethrowerVFX" parent="." index="3" unique_id=134806838 instance=ExtResource("3_fs2uq")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)

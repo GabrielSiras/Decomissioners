@@ -18,4 +18,3 @@ func _on_button_pressed() -> void:
 	upgrade_bought.emit()
 	upgrade_sockets[UpgradeManager.upgrades[upgrade_key]["Level"]].button_pressed = true
 	UpgradeManager.upgrades[upgrade_key]["Level"] += 1
-	print(UpgradeManager.upgrades[upgrade_key]["Level"])

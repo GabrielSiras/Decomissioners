@@ -50,9 +50,9 @@ const PREVIEW := {
 }
 
 func _ready() -> void:
-	print("wagon_limit: ", UpgradeManager.wagon_limit())            # 2 no nível 0
-	print("energia: ", UpgradeManager.transmission_power())          # 5
-	print("magnetism: ", UpgradeManager.magnetism_mult())            # 1.0
+	print("wagon_limit: ", UpgradeManager.wagon_limit()) 
+	print("energia: ", UpgradeManager.transmission_power())
+	print("magnetism: ", UpgradeManager.magnetism_mult())
 	print("pen 0.5: ", UpgradeManager.armor_penetration_after_upgrade(0.5))
 	print(UpgradeManager.preview("Armor"))
 
@@ -63,9 +63,9 @@ func pick(arr: Array, key: String) -> float:
 	return arr[clampi(upgrades[key]["Level"], 0, arr.size() - 1)]
 
 # do train
-const ARMOR_PEN_REDUCTION := [0.0, 0.1, 0.2, 0.3]      # subtrai da penetração do inimigo
-const MAGNETISM_BONUS     := [0.0, 0.15, 0.30, 0.45]   # % extra de metal
-const TRANSMISSION_POWER  := [5, 6, 7, 8, 9] # energia por vagão
+const ARMOR_PEN_REDUCTION := [0.0, 0.1, 0.2, 0.3]
+const MAGNETISM_BONUS     := [0.0, 0.15, 0.30, 0.45]
+const TRANSMISSION_POWER  := [5, 6, 7, 8, 9]
 const WAGON_LIMIT         := [2, 3, 4, 5, 6]
 
 # skills
@@ -74,6 +74,7 @@ const BOMB_RADIUS_MULT := [1.0, 1.15, 1.3, 1.45]
 const PITCH_SLOW       := [0.4, 0.5, 0.6, 0.7]
 const SUPER_DURATION   := [5.0, 6.5, 8.0, 10.0]
 const SUPER_ATK_SPEED  := [1.3, 1.45, 1.6, 1.8]
+const SUPER_DAMAGE_MULT := [1.2, 1.5, 1.75, 2.0]
 const REPAIR_HEAL     := [30, 45, 60, 80]
 const REPAIR_COST     := [60, 50, 40, 30]
 const REPAIR_COOLDOWN := [20.0, 17.0, 14.0, 11.0]

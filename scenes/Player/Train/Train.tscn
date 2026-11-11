@@ -114,6 +114,8 @@ process_material = SubResource("ParticleProcessMaterial_pf61c")
 draw_pass_1 = ExtResource("6_f7wff")
 
 [node name="Area3D" type="Area3D" parent="LeftWindowMarker" unique_id=637231306]
+collision_layer = 2
+collision_mask = 8
 script = ExtResource("7_nyxcj")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LeftWindowMarker/Area3D" unique_id=1515584657]
@@ -135,6 +137,9 @@ process_material = SubResource("ParticleProcessMaterial_pf61c")
 draw_pass_1 = ExtResource("6_f7wff")
 
 [node name="Area3D" type="Area3D" parent="RightWindowMarker" unique_id=280156782]
+collision_layer = 32
+collision_mask = 8
+script = ExtResource("7_nyxcj")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RightWindowMarker/Area3D" unique_id=339871976]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7984824, -1.0293579, 8.898825)

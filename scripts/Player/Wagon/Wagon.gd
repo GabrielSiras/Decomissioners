@@ -104,7 +104,7 @@ func _slot_owner(slot: Node) -> Node:
 func _exit_tree() -> void:
 	if is_instance_valid(health_bar):
 		health_bar.queue_free()
-		energy_bar.queue_free()
+		#energy_bar.queue_free()
 
 func place_turret_at_slot(target_slot: Node3D, turret_scene: PackedScene, lvl: int = 1) -> bool:
 	if not slots_status.has(target_slot) or slots_status[target_slot] != null:
@@ -173,7 +173,7 @@ func take_damage(amount: int, penetration: float = 1.0) -> void:
 	if health <= 0:
 		return
 	var pen: float = UpgradeManager.armor_penetration_after_upgrade(penetration)
-	var final_damage: float = maxf(1.0, float(amount) * pen)   # 0.5 * 10 = 5
+	var final_damage: float = maxf(1.0, float(amount) * pen)
 	health -= final_damage
 	
 	health -= final_damage
@@ -181,9 +181,7 @@ func take_damage(amount: int, penetration: float = 1.0) -> void:
 	if health <= 0:
 		destroy_wagon()
 
-func destroy_wagon() -> void:
-	# aqui coloca os vfxs
-	
+func destroy_wagon() -> void:	
 	if is_instance_valid(train_head):
 		train_head.wagons.erase(self)
 		train_head.call_deferred("rearrange_wagons")
@@ -220,8 +218,6 @@ func has_any_turret() -> bool:
 			return true
 			
 	return false
-
-# energy VV
 
 func energy_capacity() -> int:
 	return UpgradeManager.transmission_power()
