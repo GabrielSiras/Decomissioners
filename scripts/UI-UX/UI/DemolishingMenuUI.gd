@@ -13,6 +13,7 @@ extends Control
 
 @onready var radial_panel: Control = $RadialPanel
 @onready var btn_demolish: Button = $RadialPanel/ButtonDemolish
+@onready var btn_upgrade: Button = $RadialPanel/ButtonUpgrade
 
 var current_slot: Node3D = null
 
@@ -25,6 +26,12 @@ func _ready() -> void:
 	btn_demolish.custom_minimum_size = Vector2(80, 50)
 	btn_demolish.size = btn_demolish.custom_minimum_size
 	btn_demolish.position = Vector2(-btn_demolish.size.x / 2.0, menu_offset_y)
+	
+	btn_upgrade.pressed.connect(_on_upgrade_selected)
+	btn_upgrade.set_anchors_preset(Control.PRESET_TOP_LEFT)
+	btn_upgrade.custom_minimum_size = Vector2(80, 50)
+	btn_upgrade.size = btn_upgrade.custom_minimum_size
+	btn_upgrade.position = Vector2(-btn_upgrade.size.x / 2.0, -menu_offset_y - btn_upgrade.size.y)
 	
 	if is_instance_valid(train):
 		if not train.is_node_ready():
@@ -68,19 +75,33 @@ func _on_slot_clicked(slot_node: Node3D) -> void:
 		hide()
 
 func _update_button_text() -> void:
-	if is_instance_valid(current_slot):
-		var turret = train.slots_status.get(current_slot)
-		if is_instance_valid(turret) and "build_cost" in turret:
-			var refund = int(turret.build_cost * 0.3)
-			btn_demolish.text = "Demolish turret? Refund: $" + str(refund)
-		else:
-			btn_demolish.text = "Demolish turret?"
+	if not is_instance_valid(current_slot):
+		return
+	var turret = train.slots_status.get(current_slot)
+	if is_instance_valid(turret) and "build_cost" in turret:
+		btn_demolish.text = "Demolish turret? Refund: $" + str(int(turret.build_cost * 0.3))
+	else:
+		btn_demolish.text = "Demolish turret?"
+
+	var st: Dictionary = train.get_upgrade_status(current_slot)
+	btn_upgrade.disabled = not st["can"]
+	if st["can"]:
+		btn_upgrade.text = "Upgrade $" + str(st["cost"])
+	else:
+		btn_upgrade.text = st["reason"] if st["reason"] != "" else "Upgrade"
 
 func _on_demolish_selected() -> void:
 	if is_instance_valid(current_slot):
 		train.demolish_turret_at_slot(current_slot)
 		_play_demolish_sound()
 		hide()
+
+func _on_upgrade_selected() -> void:
+	if not is_instance_valid(current_slot):
+		return
+	if train.upgrade_turret_at_slot(current_slot):
+		_play_demolish_sound() 
+		_update_button_text()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if visible and event is InputEventMouseButton and event.pressed:

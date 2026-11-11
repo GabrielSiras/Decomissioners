@@ -5,7 +5,7 @@ extends Node3D
 @onready var turret_slots_container: Node3D = $TurretSlots
 @export var max_speed: float = 8.0
 var health_bar: HealthBarUI = null
-@export var max_health: int = 200
+@export var max_health: int = 1500
 @onready var current_health: int = max_health
 @export var current_armor: int = 10
 @export var wagons: Array[Wagon] = []
@@ -144,6 +144,7 @@ func _setup_health_bars() -> void:
 		_prepare_bar(head_bar)
 		head_bar.init_health(float(max_health))
 		health_bar = head_bar
+		_make_energy_bar(self, hud_container)
 
 	for wagon in wagons:
 		if is_instance_valid(wagon) and health_bar_scene:
@@ -152,16 +153,19 @@ func _setup_health_bars() -> void:
 			_prepare_bar(wagon_bar)
 			wagon_bar.init_health(float(wagon.max_health))
 			wagon.health_bar = wagon_bar
+			_make_energy_bar(wagon, hud_container)
 
 func _prepare_bar(bar: Control) -> void:
 	bar.custom_minimum_size = bar_min_size
 	bar.size = bar_min_size
 
-func _make_energy_bar(owner_node: Node, layer: Control) -> void:
+func _make_energy_bar(owner_node: Node, layer: Node) -> void:
 	var bar: HealthBarUI = health_bar_scene.instantiate()
 	layer.add_child(bar)
 	_prepare_bar(bar)
-	bar.modulate = Color(0.887, 0.552, 0.0, 1.0)
+	bar.custom_minimum_size.y = 4
+	bar.size.y = 8
+	bar.modulate = Color(1.0, 0.208, 0.0, 1.0)
 	bar.init_health(float(owner_node.energy_capacity()))
 	bar.health = float(owner_node.free_energy())
 	owner_node.energy_bar = bar
@@ -315,6 +319,14 @@ func get_available_slots() -> Array[Marker3D]:
 			available.append(slot)
 	return available
 
+func _slot_owner(slot: Node) -> Node:
+	var n: Node = slot.get_parent()
+	while n:
+		if n is Wagon or n == self:
+			return n
+		n = n.get_parent()
+	return self
+
 func place_turret_at_slot(target_slot: Node3D, turret_scene: PackedScene, cost: int) -> bool:
 	if not slots_status.has(target_slot) or slots_status[target_slot] != null:
 		return false
@@ -330,6 +342,34 @@ func place_turret_at_slot(target_slot: Node3D, turret_scene: PackedScene, cost: 
 	turret_instance.position = Vector3.ZERO
 	turret_instance.rotation = Vector3.ZERO
 	slots_status[target_slot] = turret_instance
+	return true
+
+func get_upgrade_status(slot: Node3D) -> Dictionary:
+	var t = slots_status.get(slot)
+	if not is_instance_valid(t) or not t.has_method("set_level"):
+		return {"can": false, "reason": "", "cost": 0}
+
+	var cur: int = t.turret_level
+	var next: int = cur + 1
+	if next > t.level_models.size():
+		return {"can": false, "reason": "MAX", "cost": 0}
+	if next > UpgradeManager.level(t.upgrade_key):
+		return {"can": false, "reason": "Locked", "cost": 0}
+
+	var cost: int = maxi(0, t.cost_per_level[next - 1] - t.cost_per_level[cur - 1])
+	if _slot_owner(slot).free_energy() < 1:
+		return {"can": false, "reason": "No energy", "cost": cost}
+	if MetalManager.get_metal() < cost:
+		return {"can": false, "reason": "No metal", "cost": cost}
+	return {"can": true, "reason": "", "cost": cost}
+
+func upgrade_turret_at_slot(slot: Node3D) -> bool:
+	var st: Dictionary = get_upgrade_status(slot)
+	if not st["can"] or not MetalManager.spend_metal(st["cost"]):
+		return false
+	var t = slots_status[slot]
+	t.set_level(t.turret_level + 1)
+	_slot_owner(slot).update_energy_bar()
 	return true
 
 func demolish_turret_at_slot(target_slot: Node3D) -> void:

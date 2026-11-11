@@ -12,9 +12,10 @@ script = ExtResource("2_275pc")
 scan_interval = 0.5
 alternate_fire = true
 attack_range = 40.0
-ranged_damage = 5
+attack_cooldown = 4.0
+ranged_damage = 120
 max_health = 300
-metal_reward = 100
+metal_reward = 50
 
 [node name="Model3D" parent="." index="0" unique_id=715176889 instance=ExtResource("2_ddjdu")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)

@@ -7,23 +7,27 @@ extends TurretBase
 @export var push_straight_forward: bool = true
 @export var blast_vfx_scene: PackedScene
 
-@export_category("Configurações de Atordoamento")
-@export_range(0.0, 1.0) var stun_chance: float = 0.1
-@export var stun_duration: float = 1.5
+@export_category("Atordoamento (valores atuais, definidos pelo nível)")
+@export_range(0.0, 1.0) var stun_chance: float = 0.3
+@export var stun_duration: float = 1.0
 
-##Lvl 1, Lvl 2, Lvl 3
-var level_data: Dictionary = {
-	1: {"stun_chance": 30.0, "stun_duration": 1.0, "cooldown": 5.0, "spread_area": 0},
-	2: {"stun_chance": 40.0, "stun_duration": 1.5, "cooldown": 4.0, "spread_area": 0},
-	3: {"stun_chance": 50.0, "stun_duration": 2.0, "cooldown": 3.0, "spread_area": 0}
-}
+@export_category("Dados por Nível (índice 0 = T1)")
+@export var stun_chance_per_level: Array[float] = [0.30, 0.40, 0.50]
+@export var stun_duration_per_level: Array[float] = [1.0, 1.5, 2.0]
+@export var push_force_per_level: Array[float] = [10.0, 14.0, 18.0]
 
 func _ready() -> void:
 	super._ready()
-	#apply_level_stats(current_level)
-	
+
 	if has_node("Model3D"):
 		$Model3D.rotate_y(PI)
+
+func set_level(lvl: int) -> void:
+	super.set_level(lvl)
+	var i: int = turret_level - 1
+	stun_chance = stun_chance_per_level[mini(i, stun_chance_per_level.size() - 1)]
+	stun_duration = stun_duration_per_level[mini(i, stun_duration_per_level.size() - 1)]
+	push_force = push_force_per_level[mini(i, push_force_per_level.size() - 1)]
 
 func shoot() -> void:
 	var forward_dir: Vector3 = -global_transform.basis.z
@@ -49,30 +53,26 @@ func shoot() -> void:
 		var diff: Vector3 = target_node.global_position - global_position
 		diff.y = 0.0
 		var distance: float = diff.length()
-
 		var dir_to_enemy: Vector3 = diff.normalized() if distance > 0.001 else forward_dir
-		
-		var angle_rad: float = forward_dir.angle_to(dir_to_enemy)
-		var angle_deg: float = rad_to_deg(angle_rad)
 
-		if angle_deg <= (arc_angle_degrees / 2.0):
-			var final_push_dir: Vector3 = forward_dir if push_straight_forward else dir_to_enemy
+		var angle_deg: float = rad_to_deg(forward_dir.angle_to(dir_to_enemy))
+		if angle_deg > arc_angle_degrees / 2.0:
+			continue
 
-			target_node.apply_knockback(final_push_dir * push_force)
+		var final_push_dir: Vector3 = forward_dir if push_straight_forward else dir_to_enemy
+		target_node.apply_knockback(final_push_dir * push_force)
 
-			if randf() <= stun_chance:
-				if target_node.has_method("apply_stun"):
-					target_node.apply_stun(stun_duration)
+		if randf() <= stun_chance and target_node.has_method("apply_stun"):
+			target_node.apply_stun(stun_duration)
 
-			if target_node.has_method("take_damage") and damage > 0:
+		if damage > 0:
+			if target_node.has_method("take_damage_with_pen"):
+				target_node.take_damage_with_pen(damage, penetration)
+			elif target_node.has_method("take_damage"):
 				target_node.take_damage(damage)
 
 func _play_blast_vfx() -> void:
 	if blast_vfx_scene:
 		var vfx = blast_vfx_scene.instantiate()
 		get_parent().add_child(vfx)
-		
-		if is_instance_valid(muzzle):
-			vfx.global_transform = muzzle.global_transform
-		else:
-			vfx.global_transform = global_transform
+		vfx.global_transform = muzzle.global_transform if is_instance_valid(muzzle) else global_transform

@@ -22,14 +22,17 @@ overshoot_front = 25.0
 overshoot_tail = 15.0
 line_lookahead = 12.0
 fire_range = 16.0
-burst_count = 3
-fire_rate = 0.2
+burst_count = 1
+fire_rate = 1.0
 switch_time_min = 3.0
 switch_time_max = 6.0
 separation_radius = 5.0
 separation_strength = 10.0
 attack_range = 12.0
-ranged_damage = 5
+attack_cooldown = 0.5
+ranged_damage = 15
+max_health = 250
+metal_reward = 40
 
 [node name="Model3D" parent="." index="0" unique_id=172292072 instance=ExtResource("1_cga4l")]
 

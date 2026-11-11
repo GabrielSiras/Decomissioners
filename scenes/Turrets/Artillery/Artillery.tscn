@@ -4,14 +4,33 @@
 [ext_resource type="Script" uid="uid://closdnspatm1w" path="res://scripts/Turrets/Artillery/Artillery.gd" id="2_1poxa"]
 [ext_resource type="PackedScene" uid="uid://dt0dq4m0aoir" path="res://scenes/Turrets/Artillery/ArilleryShell.tscn" id="3_1t0n3"]
 [ext_resource type="PackedScene" uid="uid://csnyfsqmykvk" path="res://assets/models/Turrets/ART1.glb" id="4_jg5b4"]
+[ext_resource type="PackedScene" uid="uid://dhsv3d82fewxw" path="res://assets/models/Turrets/ART2.glb" id="5_rxnhn"]
+[ext_resource type="PackedScene" uid="uid://bce78iy3t2sq0" path="res://assets/models/Turrets/ART3.glb" id="6_4afvb"]
 
-[node name="Artillery" unique_id=90108018 instance=ExtResource("1_7woeq")]
+[node name="Artillery" unique_id=90108018 node_paths=PackedStringArray("level_models") instance=ExtResource("1_7woeq")]
 script = ExtResource("2_1poxa")
-current_level = 1
-aoe_radius = 5.0
+aoe_radius = 2.5
 shell_scene = ExtResource("3_1t0n3")
-flying_group_name = "flying"
+aoe_radius_per_level = Array[float]([2.5, 3.0, 3.5])
 fire_rate = 5.0
 projectile_scene = null
+upgrade_key = "Artillery"
+level_models = [NodePath("ModelT1"), NodePath("ModelT2"), NodePath("ModelT3")]
+damage_per_level = Array[int]([150, 200, 240])
+fire_rate_per_level = Array[float]([5.0, 4.0, 3.0])
+cost_per_level = Array[int]([90, 150, 200])
+penetration_per_level = Array[float]([0.3, 0.4, 0.5])
 
-[node name="Model3D" parent="." index="3" unique_id=1339852201 instance=ExtResource("4_jg5b4")]
+[node name="ModelT1" type="Node3D" parent="." index="3" unique_id=319322221]
+
+[node name="ART1" parent="ModelT1" index="0" unique_id=347513125 instance=ExtResource("4_jg5b4")]
+
+[node name="ModelT2" type="Node3D" parent="." index="4" unique_id=59179099]
+visible = false
+
+[node name="ART2" parent="ModelT2" index="0" unique_id=1907910903 instance=ExtResource("5_rxnhn")]
+
+[node name="ModelT3" type="Node3D" parent="." index="5" unique_id=2064370235]
+visible = false
+
+[node name="ART3" parent="ModelT3" index="0" unique_id=9531583 instance=ExtResource("6_4afvb")]

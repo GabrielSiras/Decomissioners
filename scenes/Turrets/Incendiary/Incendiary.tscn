@@ -4,9 +4,10 @@
 [ext_resource type="Script" uid="uid://6olt1jyvfdkf" path="res://scripts/Turrets/Incendiary/Incendiary.gd" id="2_34g8i"]
 [ext_resource type="PackedScene" uid="uid://ca821bnynwdh4" path="res://scenes/VFX/FlamethrowerVFX.tscn" id="3_fs2uq"]
 [ext_resource type="PackedScene" uid="uid://dux0bem7m0s6u" path="res://assets/models/Turrets/INC1.glb" id="4_8eb4h"]
-[ext_resource type="PackedScene" uid="uid://cg4kvaldnrav4" path="res://scenes/VFX/OverchargeVFX.tscn" id="5_2dmu6"]
+[ext_resource type="PackedScene" uid="uid://byumskak131gf" path="res://assets/models/Turrets/INC2.glb" id="5_2emrk"]
+[ext_resource type="PackedScene" uid="uid://dpa4btawpqyab" path="res://assets/models/Turrets/INC3.glb" id="6_p7xn5"]
 
-[node name="Incendiary" unique_id=90108018 node_paths=PackedStringArray("flame_vfx") instance=ExtResource("1_jcsav")]
+[node name="Incendiary" unique_id=90108018 node_paths=PackedStringArray("flame_vfx", "level_models") instance=ExtResource("1_jcsav")]
 script = ExtResource("2_34g8i")
 cone_angle_degrees = 60.0
 flame_vfx = NodePath("FlamethrowerVFX")
@@ -17,11 +18,28 @@ fire_rate = 0.2
 damage = 1
 projectile_scene = null
 upgrade_key = "Incendiary"
+level_models = [NodePath("ModelT1"), NodePath("ModelT2"), NodePath("ModelT3")]
+damage_per_level = Array[int]([1, 2, 3])
+fire_rate_per_level = Array[float]([0.0, 0.0, 0.0])
+cost_per_level = Array[int]([80, 130, 180])
+penetration_per_level = Array[float]([1.0, 1.0, 1.0])
 
 [node name="FlamethrowerVFX" parent="." index="3" unique_id=134806838 instance=ExtResource("3_fs2uq")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 
-[node name="Model3D" parent="." index="4" unique_id=1750084372 instance=ExtResource("4_8eb4h")]
+[node name="ModelT1" type="Node3D" parent="." index="4" unique_id=1398170845]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
 
-[node name="Node3D" parent="." index="5" unique_id=1334931082 instance=ExtResource("5_2dmu6")]
+[node name="INC1" parent="ModelT1" index="0" unique_id=1297850422 instance=ExtResource("4_8eb4h")]
+
+[node name="ModelT2" type="Node3D" parent="." index="5" unique_id=1524677683]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
 visible = false
+
+[node name="INC2" parent="ModelT2" index="0" unique_id=164522661 instance=ExtResource("5_2emrk")]
+
+[node name="ModelT3" type="Node3D" parent="." index="6" unique_id=1808071275]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
+visible = false
+
+[node name="INC3" parent="ModelT3" index="0" unique_id=1067534272 instance=ExtResource("6_p7xn5")]

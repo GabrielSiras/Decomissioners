@@ -2,7 +2,7 @@ class_name Wagon
 extends Node3D
 
 @export_category("Wagon Stats")
-@export var max_health: int = 100
+@export var max_health: int = 800
 @export var current_armor: int = 0
 @onready var current_health: int = max_health
 @export var health_bar_scene: PackedScene
@@ -92,6 +92,9 @@ func _update_bar_position() -> void:
 	health_bar.visible = not camera.is_position_behind(world_pos)
 	if health_bar.visible:
 		health_bar.position = camera.unproject_position(world_pos) - health_bar.size * 0.5
+	if is_instance_valid(energy_bar):
+		energy_bar.visible = health_bar.visible
+		energy_bar.position = health_bar.position + Vector2(0, health_bar.size.y + 2)
 
 func _slot_owner(slot: Node) -> Node:
 	var n: Node = slot.get_parent()
@@ -104,7 +107,8 @@ func _slot_owner(slot: Node) -> Node:
 func _exit_tree() -> void:
 	if is_instance_valid(health_bar):
 		health_bar.queue_free()
-		#energy_bar.queue_free()
+	if is_instance_valid(energy_bar):
+		energy_bar.queue_free()
 
 func place_turret_at_slot(target_slot: Node3D, turret_scene: PackedScene, lvl: int = 1) -> bool:
 	if not slots_status.has(target_slot) or slots_status[target_slot] != null:
@@ -176,8 +180,6 @@ func take_damage(amount: int, penetration: float = 1.0) -> void:
 	var final_damage: float = maxf(1.0, float(amount) * pen)
 	health -= final_damage
 	
-	health -= final_damage
-	
 	if health <= 0:
 		destroy_wagon()
 
@@ -224,11 +226,16 @@ func energy_capacity() -> int:
 
 func used_energy() -> int:
 	var total := 0
-	for slot in slots_status:
-		var t = slots_status[slot]
-		if is_instance_valid(t) and "turret_level" in t:
-			total += t.turret_level
+	if is_instance_valid(turret_slots_container):
+		for slot in turret_slots_container.get_children():
+			var t = _find_turret_in_slot(slot)
+			if is_instance_valid(t) and not t.is_queued_for_deletion() and "turret_level" in t:
+				total += t.turret_level
 	return total
 
 func free_energy() -> int:
 	return energy_capacity() - used_energy()
+
+func update_energy_bar() -> void:
+	if is_instance_valid(energy_bar):
+		energy_bar.health = float(free_energy())

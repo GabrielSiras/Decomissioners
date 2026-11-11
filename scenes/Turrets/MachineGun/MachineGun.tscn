@@ -3,10 +3,27 @@
 [ext_resource type="PackedScene" uid="uid://bh4nxhtcknybg" path="res://scenes/Turrets/TurretBase.tscn" id="1_yfucs"]
 [ext_resource type="Script" uid="uid://djccrgmald5ns" path="res://scripts/Turrets/MachineGun/MachineGun.gd" id="2_budth"]
 [ext_resource type="PackedScene" uid="uid://j5hf1m42s8gn" path="res://assets/models/Turrets/MAC1.glb" id="3_1qmuy"]
+[ext_resource type="PackedScene" uid="uid://c82tnhx2xwows" path="res://assets/models/Turrets/MAC2.glb" id="4_wgg0j"]
+[ext_resource type="PackedScene" uid="uid://cj46rbakk0q80" path="res://assets/models/Turrets/MAC3.glb" id="5_tf7e4"]
 
-[node name="MachineGunTurret" unique_id=90108018 instance=ExtResource("1_yfucs")]
+[node name="MachineGunTurret" unique_id=90108018 node_paths=PackedStringArray("level_models") instance=ExtResource("1_yfucs")]
 script = ExtResource("2_budth")
 fire_rate = 0.2
 damage = 2
+level_models = [NodePath("ModelT1"), NodePath("ModelT2"), NodePath("ModelT3")]
+damage_per_level = Array[int]([2, 3, 4])
+fire_rate_per_level = Array[float]([0.2, 0.15, 0.1])
 
-[node name="Model3D" parent="." index="3" unique_id=1537201245 instance=ExtResource("3_1qmuy")]
+[node name="ModelT1" type="Node3D" parent="." index="3" unique_id=484184655]
+
+[node name="MAC1" parent="ModelT1" index="0" unique_id=321608654 instance=ExtResource("3_1qmuy")]
+
+[node name="ModelT2" type="Node3D" parent="." index="4" unique_id=695450968]
+visible = false
+
+[node name="MAC2" parent="ModelT2" index="0" unique_id=1980683964 instance=ExtResource("4_wgg0j")]
+
+[node name="ModelT3" type="Node3D" parent="." index="5" unique_id=1857297957]
+visible = false
+
+[node name="MAC3" parent="ModelT3" index="0" unique_id=191545169 instance=ExtResource("5_tf7e4")]

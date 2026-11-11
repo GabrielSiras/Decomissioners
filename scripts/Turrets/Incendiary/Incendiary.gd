@@ -60,10 +60,10 @@ func shoot() -> void:
 		if angle_deg > half_cone:
 			continue
 
-		if enemy.has_method("take_damage"):
+		if enemy.has_method("take_damage_with_pen"):
+			enemy.take_damage_with_pen(damage, penetration)
+		elif enemy.has_method("take_damage"):
 			enemy.take_damage(damage)
-		if enemy.has_method("apply_armor_debuff"):
-			enemy.apply_armor_debuff(debuff_duration)
 
 		for z in zones:
 			if z is PitchZone and z.active and z.inside.has(enemy):

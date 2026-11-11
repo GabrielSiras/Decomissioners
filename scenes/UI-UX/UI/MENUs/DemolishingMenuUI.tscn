@@ -19,5 +19,11 @@ offset_right = 8.0
 offset_bottom = 8.0
 text = "Sell?"
 
+[node name="ButtonUpgrade" type="Button" parent="RadialPanel" unique_id=1429404582]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "UPGRADE TURRET"
+
 [node name="DemolishSound" type="AudioStreamPlayer" parent="." unique_id=1371521462]
 stream = ExtResource("2_4lwce")

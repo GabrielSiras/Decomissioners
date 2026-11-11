@@ -19,7 +19,10 @@ attack_distance_threshold = 2.5
 stop_attack_distance_threshold = 4.0
 rotation_speed = 12.0
 mesh_y_offset_deg = 0.0
-attack_cooldown = 1.2
+attack_cooldown = 0.2
+ranged_damage = 2
+max_health = 80
+current_armor = 0
 
 [node name="CollisionShape3D" parent="." index="0" unique_id=1838556396]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.58809996, -0.14689255)

@@ -17,11 +17,15 @@ extends Node3D
 
 @export var upgrade_key: String = "Machinegun"
 @export var level_models: Array[Node3D] = []
+
+@export_category("Per Level")
 @export var damage_per_level: Array[int] = [10, 25, 50]
 @export var fire_rate_per_level: Array[float] = [0.5, 0.4, 0.3]
 @export var cost_per_level: Array[int] = [50, 100, 200]
-var turret_level: int = 1
+@export var penetration_per_level: Array[float] = [0.10, 0.15, 0.20]
 
+var turret_level: int = 1
+var penetration: float = 0.0
 var current_target: Node3D = null
 var enemies_in_range: Array[Node3D] = []
 
@@ -74,6 +78,7 @@ func set_level(lvl: int) -> void:
 	build_cost = cost_per_level[i]
 	base_damage = damage
 	base_fire_rate = fire_rate
+	penetration = penetration_per_level[mini(i, penetration_per_level.size() - 1)]
 	if is_instance_valid(shoot_timer):
 		shoot_timer.wait_time = fire_rate
 
@@ -101,6 +106,8 @@ func shoot() -> void:
 		
 		if projectile.has_method("setup"):
 			projectile.setup(current_target, damage)
+		if "armor_pen" in projectile:
+			projectile.armor_pen = penetration
 
 func _on_range_area_body_entered(body: Node3D) -> void:
 	if body.is_in_group("enemies"):

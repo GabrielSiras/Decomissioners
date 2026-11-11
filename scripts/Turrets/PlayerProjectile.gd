@@ -7,6 +7,7 @@ extends Area3D
 var target_node: Node3D = null
 var damage_amount: int = 2
 var direction: Vector3 = Vector3.ZERO
+var armor_pen: float = 0.0
 
 func _ready() -> void:
 	body_entered.connect(_on_body_entered)
@@ -27,6 +28,9 @@ func _physics_process(delta: float) -> void:
 	global_position += direction * speed * delta
 
 func _on_body_entered(body: Node3D) -> void:
-	if body.has_method("take_damage"):
+	if body.has_method("take_damage_with_pen"):
+		body.take_damage_with_pen(damage_amount, armor_pen)
+		queue_free()
+	elif body.has_method("take_damage"):
 		body.take_damage(damage_amount)
 		queue_free()

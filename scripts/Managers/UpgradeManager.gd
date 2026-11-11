@@ -49,13 +49,6 @@ const PREVIEW := {
 					 {"label": "Cooldown", "arr": REPAIR_COOLDOWN, "mult": 1.0, "suffix": "s"}],
 }
 
-func _ready() -> void:
-	print("wagon_limit: ", UpgradeManager.wagon_limit()) 
-	print("energia: ", UpgradeManager.transmission_power())
-	print("magnetism: ", UpgradeManager.magnetism_mult())
-	print("pen 0.5: ", UpgradeManager.armor_penetration_after_upgrade(0.5))
-	print(UpgradeManager.preview("Armor"))
-
 func level(key: String) -> int:
 	return upgrades[key]["Level"]
 
