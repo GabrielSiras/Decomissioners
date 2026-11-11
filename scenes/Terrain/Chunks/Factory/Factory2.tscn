@@ -1,14 +1,18 @@
 [gd_scene format=3 uid="uid://knbsvydvyrn3"]
 
 [ext_resource type="PackedScene" uid="uid://co0873avr2nj8" path="res://scenes/Terrain/Chunks/ChunkBase.tscn" id="1_hm40m"]
-[ext_resource type="PackedScene" uid="uid://d2nv5j6ise6hb" path="res://assets/models/Terrain/OUT2terreno.glb" id="2_y6r0u"]
-[ext_resource type="PackedScene" uid="uid://2mlal7jqwqwv" path="res://assets/models/Terrain/terrain2.glb" id="3_gt2na"]
+[ext_resource type="PackedScene" uid="uid://b84f25g6wk51g" path="res://assets/models/Terrain/UPDATED/Meio-Fabrica-2.glb" id="2_gt2na"]
+[ext_resource type="PackedScene" uid="uid://dy3wg3slwlakj" path="res://assets/models/Terrain/UPDATED/Fora-Fabrica-2.glb" id="3_k14uo"]
+[ext_resource type="PackedScene" uid="uid://c7g85v6b7euke" path="res://assets/models/Terrain/UPDATED/Fora-Fabrica-3.glb" id="4_1726t"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3dx6c"]
 albedo_color = Color(0.30394292, 0.30394292, 0.30394292, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qmg03"]
 size = Vector3(50.004517, 1, 8.97998)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kn43s"]
+size = Vector3(49.999664, 1, 5.0057373)
 
 [node name="ChunkBase" unique_id=528281881 instance=ExtResource("1_hm40m")]
 
@@ -22,21 +26,32 @@ visible = false
 [node name="Right" parent="." index="3" unique_id=931049434]
 visible = false
 
-[node name="Left2" parent="." index="4" unique_id=1011026248 instance=ExtResource("2_y6r0u")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -7, 0, 0)
+[node name="Meio-Fabrica-2" parent="." index="4" unique_id=1556569480 instance=ExtResource("2_gt2na")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Left2" index="2" unique_id=1396762487]
+[node name="StaticBody3D" type="StaticBody3D" parent="Meio-Fabrica-2" index="26" unique_id=1713380546]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 
-[node name="Right2" parent="." index="5" unique_id=1073124065 instance=ExtResource("2_y6r0u")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 7, 0, 0)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Right2" index="2" unique_id=775274308]
-
-[node name="Middle2" parent="." index="6" unique_id=898298638 instance=ExtResource("3_gt2na")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Middle2" index="3" unique_id=1713380546]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Middle2/StaticBody3D" index="0" unique_id=2141600609]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Meio-Fabrica-2/StaticBody3D" index="0" unique_id=2141600609]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.10354e-05, 0, -0.0057373047)
 shape = SubResource("BoxShape3D_qmg03")
+
+[node name="Fora-Fabrica-2" parent="." index="5" unique_id=730339773 instance=ExtResource("3_k14uo")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 9, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Fora-Fabrica-2" index="51" unique_id=775274308]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.742279e-08, 0, -2)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Fora-Fabrica-2/StaticBody3D" index="0" unique_id=1318940117]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0006256103, 0, 0.0014038086)
+shape = SubResource("BoxShape3D_kn43s")
+
+[node name="Fora-Fabrica-3" parent="." index="6" unique_id=476088408 instance=ExtResource("4_1726t")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -9, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Fora-Fabrica-3" index="64" unique_id=1396762487]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.742279e-08, 0, -2)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Fora-Fabrica-3/StaticBody3D" index="0" unique_id=1787131890]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0006256103, 0, 0.0014038086)
+shape = SubResource("BoxShape3D_kn43s")

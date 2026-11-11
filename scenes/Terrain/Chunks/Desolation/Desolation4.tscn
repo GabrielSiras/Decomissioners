@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://cxvllm15kpea"]
+
+[ext_resource type="PackedScene" uid="uid://co0873avr2nj8" path="res://scenes/Terrain/Chunks/ChunkBase.tscn" id="1_5kqda"]
+[ext_resource type="PackedScene" uid="uid://doatimno0umxa" path="res://assets/models/Terrain/UPDATED/Fora-Desolação-4.glb" id="2_5kqda"]
+[ext_resource type="PackedScene" uid="uid://dqiwlri6yk22k" path="res://assets/models/Terrain/UPDATED/Meio-Desolação-4.glb" id="3_f0pxd"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kf3da"]
+albedo_color = Color(0.64705884, 0.5254902, 0.38431373, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ykh0f"]
+size = Vector3(5, 0.99575424, 50.004883)
+
+[node name="Desolation1" unique_id=528281881 instance=ExtResource("1_5kqda")]
+
+[node name="Middle" parent="." index="0" unique_id=55557733]
+visible = false
+material = SubResource("StandardMaterial3D_kf3da")
+
+[node name="Left" parent="." index="2" unique_id=927662262]
+visible = false
+
+[node name="Right" parent="." index="3" unique_id=931049434]
+visible = false
+
+[node name="D4 EXT - LEFT" parent="." index="4" unique_id=100231936 instance=ExtResource("2_5kqda")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 9, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="D4 EXT - LEFT" index="20" unique_id=670337584]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -1.7484558e-07, 0.005, 4)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="D4 EXT - LEFT/StaticBody3D" index="0" unique_id=1446491170]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.99724, -0.0005264329, -0.0017089844)
+shape = SubResource("BoxShape3D_ykh0f")
+
+[node name="D4 EXT - RIGHT" parent="." index="5" unique_id=1451493888 instance=ExtResource("2_5kqda")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -9, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="D4 EXT - RIGHT" index="20" unique_id=76587130]
+transform = Transform3D(-4.371138e-08, 0, -1, 0, 1, 0, 1, 0, -4.371138e-08, -3.496911e-07, 0.005, 4)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="D4 EXT - RIGHT/StaticBody3D" index="0" unique_id=825614272]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.0045643, -0.0005264329, -0.0017089845)
+shape = SubResource("BoxShape3D_ykh0f")
+
+[node name="D4 MID" parent="." index="6" unique_id=608234700 instance=ExtResource("3_f0pxd")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="D4 MID" index="14" unique_id=288278018]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2.6226832e-07, 0.005, -6)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="D4 MID/StaticBody3D" index="0" unique_id=365236772]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.0005026, -0.0018215226, -0.0017089844)
+shape = SubResource("BoxShape3D_ykh0f")

@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://0kx187tvp3xu"]
+
+[ext_resource type="PackedScene" uid="uid://co0873avr2nj8" path="res://scenes/Terrain/Chunks/ChunkBase.tscn" id="1_8xam8"]
+[ext_resource type="PackedScene" uid="uid://cloxp7snx0cn3" path="res://assets/models/Terrain/UPDATED/Meio-Fabrica-3.glb" id="2_uamif"]
+[ext_resource type="PackedScene" uid="uid://nq553a1jjuyo" path="res://assets/models/Terrain/UPDATED/Fora-Fabrica-1.glb" id="3_5nfn5"]
+[ext_resource type="PackedScene" uid="uid://c7g85v6b7euke" path="res://assets/models/Terrain/UPDATED/Fora-Fabrica-3.glb" id="4_sx3yr"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3dx6c"]
+albedo_color = Color(0.30394292, 0.30394292, 0.30394292, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qmg03"]
+size = Vector3(50.004517, 1, 8.97998)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bd0r2"]
+size = Vector3(49.999664, 1, 5.0057373)
+
+[node name="ChunkBase" unique_id=528281881 instance=ExtResource("1_8xam8")]
+
+[node name="Middle" parent="." index="0" unique_id=55557733]
+visible = false
+material = SubResource("StandardMaterial3D_3dx6c")
+
+[node name="Left" parent="." index="2" unique_id=927662262]
+visible = false
+
+[node name="Right" parent="." index="3" unique_id=931049434]
+visible = false
+
+[node name="Meio-Fabrica-3" parent="." index="4" unique_id=306512098 instance=ExtResource("2_uamif")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Meio-Fabrica-3" index="28" unique_id=1713380546]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Meio-Fabrica-3/StaticBody3D" index="0" unique_id=2141600609]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.10354e-05, 0, -0.0057373047)
+shape = SubResource("BoxShape3D_qmg03")
+
+[node name="Fora-Fabrica-1" parent="." index="5" unique_id=601850490 instance=ExtResource("3_5nfn5")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 9, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Fora-Fabrica-1" index="40" unique_id=775274308]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.742279e-08, 0, -2)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Fora-Fabrica-1/StaticBody3D" index="0" unique_id=841926722]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0006256103, 0, 0.0014038086)
+shape = SubResource("BoxShape3D_bd0r2")
+
+[node name="Fora-Fabrica-3" parent="." index="6" unique_id=476088408 instance=ExtResource("4_sx3yr")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -9, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Fora-Fabrica-3" index="64" unique_id=1396762487]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.742279e-08, 0, -2)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Fora-Fabrica-3/StaticBody3D" index="0" unique_id=1961968192]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0006256103, 0, 0.0014038086)
+shape = SubResource("BoxShape3D_bd0r2")

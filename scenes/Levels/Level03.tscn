@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dks1v21r0m6w6" path="res://scenes/Terrain/Chunks/Factory/Factory1.tscn" id="9_58yvn"]
 [ext_resource type="PackedScene" uid="uid://knbsvydvyrn3" path="res://scenes/Terrain/Chunks/Factory/Factory2.tscn" id="10_kkqei"]
 [ext_resource type="Script" uid="uid://bqljmeua3bmn" path="res://scripts/UI-UX/UI/OverlayButton.gd" id="11_7emvv"]
+[ext_resource type="PackedScene" uid="uid://0kx187tvp3xu" path="res://scenes/Terrain/Chunks/Factory/Factory3.tscn" id="11_l2pxb"]
 [ext_resource type="PackedScene" uid="uid://bqyjiu7fk0j5q" path="res://scenes/UI-UX/UI/MetalAmount.tscn" id="12_1q17i"]
 [ext_resource type="PackedScene" uid="uid://bvuisrwp77067" path="res://scenes/UI-UX/UI/MENUs/DefeatMenu.tscn" id="13_5m2w3"]
 [ext_resource type="PackedScene" uid="uid://cwu4wqhcnkcuj" path="res://scenes/UI-UX/UI/SpeedLever.tscn" id="14_47wbm"]
@@ -45,6 +46,12 @@
 [ext_resource type="PackedScene" uid="uid://be8hg483hedqw" path="res://scenes/VFX/PitchPuddleLeft.tscn" id="39_jjcu5"]
 [ext_resource type="ArrayMesh" uid="uid://t3lb1k1uvd30" path="res://assets/VFX Textures/PitchPuddle.obj" id="40_ll0wg"]
 [ext_resource type="PackedScene" uid="uid://c5qxjkarg4st8" path="res://scenes/VFX/PreassureBlastVFX.tscn" id="41_2etq5"]
+
+[sub_resource type="Environment" id="Environment_6vom8"]
+ambient_light_source = 3
+ambient_light_color = Color(0.9999998, 0.84823257, 0.7498107, 1)
+ambient_light_energy = 0.6
+reflected_light_source = 2
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xyp8h"]
 bg_color = Color(0.16924527, 0.1692453, 0.16924527, 0.627451)
@@ -171,6 +178,7 @@ start_phase = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -600)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1849166497]
+environment = SubResource("Environment_6vom8")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1922942967]
 transform = Transform3D(-0.7071068, 0.61237246, 0.35355338, 0.68301266, 0.7209159, 0.11736255, -0.18301266, 0.3244693, -0.9280227, 0, 5, 0)
@@ -180,7 +188,8 @@ train = NodePath("../Player/TrainHead")
 destination_node = NodePath("../DestinationPoint")
 desolation_scenes = Array[PackedScene]([ExtResource("5_6vom8"), ExtResource("6_l2pxb")])
 scrap_scenes = Array[PackedScene]([ExtResource("7_6df7p"), ExtResource("8_61vg1")])
-factory_scenes = Array[PackedScene]([ExtResource("9_58yvn"), ExtResource("10_kkqei")])
+factory_scenes = Array[PackedScene]([ExtResource("9_58yvn"), ExtResource("10_kkqei"), ExtResource("11_l2pxb")])
+current_zone = 2
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=1368257838 groups=["hide_on_end"]]
 
@@ -371,7 +380,7 @@ repair_skill_scene = ExtResource("33_l2pxb")
 
 [node name="TrainHead" parent="Player" unique_id=423923195 node_paths=PackedStringArray("wagons", "checkpoint_indicator", "defeat_menu", "speed_lever", "progress_bar", "destination_node", "next_gate") instance=ExtResource("30_4ss3s")]
 max_health = 300
-wagons = [NodePath("Wagon1"), NodePath("")]
+wagons = [NodePath("Wagon1"), null]
 checkpoint_indicator = NodePath("../../HUD/CheckpointIndicator")
 defeat_menu = NodePath("../../HUD/DefeatMenu")
 speed_lever = NodePath("../../HUD/SpeedLever")

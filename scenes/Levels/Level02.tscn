@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bhcxxqqp3c2pf" path="res://scenes/Terrain/Chunks/ScrapYard/ScrapYard1.tscn" id="7_bhq0s"]
 [ext_resource type="PackedScene" uid="uid://clo1skfkq2gfr" path="res://scenes/Terrain/Chunks/ScrapYard/ScrapYard2.tscn" id="8_lbboi"]
 [ext_resource type="PackedScene" uid="uid://dks1v21r0m6w6" path="res://scenes/Terrain/Chunks/Factory/Factory1.tscn" id="9_arrit"]
+[ext_resource type="PackedScene" uid="uid://dxe1mjfkmh18f" path="res://scenes/Terrain/Chunks/ScrapYard/ScrapYard3.tscn" id="9_ihiu8"]
 [ext_resource type="PackedScene" uid="uid://knbsvydvyrn3" path="res://scenes/Terrain/Chunks/Factory/Factory2.tscn" id="10_4eeij"]
 [ext_resource type="Script" uid="uid://bqljmeua3bmn" path="res://scripts/UI-UX/UI/OverlayButton.gd" id="11_s2cw1"]
 [ext_resource type="PackedScene" uid="uid://bqyjiu7fk0j5q" path="res://scenes/UI-UX/UI/MetalAmount.tscn" id="12_tgc2u"]
@@ -45,6 +46,12 @@
 [ext_resource type="PackedScene" uid="uid://be8hg483hedqw" path="res://scenes/VFX/PitchPuddleLeft.tscn" id="39_gbj78"]
 [ext_resource type="ArrayMesh" uid="uid://t3lb1k1uvd30" path="res://assets/VFX Textures/PitchPuddle.obj" id="40_imbjm"]
 [ext_resource type="PackedScene" uid="uid://c5qxjkarg4st8" path="res://scenes/VFX/PreassureBlastVFX.tscn" id="41_dkme7"]
+
+[sub_resource type="Environment" id="Environment_ihiu8"]
+ambient_light_source = 3
+ambient_light_color = Color(0.9999998, 0.84823257, 0.7498107, 1)
+ambient_light_energy = 0.6
+reflected_light_source = 2
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xyp8h"]
 bg_color = Color(0.16924527, 0.1692453, 0.16924527, 0.627451)
@@ -171,6 +178,7 @@ start_phase = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -600)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1849166497]
+environment = SubResource("Environment_ihiu8")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1922942967]
 transform = Transform3D(-0.7071068, 0.61237246, 0.35355338, 0.68301266, 0.7209159, 0.11736255, -0.18301266, 0.3244693, -0.9280227, 0, 5, 0)
@@ -179,8 +187,9 @@ transform = Transform3D(-0.7071068, 0.61237246, 0.35355338, 0.68301266, 0.720915
 train = NodePath("../Player/TrainHead")
 destination_node = NodePath("../DestinationPoint")
 desolation_scenes = Array[PackedScene]([ExtResource("5_0b68w"), ExtResource("6_ihiu8")])
-scrap_scenes = Array[PackedScene]([ExtResource("7_bhq0s"), ExtResource("8_lbboi")])
+scrap_scenes = Array[PackedScene]([ExtResource("7_bhq0s"), ExtResource("8_lbboi"), ExtResource("9_ihiu8")])
 factory_scenes = Array[PackedScene]([ExtResource("9_arrit"), ExtResource("10_4eeij")])
+current_zone = 1
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=1368257838 groups=["hide_on_end"]]
 

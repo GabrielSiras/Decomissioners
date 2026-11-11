@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://dtoiyc323yjph" path="res://scenes/Terrain/Chunks/Desolation/Desolation1.tscn" id="5_c2utl"]
 [ext_resource type="PackedScene" uid="uid://bryue4otwuemu" path="res://scenes/Terrain/Chunks/Desolation/Desolation2.tscn" id="6_nf74q"]
 [ext_resource type="PackedScene" uid="uid://bhcxxqqp3c2pf" path="res://scenes/Terrain/Chunks/ScrapYard/ScrapYard1.tscn" id="7_cfo0y"]
+[ext_resource type="PackedScene" uid="uid://csegy22m2fdi8" path="res://scenes/Terrain/Chunks/Desolation/Desolation3.tscn" id="7_p5a3g"]
+[ext_resource type="PackedScene" uid="uid://cxvllm15kpea" path="res://scenes/Terrain/Chunks/Desolation/Desolation4.tscn" id="8_fwa77"]
 [ext_resource type="PackedScene" uid="uid://clo1skfkq2gfr" path="res://scenes/Terrain/Chunks/ScrapYard/ScrapYard2.tscn" id="8_wnku8"]
 [ext_resource type="PackedScene" uid="uid://dks1v21r0m6w6" path="res://scenes/Terrain/Chunks/Factory/Factory1.tscn" id="9_y57mh"]
 [ext_resource type="PackedScene" uid="uid://knbsvydvyrn3" path="res://scenes/Terrain/Chunks/Factory/Factory2.tscn" id="10_kfrn8"]
@@ -45,6 +47,12 @@
 [ext_resource type="PackedScene" uid="uid://be8hg483hedqw" path="res://scenes/VFX/PitchPuddleLeft.tscn" id="39_atckt"]
 [ext_resource type="ArrayMesh" uid="uid://t3lb1k1uvd30" path="res://assets/VFX Textures/PitchPuddle.obj" id="40_ihxfr"]
 [ext_resource type="PackedScene" uid="uid://c5qxjkarg4st8" path="res://scenes/VFX/PreassureBlastVFX.tscn" id="41_l64dw"]
+
+[sub_resource type="Environment" id="Environment_ygjp1"]
+ambient_light_source = 3
+ambient_light_color = Color(0.9999998, 0.84823257, 0.7498107, 1)
+ambient_light_energy = 0.6
+reflected_light_source = 2
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xyp8h"]
 bg_color = Color(0.16924527, 0.1692453, 0.16924527, 0.627451)
@@ -170,6 +178,7 @@ config = ExtResource("3_k4r6b")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -600)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1849166497]
+environment = SubResource("Environment_ygjp1")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1922942967]
 transform = Transform3D(-0.7071068, 0.61237246, 0.35355338, 0.68301266, 0.7209159, 0.11736255, -0.18301266, 0.3244693, -0.9280227, 0, 5, 0)
@@ -177,7 +186,7 @@ transform = Transform3D(-0.7071068, 0.61237246, 0.35355338, 0.68301266, 0.720915
 [node name="TerrainManager" parent="." unique_id=1209588191 node_paths=PackedStringArray("train", "destination_node") instance=ExtResource("4_lk5vo")]
 train = NodePath("../Player/TrainHead")
 destination_node = NodePath("../DestinationPoint")
-desolation_scenes = Array[PackedScene]([ExtResource("5_c2utl"), ExtResource("6_nf74q")])
+desolation_scenes = Array[PackedScene]([ExtResource("5_c2utl"), ExtResource("6_nf74q"), ExtResource("7_p5a3g"), ExtResource("8_fwa77")])
 scrap_scenes = Array[PackedScene]([ExtResource("7_cfo0y"), ExtResource("8_wnku8")])
 factory_scenes = Array[PackedScene]([ExtResource("9_y57mh"), ExtResource("10_kfrn8")])
 

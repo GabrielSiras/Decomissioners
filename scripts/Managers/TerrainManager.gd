@@ -13,7 +13,7 @@ signal zone_changed(new_zone: Zone)
 @export var scrap_scenes: Array[PackedScene]
 @export var factory_scenes: Array[PackedScene]
 
-var current_zone: Zone = Zone.DESOLATION
+@export var current_zone: Zone
 var active_chunks: Array[Node3D] = []
 var total_distance: float = 0.0
 
@@ -86,7 +86,7 @@ func _get_random_chunk_for_zone(zone: Zone) -> PackedScene:
 
 func _spawn_initial_chunks(count: int) -> void:
 	for i in range(count):
-		var scene = _get_random_chunk_for_zone(Zone.DESOLATION)
+		var scene = _get_random_chunk_for_zone(current_zone)
 		if scene:
 			var chunk = scene.instantiate() as Node3D
 			add_child(chunk)
