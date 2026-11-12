@@ -1,39 +1,23 @@
 [gd_scene format=3 uid="uid://hq81bv8t86gt"]
 
+[ext_resource type="Theme" uid="uid://cishgontb2yga" path="res://assets/themes/main_buttons_theme.tres" id="1_2qtn0"]
 [ext_resource type="Script" uid="uid://5sx4ttr6a5ve" path="res://scripts/UI-UX/UI/MainMenu.gd" id="1_vnlg1"]
 [ext_resource type="AudioStream" uid="uid://ma7spr0eraxc" path="res://assets/audios/SFX/UI/MetalClick/MetalClick.wav" id="2_6sobg"]
 [ext_resource type="Script" uid="uid://bqljmeua3bmn" path="res://scripts/UI-UX/UI/OverlayButton.gd" id="2_bbtx1"]
 [ext_resource type="PackedScene" uid="uid://dlfa75dgt8t8i" path="res://scenes/UI-UX/UI/MENUs/CreditsOverlay.tscn" id="4_2qtn0"]
+[ext_resource type="FontFile" uid="uid://dqwk8wrul1clt" path="res://assets/themes/fonts/cnrgn_army/CNRGN-Army.ttf" id="5_3v7yo"]
+[ext_resource type="LabelSettings" uid="uid://6t6h7iy5achu" path="res://assets/themes/title_label.tres" id="6_mrldo"]
 
-[sub_resource type="Gradient" id="Gradient_6sobg"]
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(0.56, 0.28373334, 0.14559999, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_jofub"]
-gradient = SubResource("Gradient_6sobg")
-use_hdr = true
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iujhx"]
-bg_color = Color(0.16924527, 0.1692453, 0.16924527, 0.627451)
-corner_radius_top_left = 25
-corner_radius_top_right = 25
-corner_radius_bottom_right = 25
-corner_radius_bottom_left = 25
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2qtn0"]
-bg_color = Color(0.16862746, 0.16862746, 0.16862746, 0.627451)
-corner_radius_top_left = 25
-corner_radius_top_right = 25
-corner_radius_bottom_right = 25
-corner_radius_bottom_left = 25
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3v7yo"]
-corner_radius_top_left = 25
-corner_radius_top_right = 25
-corner_radius_bottom_right = 25
-corner_radius_bottom_left = 25
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6sobg"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mrldo"]
+bg_color = Color(0.16470589, 0.19607843, 0.20784314, 1)
+border_color = Color(0.6313726, 0.6313726, 0.6313726, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+corner_detail = 1
+shadow_size = 23
+anti_aliasing_size = 10.0
 
 [node name="MainMenu" type="Control" unique_id=1744628461 node_paths=PackedStringArray("start_button")]
 layout_mode = 3
@@ -42,106 +26,84 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_2qtn0")
 script = ExtResource("1_vnlg1")
-start_button = NodePath("MarginContainer/VBoxContainer/ContinueButton")
+start_button = NodePath("VBoxContainer/VBoxContainer/ContinueButton")
 credits_overlay = ExtResource("4_2qtn0")
 
-[node name="BG" type="TextureRect" parent="." unique_id=1094865795]
+[node name="BG" type="Panel" parent="." unique_id=506043037]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("GradientTexture1D_jofub")
 
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1605169925]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1437860578]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 80
-theme_override_constants/margin_top = 70
-theme_override_constants/margin_right = 80
-theme_override_constants/margin_bottom = 80
+anchors_preset = -1
+anchor_left = 0.06944445
+anchor_top = 0.05390625
+anchor_right = 0.9305556
+anchor_bottom = 0.9375
+theme_override_constants/separation = 30
+metadata/_edit_use_anchors_ = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1437860578]
-layout_mode = 2
-
-[node name="SettingsButton" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1208816841]
+[node name="SettingsButton" type="Button" parent="VBoxContainer" unique_id=1208816841]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 size_flags_horizontal = 8
-theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_iujhx")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_2qtn0")
-theme_override_styles/hover = SubResource("StyleBoxFlat_3v7yo")
-text = "CFG"
+size_flags_vertical = 2
 expand_icon = true
 script = ExtResource("2_bbtx1")
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1632104544]
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer" unique_id=1257683586]
+custom_minimum_size = Vector2(620, 250)
 layout_mode = 2
-size_flags_vertical = 3
+size_flags_vertical = 6
+theme_override_styles/panel = SubResource("StyleBoxFlat_mrldo")
+
+[node name="Label" type="Label" parent="VBoxContainer/PanelContainer" unique_id=1632104544]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+size_flags_vertical = 6
 size_flags_stretch_ratio = 2.52
-theme_override_constants/outline_size = 35
-theme_override_font_sizes/font_size = 60
+theme_override_fonts/font = ExtResource("5_3v7yo")
+theme_override_font_sizes/font_size = 120
 text = "DECOMISSIONERS"
+label_settings = ExtResource("6_mrldo")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer" unique_id=500094184]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer" unique_id=1705911663]
 layout_mode = 2
-size_flags_vertical = 3
-size_flags_stretch_ratio = 0.5
-theme_override_styles/panel = SubResource("StyleBoxEmpty_6sobg")
+size_flags_vertical = 6
+size_flags_stretch_ratio = 6.56
+theme_override_constants/separation = 20
 
-[node name="ContinueButton" type="Button" parent="MarginContainer/VBoxContainer" unique_id=2031048237]
-custom_minimum_size = Vector2(400, 120)
+[node name="ContinueButton" type="Button" parent="VBoxContainer/VBoxContainer" unique_id=2031048237]
+custom_minimum_size = Vector2(450, 120)
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 50
-theme_override_styles/normal = SubResource("StyleBoxFlat_iujhx")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_2qtn0")
-theme_override_styles/hover = SubResource("StyleBoxFlat_3v7yo")
 text = "CONTINUE"
 
-[node name="RailmapButton" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1531250187]
-custom_minimum_size = Vector2(400, 120)
+[node name="RailmapButton" type="Button" parent="VBoxContainer/VBoxContainer" unique_id=1531250187]
+custom_minimum_size = Vector2(450, 120)
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 50
-theme_override_styles/normal = SubResource("StyleBoxFlat_iujhx")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_2qtn0")
-theme_override_styles/hover = SubResource("StyleBoxFlat_3v7yo")
 text = "RAILMAP"
 
-[node name="ResearchButton" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1523753206]
-custom_minimum_size = Vector2(400, 120)
+[node name="ResearchButton" type="Button" parent="VBoxContainer/VBoxContainer" unique_id=1523753206]
+custom_minimum_size = Vector2(450, 120)
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 50
-theme_override_styles/normal = SubResource("StyleBoxFlat_iujhx")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_2qtn0")
-theme_override_styles/hover = SubResource("StyleBoxFlat_3v7yo")
 text = "RESEARCH"
 
-[node name="CreditsButton" type="Button" parent="MarginContainer/VBoxContainer" unique_id=554847561]
-custom_minimum_size = Vector2(400, 120)
+[node name="CreditsButton" type="Button" parent="VBoxContainer/VBoxContainer" unique_id=554847561]
+custom_minimum_size = Vector2(450, 120)
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 50
-theme_override_styles/normal = SubResource("StyleBoxFlat_iujhx")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_2qtn0")
-theme_override_styles/hover = SubResource("StyleBoxFlat_3v7yo")
 text = "CREDITS"
-
-[node name="PanelContainer2" type="PanelContainer" parent="MarginContainer/VBoxContainer" unique_id=659430211]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxEmpty_6sobg")
 
 [node name="MetalClick" type="AudioStreamPlayer" parent="." unique_id=1811167691]
 stream = ExtResource("2_6sobg")
@@ -150,8 +112,8 @@ bus = &"SFX"
 [node name="StartTimer" type="Timer" parent="." unique_id=1129727915]
 wait_time = 0.3
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/SettingsButton" to="MarginContainer/VBoxContainer/SettingsButton" method="_on_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/ContinueButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/RailmapButton" to="." method="_on_railmap_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/ResearchButton" to="." method="_on_research_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/SettingsButton" to="VBoxContainer/SettingsButton" method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/ContinueButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/RailmapButton" to="." method="_on_railmap_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/ResearchButton" to="." method="_on_research_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
