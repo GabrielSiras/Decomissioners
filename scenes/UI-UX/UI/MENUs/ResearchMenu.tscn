@@ -7,9 +7,21 @@
 [ext_resource type="LabelSettings" uid="uid://d0yf8g7u342ts" path="res://assets/UI/labels/header_label.tres" id="3_l0f3v"]
 [ext_resource type="AudioStream" uid="uid://ma7spr0eraxc" path="res://assets/audios/SFX/UI/MetalClick/MetalClick.wav" id="3_w8s82"]
 [ext_resource type="Theme" uid="uid://b0wpdhuh403aq" path="res://assets/UI/themes/socket_theme.tres" id="4_ja1no"]
+[ext_resource type="Texture2D" uid="uid://b7fw2867tsoe1" path="res://assets/Icons/Armor.png" id="4_ypufw"]
 [ext_resource type="FontFile" uid="uid://dqwk8wrul1clt" path="res://assets/UI/fonts/cnrgn_army/CNRGN-Army.ttf" id="5_l0f3v"]
 [ext_resource type="Theme" uid="uid://u17ymhp7hkpl" path="res://assets/UI/themes/accent_theme.tres" id="7_ja1no"]
+[ext_resource type="Texture2D" uid="uid://cdvvfdexxq8nq" path="res://assets/Icons/Magnetism.png" id="7_xc8cq"]
+[ext_resource type="Texture2D" uid="uid://6c5gkr0iptau" path="res://assets/Icons/Transmission.png" id="8_5ex6g"]
 [ext_resource type="LabelSettings" uid="uid://cvem1ar58ufmo" path="res://assets/UI/labels/accent_label.tres" id="8_6jw50"]
+[ext_resource type="Texture2D" uid="uid://cgs80kh3vqogn" path="res://assets/Icons/Wagons.png" id="9_8fihh"]
+[ext_resource type="Texture2D" uid="uid://cjcut5f4o1ps1" path="res://assets/Icons/Bombard.png" id="10_mkvk5"]
+[ext_resource type="Texture2D" uid="uid://cn2nc3d22eth8" path="res://assets/Icons/Piche.png" id="11_hv1uh"]
+[ext_resource type="Texture2D" uid="uid://7p2ewvovp0b4" path="res://assets/Icons/Overcharge.png" id="12_0hks3"]
+[ext_resource type="Texture2D" uid="uid://bgoag5excn8d5" path="res://assets/Icons/Repair.png" id="13_gs8m0"]
+[ext_resource type="Texture2D" uid="uid://d4h6x21lr5u3s" path="res://assets/Icons/Gun.png" id="14_h1l8f"]
+[ext_resource type="Texture2D" uid="uid://bhqn54f6qg577" path="res://assets/Icons/Art.png" id="15_ycjfj"]
+[ext_resource type="Texture2D" uid="uid://ct4xfmlm2dtrr" path="res://assets/Icons/Blast.png" id="16_5upic"]
+[ext_resource type="Texture2D" uid="uid://c17h6xvrchaof" path="res://assets/Icons/Inc.png" id="17_q47jx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_di7yt"]
 bg_color = Color(0.2627451, 0.30588236, 0.32156864, 1)
@@ -21,9 +33,6 @@ border_color = Color(0.16470589, 0.19607843, 0.20784314, 1)
 border_blend = true
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7th88"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_iujhx"]
-size = Vector2(30, 30)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gpmvo"]
 content_margin_left = 10.0
@@ -176,7 +185,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="TrainLabel" type="Label" parent="MarginContainer/VBoxContainer/TrainUpgrades/Panel" unique_id=1663894340]
+[node name="TRAINLabel" type="Label" parent="MarginContainer/VBoxContainer/TrainUpgrades/Panel" unique_id=1663894340]
 custom_minimum_size = Vector2(0, 38)
 layout_mode = 2
 theme_override_font_sizes/font_size = 35
@@ -197,15 +206,16 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_7th88")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TrainUpgrades/Panel/GridContainer/Armor" unique_id=566594788]
 layout_mode = 2
-theme_override_constants/separation = 4
+theme_override_constants/separation = 10
 
 [node name="ArmorIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/TrainUpgrades/Panel/GridContainer/Armor/VBoxContainer" unique_id=1118190277]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 6
+size_flags_vertical = 10
 size_flags_stretch_ratio = 4.0
-texture = SubResource("PlaceholderTexture2D_iujhx")
+texture = ExtResource("4_ypufw")
+expand_mode = 1
 stretch_mode = 6
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/TrainUpgrades/Panel/GridContainer/Armor/VBoxContainer" unique_id=1885843255]
@@ -214,26 +224,30 @@ size_flags_horizontal = 4
 size_flags_vertical = 3
 
 [node name="ArmorSocket1" type="Button" parent="MarginContainer/VBoxContainer/TrainUpgrades/Panel/GridContainer/Armor/VBoxContainer/HBoxContainer" unique_id=1116993021 groups=["ArmorSockets"]]
-custom_minimum_size = Vector2(30, 0)
+custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
+size_flags_vertical = 0
 theme = ExtResource("4_ja1no")
 toggle_mode = true
 
 [node name="ArmorSocket2" type="Button" parent="MarginContainer/VBoxContainer/TrainUpgrades/Panel/GridContainer/Armor/VBoxContainer/HBoxContainer" unique_id=1305217703 groups=["ArmorSockets"]]
-custom_minimum_size = Vector2(30, 0)
+custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
+size_flags_vertical = 0
 theme = ExtResource("4_ja1no")
 toggle_mode = true
 
 [node name="ArmorSocket3" type="Button" parent="MarginContainer/VBoxContainer/TrainUpgrades/Panel/GridContainer/Armor/VBoxContainer/HBoxContainer" unique_id=1817301956 groups=["ArmorSockets"]]
-custom_minimum_size = Vector2(30, 0)
+custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
+size_flags_vertical = 0
 theme = ExtResource("4_ja1no")
 toggle_mode = true
 
 [node name="ArmorLabel" type="Label" parent="MarginContainer/VBoxContainer/TrainUpgrades/Panel/GridContainer/Armor/VBoxContainer" unique_id=1026065360]
 layout_mode = 2
-size_flags_vertical = 6
+size_flags_vertical = 2
+size_flags_stretch_ratio = 1.4
 text = "Armor"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -259,15 +273,16 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_7th88")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TrainUpgrades/Panel/GridContainer/Magnetism" unique_id=866715217]
 layout_mode = 2
-theme_override_constants/separation = 4
+theme_override_constants/separation = 10
 
 [node name="MagnetismIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/TrainUpgrades/Panel/GridContainer/Magnetism/VBoxContainer" unique_id=1110363746]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 6
+size_flags_vertical = 10
 size_flags_stretch_ratio = 4.0
-texture = SubResource("PlaceholderTexture2D_iujhx")
+texture = ExtResource("7_xc8cq")
+expand_mode = 1
 stretch_mode = 6
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/TrainUpgrades/Panel/GridContainer/Magnetism/VBoxContainer" unique_id=1834653237]
@@ -276,26 +291,30 @@ size_flags_horizontal = 4
 size_flags_vertical = 3
 
 [node name="MagnetismSocket1" type="Button" parent="MarginContainer/VBoxContainer/TrainUpgrades/Panel/GridContainer/Magnetism/VBoxContainer/HBoxContainer" unique_id=2002190304 groups=["MagnetismSockets"]]
-custom_minimum_size = Vector2(30, 0)
+custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
+size_flags_vertical = 0
 theme = ExtResource("4_ja1no")
 toggle_mode = true
 
 [node name="MagnetismSocket2" type="Button" parent="MarginContainer/VBoxContainer/TrainUpgrades/Panel/GridContainer/Magnetism/VBoxContainer/HBoxContainer" unique_id=911630254 groups=["MagnetismSockets"]]
-custom_minimum_size = Vector2(30, 0)
+custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
+size_flags_vertical = 0
 theme = ExtResource("4_ja1no")
 toggle_mode = true
 
 [node name="MagnetismSocket3" type="Button" parent="MarginContainer/VBoxContainer/TrainUpgrades/Panel/GridContainer/Magnetism/VBoxContainer/HBoxContainer" unique_id=241487067 groups=["MagnetismSockets"]]
-custom_minimum_size = Vector2(30, 0)
+custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
+size_flags_vertical = 0
 theme = ExtResource("4_ja1no")
 toggle_mode = true
 
 [node name="MagnetismLabel" type="Label" parent="MarginContainer/VBoxContainer/TrainUpgrades/Panel/GridContainer/Magnetism/VBoxContainer" unique_id=108024107]
 layout_mode = 2
-size_flags_vertical = 6
+size_flags_vertical = 2
+size_flags_stretch_ratio = 1.4
 text = "Magnetism"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -321,15 +340,16 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_7th88")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TrainUpgrades/Panel/GridContainer/Transmission" unique_id=1314201693]
 layout_mode = 2
-theme_override_constants/separation = 4
+theme_override_constants/separation = 10
 
 [node name="TransmissionIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/TrainUpgrades/Panel/GridContainer/Transmission/VBoxContainer" unique_id=1527789236]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 6
+size_flags_vertical = 10
 size_flags_stretch_ratio = 4.0
-texture = SubResource("PlaceholderTexture2D_iujhx")
+texture = ExtResource("8_5ex6g")
+expand_mode = 1
 stretch_mode = 6
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/TrainUpgrades/Panel/GridContainer/Transmission/VBoxContainer" unique_id=186354100]
@@ -338,32 +358,37 @@ size_flags_horizontal = 4
 size_flags_vertical = 3
 
 [node name="TransmissionSocket1" type="Button" parent="MarginContainer/VBoxContainer/TrainUpgrades/Panel/GridContainer/Transmission/VBoxContainer/HBoxContainer" unique_id=1888900225 groups=["TransmissionSockets"]]
-custom_minimum_size = Vector2(30, 0)
+custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
+size_flags_vertical = 0
 theme = ExtResource("4_ja1no")
 toggle_mode = true
 
 [node name="TransmissionSocket2" type="Button" parent="MarginContainer/VBoxContainer/TrainUpgrades/Panel/GridContainer/Transmission/VBoxContainer/HBoxContainer" unique_id=324754959 groups=["TransmissionSockets"]]
-custom_minimum_size = Vector2(30, 0)
+custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
+size_flags_vertical = 0
 theme = ExtResource("4_ja1no")
 toggle_mode = true
 
 [node name="TransmissionSocket3" type="Button" parent="MarginContainer/VBoxContainer/TrainUpgrades/Panel/GridContainer/Transmission/VBoxContainer/HBoxContainer" unique_id=122748858 groups=["TransmissionSockets"]]
-custom_minimum_size = Vector2(30, 0)
+custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
+size_flags_vertical = 0
 theme = ExtResource("4_ja1no")
 toggle_mode = true
 
 [node name="TransmissionSocket4" type="Button" parent="MarginContainer/VBoxContainer/TrainUpgrades/Panel/GridContainer/Transmission/VBoxContainer/HBoxContainer" unique_id=1552715512 groups=["TransmissionSockets"]]
-custom_minimum_size = Vector2(30, 0)
+custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
+size_flags_vertical = 0
 theme = ExtResource("4_ja1no")
 toggle_mode = true
 
 [node name="TransmissionLabel" type="Label" parent="MarginContainer/VBoxContainer/TrainUpgrades/Panel/GridContainer/Transmission/VBoxContainer" unique_id=858365902]
 layout_mode = 2
-size_flags_vertical = 6
+size_flags_vertical = 2
+size_flags_stretch_ratio = 1.4
 text = "Transmission"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -389,15 +414,16 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_7th88")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TrainUpgrades/Panel/GridContainer/Wagons" unique_id=2095662198]
 layout_mode = 2
-theme_override_constants/separation = 4
+theme_override_constants/separation = 10
 
 [node name="WagonsIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/TrainUpgrades/Panel/GridContainer/Wagons/VBoxContainer" unique_id=1225560269]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 6
+size_flags_vertical = 10
 size_flags_stretch_ratio = 4.0
-texture = SubResource("PlaceholderTexture2D_iujhx")
+texture = ExtResource("9_8fihh")
+expand_mode = 1
 stretch_mode = 6
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/TrainUpgrades/Panel/GridContainer/Wagons/VBoxContainer" unique_id=1408498848]
@@ -406,32 +432,37 @@ size_flags_horizontal = 4
 size_flags_vertical = 3
 
 [node name="WagonSocket1" type="Button" parent="MarginContainer/VBoxContainer/TrainUpgrades/Panel/GridContainer/Wagons/VBoxContainer/HBoxContainer" unique_id=383651407 groups=["WagonsSockets"]]
-custom_minimum_size = Vector2(30, 0)
+custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
+size_flags_vertical = 0
 theme = ExtResource("4_ja1no")
 toggle_mode = true
 
 [node name="WagonSocket2" type="Button" parent="MarginContainer/VBoxContainer/TrainUpgrades/Panel/GridContainer/Wagons/VBoxContainer/HBoxContainer" unique_id=1721182379 groups=["WagonsSockets"]]
-custom_minimum_size = Vector2(30, 0)
+custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
+size_flags_vertical = 0
 theme = ExtResource("4_ja1no")
 toggle_mode = true
 
 [node name="WagonSocket3" type="Button" parent="MarginContainer/VBoxContainer/TrainUpgrades/Panel/GridContainer/Wagons/VBoxContainer/HBoxContainer" unique_id=451265953 groups=["WagonsSockets"]]
-custom_minimum_size = Vector2(30, 0)
+custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
+size_flags_vertical = 0
 theme = ExtResource("4_ja1no")
 toggle_mode = true
 
 [node name="WagonSocket4" type="Button" parent="MarginContainer/VBoxContainer/TrainUpgrades/Panel/GridContainer/Wagons/VBoxContainer/HBoxContainer" unique_id=618281783 groups=["WagonsSockets"]]
-custom_minimum_size = Vector2(30, 0)
+custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
+size_flags_vertical = 0
 theme = ExtResource("4_ja1no")
 toggle_mode = true
 
 [node name="WagonsLabel" type="Label" parent="MarginContainer/VBoxContainer/TrainUpgrades/Panel/GridContainer/Wagons/VBoxContainer" unique_id=1977290516]
 layout_mode = 2
-size_flags_vertical = 6
+size_flags_vertical = 2
+size_flags_stretch_ratio = 1.4
 text = "Wagons"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -458,7 +489,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="SkillsLabel" type="Label" parent="MarginContainer/VBoxContainer/SkillUpgrades/Panel" unique_id=363806874]
+[node name="SKILLSLabel" type="Label" parent="MarginContainer/VBoxContainer/SkillUpgrades/Panel" unique_id=363806874]
 custom_minimum_size = Vector2(0, 38)
 layout_mode = 2
 theme_override_font_sizes/font_size = 35
@@ -480,15 +511,16 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_7th88")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/SkillUpgrades/Panel/GridContainer/Bombardment" unique_id=756804006]
 layout_mode = 2
-theme_override_constants/separation = 4
+theme_override_constants/separation = 10
 
 [node name="BombardmentIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/SkillUpgrades/Panel/GridContainer/Bombardment/VBoxContainer" unique_id=970519841]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 6
+size_flags_vertical = 10
 size_flags_stretch_ratio = 4.0
-texture = SubResource("PlaceholderTexture2D_iujhx")
+texture = ExtResource("10_mkvk5")
+expand_mode = 1
 stretch_mode = 6
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/SkillUpgrades/Panel/GridContainer/Bombardment/VBoxContainer" unique_id=1375479548]
@@ -497,26 +529,30 @@ size_flags_horizontal = 4
 size_flags_vertical = 3
 
 [node name="BombardmentSocket1" type="Button" parent="MarginContainer/VBoxContainer/SkillUpgrades/Panel/GridContainer/Bombardment/VBoxContainer/HBoxContainer" unique_id=1167689539 groups=["BombardmentSockets"]]
-custom_minimum_size = Vector2(30, 0)
+custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
+size_flags_vertical = 0
 theme = ExtResource("4_ja1no")
 toggle_mode = true
 
 [node name="BombardmentSocket2" type="Button" parent="MarginContainer/VBoxContainer/SkillUpgrades/Panel/GridContainer/Bombardment/VBoxContainer/HBoxContainer" unique_id=2111496616 groups=["BombardmentSockets"]]
-custom_minimum_size = Vector2(30, 0)
+custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
+size_flags_vertical = 0
 theme = ExtResource("4_ja1no")
 toggle_mode = true
 
 [node name="BombardmentSocket3" type="Button" parent="MarginContainer/VBoxContainer/SkillUpgrades/Panel/GridContainer/Bombardment/VBoxContainer/HBoxContainer" unique_id=2008460654 groups=["BombardmentSockets"]]
-custom_minimum_size = Vector2(30, 0)
+custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
+size_flags_vertical = 0
 theme = ExtResource("4_ja1no")
 toggle_mode = true
 
 [node name="BombardmentLabel" type="Label" parent="MarginContainer/VBoxContainer/SkillUpgrades/Panel/GridContainer/Bombardment/VBoxContainer" unique_id=890845782]
 layout_mode = 2
-size_flags_vertical = 6
+size_flags_vertical = 2
+size_flags_stretch_ratio = 1.4
 text = "Bombardment"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -542,15 +578,16 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_7th88")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/SkillUpgrades/Panel/GridContainer/Pitch" unique_id=1897017644]
 layout_mode = 2
-theme_override_constants/separation = 4
+theme_override_constants/separation = 10
 
 [node name="PitchIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/SkillUpgrades/Panel/GridContainer/Pitch/VBoxContainer" unique_id=2060586050]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 6
+size_flags_vertical = 10
 size_flags_stretch_ratio = 4.0
-texture = SubResource("PlaceholderTexture2D_iujhx")
+texture = ExtResource("11_hv1uh")
+expand_mode = 1
 stretch_mode = 6
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/SkillUpgrades/Panel/GridContainer/Pitch/VBoxContainer" unique_id=1874697712]
@@ -559,26 +596,30 @@ size_flags_horizontal = 4
 size_flags_vertical = 3
 
 [node name="PitchSocket1" type="Button" parent="MarginContainer/VBoxContainer/SkillUpgrades/Panel/GridContainer/Pitch/VBoxContainer/HBoxContainer" unique_id=1809860836 groups=["PitchSockets"]]
-custom_minimum_size = Vector2(30, 0)
+custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
+size_flags_vertical = 0
 theme = ExtResource("4_ja1no")
 toggle_mode = true
 
 [node name="PitchSocket2" type="Button" parent="MarginContainer/VBoxContainer/SkillUpgrades/Panel/GridContainer/Pitch/VBoxContainer/HBoxContainer" unique_id=361982460 groups=["PitchSockets"]]
-custom_minimum_size = Vector2(30, 0)
+custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
+size_flags_vertical = 0
 theme = ExtResource("4_ja1no")
 toggle_mode = true
 
 [node name="PitchSocket3" type="Button" parent="MarginContainer/VBoxContainer/SkillUpgrades/Panel/GridContainer/Pitch/VBoxContainer/HBoxContainer" unique_id=372797777 groups=["PitchSockets"]]
-custom_minimum_size = Vector2(30, 0)
+custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
+size_flags_vertical = 0
 theme = ExtResource("4_ja1no")
 toggle_mode = true
 
 [node name="PitchLabel" type="Label" parent="MarginContainer/VBoxContainer/SkillUpgrades/Panel/GridContainer/Pitch/VBoxContainer" unique_id=1234884862]
 layout_mode = 2
-size_flags_vertical = 6
+size_flags_vertical = 2
+size_flags_stretch_ratio = 1.4
 text = "Pitch"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -604,15 +645,16 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_7th88")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/SkillUpgrades/Panel/GridContainer/Supercharge" unique_id=75006006]
 layout_mode = 2
-theme_override_constants/separation = 4
+theme_override_constants/separation = 10
 
 [node name="SuperchargeIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/SkillUpgrades/Panel/GridContainer/Supercharge/VBoxContainer" unique_id=966422880]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 6
+size_flags_vertical = 10
 size_flags_stretch_ratio = 4.0
-texture = SubResource("PlaceholderTexture2D_iujhx")
+texture = ExtResource("12_0hks3")
+expand_mode = 1
 stretch_mode = 6
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/SkillUpgrades/Panel/GridContainer/Supercharge/VBoxContainer" unique_id=453531497]
@@ -621,26 +663,30 @@ size_flags_horizontal = 4
 size_flags_vertical = 3
 
 [node name="SuperchargeSocket1" type="Button" parent="MarginContainer/VBoxContainer/SkillUpgrades/Panel/GridContainer/Supercharge/VBoxContainer/HBoxContainer" unique_id=1781243774 groups=["SuperchargeSockets"]]
-custom_minimum_size = Vector2(30, 0)
+custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
+size_flags_vertical = 0
 theme = ExtResource("4_ja1no")
 toggle_mode = true
 
 [node name="SuperchargeSocket2" type="Button" parent="MarginContainer/VBoxContainer/SkillUpgrades/Panel/GridContainer/Supercharge/VBoxContainer/HBoxContainer" unique_id=1131428466 groups=["SuperchargeSockets"]]
-custom_minimum_size = Vector2(30, 0)
+custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
+size_flags_vertical = 0
 theme = ExtResource("4_ja1no")
 toggle_mode = true
 
 [node name="SuperchargeSocket3" type="Button" parent="MarginContainer/VBoxContainer/SkillUpgrades/Panel/GridContainer/Supercharge/VBoxContainer/HBoxContainer" unique_id=1728565230 groups=["SuperchargeSockets"]]
-custom_minimum_size = Vector2(30, 0)
+custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
+size_flags_vertical = 0
 theme = ExtResource("4_ja1no")
 toggle_mode = true
 
 [node name="SuperchargeLabel" type="Label" parent="MarginContainer/VBoxContainer/SkillUpgrades/Panel/GridContainer/Supercharge/VBoxContainer" unique_id=1975545046]
 layout_mode = 2
-size_flags_vertical = 6
+size_flags_vertical = 2
+size_flags_stretch_ratio = 1.4
 text = "Supercharge"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -666,15 +712,16 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_7th88")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/SkillUpgrades/Panel/GridContainer/Repair" unique_id=49186307]
 layout_mode = 2
-theme_override_constants/separation = 4
+theme_override_constants/separation = 10
 
 [node name="RepairIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/SkillUpgrades/Panel/GridContainer/Repair/VBoxContainer" unique_id=566850377]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 6
+size_flags_vertical = 10
 size_flags_stretch_ratio = 4.0
-texture = SubResource("PlaceholderTexture2D_iujhx")
+texture = ExtResource("13_gs8m0")
+expand_mode = 1
 stretch_mode = 6
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/SkillUpgrades/Panel/GridContainer/Repair/VBoxContainer" unique_id=681405249]
@@ -683,26 +730,30 @@ size_flags_horizontal = 4
 size_flags_vertical = 3
 
 [node name="RepairSocket1" type="Button" parent="MarginContainer/VBoxContainer/SkillUpgrades/Panel/GridContainer/Repair/VBoxContainer/HBoxContainer" unique_id=928922466 groups=["RepairSockets"]]
-custom_minimum_size = Vector2(30, 0)
+custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
+size_flags_vertical = 0
 theme = ExtResource("4_ja1no")
 toggle_mode = true
 
 [node name="RepairSocket2" type="Button" parent="MarginContainer/VBoxContainer/SkillUpgrades/Panel/GridContainer/Repair/VBoxContainer/HBoxContainer" unique_id=623166520 groups=["RepairSockets"]]
-custom_minimum_size = Vector2(30, 0)
+custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
+size_flags_vertical = 0
 theme = ExtResource("4_ja1no")
 toggle_mode = true
 
 [node name="RepairSocket3" type="Button" parent="MarginContainer/VBoxContainer/SkillUpgrades/Panel/GridContainer/Repair/VBoxContainer/HBoxContainer" unique_id=2007855909 groups=["RepairSockets"]]
-custom_minimum_size = Vector2(30, 0)
+custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
+size_flags_vertical = 0
 theme = ExtResource("4_ja1no")
 toggle_mode = true
 
 [node name="RepairLabel" type="Label" parent="MarginContainer/VBoxContainer/SkillUpgrades/Panel/GridContainer/Repair/VBoxContainer" unique_id=1729187945]
 layout_mode = 2
-size_flags_vertical = 6
+size_flags_vertical = 2
+size_flags_stretch_ratio = 1.4
 text = "Repair"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -729,7 +780,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="TurretsLabel" type="Label" parent="MarginContainer/VBoxContainer/TurretUpgrades/Panel" unique_id=1984159126]
+[node name="TURRETSLabel" type="Label" parent="MarginContainer/VBoxContainer/TurretUpgrades/Panel" unique_id=1984159126]
 custom_minimum_size = Vector2(0, 38)
 layout_mode = 2
 theme_override_font_sizes/font_size = 35
@@ -750,15 +801,16 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_7th88")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TurretUpgrades/Panel/GridContainer/Machinegun" unique_id=1830896494]
 layout_mode = 2
-theme_override_constants/separation = 4
+theme_override_constants/separation = 10
 
 [node name="MachinegunIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/TurretUpgrades/Panel/GridContainer/Machinegun/VBoxContainer" unique_id=1541951294]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 6
+size_flags_vertical = 10
 size_flags_stretch_ratio = 4.0
-texture = SubResource("PlaceholderTexture2D_iujhx")
+texture = ExtResource("14_h1l8f")
+expand_mode = 1
 stretch_mode = 6
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/TurretUpgrades/Panel/GridContainer/Machinegun/VBoxContainer" unique_id=252298452]
@@ -767,26 +819,30 @@ size_flags_horizontal = 4
 size_flags_vertical = 3
 
 [node name="MachinegunSocket1" type="Button" parent="MarginContainer/VBoxContainer/TurretUpgrades/Panel/GridContainer/Machinegun/VBoxContainer/HBoxContainer" unique_id=440168481 groups=["MachinegunSockets"]]
-custom_minimum_size = Vector2(30, 0)
+custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
+size_flags_vertical = 0
 theme = ExtResource("4_ja1no")
 toggle_mode = true
 
 [node name="MachinegunSocket2" type="Button" parent="MarginContainer/VBoxContainer/TurretUpgrades/Panel/GridContainer/Machinegun/VBoxContainer/HBoxContainer" unique_id=966006358 groups=["MachinegunSockets"]]
-custom_minimum_size = Vector2(30, 0)
+custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
+size_flags_vertical = 0
 theme = ExtResource("4_ja1no")
 toggle_mode = true
 
 [node name="MachinegunSocket3" type="Button" parent="MarginContainer/VBoxContainer/TurretUpgrades/Panel/GridContainer/Machinegun/VBoxContainer/HBoxContainer" unique_id=381592243 groups=["MachinegunSockets"]]
-custom_minimum_size = Vector2(30, 0)
+custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
+size_flags_vertical = 0
 theme = ExtResource("4_ja1no")
 toggle_mode = true
 
 [node name="MachinegunLabel" type="Label" parent="MarginContainer/VBoxContainer/TurretUpgrades/Panel/GridContainer/Machinegun/VBoxContainer" unique_id=1399560621]
 layout_mode = 2
-size_flags_vertical = 6
+size_flags_vertical = 2
+size_flags_stretch_ratio = 1.4
 text = "Machinegun"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -812,15 +868,16 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_7th88")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TurretUpgrades/Panel/GridContainer/Artillery" unique_id=683704021]
 layout_mode = 2
-theme_override_constants/separation = 4
+theme_override_constants/separation = 10
 
 [node name="ArtilleryTurretIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/TurretUpgrades/Panel/GridContainer/Artillery/VBoxContainer" unique_id=813441444]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 6
+size_flags_vertical = 10
 size_flags_stretch_ratio = 4.0
-texture = SubResource("PlaceholderTexture2D_iujhx")
+texture = ExtResource("15_ycjfj")
+expand_mode = 1
 stretch_mode = 6
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/TurretUpgrades/Panel/GridContainer/Artillery/VBoxContainer" unique_id=318566599]
@@ -829,26 +886,30 @@ size_flags_horizontal = 4
 size_flags_vertical = 3
 
 [node name="ArtillerySocket1" type="Button" parent="MarginContainer/VBoxContainer/TurretUpgrades/Panel/GridContainer/Artillery/VBoxContainer/HBoxContainer" unique_id=237746981 groups=["ArtillerySockets"]]
-custom_minimum_size = Vector2(30, 0)
+custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
+size_flags_vertical = 0
 theme = ExtResource("4_ja1no")
 toggle_mode = true
 
 [node name="ArtillerySocket2" type="Button" parent="MarginContainer/VBoxContainer/TurretUpgrades/Panel/GridContainer/Artillery/VBoxContainer/HBoxContainer" unique_id=421092655 groups=["ArtillerySockets"]]
-custom_minimum_size = Vector2(30, 0)
+custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
+size_flags_vertical = 0
 theme = ExtResource("4_ja1no")
 toggle_mode = true
 
 [node name="ArtillerySocket3" type="Button" parent="MarginContainer/VBoxContainer/TurretUpgrades/Panel/GridContainer/Artillery/VBoxContainer/HBoxContainer" unique_id=1440826910 groups=["ArtillerySockets"]]
-custom_minimum_size = Vector2(30, 0)
+custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
+size_flags_vertical = 0
 theme = ExtResource("4_ja1no")
 toggle_mode = true
 
 [node name="ArtilleryLabel" type="Label" parent="MarginContainer/VBoxContainer/TurretUpgrades/Panel/GridContainer/Artillery/VBoxContainer" unique_id=794104339]
 layout_mode = 2
-size_flags_vertical = 6
+size_flags_vertical = 2
+size_flags_stretch_ratio = 1.4
 text = "Artillery"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -874,15 +935,16 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_7th88")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TurretUpgrades/Panel/GridContainer/Blast" unique_id=1652809420]
 layout_mode = 2
-theme_override_constants/separation = 4
+theme_override_constants/separation = 10
 
 [node name="BlastTurretIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/TurretUpgrades/Panel/GridContainer/Blast/VBoxContainer" unique_id=1269136811]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 6
+size_flags_vertical = 10
 size_flags_stretch_ratio = 4.0
-texture = SubResource("PlaceholderTexture2D_iujhx")
+texture = ExtResource("16_5upic")
+expand_mode = 1
 stretch_mode = 6
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/TurretUpgrades/Panel/GridContainer/Blast/VBoxContainer" unique_id=853992254]
@@ -891,26 +953,30 @@ size_flags_horizontal = 4
 size_flags_vertical = 3
 
 [node name="BlastSocket1" type="Button" parent="MarginContainer/VBoxContainer/TurretUpgrades/Panel/GridContainer/Blast/VBoxContainer/HBoxContainer" unique_id=321852629 groups=["BlastSockets"]]
-custom_minimum_size = Vector2(30, 0)
+custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
+size_flags_vertical = 0
 theme = ExtResource("4_ja1no")
 toggle_mode = true
 
 [node name="BlastSocket2" type="Button" parent="MarginContainer/VBoxContainer/TurretUpgrades/Panel/GridContainer/Blast/VBoxContainer/HBoxContainer" unique_id=293088737 groups=["BlastSockets"]]
-custom_minimum_size = Vector2(30, 0)
+custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
+size_flags_vertical = 0
 theme = ExtResource("4_ja1no")
 toggle_mode = true
 
 [node name="BlastSocket3" type="Button" parent="MarginContainer/VBoxContainer/TurretUpgrades/Panel/GridContainer/Blast/VBoxContainer/HBoxContainer" unique_id=2036015708 groups=["BlastSockets"]]
-custom_minimum_size = Vector2(30, 0)
+custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
+size_flags_vertical = 0
 theme = ExtResource("4_ja1no")
 toggle_mode = true
 
 [node name="BlastLabel" type="Label" parent="MarginContainer/VBoxContainer/TurretUpgrades/Panel/GridContainer/Blast/VBoxContainer" unique_id=1295999416]
 layout_mode = 2
-size_flags_vertical = 6
+size_flags_vertical = 2
+size_flags_stretch_ratio = 1.4
 text = "Blast"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -936,15 +1002,16 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_7th88")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TurretUpgrades/Panel/GridContainer/Incendiary" unique_id=1979695703]
 layout_mode = 2
-theme_override_constants/separation = 4
+theme_override_constants/separation = 10
 
 [node name="IncendiaryTurretIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/TurretUpgrades/Panel/GridContainer/Incendiary/VBoxContainer" unique_id=254151214]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 6
+size_flags_vertical = 10
 size_flags_stretch_ratio = 4.0
-texture = SubResource("PlaceholderTexture2D_iujhx")
+texture = ExtResource("17_q47jx")
+expand_mode = 1
 stretch_mode = 6
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/TurretUpgrades/Panel/GridContainer/Incendiary/VBoxContainer" unique_id=845247305]
@@ -953,26 +1020,30 @@ size_flags_horizontal = 4
 size_flags_vertical = 3
 
 [node name="IncendiarySocket1" type="Button" parent="MarginContainer/VBoxContainer/TurretUpgrades/Panel/GridContainer/Incendiary/VBoxContainer/HBoxContainer" unique_id=1706760394 groups=["IncendiarySockets"]]
-custom_minimum_size = Vector2(30, 0)
+custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
+size_flags_vertical = 0
 theme = ExtResource("4_ja1no")
 toggle_mode = true
 
 [node name="IncendiarySocket2" type="Button" parent="MarginContainer/VBoxContainer/TurretUpgrades/Panel/GridContainer/Incendiary/VBoxContainer/HBoxContainer" unique_id=922115945 groups=["IncendiarySockets"]]
-custom_minimum_size = Vector2(30, 0)
+custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
+size_flags_vertical = 0
 theme = ExtResource("4_ja1no")
 toggle_mode = true
 
 [node name="IncendiarySocket3" type="Button" parent="MarginContainer/VBoxContainer/TurretUpgrades/Panel/GridContainer/Incendiary/VBoxContainer/HBoxContainer" unique_id=768985519 groups=["IncendiarySockets"]]
-custom_minimum_size = Vector2(30, 0)
+custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
+size_flags_vertical = 0
 theme = ExtResource("4_ja1no")
 toggle_mode = true
 
 [node name="IncendiaryLabel" type="Label" parent="MarginContainer/VBoxContainer/TurretUpgrades/Panel/GridContainer/Incendiary/VBoxContainer" unique_id=480912939]
 layout_mode = 2
-size_flags_vertical = 6
+size_flags_vertical = 2
+size_flags_stretch_ratio = 1.4
 text = "Incendiary"
 horizontal_alignment = 1
 vertical_alignment = 1
