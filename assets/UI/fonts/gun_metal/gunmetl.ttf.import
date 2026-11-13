@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://dkh2jotj7wop6"
-path="res://.godot/imported/gunmetl.ttf-7432268d5c8f04fd7681125992e07bb1.fontdata"
+path="res://.godot/imported/gunmetl.ttf-00953423a8dbd7695779b9104d0cc5cc.fontdata"
 
 [deps]
 
-source_file="res://assets/themes/fonts/gun_metal/gunmetl.ttf"
-dest_files=["res://.godot/imported/gunmetl.ttf-7432268d5c8f04fd7681125992e07bb1.fontdata"]
+source_file="res://assets/UI/fonts/gun_metal/gunmetl.ttf"
+dest_files=["res://.godot/imported/gunmetl.ttf-00953423a8dbd7695779b9104d0cc5cc.fontdata"]
 
 [params]
 

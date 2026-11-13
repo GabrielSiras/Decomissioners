@@ -1,12 +1,15 @@
 [gd_scene format=3 uid="uid://hq81bv8t86gt"]
 
-[ext_resource type="Theme" uid="uid://cishgontb2yga" path="res://assets/themes/main_buttons_theme.tres" id="1_2qtn0"]
+[ext_resource type="Theme" uid="uid://cishgontb2yga" path="res://assets/UI/themes/main_theme.tres" id="1_2qtn0"]
 [ext_resource type="Script" uid="uid://5sx4ttr6a5ve" path="res://scripts/UI-UX/UI/MainMenu.gd" id="1_vnlg1"]
 [ext_resource type="AudioStream" uid="uid://ma7spr0eraxc" path="res://assets/audios/SFX/UI/MetalClick/MetalClick.wav" id="2_6sobg"]
 [ext_resource type="Script" uid="uid://bqljmeua3bmn" path="res://scripts/UI-UX/UI/OverlayButton.gd" id="2_bbtx1"]
 [ext_resource type="PackedScene" uid="uid://dlfa75dgt8t8i" path="res://scenes/UI-UX/UI/MENUs/CreditsOverlay.tscn" id="4_2qtn0"]
-[ext_resource type="FontFile" uid="uid://dqwk8wrul1clt" path="res://assets/themes/fonts/cnrgn_army/CNRGN-Army.ttf" id="5_3v7yo"]
-[ext_resource type="LabelSettings" uid="uid://6t6h7iy5achu" path="res://assets/themes/title_label.tres" id="6_mrldo"]
+[ext_resource type="FontFile" uid="uid://dqwk8wrul1clt" path="res://assets/UI/fonts/cnrgn_army/CNRGN-Army.ttf" id="5_3v7yo"]
+[ext_resource type="LabelSettings" uid="uid://6t6h7iy5achu" path="res://assets/UI/labels/title_label.tres" id="6_mrldo"]
+[ext_resource type="Theme" uid="uid://u17ymhp7hkpl" path="res://assets/UI/themes/accent_theme.tres" id="7_huahg"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ma5ij"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mrldo"]
 bg_color = Color(0.16470589, 0.19607843, 0.20784314, 1)
@@ -18,6 +21,12 @@ corner_radius_bottom_left = 15
 corner_detail = 1
 shadow_size = 23
 anti_aliasing_size = 10.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_huahg"]
+font_size = 50
+font_color = Color(0.972549, 0.28235295, 0.14117648, 1)
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(4, 4)
 
 [node name="MainMenu" type="Control" unique_id=1744628461 node_paths=PackedStringArray("start_button")]
 layout_mode = 3
@@ -43,7 +52,7 @@ grow_vertical = 2
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.06944445
-anchor_top = 0.05390625
+anchor_top = 0.03984375
 anchor_right = 0.9305556
 anchor_bottom = 0.9375
 theme_override_constants/separation = 30
@@ -54,19 +63,22 @@ custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 2
+icon = SubResource("PlaceholderTexture2D_ma5ij")
 expand_icon = true
 script = ExtResource("2_bbtx1")
 
 [node name="PanelContainer" type="PanelContainer" parent="VBoxContainer" unique_id=1257683586]
-custom_minimum_size = Vector2(620, 250)
+custom_minimum_size = Vector2(620, 260)
 layout_mode = 2
 size_flags_vertical = 6
 theme_override_styles/panel = SubResource("StyleBoxFlat_mrldo")
 
-[node name="Label" type="Label" parent="VBoxContainer/PanelContainer" unique_id=1632104544]
-custom_minimum_size = Vector2(0, 200)
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/PanelContainer" unique_id=449946956]
 layout_mode = 2
-size_flags_vertical = 6
+size_flags_vertical = 4
+
+[node name="MainTitle" type="Label" parent="VBoxContainer/PanelContainer/VBoxContainer" unique_id=1632104544]
+layout_mode = 2
 size_flags_stretch_ratio = 2.52
 theme_override_fonts/font = ExtResource("5_3v7yo")
 theme_override_font_sizes/font_size = 120
@@ -74,6 +86,13 @@ text = "DECOMISSIONERS"
 label_settings = ExtResource("6_mrldo")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="SubTitle" type="Label" parent="VBoxContainer/PanelContainer/VBoxContainer" unique_id=976368943]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+text = "AGAINST THE MACHINES"
+label_settings = SubResource("LabelSettings_huahg")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer" unique_id=1705911663]
 layout_mode = 2
@@ -85,6 +104,7 @@ theme_override_constants/separation = 20
 custom_minimum_size = Vector2(450, 120)
 layout_mode = 2
 size_flags_horizontal = 4
+theme = ExtResource("7_huahg")
 text = "CONTINUE"
 
 [node name="RailmapButton" type="Button" parent="VBoxContainer/VBoxContainer" unique_id=1531250187]

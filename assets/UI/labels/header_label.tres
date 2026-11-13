@@ -1,6 +1,6 @@
 [gd_resource type="LabelSettings" format=3 uid="uid://d0yf8g7u342ts"]
 
-[ext_resource type="FontFile" uid="uid://dqwk8wrul1clt" path="res://assets/themes/fonts/cnrgn_army/CNRGN-Army.ttf" id="1_qyyi5"]
+[ext_resource type="FontFile" uid="uid://dqwk8wrul1clt" path="res://assets/UI/fonts/cnrgn_army/CNRGN-Army.ttf" id="1_qyyi5"]
 
 [resource]
 font = ExtResource("1_qyyi5")

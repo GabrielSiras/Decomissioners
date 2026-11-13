@@ -84,7 +84,7 @@ func _update_hud(upgrade_key: String, socket_group: StringName) -> void:
 			research_button.disabled = true
 		else:
 			research_button.disabled = false
-		research_button.text = "Research"
+		research_button.text = "RESEARCH"
 		match upgrade_key:
 			
 			# Train Atributes

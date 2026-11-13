@@ -1,6 +1,6 @@
 [gd_resource type="Theme" format=3 uid="uid://cishgontb2yga"]
 
-[ext_resource type="FontFile" uid="uid://dqwk8wrul1clt" path="res://assets/themes/fonts/cnrgn_army/CNRGN-Army.ttf" id="1_lr02m"]
+[ext_resource type="FontFile" uid="uid://dqwk8wrul1clt" path="res://assets/UI/fonts/cnrgn_army/CNRGN-Army.ttf" id="1_h47u3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cv002"]
 content_margin_left = 10.0
@@ -25,8 +25,8 @@ content_margin_top = 15.0
 content_margin_right = 10.0
 content_margin_bottom = 0.0
 bg_color = Color(0.11701024, 0.14179602, 0.15108871, 1)
-border_width_top = 8
-border_color = Color(0.23753929, 0.23753908, 0.23753908, 1)
+border_width_top = 7
+border_color = Color(0.2995475, 0.29954743, 0.29954734, 1)
 corner_radius_top_left = 15
 corner_radius_top_right = 15
 corner_radius_bottom_right = 15
@@ -38,9 +38,9 @@ shadow_offset = Vector2(0, 5.01)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_plqmx"]
 bg_color = Color(0.2627451, 0.30588236, 0.32156864, 1)
-border_width_left = 15
-border_width_top = 20
-border_width_right = 15
+border_width_left = 20
+border_width_top = 40
+border_width_right = 20
 border_width_bottom = 70
 border_color = Color(0.16470589, 0.19607843, 0.20784314, 1)
 border_blend = true
@@ -48,21 +48,32 @@ border_blend = true
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_huahg"]
 content_margin_top = 10.0
 bg_color = Color(0.16470589, 0.19607843, 0.20784314, 1)
+border_width_left = 7
+border_width_top = 7
+border_width_right = 7
+border_width_bottom = 7
+border_color = Color(0.2627451, 0.30588236, 0.32156864, 1)
+border_blend = true
 corner_radius_top_left = 15
 corner_radius_top_right = 15
 corner_radius_bottom_right = 15
 corner_radius_bottom_left = 15
 corner_detail = 1
+expand_margin_left = 5.0
+expand_margin_right = 5.0
 
 [resource]
 default_font_size = 0
-Button/colors/font_pressed_color = Color(0.47397572, 0.47397572, 0.47397572, 1)
+Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
+Button/colors/font_hover_color = Color(0.8745098, 0.8745098, 0.8745098, 1)
+Button/colors/font_pressed_color = Color(0.46229005, 0.46229094, 0.46229017, 1)
 Button/font_sizes/font_size = 85
-Button/fonts/font = ExtResource("1_lr02m")
+Button/fonts/font = ExtResource("1_h47u3")
 Button/styles/disabled = SubResource("StyleBoxFlat_cv002")
 Button/styles/hover = SubResource("StyleBoxFlat_cv002")
 Button/styles/normal = SubResource("StyleBoxFlat_cv002")
 Button/styles/pressed = SubResource("StyleBoxFlat_ma5ij")
-Label/fonts/font = ExtResource("1_lr02m")
+Label/font_sizes/font_size = 30
+Label/fonts/font = ExtResource("1_h47u3")
 Panel/styles/panel = SubResource("StyleBoxFlat_plqmx")
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_huahg")
