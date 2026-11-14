@@ -137,6 +137,7 @@ func _restore_turrets(owner_node: Node, list: Array) -> void:
 		t.set_meta("scene_path", info["scene"])
 		t.set_level(info["level"])
 		slots_status[slot] = t
+		_watch_turret(t, slot) 
 	owner_node.update_energy_bar()
 
 func _process(_delta: float) -> void:
@@ -372,6 +373,7 @@ func place_turret_at_slot(target_slot: Node3D, turret_scene: PackedScene, lvl: i
 	t.set_level(lvl)
 	t.set_meta("scene_path", turret_scene.resource_path)
 	slots_status[target_slot] = t
+	_watch_turret(t, target_slot)
 	owner_node.update_energy_bar()
 	return true
 
@@ -518,7 +520,6 @@ func brake_at_gate() -> void:
 		speed_lever.v_slider.value = 0.2
 		speed_lever.v_slider.editable = true
 		speed_lever.visible = true
-		
 
 func energy_capacity() -> int:
 	return UpgradeManager.transmission_power()
@@ -538,3 +539,12 @@ func free_energy() -> int:
 func update_energy_bar() -> void:
 	if is_instance_valid(energy_bar):
 		energy_bar.health = float(free_energy())
+
+func _watch_turret(t: Node, slot: Node3D) -> void:
+	t.turret_removed.connect(func():
+		if slots_status.get(slot) == t:
+			slots_status[slot] = null
+		var o = _slot_owner(slot)
+		if is_instance_valid(o):
+			o.call_deferred("update_energy_bar")
+	)

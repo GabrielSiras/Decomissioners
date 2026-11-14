@@ -31,6 +31,24 @@ const SOCKET_GROUPS := {
 	"Transmission": "TransmissionSockets",
 }
 
+const UPGRADE_INFO := {
+	# Train
+	"Armor": "Increases the Train's and wagons' armor damage reduction.",
+	"Magnetism": "Increases metal drop from enemies.",
+	"Transmission": "Increases transmission.",
+	"Wagons": "Increases Wagon's quantity.",
+	# Skills
+	"Bombardment": "Increases the damage of the Bombardment skill.",
+	"Repair": "Repair your damaged wagon.",
+	"Pitch": "Increases the slow effect of the Pitch skill.",
+	"Supercharge": "Increases the damage and attack speed buff of the Supercharge skill.",
+	# Turrets
+	"Machinegun": "Unlocks a higher level of the Machinegun turret.",
+	"Artillery": "Unlocks a higher level of the Artillery turret.",
+	"Blast": "Unlocks a higher level of the Blast turret.",
+	"Incendiary": "Unlocks a higher level of the Incendiary turret.",
+}
+
 func _ready() -> void:
 	points_label.text = str(UpgradeManager.research_points)
 
@@ -76,70 +94,32 @@ func _set_buttons_disabled(value: bool) -> void:
 func _update_hud(upgrade_key: String, socket_group: StringName) -> void:
 	if not selected_upgrade_hud.visible:
 		selected_upgrade_hud.visible = true
-	if UpgradeManager.upgrades[upgrade_key]["Level"] == UpgradeManager.upgrades[upgrade_key]["Max"]:
+
+	var u: Dictionary = UpgradeManager.upgrades[upgrade_key]
+	var is_max: bool = u["Level"] >= u["Max"]
+
+	upgrade_name.text = upgrade_key
+	upgrade_description.text = UPGRADE_INFO.get(upgrade_key, "")
+	var preview: String = UpgradeManager.preview(upgrade_key)
+	if preview != "" and not is_max:
+		upgrade_description.text += "\n\n" + preview
+	research_button.upgrade_key = upgrade_key
+	research_button.socket_group = socket_group
+
+	if is_max:
 		research_button.disabled = true
 		research_button.text = "MAX"
 	else:
-		if UpgradeManager.research_points == 0:
-			research_button.disabled = true
-		else:
-			research_button.disabled = false
+		research_button.disabled = UpgradeManager.research_points == 0
 		research_button.text = "RESEARCH"
-		match upgrade_key:
-			
-			# Train Atributes
-			"Armor":
-				upgrade_name.text = "Armor"
-				upgrade_description.text = "Increases the Train's and wagons' armor damage reduction."
-				upgrade_description.text += "\n\n" + UpgradeManager.preview(upgrade_key)
-			"Magnetism":
-				upgrade_name.text = "Magnetism"
-				upgrade_description.text = "Increases metal drop from enemies."
-				upgrade_description.text += "\n\n" + UpgradeManager.preview(upgrade_key)
-			"Transmission":
-				upgrade_name.text = "Transmission"
-				upgrade_description.text = "Increases transmission."
-				upgrade_description.text += "\n\n" + UpgradeManager.preview(upgrade_key)
-			"Wagons":
-				upgrade_name.text = "Wagons"
-				upgrade_description.text = "Increases Wagon's quantity."
-				
-			# Skills
-			"Bombardment":
-				upgrade_name.text = "Bombardment"
-				upgrade_description.text = "Increases the damage of the Bombardment skill."
-				upgrade_description.text += "\n\n" + UpgradeManager.preview(upgrade_key)
-			"Repair":
-				upgrade_name.text = "Repair"
-				upgrade_description.text = "Repair your damaged wagon."
-				upgrade_description.text += "\n\n" + UpgradeManager.preview(upgrade_key)
-			"Pitch":
-				upgrade_name.text = "Pitch"
-				upgrade_description.text = "Increases the slow effect of the Pitch skill."
-				upgrade_description.text += "\n\n" + UpgradeManager.preview(upgrade_key)
-			"Supercharge":
-				upgrade_name.text = "Supercharge"
-				upgrade_description.text = "Increases the damage and attack speed buff of the Supercharge skill."
-				upgrade_description.text += "\n\n" + UpgradeManager.preview(upgrade_key)
-				
-			# Turrets:
-			"Machinegun":
-				upgrade_name.text = "Machinegun"
-				upgrade_description.text = "Unlocks a higher level of the Machinegun turret."
-			"Artillery":
-				upgrade_name.text = "Artillery"
-				upgrade_description.text = "Unlocks a higher level of the Artillery turret."
-			"Blast":
-				upgrade_name.text = "Blast"
-				upgrade_description.text = "Unlocks a higher level of the Blast turret."
-			"Incendiary":
-				upgrade_name.text = "Incendiary"
-				upgrade_description.text = "Unlocks a higher level of the Incendiary turret."
-		research_button.upgrade_key = upgrade_key
-		research_button.socket_group = socket_group
 
 func _on_upgrade_bought() -> void:
 	points_label.text = str(UpgradeManager.research_points)
+	call_deferred("_refresh_selected")
+
+func _refresh_selected() -> void:
+	if selected_upgrade_hud.visible and research_button.upgrade_key != "":
+		_update_hud(research_button.upgrade_key, research_button.socket_group)
 
 func _on_main_menu_button_pressed() -> void:
 	_go_to("res://scenes/UI-UX/UI/MENUs/MainMenu.tscn")

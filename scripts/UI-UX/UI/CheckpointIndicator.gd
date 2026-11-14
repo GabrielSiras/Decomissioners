@@ -22,7 +22,6 @@ func show_done_then_reward(reward_text: String = "") -> void:
 	if tween and tween.is_valid():
 		tween.kill()
 
-	# 1) "Checkpoint saved"
 	spinner.visible = false
 	label.text = "Checkpoint saved"
 	visible = true

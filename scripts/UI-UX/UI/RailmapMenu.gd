@@ -23,10 +23,8 @@ func _ready() -> void:
 	junkyard_button.toggled.connect(_on_biome_button_toggled.bind(junkyard_panel))
 	wastes_button.toggled.connect(_on_biome_button_toggled.bind(wastes_panel))
 	
-	#CheckpointManager.clear()
 	get_tree().paused = false
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	#_apply_locks()
 
 func _apply_locks() -> void:
 	var map := {

@@ -13,7 +13,6 @@ func _ready() -> void:
 	cooldown_timer.wait_time = cooldown_time
 	cooldown_timer.one_shot = true
 
-
 func _process(_delta: float) -> void:
 	if not cooldown_timer.is_stopped():
 		text = "%.1fs" % cooldown_timer.time_left

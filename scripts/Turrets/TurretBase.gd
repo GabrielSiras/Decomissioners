@@ -28,13 +28,13 @@ var turret_level: int = 1
 var penetration: float = 0.0
 var current_target: Node3D = null
 var enemies_in_range: Array[Node3D] = []
-
 var active_vfx_instance: Node3D = null
-
 var is_supercharged: bool = false
 var base_damage: int = 10
 var base_fire_rate: float = 0.5
 var supercharge_timer: Timer
+
+signal turret_removed
 
 func _ready() -> void:
 	range_area.body_entered.connect(_on_range_area_body_entered)
@@ -171,3 +171,6 @@ func _set_incandescent_vfx(active: bool) -> void:
 			mat.emission_energy_multiplier = 5.0
 		
 		turret_mesh.material_override = mat
+
+func _exit_tree() -> void:
+	turret_removed.emit()

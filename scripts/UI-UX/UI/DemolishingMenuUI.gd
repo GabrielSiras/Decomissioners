@@ -10,6 +10,7 @@ extends Control
 @export var pitch_max: float = 1.1
 
 @onready var demolish_sound: AudioStreamPlayer = $DemolishSound
+@onready var build_sound: AudioStreamPlayer = $BuildSound
 
 @onready var radial_panel: Control = $RadialPanel
 @onready var btn_demolish: Button = $RadialPanel/ButtonDemolish
@@ -45,6 +46,13 @@ func _play_demolish_sound() -> void:
 	if random_pitch:
 		demolish_sound.pitch_scale = randf_range(pitch_min, pitch_max)
 	demolish_sound.play()
+
+func _play_build_sound() -> void:
+	if not is_instance_valid(build_sound):
+		return
+	if random_pitch:
+		build_sound.pitch_scale = randf_range(pitch_min, pitch_max)
+	build_sound.play()
 
 func _connect_all_slots() -> void:
 	if train.turret_slots_container:
@@ -100,7 +108,7 @@ func _on_upgrade_selected() -> void:
 	if not is_instance_valid(current_slot):
 		return
 	if train.upgrade_turret_at_slot(current_slot):
-		_play_demolish_sound() 
+		_play_build_sound() 
 		_update_button_text()
 
 func _unhandled_input(event: InputEvent) -> void:
