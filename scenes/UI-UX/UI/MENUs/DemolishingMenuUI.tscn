@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bomobpcc77il8" path="res://scripts/UI-UX/UI/DemolishingMenuUI.gd" id="1_ptki6"]
 [ext_resource type="AudioStream" uid="uid://ba3l6jqo27gdt" path="res://assets/audios/SFX/Turrets/Demolishing/metal-demolishing-with-money.wav" id="2_4lwce"]
+[ext_resource type="Theme" uid="uid://cfyqttjt4q46q" path="res://assets/UI/themes/upgrade_buttons_theme.tres" id="2_v8uhh"]
 
 [node name="DemolishingMenuUI" type="Control" unique_id=1660696465]
 layout_mode = 3
@@ -17,6 +18,7 @@ offset_bottom = 40.0
 layout_mode = 0
 offset_right = 8.0
 offset_bottom = 8.0
+theme = ExtResource("2_v8uhh")
 text = "Sell?"
 
 [node name="ButtonUpgrade" type="Button" parent="RadialPanel" unique_id=1429404582]
@@ -27,3 +29,8 @@ text = "UPGRADE TURRET"
 
 [node name="DemolishSound" type="AudioStreamPlayer" parent="." unique_id=1371521462]
 stream = ExtResource("2_4lwce")
+
+[node name="TextureButton" type="TextureButton" parent="." unique_id=608064119]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0

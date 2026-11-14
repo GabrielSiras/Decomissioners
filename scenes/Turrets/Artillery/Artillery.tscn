@@ -21,16 +21,23 @@ fire_rate_per_level = Array[float]([5.0, 4.0, 3.0])
 cost_per_level = Array[int]([90, 150, 200])
 penetration_per_level = Array[float]([0.3, 0.4, 0.5])
 
+[node name="Muzzle" parent="." index="1" unique_id=143445419]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.78898174, -0.7878342)
+
 [node name="ModelT1" type="Node3D" parent="." index="3" unique_id=319322221]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+visible = false
 
 [node name="ART1" parent="ModelT1" index="0" unique_id=347513125 instance=ExtResource("4_jg5b4")]
 
 [node name="ModelT2" type="Node3D" parent="." index="4" unique_id=59179099]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 visible = false
 
 [node name="ART2" parent="ModelT2" index="0" unique_id=1907910903 instance=ExtResource("5_rxnhn")]
 
 [node name="ModelT3" type="Node3D" parent="." index="5" unique_id=2064370235]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 visible = false
 
 [node name="ART3" parent="ModelT3" index="0" unique_id=9531583 instance=ExtResource("6_4afvb")]

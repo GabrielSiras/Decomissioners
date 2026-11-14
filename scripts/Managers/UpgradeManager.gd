@@ -53,7 +53,7 @@ const PREVIEW := {
 const ARMOR_PEN_REDUCTION := [0.0, 0.1, 0.2, 0.3]
 const MAGNETISM_BONUS     := [0.0, 0.15, 0.30, 0.45]
 const TRANSMISSION_POWER  := [5, 6, 7, 8, 9]
-const WAGON_LIMIT         := [2, 3, 4, 5, 6]
+const WAGON_LIMIT         := [1, 2, 3, 4, 5]
 
 # skills
 const BOMB_DAMAGE_MULT := [1.0, 1.25, 1.5, 1.75]

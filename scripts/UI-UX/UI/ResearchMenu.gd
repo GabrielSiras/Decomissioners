@@ -94,15 +94,15 @@ func _update_hud(upgrade_key: String, socket_group: StringName) -> void:
 				upgrade_description.text += "\n\n" + UpgradeManager.preview(upgrade_key)
 			"Magnetism":
 				upgrade_name.text = "Magnetism"
-				upgrade_description.text = "placeholder"
+				upgrade_description.text = "Increases metal drop from enemies."
 				upgrade_description.text += "\n\n" + UpgradeManager.preview(upgrade_key)
 			"Transmission":
 				upgrade_name.text = "Transmission"
-				upgrade_description.text = "placeholder"
+				upgrade_description.text = "Increases transmission."
 				upgrade_description.text += "\n\n" + UpgradeManager.preview(upgrade_key)
 			"Wagons":
 				upgrade_name.text = "Wagons"
-				upgrade_description.text = "placeholder"
+				upgrade_description.text = "Increases Wagon's quantity."
 				
 			# Skills
 			"Bombardment":
@@ -111,7 +111,7 @@ func _update_hud(upgrade_key: String, socket_group: StringName) -> void:
 				upgrade_description.text += "\n\n" + UpgradeManager.preview(upgrade_key)
 			"Repair":
 				upgrade_name.text = "Repair"
-				upgrade_description.text = "placeholder"
+				upgrade_description.text = "Repair your damaged wagon."
 				upgrade_description.text += "\n\n" + UpgradeManager.preview(upgrade_key)
 			"Pitch":
 				upgrade_name.text = "Pitch"

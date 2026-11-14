@@ -58,6 +58,9 @@ func add_metal(amount: int) -> void:
 
 	metal_changed.emit(get_metal())
 
+func refresh() -> void:
+	metal_changed.emit(get_metal())
+
 func spend_metal(amount: int) -> bool:
 	if get_metal() < amount:
 		return false

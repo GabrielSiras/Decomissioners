@@ -14,16 +14,23 @@ level_models = [NodePath("ModelT1"), NodePath("ModelT2"), NodePath("ModelT3")]
 damage_per_level = Array[int]([2, 3, 4])
 fire_rate_per_level = Array[float]([0.2, 0.15, 0.1])
 
+[node name="Muzzle" parent="." index="1" unique_id=143445419]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8024477, -0.6785611)
+
 [node name="ModelT1" type="Node3D" parent="." index="3" unique_id=484184655]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
+visible = false
 
 [node name="MAC1" parent="ModelT1" index="0" unique_id=321608654 instance=ExtResource("3_1qmuy")]
 
 [node name="ModelT2" type="Node3D" parent="." index="4" unique_id=695450968]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
 visible = false
 
 [node name="MAC2" parent="ModelT2" index="0" unique_id=1980683964 instance=ExtResource("4_wgg0j")]
 
 [node name="ModelT3" type="Node3D" parent="." index="5" unique_id=1857297957]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
 visible = false
 
 [node name="MAC3" parent="ModelT3" index="0" unique_id=191545169 instance=ExtResource("5_tf7e4")]

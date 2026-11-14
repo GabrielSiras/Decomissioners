@@ -109,10 +109,35 @@ func _apply_checkpoint() -> void:
 			w.queue_free()
 	_update_wagons_list()
 	rearrange_wagons()
+	
+	health = d["health"]
+	stored_metal = d.get("head_metal", stored_metal)
+	_restore_turrets(self, d.get("head_turrets", []))
+	for w in wagons:
+		var info = saved.get(String(w.name))
+		if info:
+			_restore_turrets(w, info.get("turrets", []))
+	
+	MetalManager.refresh()
 
 	if is_instance_valid(next_gate):
 		next_gate.visible = false
 	approaching_gate = false
+
+func _restore_turrets(owner_node: Node, list: Array) -> void:
+	for info in list:
+		var slot: Node3D = owner_node.turret_slots_container.get_node_or_null(info["slot"])
+		if slot == null or not ResourceLoader.exists(info["scene"]):
+			continue
+		var scene: PackedScene = load(info["scene"])
+		var t = scene.instantiate()
+		slot.add_child(t)
+		t.position = Vector3.ZERO
+		t.rotation = Vector3.ZERO
+		t.set_meta("scene_path", info["scene"])
+		t.set_level(info["level"])
+		slots_status[slot] = t
+	owner_node.update_energy_bar()
 
 func _process(_delta: float) -> void:
 	_update_bar_position()
@@ -327,21 +352,27 @@ func _slot_owner(slot: Node) -> Node:
 		n = n.get_parent()
 	return self
 
-func place_turret_at_slot(target_slot: Node3D, turret_scene: PackedScene, cost: int) -> bool:
+func place_turret_at_slot(target_slot: Node3D, turret_scene: PackedScene, lvl: int = 1) -> bool:
 	if not slots_status.has(target_slot) or slots_status[target_slot] != null:
 		return false
 
-	var turret_instance = turret_scene.instantiate()
-	var lvl: int = turret_instance.turret_level if "turret_level" in turret_instance else 1
+	var t = turret_scene.instantiate()
+	var owner_node = _slot_owner(target_slot)
+	t.set_level(lvl)
 
-	if lvl > free_energy() or not MetalManager.spend_metal(cost):
-		turret_instance.free()
+	if lvl > UpgradeManager.level(t.upgrade_key) \
+			or lvl > owner_node.free_energy() \
+			or not MetalManager.spend_metal(t.build_cost):
+		t.free()
 		return false
 
-	target_slot.add_child(turret_instance)
-	turret_instance.position = Vector3.ZERO
-	turret_instance.rotation = Vector3.ZERO
-	slots_status[target_slot] = turret_instance
+	target_slot.add_child(t)
+	t.position = Vector3.ZERO
+	t.rotation = Vector3.ZERO
+	t.set_level(lvl)
+	t.set_meta("scene_path", turret_scene.resource_path)
+	slots_status[target_slot] = t
+	owner_node.update_energy_bar()
 	return true
 
 func get_upgrade_status(slot: Node3D) -> Dictionary:
