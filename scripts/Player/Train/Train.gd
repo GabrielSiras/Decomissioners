@@ -298,7 +298,7 @@ func _on_destination_reached() -> void:
 	if level_finished:
 		return
 	level_finished = true
-
+	
 	GameProgress.complete_level(level_id)
 	CheckpointManager.clear()
 
@@ -468,6 +468,9 @@ func brake_at_gate() -> void:
 
 	if current_speed_factor == 0.0:
 		approaching_gate = false
+		
+		var result: Dictionary = {}
+			
 		CheckpointManager.save_checkpoint(self)
 		if is_instance_valid(checkpoint_indicator):
 			checkpoint_indicator.show_waiting()
@@ -477,11 +480,14 @@ func brake_at_gate() -> void:
 			return
 
 		if is_instance_valid(checkpoint_indicator):
-			checkpoint_indicator.show_done()
+			checkpoint_indicator.show_done_then_reward("+1 Research Point")
+		
+		UpgradeManager.add_research_points(1)
 		next_gate.visible = false
 		speed_lever.v_slider.value = 0.2
 		speed_lever.v_slider.editable = true
 		speed_lever.visible = true
+		
 
 func energy_capacity() -> int:
 	return UpgradeManager.transmission_power()

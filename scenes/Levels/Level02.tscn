@@ -421,6 +421,7 @@ spawner = NodePath("../EnemySpawner")
 speed_lever = NodePath("../HUD/SpeedLever")
 start_button = NodePath("../HUD/StartButton")
 click_sound = NodePath("../MetalClick")
+skip_if_checkpoint = false
 
 [node name="MetalClick" type="AudioStreamPlayer" parent="." unique_id=1686641681]
 stream = ExtResource("48_lbboi")

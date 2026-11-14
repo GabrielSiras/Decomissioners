@@ -49,12 +49,6 @@ const PREVIEW := {
 					 {"label": "Cooldown", "arr": REPAIR_COOLDOWN, "mult": 1.0, "suffix": "s"}],
 }
 
-func level(key: String) -> int:
-	return upgrades[key]["Level"]
-
-func pick(arr: Array, key: String) -> float:
-	return arr[clampi(upgrades[key]["Level"], 0, arr.size() - 1)]
-
 # do train
 const ARMOR_PEN_REDUCTION := [0.0, 0.1, 0.2, 0.3]
 const MAGNETISM_BONUS     := [0.0, 0.15, 0.30, 0.45]
@@ -71,6 +65,16 @@ const SUPER_DAMAGE_MULT := [1.2, 1.5, 1.75, 2.0]
 const REPAIR_HEAL     := [30, 45, 60, 80]
 const REPAIR_COST     := [60, 50, 40, 30]
 const REPAIR_COOLDOWN := [20.0, 17.0, 14.0, 11.0]
+
+func level(key: String) -> int:
+	return upgrades[key]["Level"]
+
+func pick(arr: Array, key: String) -> float:
+	return arr[clampi(upgrades[key]["Level"], 0, arr.size() - 1)]
+
+func add_research_points(n: int) -> void:
+	research_points += n
+	print("PONTOS DE PESQUISA: ", research_points)
 
 func armor_penetration_after_upgrade(pen: float) -> float:
 	return maxf(0.0, pen - pick(ARMOR_PEN_REDUCTION, "Armor"))

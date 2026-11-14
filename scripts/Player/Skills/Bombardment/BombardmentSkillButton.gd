@@ -12,8 +12,7 @@ func _ready() -> void:
 	original_button_text = text if text != "" else "Bombardment"
 	cooldown_timer.wait_time = cooldown_time
 	cooldown_timer.one_shot = true
-	cooldown_timer.timeout.connect(_on_cooldown_finished)
-	pressed.connect(_on_pressed)
+
 
 func _process(_delta: float) -> void:
 	if not cooldown_timer.is_stopped():

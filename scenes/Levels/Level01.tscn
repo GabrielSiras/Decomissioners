@@ -407,7 +407,7 @@ v_offset = -6.0
 target = NodePath("../TrainHead")
 
 [node name="Gate" parent="." unique_id=284149379 instance=ExtResource("33_v3ke2")]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, -337.17242)
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, -27.300468)
 
 [node name="VFXPrewarmer" type="Node3D" parent="." unique_id=503405006]
 script = ExtResource("34_0hpgq")
@@ -422,5 +422,6 @@ spawner = NodePath("../EnemySpawner")
 speed_lever = NodePath("../HUD/SpeedLever")
 start_button = NodePath("../HUD/StartButton")
 click_sound = NodePath("../MetalClick")
+skip_if_checkpoint = false
 
 [connection signal="pressed" from="HUD/SettingsButton" to="HUD/SettingsButton" method="_on_button_pressed"]

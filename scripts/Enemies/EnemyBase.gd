@@ -207,5 +207,5 @@ func take_damage_with_pen(amount: int, armor_pen: float) -> void:
 		die()
 
 func die() -> void:
-	MetalManager.add_metal(roundi(metal_reward * UpgradeManager.magnetism_mult()))
+	MetalManager.add_metal(metal_reward)
 	queue_free()

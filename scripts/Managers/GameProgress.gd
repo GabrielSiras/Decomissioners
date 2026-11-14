@@ -14,6 +14,7 @@ const ALWAYS_UNLOCKED := ["tutorial", "level01"]
 const LEVEL_SELECT_PATH := "res://scenes/UI-UX/UI/MENUs/RailmapMenu.tscn"
 
 var completed: Array = []
+var last_result: Dictionary = {}
 var current_level_id: String = ""
 
 func _ready() -> void:

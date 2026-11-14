@@ -12,7 +12,7 @@ extends Control
 var is_changing: bool = false
 
 func _ready() -> void:
-	CheckpointManager.clear()
+	#CheckpointManager.clear()
 	get_tree().paused = false
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
