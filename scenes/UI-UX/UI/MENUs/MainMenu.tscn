@@ -5,6 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://ma7spr0eraxc" path="res://assets/audios/SFX/UI/MetalClick/MetalClick.wav" id="2_6sobg"]
 [ext_resource type="Script" uid="uid://bqljmeua3bmn" path="res://scripts/UI-UX/UI/OverlayButton.gd" id="2_bbtx1"]
 [ext_resource type="PackedScene" uid="uid://dlfa75dgt8t8i" path="res://scenes/UI-UX/UI/MENUs/CreditsOverlay.tscn" id="4_2qtn0"]
+[ext_resource type="Texture2D" uid="uid://b5plf5wn62k04" path="res://assets/UI/menu/titlescreentest.png" id="4_i5cg6"]
 [ext_resource type="Texture2D" uid="uid://ce0a578cfifiq" path="res://assets/Icons/SETTINGS.png" id="4_vg3fa"]
 [ext_resource type="FontFile" uid="uid://dqwk8wrul1clt" path="res://assets/UI/fonts/cnrgn_army/CNRGN-Army.ttf" id="5_3v7yo"]
 [ext_resource type="LabelSettings" uid="uid://6t6h7iy5achu" path="res://assets/UI/labels/title_label.tres" id="6_mrldo"]
@@ -39,7 +40,15 @@ script = ExtResource("1_vnlg1")
 start_button = NodePath("VBoxContainer/VBoxContainer/ContinueButton")
 credits_overlay = ExtResource("4_2qtn0")
 
+[node name="TextureRect" type="TextureRect" parent="." unique_id=744933551]
+layout_mode = 0
+offset_right = 720.0
+offset_bottom = 1280.0
+texture = ExtResource("4_i5cg6")
+expand_mode = 1
+
 [node name="BG" type="Panel" parent="." unique_id=506043037]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
