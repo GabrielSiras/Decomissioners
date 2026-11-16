@@ -6,13 +6,17 @@
 [ext_resource type="PackedScene" uid="uid://c82tnhx2xwows" path="res://assets/models/Turrets/MAC2.glb" id="4_wgg0j"]
 [ext_resource type="PackedScene" uid="uid://cj46rbakk0q80" path="res://assets/models/Turrets/MAC3.glb" id="5_tf7e4"]
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_wgg0j"]
+radius = 6.0
+
 [node name="MachineGunTurret" unique_id=90108018 node_paths=PackedStringArray("level_models") instance=ExtResource("1_yfucs")]
 script = ExtResource("2_budth")
-fire_rate = 0.2
-damage = 2
 level_models = [NodePath("ModelT1"), NodePath("ModelT2"), NodePath("ModelT3")]
-damage_per_level = Array[int]([2, 3, 4])
-fire_rate_per_level = Array[float]([0.2, 0.15, 0.1])
+damage_per_level = Array[int]([1, 2, 3])
+fire_rate_per_level = Array[float]([0.33, 0.22, 0.11])
+
+[node name="CollisionShape3D" parent="RangeArea" parent_id_path=PackedInt32Array(615499785) index="0" unique_id=1991760536]
+shape = SubResource("SphereShape3D_wgg0j")
 
 [node name="Muzzle" parent="." index="1" unique_id=143445419]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8024477, -0.6785611)

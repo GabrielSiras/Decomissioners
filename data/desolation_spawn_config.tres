@@ -1,0 +1,96 @@
+[gd_resource type="Resource" script_class="SpawnConfig" format=3 uid="uid://c24uua5pijwxy"]
+
+[ext_resource type="Script" uid="uid://chglphm85ewn7" path="res://scripts/Enemies/SpawnPhase.gd" id="1_xt1e2"]
+[ext_resource type="Script" uid="uid://ct7j7u2b66eba" path="res://scripts/Enemies/SpawnConfig.gd" id="2_ebur1"]
+[ext_resource type="Script" uid="uid://b50kb6ke0c27l" path="res://scripts/Enemies/SpawnEntry.gd" id="2_rmqsa"]
+[ext_resource type="PackedScene" uid="uid://fncocs5exowh" path="res://scenes/Enemies/RangedEnemies/Machinegunner/Machinegunner.tscn" id="3_maukv"]
+[ext_resource type="PackedScene" uid="uid://ctyvfr2vuoihj" path="res://scenes/Enemies/RangedEnemies/AAA/AAA.tscn" id="4_maukv"]
+
+[sub_resource type="Resource" id="Resource_maukv"]
+script = ExtResource("2_rmqsa")
+scene = ExtResource("3_maukv")
+mode = 1
+metadata/_custom_type_script = "uid://b50kb6ke0c27l"
+
+[sub_resource type="Resource" id="Resource_rmqsa"]
+script = ExtResource("1_xt1e2")
+phase_name = "Track1"
+spawn_interval = 10.0
+entries = Array[ExtResource("2_rmqsa")]([SubResource("Resource_maukv")])
+metadata/_custom_type_script = "uid://chglphm85ewn7"
+
+[sub_resource type="Resource" id="Resource_b1gey"]
+script = ExtResource("1_xt1e2")
+phase_name = "Gate1"
+entries = Array[ExtResource("2_rmqsa")]([SubResource("Resource_maukv")])
+metadata/_custom_type_script = "uid://chglphm85ewn7"
+
+[sub_resource type="Resource" id="Resource_odre1"]
+script = ExtResource("2_rmqsa")
+scene = ExtResource("3_maukv")
+weight = 3.0
+mode = 1
+metadata/_custom_type_script = "uid://b50kb6ke0c27l"
+
+[sub_resource type="Resource" id="Resource_w7p35"]
+script = ExtResource("2_rmqsa")
+scene = ExtResource("4_maukv")
+metadata/_custom_type_script = "uid://b50kb6ke0c27l"
+
+[sub_resource type="Resource" id="Resource_tmybx"]
+script = ExtResource("1_xt1e2")
+phase_name = "Track2"
+spawn_interval = 8.0
+entries = Array[ExtResource("2_rmqsa")]([SubResource("Resource_odre1"), SubResource("Resource_w7p35")])
+metadata/_custom_type_script = "uid://chglphm85ewn7"
+
+[sub_resource type="Resource" id="Resource_cdlgi"]
+script = ExtResource("2_rmqsa")
+scene = ExtResource("3_maukv")
+mode = 1
+metadata/_custom_type_script = "uid://b50kb6ke0c27l"
+
+[sub_resource type="Resource" id="Resource_v5esl"]
+script = ExtResource("1_xt1e2")
+phase_name = "Gate2"
+spawn_interval = 2.5
+entries = Array[ExtResource("2_rmqsa")]([SubResource("Resource_cdlgi")])
+metadata/_custom_type_script = "uid://chglphm85ewn7"
+
+[sub_resource type="Resource" id="Resource_2481q"]
+script = ExtResource("2_rmqsa")
+scene = ExtResource("3_maukv")
+weight = 3.0
+mode = 1
+metadata/_custom_type_script = "uid://b50kb6ke0c27l"
+
+[sub_resource type="Resource" id="Resource_rnkx4"]
+script = ExtResource("2_rmqsa")
+scene = ExtResource("4_maukv")
+weight = 1.5
+metadata/_custom_type_script = "uid://b50kb6ke0c27l"
+
+[sub_resource type="Resource" id="Resource_lfkq7"]
+script = ExtResource("1_xt1e2")
+phase_name = "Track3"
+spawn_interval = 7.0
+entries = Array[ExtResource("2_rmqsa")]([SubResource("Resource_2481q"), SubResource("Resource_rnkx4")])
+metadata/_custom_type_script = "uid://chglphm85ewn7"
+
+[sub_resource type="Resource" id="Resource_5vti6"]
+script = ExtResource("2_rmqsa")
+scene = ExtResource("3_maukv")
+mode = 1
+metadata/_custom_type_script = "uid://b50kb6ke0c27l"
+
+[sub_resource type="Resource" id="Resource_30ag5"]
+script = ExtResource("1_xt1e2")
+phase_name = "Gate3"
+spawn_interval = 3.0
+entries = Array[ExtResource("2_rmqsa")]([SubResource("Resource_5vti6")])
+metadata/_custom_type_script = "uid://chglphm85ewn7"
+
+[resource]
+script = ExtResource("2_ebur1")
+phases = Array[ExtResource("1_xt1e2")]([SubResource("Resource_rmqsa"), SubResource("Resource_b1gey"), SubResource("Resource_tmybx"), SubResource("Resource_v5esl"), SubResource("Resource_lfkq7"), SubResource("Resource_30ag5")])
+metadata/_custom_type_script = "uid://ct7j7u2b66eba"

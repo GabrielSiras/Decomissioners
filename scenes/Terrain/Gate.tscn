@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://b4skynkois6f4"]
+
+[ext_resource type="Script" uid="uid://c23enh1pu5m3m" path="res://scripts/Terrain/Gate.gd" id="1_k3sf0"]
+[ext_resource type="PackedScene" uid="uid://b555l1hetvn71" path="res://assets/models/Gate/NewGate.glb" id="1_lbl07"]
+[ext_resource type="PackedScene" uid="uid://ewfpa3eova3a" path="res://assets/models/Gate/NewGateOpen.glb" id="2_k3sf0"]
+
+[node name="Gate" type="Node3D" unique_id=447877670]
+script = ExtResource("1_k3sf0")
+
+[node name="Gate" parent="." unique_id=679862126 instance=ExtResource("1_lbl07")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1920929e-07, 0)
+
+[node name="GateDestroyed" parent="." unique_id=792761704 instance=ExtResource("2_k3sf0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1920929e-07, 0)
+visible = false

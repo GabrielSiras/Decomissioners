@@ -4,7 +4,7 @@ extends CanvasLayer
 @export var click_delay: float = 0.55
 @export var random_pitch: bool = true
 
-@export var railmap_button: Button
+@export var main_menu_button: Button
 @export var research_button: Button
 @export var next_button: Button
 
@@ -14,6 +14,8 @@ var is_changing: bool = false
 
 func _ready() -> void:
 	next_button.pressed.connect(_on_next_button_pressed)
+	research_button.pressed.connect(_on_research_button_pressed)
+	main_menu_button.pressed.connect(_on_main_menu_button_pressed)
 
 	if GameProgress.get_next_level_path(GameProgress.current_level_id).is_empty():
 		next_button.text = "Select Level"
@@ -26,7 +28,7 @@ func _go_to(scene_path: String) -> void:
 		return
 
 	is_changing = true
-	railmap_button.disabled = true
+	main_menu_button.disabled = true
 	next_button.disabled = true
 
 	if random_pitch:
@@ -44,5 +46,8 @@ func _on_next_button_pressed() -> void:
 		path = GameProgress.LEVEL_SELECT_PATH
 	_go_to(path)
 
-func _on_menu_button_pressed() -> void:
+func _on_research_button_pressed() -> void:
+	_go_to("res://scenes/UI-UX/UI/MENUs/ResearchMenu.tscn")
+
+func _on_main_menu_button_pressed() -> void:
 	_go_to("res://scenes/UI-UX/UI/MENUs/MainMenu.tscn")

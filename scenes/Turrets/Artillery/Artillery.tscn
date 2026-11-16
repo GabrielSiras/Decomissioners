@@ -7,19 +7,23 @@
 [ext_resource type="PackedScene" uid="uid://dhsv3d82fewxw" path="res://assets/models/Turrets/ART2.glb" id="5_rxnhn"]
 [ext_resource type="PackedScene" uid="uid://bce78iy3t2sq0" path="res://assets/models/Turrets/ART3.glb" id="6_4afvb"]
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_rxnhn"]
+radius = 20.0
+
 [node name="Artillery" unique_id=90108018 node_paths=PackedStringArray("level_models") instance=ExtResource("1_7woeq")]
 script = ExtResource("2_1poxa")
-aoe_radius = 2.5
 shell_scene = ExtResource("3_1t0n3")
 aoe_radius_per_level = Array[float]([2.5, 3.0, 3.5])
-fire_rate = 5.0
 projectile_scene = null
 upgrade_key = "Artillery"
 level_models = [NodePath("ModelT1"), NodePath("ModelT2"), NodePath("ModelT3")]
-damage_per_level = Array[int]([150, 200, 240])
+damage_per_level = Array[int]([30, 40, 60])
 fire_rate_per_level = Array[float]([5.0, 4.0, 3.0])
 cost_per_level = Array[int]([90, 150, 200])
 penetration_per_level = Array[float]([0.3, 0.4, 0.5])
+
+[node name="CollisionShape3D" parent="RangeArea" parent_id_path=PackedInt32Array(615499785) index="0" unique_id=1991760536]
+shape = SubResource("SphereShape3D_rxnhn")
 
 [node name="Muzzle" parent="." index="1" unique_id=143445419]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.78898174, -0.7878342)

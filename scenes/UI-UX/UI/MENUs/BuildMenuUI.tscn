@@ -1,12 +1,20 @@
 [gd_scene format=3 uid="uid://7vml8gkbdtrb"]
 
+[ext_resource type="Theme" uid="uid://cishgontb2yga" path="res://assets/UI/themes/main_theme.tres" id="1_1vjus"]
 [ext_resource type="Script" uid="uid://c7vrl3svytbsm" path="res://scripts/UI-UX/UI/BuildMenuUI.gd" id="1_ly6h3"]
 [ext_resource type="AudioStream" uid="uid://b0iaa8x4estti" path="res://assets/audios/SFX/Turrets/Building/metal-hitting'n-building.wav" id="2_ofgi3"]
+[ext_resource type="Texture2D" uid="uid://d4h6x21lr5u3s" path="res://assets/Icons/Gun.png" id="3_yw612"]
+[ext_resource type="Texture2D" uid="uid://c17h6xvrchaof" path="res://assets/Icons/Inc.png" id="4_k5mlk"]
+[ext_resource type="Texture2D" uid="uid://ct4xfmlm2dtrr" path="res://assets/Icons/Blast.png" id="5_i2qot"]
+[ext_resource type="Texture2D" uid="uid://bhqn54f6qg577" path="res://assets/Icons/Art.png" id="6_b8pjo"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_5clvs"]
 
 [node name="BuildMenuUI" type="Control" unique_id=1796876524]
 z_index = 1
 layout_mode = 3
 anchors_preset = 0
+theme = ExtResource("1_1vjus")
 script = ExtResource("1_ly6h3")
 
 [node name="RadialPanel" type="Control" parent="." unique_id=961902928]
@@ -20,33 +28,58 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ButtonTurret1" type="Button" parent="RadialPanel" unique_id=2013880621]
+custom_minimum_size = Vector2(80, 80)
 layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
-text = "MachineGun"
+offset_top = 441.0
+offset_right = 100.0
+offset_bottom = 541.0
+theme_override_font_sizes/font_size = 30
+icon = ExtResource("3_yw612")
+vertical_icon_alignment = 0
+expand_icon = true
 
 [node name="ButtonTurret2" type="Button" parent="RadialPanel" unique_id=861224002]
+custom_minimum_size = Vector2(80, 80)
 layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
-text = "Incendiary"
+offset_top = 311.0
+offset_right = 100.0
+offset_bottom = 411.0
+theme_override_font_sizes/font_size = 30
+icon = ExtResource("4_k5mlk")
+expand_icon = true
 
 [node name="ButtonTurret3" type="Button" parent="RadialPanel" unique_id=337346439]
+custom_minimum_size = Vector2(80, 80)
 layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
-text = "Blast"
+offset_top = 80.0
+offset_right = 100.0
+offset_bottom = 180.0
+theme_override_font_sizes/font_size = 30
+icon = ExtResource("5_i2qot")
+expand_icon = true
 
 [node name="ButtonTurret4" type="Button" parent="RadialPanel" unique_id=290782043]
+custom_minimum_size = Vector2(80, 80)
 layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
-text = "Artillery"
+offset_top = 193.0
+offset_right = 100.0
+offset_bottom = 293.0
+theme_override_font_sizes/font_size = 30
+icon = ExtResource("6_b8pjo")
+expand_icon = true
 
 [node name="CloseButton" type="Button" parent="RadialPanel" unique_id=1689192879]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -35.0
+offset_right = 35.0
+offset_bottom = 70.0
+grow_horizontal = 2
+icon = SubResource("PlaceholderTexture2D_5clvs")
+expand_icon = true
 
 [node name="BuildSound" type="AudioStreamPlayer" parent="." unique_id=826047351]
 stream = ExtResource("2_ofgi3")

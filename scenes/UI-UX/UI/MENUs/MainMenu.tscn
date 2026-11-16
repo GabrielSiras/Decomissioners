@@ -5,11 +5,10 @@
 [ext_resource type="AudioStream" uid="uid://ma7spr0eraxc" path="res://assets/audios/SFX/UI/MetalClick/MetalClick.wav" id="2_6sobg"]
 [ext_resource type="Script" uid="uid://bqljmeua3bmn" path="res://scripts/UI-UX/UI/OverlayButton.gd" id="2_bbtx1"]
 [ext_resource type="PackedScene" uid="uid://dlfa75dgt8t8i" path="res://scenes/UI-UX/UI/MENUs/CreditsOverlay.tscn" id="4_2qtn0"]
+[ext_resource type="Texture2D" uid="uid://ce0a578cfifiq" path="res://assets/Icons/SETTINGS.png" id="4_vg3fa"]
 [ext_resource type="FontFile" uid="uid://dqwk8wrul1clt" path="res://assets/UI/fonts/cnrgn_army/CNRGN-Army.ttf" id="5_3v7yo"]
 [ext_resource type="LabelSettings" uid="uid://6t6h7iy5achu" path="res://assets/UI/labels/title_label.tres" id="6_mrldo"]
 [ext_resource type="Theme" uid="uid://u17ymhp7hkpl" path="res://assets/UI/themes/accent_theme.tres" id="7_huahg"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ma5ij"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mrldo"]
 bg_color = Color(0.16470589, 0.19607843, 0.20784314, 1)
@@ -63,7 +62,7 @@ custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 2
-icon = SubResource("PlaceholderTexture2D_ma5ij")
+icon = ExtResource("4_vg3fa")
 expand_icon = true
 script = ExtResource("2_bbtx1")
 

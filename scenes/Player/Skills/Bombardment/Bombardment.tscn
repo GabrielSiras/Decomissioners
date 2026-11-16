@@ -10,6 +10,8 @@ rings = 3
 
 [node name="Bombardment" type="Node3D" unique_id=1233679808]
 script = ExtResource("1_8y1h5")
+damage = 60
+damage_radius = 1.5
 explosion_effect_scene = ExtResource("2_xga24")
 
 [node name="IndicatorMesh" type="MeshInstance3D" parent="." unique_id=1697505361]

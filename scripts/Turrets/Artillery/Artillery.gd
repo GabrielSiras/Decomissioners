@@ -2,7 +2,7 @@ class_name ArtilleryTurret
 extends TurretBase
 
 @export_category("Configurações da Artilharia")
-@export var aoe_radius: float = 2.5
+var aoe_radius: float = 2.5
 @export var shell_scene: PackedScene
 
 @export_category("Dados por Nível (índice 0 = T1)")

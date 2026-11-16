@@ -20,7 +20,7 @@ var health_bar: HealthBarUI = null
 @export var speed_lever: SpeedLever
 @export var progress_bar: CanvasLayer
 @export var destination_node: Node3D
-@export var next_gate: Node3D
+
 
 @export_category("UI Health Bars")
 @export var health_bar_scene: PackedScene
@@ -41,8 +41,12 @@ var stored_metal: int = 0
 
 @export_category("Level")
 @export var level_id: String = "level01"
+@export var level_spawner: Node3D
 var level_finished: bool = false
 
+@onready var level_gates: Array = get_tree().get_nodes_in_group("Level Gates")
+@onready var current_gate: Gate = level_gates[0]
+var current_gate_index = 0
 var base_max_speed: float = 0.0
 var brake_vfx_cooldown_timer: float = 0.0
 var slots_status: Dictionary = {}
@@ -120,8 +124,8 @@ func _apply_checkpoint() -> void:
 	
 	MetalManager.refresh()
 
-	if is_instance_valid(next_gate):
-		next_gate.visible = false
+	if is_instance_valid(current_gate):
+		current_gate.visible = false
 	approaching_gate = false
 
 func _restore_turrets(owner_node: Node, list: Array) -> void:
@@ -208,7 +212,7 @@ func _physics_process(delta: float) -> void:
 		var visual_factor = clamp(current_speed / base_max_speed, 0.0, 1.0)
 		speed_lever.update_slider_visual(visual_factor)
 		
-	if not pregame and global_position.distance_to(next_gate.global_position) - 5 <= brake_distance * current_speed_factor and approaching_gate == true:
+	if not pregame and global_position.distance_to(current_gate.global_position) - 5 <= brake_distance * current_speed_factor and approaching_gate == true:
 		brake_at_gate()
 	
 	_update_progress()
@@ -500,6 +504,8 @@ func brake_at_gate() -> void:
 	speed_lever.visible = false
 
 	if current_speed_factor == 0.0:
+		level_spawner.current_phase_index += 1
+		level_spawner.set_phase(level_spawner.current_phase_index)
 		approaching_gate = false
 		
 		var result: Dictionary = {}
@@ -516,7 +522,13 @@ func brake_at_gate() -> void:
 			checkpoint_indicator.show_done_then_reward("+1 Research Point")
 		
 		UpgradeManager.add_research_points(1)
-		next_gate.visible = false
+		current_gate.switch_to_destroyed()
+		current_gate_index += 1
+		level_spawner.current_phase_index += 1
+		level_spawner.set_phase(level_spawner.current_phase_index)
+		if current_gate_index <= level_gates.size()-1:
+			current_gate = level_gates[current_gate_index]
+			approaching_gate = true
 		speed_lever.v_slider.value = 0.2
 		speed_lever.v_slider.editable = true
 		speed_lever.visible = true

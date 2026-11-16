@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://msr581mrgwu6" path="res://scenes/Enemies/EnemySpawner.tscn" id="2_ws2j5"]
 [ext_resource type="Resource" uid="uid://cqrla766sidlm" path="res://data/spawn_config.tres" id="3_f84fw"]
 [ext_resource type="PackedScene" uid="uid://egwkrxmeo21s" path="res://scenes/Terrain/TerrainManager.tscn" id="4_b5lsf"]
+[ext_resource type="PackedScene" uid="uid://b4skynkois6f4" path="res://scenes/Terrain/Gate.tscn" id="4_lbboi"]
 [ext_resource type="PackedScene" uid="uid://dtoiyc323yjph" path="res://scenes/Terrain/Chunks/Desolation/Desolation1.tscn" id="5_0b68w"]
 [ext_resource type="PackedScene" uid="uid://bryue4otwuemu" path="res://scenes/Terrain/Chunks/Desolation/Desolation2.tscn" id="6_ihiu8"]
 [ext_resource type="PackedScene" uid="uid://bhcxxqqp3c2pf" path="res://scenes/Terrain/Chunks/ScrapYard/ScrapYard1.tscn" id="7_bhq0s"]
@@ -37,7 +38,6 @@
 [ext_resource type="PackedScene" uid="uid://bboslj3bs8gj8" path="res://scenes/Player/Skills/Repair/RepairSkillButton.tscn" id="32_0b68w"]
 [ext_resource type="PackedScene" uid="uid://ccxbyhm6vro5u" path="res://scenes/Player/GameCamera.tscn" id="32_1qny7"]
 [ext_resource type="PackedScene" uid="uid://d2tayfwtb0eco" path="res://scenes/Player/Skills/Repair/RepairSkill.tscn" id="33_ihiu8"]
-[ext_resource type="PackedScene" uid="uid://r635qxesdoa5" path="res://assets/models/Gate/Gate.glb" id="33_l8q2u"]
 [ext_resource type="Script" uid="uid://v4lwcwcnu7dg" path="res://scripts/VFX/VFXPrewarmer.gd" id="34_c8eai"]
 [ext_resource type="PackedScene" uid="uid://x2uj51mwckp5" path="res://scenes/VFX/ExplosionVFX.tscn" id="35_7jwx1"]
 [ext_resource type="PackedScene" uid="uid://bmim5hpyj0ca1" path="res://scenes/VFX/ExplosionVFXArtillery.tscn" id="36_srqex"]
@@ -186,7 +186,18 @@ config = ExtResource("3_f84fw")
 start_phase = 1
 
 [node name="DestinationPoint" type="Marker3D" parent="." unique_id=949491284]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -600)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1520)
+
+[node name="Gates" type="Node3D" parent="." unique_id=460465927]
+
+[node name="Gate1" parent="Gates" unique_id=447877670 groups=["Level Gates"] instance=ExtResource("4_lbboi")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, -500)
+
+[node name="Gate2" parent="Gates" unique_id=512412848 groups=["Level Gates"] instance=ExtResource("4_lbboi")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, -1000)
+
+[node name="Gate3" parent="Gates" unique_id=204737498 groups=["Level Gates"] instance=ExtResource("4_lbboi")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, -1500)
 
 [node name="TerrainManager" parent="." unique_id=1209588191 node_paths=PackedStringArray("train", "destination_node") instance=ExtResource("4_b5lsf")]
 train = NodePath("../Player/TrainHead")
@@ -391,7 +402,7 @@ repair_skill_scene = ExtResource("33_ihiu8")
 
 [node name="Player" type="Node3D" parent="." unique_id=163302227]
 
-[node name="TrainHead" parent="Player" unique_id=423923195 node_paths=PackedStringArray("wagons", "checkpoint_indicator", "defeat_menu", "speed_lever", "progress_bar", "destination_node", "next_gate") instance=ExtResource("30_06yrh")]
+[node name="TrainHead" parent="Player" unique_id=423923195 node_paths=PackedStringArray("wagons", "checkpoint_indicator", "defeat_menu", "speed_lever", "progress_bar", "destination_node") instance=ExtResource("30_06yrh")]
 max_health = 300
 wagons = [NodePath("Wagon1"), null]
 checkpoint_indicator = NodePath("../../HUD/CheckpointIndicator")
@@ -399,7 +410,6 @@ defeat_menu = NodePath("../../HUD/DefeatMenu")
 speed_lever = NodePath("../../HUD/SpeedLever")
 progress_bar = NodePath("../../HUD/TrainProgressBar")
 destination_node = NodePath("../../DestinationPoint")
-next_gate = NodePath("../../Gate")
 wagon_scene = ExtResource("31_1ytg8")
 
 [node name="Wagon1" parent="Player/TrainHead" unique_id=659263558 instance=ExtResource("31_1ytg8")]
@@ -410,9 +420,6 @@ max_health = 200
 transform = Transform3D(0.99991435, 0.013089597, -1.0106151e-05, 0, 0.0007720748, 0.9999997, 0.013089601, -0.99991405, 0.0007720087, 0.048, 22, 4.264)
 v_offset = -6.0
 target = NodePath("../TrainHead")
-
-[node name="Gate" parent="." unique_id=284149379 instance=ExtResource("33_l8q2u")]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, -337.17242)
 
 [node name="VFXPrewarmer" type="Node3D" parent="." unique_id=503405006]
 script = ExtResource("34_c8eai")

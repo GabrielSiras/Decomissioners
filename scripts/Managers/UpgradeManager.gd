@@ -58,13 +58,16 @@ const WAGON_LIMIT         := [1, 2, 3, 4, 5]
 # skills
 const BOMB_DAMAGE_MULT := [1.0, 1.25, 1.5, 1.75]
 const BOMB_RADIUS_MULT := [1.0, 1.15, 1.3, 1.45]
+
 const PITCH_SLOW       := [0.4, 0.5, 0.6, 0.7]
+
 const SUPER_DURATION   := [5.0, 6.5, 8.0, 10.0]
 const SUPER_ATK_SPEED  := [1.3, 1.45, 1.6, 1.8]
 const SUPER_DAMAGE_MULT := [1.2, 1.5, 1.75, 2.0]
-const REPAIR_HEAL     := [30, 45, 60, 80]
-const REPAIR_COST     := [60, 50, 40, 30]
-const REPAIR_COOLDOWN := [20.0, 17.0, 14.0, 11.0]
+
+const REPAIR_HEAL     := [300, 0, 0, 0]
+const REPAIR_COST     := [25, 0, 0, 0]
+const REPAIR_COOLDOWN := [10.0, 0, 0, 0]
 
 func level(key: String) -> int:
 	return upgrades[key]["Level"]

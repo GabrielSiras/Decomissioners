@@ -1,9 +1,9 @@
 class_name TurretBase
 extends Node3D
 
-@export var fire_rate: float = 0.5
-@export var damage: int = 10
-@export var build_cost: int = 50
+var fire_rate: float = 0.5
+var damage: int = 10
+var build_cost: int = 50
 @export var projectile_scene: PackedScene
 
 @export_category("Efeitos de Sobrecarga")

@@ -13,9 +13,11 @@ corner_radius_bottom_left = 25
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_xrivr"]
 size = Vector2(30, 30)
 
-[node name="WinMenu" type="CanvasLayer" unique_id=1146696141 node_paths=PackedStringArray("next_button")]
+[node name="WinMenu" type="CanvasLayer" unique_id=1146696141 node_paths=PackedStringArray("main_menu_button", "research_button", "next_button")]
 process_mode = 3
 script = ExtResource("1_7sdtr")
+main_menu_button = NodePath("ColorRect/CenterContainer/PanelContainer/CenterContainer/VBoxContainer/VBoxContainer/MenuButton")
+research_button = NodePath("ColorRect/CenterContainer/PanelContainer/CenterContainer/VBoxContainer/VBoxContainer/ResearchButton")
 next_button = NodePath("ColorRect/CenterContainer/PanelContainer/CenterContainer/VBoxContainer/VBoxContainer/NextButton")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1990424947]
@@ -130,7 +132,7 @@ custom_minimum_size = Vector2(350, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 50
-text = "RAILMAP"
+text = "QUIT"
 
 [node name="MetalClick" type="AudioStreamPlayer" parent="." unique_id=1951237289]
 stream = ExtResource("2_wqpd4")
@@ -138,5 +140,3 @@ bus = &"SFX"
 
 [node name="StartTimer" type="Timer" parent="." unique_id=254165725]
 wait_time = 0.3
-
-[connection signal="pressed" from="ColorRect/CenterContainer/PanelContainer/CenterContainer/VBoxContainer/VBoxContainer/MenuButton" to="." method="_on_menu_button_pressed"]

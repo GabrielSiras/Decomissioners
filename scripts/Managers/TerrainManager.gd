@@ -44,17 +44,17 @@ func _check_current_zone() -> void:
 	
 	var generation_progress = clamp((distance_generated / total_distance) * 100.0, 0.0, 100.0)
 
-	var new_zone: Zone = Zone.DESOLATION
-	if generation_progress >= 66.0:
-		new_zone = Zone.FACTORY
-	elif generation_progress >= 33.0:
-		new_zone = Zone.SCRAP_YARD
-	else:
-		new_zone = Zone.DESOLATION
-
-	if new_zone != current_zone:
-		current_zone = new_zone
-		zone_changed.emit(current_zone)
+	#var new_zone: Zone = Zone.DESOLATION
+	#if generation_progress >= 66.0:
+		#new_zone = Zone.FACTORY
+	#elif generation_progress >= 33.0:
+		#new_zone = Zone.SCRAP_YARD
+	#else:
+		#new_zone = Zone.DESOLATION
+#
+	#if new_zone != current_zone:
+		#current_zone = new_zone
+		#zone_changed.emit(current_zone)
 
 func _recycle_first_chunk() -> void:
 	var old_chunk = active_chunks.pop_front()
