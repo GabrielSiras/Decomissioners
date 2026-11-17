@@ -1,13 +1,27 @@
 [gd_scene format=3 uid="uid://dlfa75dgt8t8i"]
 
 [ext_resource type="Script" uid="uid://vepd2h0rol1p" path="res://scripts/UI-UX/UI/CreditsOverlay.gd" id="1_ritqy"]
+[ext_resource type="Theme" uid="uid://cishgontb2yga" path="res://assets/UI/themes/main_theme.tres" id="2_4g25d"]
+[ext_resource type="LabelSettings" uid="uid://d0yf8g7u342ts" path="res://assets/UI/labels/header_label.tres" id="3_nq3ri"]
+[ext_resource type="FontFile" uid="uid://doiekhxatgbyw" path="res://assets/UI/fonts/roboto/Roboto-Regular.ttf" id="4_hoqao"]
+[ext_resource type="FontFile" uid="uid://c34b66ybs5sm4" path="res://assets/UI/fonts/roboto/Roboto-Black.ttf" id="4_nq3ri"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jglur"]
-bg_color = Color(0.66, 0.2904, 0.48752, 1)
-corner_radius_top_left = 25
-corner_radius_top_right = 25
-corner_radius_bottom_right = 25
-corner_radius_bottom_left = 25
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jw2xf"]
+content_margin_top = 10.0
+bg_color = Color(0.16470589, 0.19607843, 0.20784314, 1)
+border_width_left = 15
+border_width_top = 15
+border_width_right = 15
+border_width_bottom = 15
+border_color = Color(0.2627451, 0.30588236, 0.32156864, 1)
+border_blend = true
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+corner_detail = 1
+expand_margin_left = 5.0
+expand_margin_right = 5.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7th88"]
 
@@ -31,6 +45,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource("2_4g25d")
 theme_override_constants/margin_left = 60
 theme_override_constants/margin_top = 60
 theme_override_constants/margin_right = 60
@@ -38,7 +53,7 @@ theme_override_constants/margin_bottom = 60
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer" unique_id=1527240351]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_jglur")
+theme_override_styles/panel = SubResource("StyleBoxFlat_jw2xf")
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer" unique_id=1740687027]
 layout_mode = 2
@@ -56,10 +71,11 @@ layout_mode = 2
 [node name="CreditsLabel" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=2096392969]
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 2
 size_flags_stretch_ratio = 4.7
 theme_override_font_sizes/font_size = 60
 text = "CREDITS"
+label_settings = ExtResource("3_nq3ri")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -68,6 +84,7 @@ custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("4_nq3ri")
 theme_override_font_sizes/font_size = 40
 text = "X"
 
@@ -79,5 +96,6 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_7th88")
 [node name="Credits" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1918306479]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_font_sizes/font_size = 30
+theme_override_fonts/font = ExtResource("4_hoqao")
+theme_override_font_sizes/font_size = 35
 text = "Write credits here!"

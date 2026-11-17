@@ -1,17 +1,29 @@
 [gd_scene format=3 uid="uid://bpeqxuc0a7dmw"]
 
 [ext_resource type="Script" uid="uid://fncjlmwlct88" path="res://scripts/UI-UX/UI/SettingsOverlay.gd" id="1_3vgu1"]
+[ext_resource type="Theme" uid="uid://cishgontb2yga" path="res://assets/UI/themes/main_theme.tres" id="2_52voq"]
 [ext_resource type="Script" uid="uid://cg2dhtun7xnii" path="res://scripts/UI-UX/UI/VolumeController.gd" id="2_n3ybm"]
 [ext_resource type="Script" uid="uid://krf7hqe3dhy7" path="res://scripts/UI-UX/UI/Exit_Button.gd" id="3_7ixq3"]
+[ext_resource type="LabelSettings" uid="uid://d0yf8g7u342ts" path="res://assets/UI/labels/header_label.tres" id="3_dl4h0"]
+[ext_resource type="FontFile" uid="uid://c34b66ybs5sm4" path="res://assets/UI/fonts/roboto/Roboto-Black.ttf" id="4_na5at"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7th88"]
-bg_color = Color(0.2436, 0.40619326, 0.58, 1)
-corner_radius_top_left = 25
-corner_radius_top_right = 25
-corner_radius_bottom_right = 25
-corner_radius_bottom_left = 25
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7th88"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hiek2"]
+content_margin_top = 10.0
+bg_color = Color(0.16470589, 0.19607843, 0.20784314, 1)
+border_width_left = 15
+border_width_top = 15
+border_width_right = 15
+border_width_bottom = 15
+border_color = Color(0.2627451, 0.30588236, 0.32156864, 1)
+border_blend = true
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+corner_detail = 1
+expand_margin_left = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 10.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jofub"]
 bg_color = Color(0, 0, 0, 0.32941177)
@@ -19,9 +31,7 @@ corner_radius_top_left = 25
 corner_radius_top_right = 25
 corner_radius_bottom_right = 25
 corner_radius_bottom_left = 25
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7ixq3"]
-bg_color = Color(0, 0, 0, 0.36078432)
+expand_margin_top = 10.0
 
 [node name="SettingsOverlay" type="CanvasLayer" unique_id=2106756084 node_paths=PackedStringArray("close_button", "exit_box")]
 process_mode = 3
@@ -47,11 +57,12 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource("2_52voq")
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer" unique_id=700824239]
 custom_minimum_size = Vector2(600, 300)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_7th88")
+theme_override_styles/panel = SubResource("StyleBoxFlat_hiek2")
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer" unique_id=1253594010]
 layout_mode = 2
@@ -62,7 +73,7 @@ theme_override_constants/margin_bottom = 40
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer" unique_id=1222735534]
 layout_mode = 2
-theme_override_constants/separation = 21
+theme_override_constants/separation = 40
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=990584906]
 layout_mode = 2
@@ -76,6 +87,7 @@ theme_override_colors/font_outline_color = Color(0.10747974, 0.10747973, 0.10747
 theme_override_constants/outline_size = 20
 theme_override_font_sizes/font_size = 50
 text = "SETTINGS"
+label_settings = ExtResource("3_dl4h0")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -84,13 +96,9 @@ custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("4_na5at")
 theme_override_font_sizes/font_size = 40
 text = "X"
-
-[node name="PaddingTop" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1776058764]
-custom_minimum_size = Vector2(0, 20)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_7th88")
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=21317292]
 custom_minimum_size = Vector2(0, 210)
@@ -112,6 +120,7 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Volume"
 horizontal_alignment = 1
+uppercase = true
 
 [node name="EffectsContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=2004424127]
 layout_mode = 2
@@ -157,13 +166,7 @@ value = 1.0
 editable = false
 scrollable = false
 
-[node name="PaddingBottom" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=545623190]
-custom_minimum_size = Vector2(0, 20)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_7th88")
-
 [node name="ExitBox" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=663082822]
-visible = false
 layout_mode = 2
 theme_override_constants/separation = 100
 
@@ -171,7 +174,6 @@ theme_override_constants/separation = 100
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 40
-theme_override_styles/normal = SubResource("StyleBoxFlat_7ixq3")
 text = "RAILMAP"
 script = ExtResource("3_7ixq3")
 
@@ -180,7 +182,6 @@ custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 40
-theme_override_styles/normal = SubResource("StyleBoxFlat_7ixq3")
 text = "QUIT"
 script = ExtResource("3_7ixq3")
 
