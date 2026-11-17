@@ -33,20 +33,20 @@ const SOCKET_GROUPS := {
 
 const UPGRADE_INFO := {
 	# Train
-	"Armor": "Increases the Train's and wagons' armor damage reduction.",
-	"Magnetism": "Increases metal drop from enemies.",
-	"Transmission": "Increases transmission.",
-	"Wagons": "Increases Wagon's quantity.",
+	"Armor": "Increases the train's damage reduction.",
+	"Magnetism": "Increases the amount of metal salvaged from enemies.",
+	"Transmission": "Increases the amount of Energy per wagon.",
+	"Wagons": "Adds a new wagon to the train per point spent.",
 	# Skills
-	"Bombardment": "Increases the damage of the Bombardment skill.",
-	"Repair": "Repair your damaged wagon.",
-	"Pitch": "Increases the slow effect of the Pitch skill.",
-	"Supercharge": "Increases the damage and attack speed buff of the Supercharge skill.",
+	"Bombardment": "Improves the Bombardment skill.",
+	"Repair": "Improves the Repair skill.",
+	"Pitch": "Improves the Pitch skill.",
+	"Supercharge": "Improves the Supercharge skill.",
 	# Turrets
-	"Machinegun": "Unlocks a higher level of the Machinegun turret.",
-	"Artillery": "Unlocks a higher level of the Artillery turret.",
-	"Blast": "Unlocks a higher level of the Blast turret.",
-	"Incendiary": "Unlocks a higher level of the Incendiary turret.",
+	"Machinegun": "Allows you to upgrade the Machinegun turret to a higher level.",
+	"Artillery": "Allows you to upgrade the Artillery turret to a higher level.",
+	"Blast": "Allows you to upgrade the Blast turret to a higher level.",
+	"Incendiary": "Allows you to upgrade the Incendiary turret to a higher level.",
 }
 
 func _ready() -> void:

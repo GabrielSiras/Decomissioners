@@ -24,6 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://bhqn54f6qg577" path="res://assets/Icons/Art.png" id="15_ycjfj"]
 [ext_resource type="Texture2D" uid="uid://ct4xfmlm2dtrr" path="res://assets/Icons/Blast.png" id="16_5upic"]
 [ext_resource type="Texture2D" uid="uid://c17h6xvrchaof" path="res://assets/Icons/Inc.png" id="17_q47jx"]
+[ext_resource type="FontFile" uid="uid://doiekhxatgbyw" path="res://assets/UI/fonts/roboto/Roboto-Regular.ttf" id="21_8fihh"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_di7yt"]
 bg_color = Color(0.2627451, 0.30588236, 0.32156864, 1)
@@ -1076,7 +1077,6 @@ vertical_alignment = 1
 
 [node name="SelectedUpgradeHUD" type="CanvasLayer" parent="." unique_id=659302412]
 layer = 2
-visible = false
 
 [node name="DescriptionBoxBG" type="PanelContainer" parent="SelectedUpgradeHUD" unique_id=1738657044]
 anchors_preset = -1
@@ -1123,7 +1123,9 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 2
 size_flags_stretch_ratio = 2.29
-text = "TEST"
+theme_override_fonts/font = ExtResource("21_8fihh")
+theme_override_font_sizes/font_size = 22
+text = "Upgrade does this and that"
 autowrap_mode = 2
 clip_text = true
 text_overrun_behavior = 3

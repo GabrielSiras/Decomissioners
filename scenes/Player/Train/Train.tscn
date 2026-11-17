@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://btdr4h44kf6nb" path="res://scripts/Turrets/TurretSlot.gd" id="3_8tskr"]
 [ext_resource type="ArrayMesh" uid="uid://t3lb1k1uvd30" path="res://assets/VFX Textures/PitchPuddle.obj" id="6_f7wff"]
 [ext_resource type="Script" uid="uid://jqr2plejfl1v" path="res://scripts/Player/Skills/BlackPitch/PitchZone.gd" id="7_nyxcj"]
+[ext_resource type="PackedScene" uid="uid://dlcyabpe8swhj" path="res://assets/models/Train/TrainCabinUpdated.glb" id="8_nf4b6"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_v5pwx"]
 size = Vector3(2.3468585, 2.0921226, 6.0096235)
@@ -61,16 +62,17 @@ brake_vfx_scene = ExtResource("2_wj5ji")
 
 [node name="Model3D" parent="." unique_id=1468624311 instance=ExtResource("2_8tskr")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0.045, 0, 0)
+visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=681119158]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.053447247, 0.7014222, -1.3462081)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.135, 0.053, 0.701, -1.761)
 shape = SubResource("BoxShape3D_v5pwx")
 
 [node name="TurretSlots" type="Node3D" parent="." unique_id=308439791]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.15851557, -1.7778583)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.009, -3.011)
 
 [node name="Slot1" type="Area3D" parent="TurretSlots" unique_id=407812847]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.09144, 1.0046751)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.09144, 1.0491415)
 script = ExtResource("3_8tskr")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TurretSlots/Slot1" unique_id=1209113503]
@@ -86,7 +88,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0376091, -0.087677, 0.00429
 shape = SubResource("BoxShape3D_qmg03")
 
 [node name="Slot3" type="Area3D" parent="TurretSlots" unique_id=1074526263]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.09144, 2.227098)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.09144, 2.318592)
 script = ExtResource("3_8tskr")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TurretSlots/Slot3" unique_id=256345620]
@@ -94,13 +96,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0376091, -0.087677, 0.00429
 shape = SubResource("BoxShape3D_qmg03")
 
 [node name="Marker3D" type="Marker3D" parent="." unique_id=2091457869]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0337296, -0.16015494, 1.193884)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0337296, -0.010337591, -0.03940749)
 
 [node name="Marker3D2" type="Marker3D" parent="." unique_id=351402532]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9609299, -0.16015494, 1.193884)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9609299, -0.010337591, -0.03940749)
 
 [node name="LeftWindowMarker" type="Marker3D" parent="." unique_id=567838373]
-transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -0.958, 0.988, -9.59)
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -0.958, 1.1378174, -10.823292)
 
 [node name="PitchFlow" type="GPUParticles3D" parent="LeftWindowMarker" unique_id=468957189]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -0.7481504, 1.4680312, 8.357769)
@@ -123,7 +125,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6991808, -1.031163, 8.9092
 shape = SubResource("BoxShape3D_psmbb")
 
 [node name="RightWindowMarker" type="Marker3D" parent="." unique_id=768177988]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.957, 0.988, -9.59)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.957, 1.1378174, -10.823292)
 
 [node name="PitchFlow" type="GPUParticles3D" parent="RightWindowMarker" unique_id=468784966]
 transform = Transform3D(1, 0, 1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 0.66860986, 1.4680312, 8.357769)
@@ -144,3 +146,6 @@ script = ExtResource("7_nyxcj")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RightWindowMarker/Area3D" unique_id=339871976]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7984824, -1.0293579, 8.898825)
 shape = SubResource("BoxShape3D_sjg42")
+
+[node name="TrainCabinUpdated" parent="." unique_id=921164950 instance=ExtResource("8_nf4b6")]
+transform = Transform3D(-3.14722e-08, 0, -0.72, 0, 0.72, 0, 0.72, 0, -3.14722e-08, 0, 0.14981735, -1.4432915)
