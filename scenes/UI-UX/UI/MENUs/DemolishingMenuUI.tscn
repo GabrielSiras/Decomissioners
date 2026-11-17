@@ -25,18 +25,56 @@ offset_right = 8.0
 offset_bottom = 8.0
 theme_override_font_sizes/font_size = 30
 icon = ExtResource("3_lgvvv")
-icon_alignment = 1
 vertical_icon_alignment = 0
 expand_icon = true
+
+[node name="DemolishLabel" type="Label" parent="RadialPanel/ButtonDemolish" unique_id=1786898221]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = 9.0
+offset_right = 20.000053
+offset_bottom = 38.000183
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 5
+horizontal_alignment = 1
 
 [node name="ButtonUpgrade" type="Button" parent="RadialPanel" unique_id=1429404582]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 0
 offset_top = 99.0
-offset_right = 80.0
-offset_bottom = 179.0
+offset_right = 100.0
+offset_bottom = 199.0
+theme = ExtResource("1_7lhcx")
+theme_override_font_sizes/font_size = 30
 icon = ExtResource("3_la68q")
+vertical_icon_alignment = 0
 expand_icon = true
+
+[node name="UpgradeLabel" type="Label" parent="RadialPanel/ButtonUpgrade" unique_id=331065002]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = 9.0
+offset_right = 20.000053
+offset_bottom = 38.000183
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 5
+horizontal_alignment = 1
 
 [node name="DemolishSound" type="AudioStreamPlayer" parent="." unique_id=1371521462]
 stream = ExtResource("2_4lwce")

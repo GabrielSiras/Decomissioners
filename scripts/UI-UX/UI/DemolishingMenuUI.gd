@@ -14,7 +14,9 @@ extends Control
 
 @onready var radial_panel: Control = $RadialPanel
 @onready var btn_demolish: Button = $RadialPanel/ButtonDemolish
+@onready var demolish_label: Label = $RadialPanel/ButtonDemolish/DemolishLabel
 @onready var btn_upgrade: Button = $RadialPanel/ButtonUpgrade
+@onready var upgrade_label: Label = $RadialPanel/ButtonUpgrade/UpgradeLabel
 
 var current_slot: Node3D = null
 
@@ -24,13 +26,11 @@ func _ready() -> void:
 	btn_demolish.pressed.connect(_on_demolish_selected)
 	
 	btn_demolish.set_anchors_preset(Control.PRESET_TOP_LEFT)
-	btn_demolish.custom_minimum_size = Vector2(80, 50)
 	btn_demolish.size = btn_demolish.custom_minimum_size
 	btn_demolish.position = Vector2(-btn_demolish.size.x / 2.0, menu_offset_y)
 	
 	btn_upgrade.pressed.connect(_on_upgrade_selected)
 	btn_upgrade.set_anchors_preset(Control.PRESET_TOP_LEFT)
-	btn_upgrade.custom_minimum_size = Vector2(80, 50)
 	btn_upgrade.size = btn_upgrade.custom_minimum_size
 	btn_upgrade.position = Vector2(-btn_upgrade.size.x / 2.0, -menu_offset_y - btn_upgrade.size.y)
 	
@@ -85,18 +85,30 @@ func _on_slot_clicked(slot_node: Node3D) -> void:
 func _update_button_text() -> void:
 	if not is_instance_valid(current_slot):
 		return
+		
 	var turret = train.slots_status.get(current_slot)
 	if is_instance_valid(turret) and "build_cost" in turret:
-		btn_demolish.text = str(int(turret.build_cost * 0.3)) + " metal"
-	#else:
-		#btn_demolish.text = "Demolish turret?"
+		var refund_amount: int = int(turret.build_cost * 0.3)
+		if is_instance_valid(demolish_label):
+			demolish_label.text = "$%d" % refund_amount
+		btn_demolish.text = ""
+		btn_demolish.disabled = false
+	else:
+		if is_instance_valid(demolish_label):
+			demolish_label.text = ""
+		btn_demolish.text = ""
+		btn_demolish.disabled = true
 
 	var st: Dictionary = train.get_upgrade_status(current_slot)
 	btn_upgrade.disabled = not st["can"]
-	if st["can"]:
-		btn_upgrade.text = "Upgrade $" + str(st["cost"])
-	else:
-		btn_upgrade.text = st["reason"] if st["reason"] != "" else "Upgrade"
+	
+	btn_upgrade.text = "" 
+	
+	if is_instance_valid(upgrade_label):
+		if st["can"]:
+			upgrade_label.text = "$%d" % st["cost"]
+		else:
+			upgrade_label.text = st["reason"] if st["reason"] != "" else "MAX"
 
 func _on_demolish_selected() -> void:
 	if is_instance_valid(current_slot):
