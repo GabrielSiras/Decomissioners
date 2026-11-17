@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://c17h6xvrchaof" path="res://assets/Icons/Inc.png" id="4_k5mlk"]
 [ext_resource type="Texture2D" uid="uid://ct4xfmlm2dtrr" path="res://assets/Icons/Blast.png" id="5_i2qot"]
 [ext_resource type="Texture2D" uid="uid://bhqn54f6qg577" path="res://assets/Icons/Art.png" id="6_b8pjo"]
+[ext_resource type="Texture2D" uid="uid://cqknnfy04gu0b" path="res://assets/Icons/X.png" id="7_k5mlk"]
 
 [node name="BuildMenuUI" type="Control" unique_id=1796876524]
 z_index = 1
@@ -44,9 +45,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -20.0
-offset_top = 2.0
+offset_top = -202.0
 offset_right = 20.0
-offset_bottom = 31.0
+offset_bottom = -173.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -139,7 +140,6 @@ theme_override_constants/outline_size = 5
 horizontal_alignment = 1
 
 [node name="CloseButton" type="Button" parent="RadialPanel" unique_id=1689192879]
-visible = false
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 1
 anchors_preset = 5
@@ -150,8 +150,13 @@ offset_top = -9.0
 offset_right = 40.0
 offset_bottom = 61.0
 grow_horizontal = 2
+icon = ExtResource("7_k5mlk")
+icon_alignment = 1
+vertical_icon_alignment = 0
 expand_icon = true
 
 [node name="BuildSound" type="AudioStreamPlayer" parent="." unique_id=826047351]
 stream = ExtResource("2_ofgi3")
 volume_db = -4.0
+
+[connection signal="pressed" from="RadialPanel/CloseButton" to="." method="_on_close_button_pressed"]

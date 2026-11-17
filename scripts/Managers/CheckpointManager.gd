@@ -26,6 +26,8 @@ func save_checkpoint(train: TrainHead) -> void:
 		"head_metal": train.stored_metal,
 		"head_turrets": _collect_turrets(train.turret_slots_container),
 		"wagons": wagon_list,
+		"current_gate_index": train.current_gate_index,
+		"spawner_phase_index": train.spawner_phase_index,
 	}
 
 func _collect_turrets(container: Node) -> Array:

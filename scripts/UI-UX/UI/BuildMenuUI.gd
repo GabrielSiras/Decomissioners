@@ -143,3 +143,6 @@ func _on_turret_4_selected() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if visible and event is InputEventMouseButton and event.pressed:
 		hide()
+
+func _on_close_button_pressed() -> void:
+	hide()

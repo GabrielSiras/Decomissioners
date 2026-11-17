@@ -46,7 +46,8 @@ var level_finished: bool = false
 
 @onready var level_gates: Array = get_tree().get_nodes_in_group("Level Gates")
 @onready var current_gate: Gate = level_gates[0]
-var current_gate_index = 0
+@export var current_gate_index: int = 0
+@export var spawner_phase_index: int = 0
 var base_max_speed: float = 0.0
 var brake_vfx_cooldown_timer: float = 0.0
 var slots_status: Dictionary = {}
@@ -116,6 +117,26 @@ func _apply_checkpoint() -> void:
 	
 	health = d["health"]
 	stored_metal = d.get("head_metal", stored_metal)
+	
+	if is_instance_valid(level_spawner) and d.has("spawner_phase_index"):
+		level_spawner.current_phase_index = d["spawner_phase_index"]
+		if level_spawner.has_method("set_phase"):
+			level_spawner.set_phase(level_spawner.current_phase_index)
+
+	if d.has("current_gate_index"):
+		current_gate_index = d["current_gate_index"]
+
+	for i in range(current_gate_index):
+		if i < level_gates.size() and is_instance_valid(level_gates[i]):
+			level_gates[i].switch_to_destroyed()
+
+	if current_gate_index < level_gates.size():
+		current_gate = level_gates[current_gate_index]
+		if is_instance_valid(current_gate):
+			current_gate.visible = true
+	
+	approaching_gate = true
+
 	_restore_turrets(self, d.get("head_turrets", []))
 	for w in wagons:
 		var info = saved.get(String(w.name))
@@ -123,10 +144,6 @@ func _apply_checkpoint() -> void:
 			_restore_turrets(w, info.get("turrets", []))
 	
 	MetalManager.refresh()
-
-	if is_instance_valid(current_gate):
-		current_gate.visible = false
-	approaching_gate = false
 
 func _restore_turrets(owner_node: Node, list: Array) -> void:
 	for info in list:
@@ -508,11 +525,8 @@ func brake_at_gate() -> void:
 		level_spawner.set_phase(level_spawner.current_phase_index)
 		approaching_gate = false
 		
-		var result: Dictionary = {}
-			
-		CheckpointManager.save_checkpoint(self)
-		if is_instance_valid(checkpoint_indicator):
-			checkpoint_indicator.show_waiting()
+		if is_instance_valid(level_spawner):
+			spawner_phase_index = level_spawner.current_phase_index
 
 		await get_tree().create_timer(gate_wait_time).timeout
 		if not is_inside_tree():
@@ -522,16 +536,22 @@ func brake_at_gate() -> void:
 			checkpoint_indicator.show_done_then_reward("+1 Research Point")
 		
 		UpgradeManager.add_research_points(1)
+
 		current_gate.switch_to_destroyed()
+
 		current_gate_index += 1
 		level_spawner.current_phase_index += 1
 		level_spawner.set_phase(level_spawner.current_phase_index)
-		if current_gate_index <= level_gates.size()-1:
+		
+		if current_gate_index < level_gates.size():
 			current_gate = level_gates[current_gate_index]
 			approaching_gate = true
+			
 		speed_lever.v_slider.value = 0.2
 		speed_lever.v_slider.editable = true
 		speed_lever.visible = true
+
+		CheckpointManager.save_checkpoint(self)
 
 func energy_capacity() -> int:
 	return UpgradeManager.transmission_power()
