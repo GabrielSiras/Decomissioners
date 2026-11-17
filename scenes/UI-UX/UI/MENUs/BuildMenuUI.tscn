@@ -8,8 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://ct4xfmlm2dtrr" path="res://assets/Icons/Blast.png" id="5_i2qot"]
 [ext_resource type="Texture2D" uid="uid://bhqn54f6qg577" path="res://assets/Icons/Art.png" id="6_b8pjo"]
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_5clvs"]
-
 [node name="BuildMenuUI" type="Control" unique_id=1796876524]
 z_index = 1
 layout_mode = 3
@@ -69,16 +67,17 @@ icon = ExtResource("6_b8pjo")
 expand_icon = true
 
 [node name="CloseButton" type="Button" parent="RadialPanel" unique_id=1689192879]
+visible = false
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -35.0
-offset_right = 35.0
-offset_bottom = 70.0
+offset_left = -30.0
+offset_top = -9.0
+offset_right = 40.0
+offset_bottom = 61.0
 grow_horizontal = 2
-icon = SubResource("PlaceholderTexture2D_5clvs")
 expand_icon = true
 
 [node name="BuildSound" type="AudioStreamPlayer" parent="." unique_id=826047351]

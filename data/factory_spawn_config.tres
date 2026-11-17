@@ -1,0 +1,240 @@
+[gd_resource type="Resource" script_class="SpawnConfig" format=3 uid="uid://befab05gifky0"]
+
+[ext_resource type="Script" uid="uid://chglphm85ewn7" path="res://scripts/Enemies/SpawnPhase.gd" id="1_jyjmh"]
+[ext_resource type="Script" uid="uid://b50kb6ke0c27l" path="res://scripts/Enemies/SpawnEntry.gd" id="2_4ipcg"]
+[ext_resource type="Script" uid="uid://ct7j7u2b66eba" path="res://scripts/Enemies/SpawnConfig.gd" id="2_s600j"]
+[ext_resource type="PackedScene" uid="uid://fncocs5exowh" path="res://scenes/Enemies/RangedEnemies/Machinegunner/Machinegunner.tscn" id="3_8hut1"]
+[ext_resource type="PackedScene" uid="uid://ctyvfr2vuoihj" path="res://scenes/Enemies/RangedEnemies/AAA/AAA.tscn" id="4_jug21"]
+[ext_resource type="PackedScene" uid="uid://ob2mgpgp7mo3" path="res://scenes/Enemies/MeeleEnemies/Opressor/Opressor.tscn" id="5_qlwyh"]
+[ext_resource type="PackedScene" uid="uid://ckjdl2ahbor33" path="res://scenes/Enemies/RangedEnemies/FighterJet/FighterJet.tscn" id="6_7g5mn"]
+
+[sub_resource type="Resource" id="Resource_4ipcg"]
+script = ExtResource("2_4ipcg")
+scene = ExtResource("3_8hut1")
+weight = 2.0
+mode = 1
+metadata/_custom_type_script = "uid://b50kb6ke0c27l"
+
+[sub_resource type="Resource" id="Resource_8hut1"]
+script = ExtResource("2_4ipcg")
+scene = ExtResource("4_jug21")
+weight = 1.5
+metadata/_custom_type_script = "uid://b50kb6ke0c27l"
+
+[sub_resource type="Resource" id="Resource_qlwyh"]
+script = ExtResource("2_4ipcg")
+scene = ExtResource("5_qlwyh")
+metadata/_custom_type_script = "uid://b50kb6ke0c27l"
+
+[sub_resource type="Resource" id="Resource_3yrp0"]
+script = ExtResource("1_jyjmh")
+phase_name = "Track1"
+spawn_interval = 7.0
+entries = Array[ExtResource("2_4ipcg")]([SubResource("Resource_4ipcg"), SubResource("Resource_8hut1"), SubResource("Resource_qlwyh")])
+metadata/_custom_type_script = "uid://chglphm85ewn7"
+
+[sub_resource type="Resource" id="Resource_jug21"]
+script = ExtResource("2_4ipcg")
+scene = ExtResource("3_8hut1")
+weight = 2.0
+mode = 1
+metadata/_custom_type_script = "uid://b50kb6ke0c27l"
+
+[sub_resource type="Resource" id="Resource_g7ci2"]
+script = ExtResource("2_4ipcg")
+scene = ExtResource("5_qlwyh")
+weight = 1.5
+mode = 1
+metadata/_custom_type_script = "uid://b50kb6ke0c27l"
+
+[sub_resource type="Resource" id="Resource_blj3p"]
+script = ExtResource("2_4ipcg")
+scene = ExtResource("6_7g5mn")
+mode = 2
+metadata/_custom_type_script = "uid://b50kb6ke0c27l"
+
+[sub_resource type="Resource" id="Resource_md2rx"]
+script = ExtResource("1_jyjmh")
+phase_name = "Gate1"
+spawn_interval = 2.0
+entries = Array[ExtResource("2_4ipcg")]([SubResource("Resource_jug21"), SubResource("Resource_g7ci2"), SubResource("Resource_blj3p")])
+metadata/_custom_type_script = "uid://chglphm85ewn7"
+
+[sub_resource type="Resource" id="Resource_20p5p"]
+script = ExtResource("2_4ipcg")
+scene = ExtResource("3_8hut1")
+weight = 2.0
+mode = 1
+metadata/_custom_type_script = "uid://b50kb6ke0c27l"
+
+[sub_resource type="Resource" id="Resource_crrq2"]
+script = ExtResource("2_4ipcg")
+scene = ExtResource("4_jug21")
+weight = 1.5
+metadata/_custom_type_script = "uid://b50kb6ke0c27l"
+
+[sub_resource type="Resource" id="Resource_xm2ae"]
+script = ExtResource("2_4ipcg")
+scene = ExtResource("5_qlwyh")
+metadata/_custom_type_script = "uid://b50kb6ke0c27l"
+
+[sub_resource type="Resource" id="Resource_7g5mn"]
+script = ExtResource("2_4ipcg")
+scene = ExtResource("6_7g5mn")
+mode = 2
+metadata/_custom_type_script = "uid://b50kb6ke0c27l"
+
+[sub_resource type="Resource" id="Resource_x6meg"]
+script = ExtResource("1_jyjmh")
+phase_name = "Track2"
+spawn_interval = 6.5
+entries = Array[ExtResource("2_4ipcg")]([SubResource("Resource_20p5p"), SubResource("Resource_crrq2"), SubResource("Resource_xm2ae"), SubResource("Resource_7g5mn")])
+metadata/_custom_type_script = "uid://chglphm85ewn7"
+
+[sub_resource type="Resource" id="Resource_lc7rs"]
+script = ExtResource("2_4ipcg")
+scene = ExtResource("3_8hut1")
+weight = 2.0
+mode = 1
+metadata/_custom_type_script = "uid://b50kb6ke0c27l"
+
+[sub_resource type="Resource" id="Resource_k3451"]
+script = ExtResource("2_4ipcg")
+scene = ExtResource("5_qlwyh")
+weight = 1.5
+mode = 1
+metadata/_custom_type_script = "uid://b50kb6ke0c27l"
+
+[sub_resource type="Resource" id="Resource_xe66l"]
+script = ExtResource("2_4ipcg")
+scene = ExtResource("6_7g5mn")
+mode = 2
+metadata/_custom_type_script = "uid://b50kb6ke0c27l"
+
+[sub_resource type="Resource" id="Resource_1wk6c"]
+script = ExtResource("1_jyjmh")
+phase_name = "Gate2"
+spawn_interval = 1.5
+entries = Array[ExtResource("2_4ipcg")]([SubResource("Resource_lc7rs"), SubResource("Resource_k3451"), SubResource("Resource_xe66l")])
+metadata/_custom_type_script = "uid://chglphm85ewn7"
+
+[sub_resource type="Resource" id="Resource_mpjj0"]
+script = ExtResource("2_4ipcg")
+scene = ExtResource("3_8hut1")
+weight = 2.0
+mode = 1
+metadata/_custom_type_script = "uid://b50kb6ke0c27l"
+
+[sub_resource type="Resource" id="Resource_mdwjt"]
+script = ExtResource("2_4ipcg")
+scene = ExtResource("4_jug21")
+weight = 1.5
+metadata/_custom_type_script = "uid://b50kb6ke0c27l"
+
+[sub_resource type="Resource" id="Resource_ovr3w"]
+script = ExtResource("2_4ipcg")
+scene = ExtResource("5_qlwyh")
+metadata/_custom_type_script = "uid://b50kb6ke0c27l"
+
+[sub_resource type="Resource" id="Resource_lyk8u"]
+script = ExtResource("2_4ipcg")
+scene = ExtResource("6_7g5mn")
+mode = 2
+metadata/_custom_type_script = "uid://b50kb6ke0c27l"
+
+[sub_resource type="Resource" id="Resource_odlye"]
+script = ExtResource("1_jyjmh")
+phase_name = "Track2"
+spawn_interval = 6.0
+entries = Array[ExtResource("2_4ipcg")]([SubResource("Resource_mpjj0"), SubResource("Resource_mdwjt"), SubResource("Resource_ovr3w"), SubResource("Resource_lyk8u")])
+metadata/_custom_type_script = "uid://chglphm85ewn7"
+
+[sub_resource type="Resource" id="Resource_4u57o"]
+script = ExtResource("2_4ipcg")
+scene = ExtResource("3_8hut1")
+weight = 2.0
+mode = 1
+metadata/_custom_type_script = "uid://b50kb6ke0c27l"
+
+[sub_resource type="Resource" id="Resource_tmjth"]
+script = ExtResource("2_4ipcg")
+scene = ExtResource("5_qlwyh")
+weight = 1.5
+mode = 1
+metadata/_custom_type_script = "uid://b50kb6ke0c27l"
+
+[sub_resource type="Resource" id="Resource_re4qs"]
+script = ExtResource("2_4ipcg")
+scene = ExtResource("6_7g5mn")
+mode = 2
+metadata/_custom_type_script = "uid://b50kb6ke0c27l"
+
+[sub_resource type="Resource" id="Resource_lctot"]
+script = ExtResource("1_jyjmh")
+phase_name = "Gate3"
+spawn_interval = 1.0
+entries = Array[ExtResource("2_4ipcg")]([SubResource("Resource_4u57o"), SubResource("Resource_tmjth"), SubResource("Resource_re4qs")])
+metadata/_custom_type_script = "uid://chglphm85ewn7"
+
+[sub_resource type="Resource" id="Resource_10ss3"]
+script = ExtResource("2_4ipcg")
+scene = ExtResource("3_8hut1")
+weight = 2.0
+mode = 1
+metadata/_custom_type_script = "uid://b50kb6ke0c27l"
+
+[sub_resource type="Resource" id="Resource_ddseo"]
+script = ExtResource("2_4ipcg")
+scene = ExtResource("4_jug21")
+weight = 1.5
+metadata/_custom_type_script = "uid://b50kb6ke0c27l"
+
+[sub_resource type="Resource" id="Resource_lu1ts"]
+script = ExtResource("2_4ipcg")
+scene = ExtResource("5_qlwyh")
+weight = 1.5
+metadata/_custom_type_script = "uid://b50kb6ke0c27l"
+
+[sub_resource type="Resource" id="Resource_o7ou3"]
+script = ExtResource("2_4ipcg")
+scene = ExtResource("6_7g5mn")
+mode = 2
+metadata/_custom_type_script = "uid://b50kb6ke0c27l"
+
+[sub_resource type="Resource" id="Resource_a7la5"]
+script = ExtResource("1_jyjmh")
+phase_name = "Track2"
+spawn_interval = 5.0
+entries = Array[ExtResource("2_4ipcg")]([SubResource("Resource_10ss3"), SubResource("Resource_ddseo"), SubResource("Resource_lu1ts"), SubResource("Resource_o7ou3")])
+metadata/_custom_type_script = "uid://chglphm85ewn7"
+
+[sub_resource type="Resource" id="Resource_s600j"]
+script = ExtResource("2_4ipcg")
+weight = 2.0
+mode = 1
+metadata/_custom_type_script = "uid://b50kb6ke0c27l"
+
+[sub_resource type="Resource" id="Resource_lpt2t"]
+script = ExtResource("2_4ipcg")
+scene = ExtResource("5_qlwyh")
+weight = 1.5
+mode = 1
+metadata/_custom_type_script = "uid://b50kb6ke0c27l"
+
+[sub_resource type="Resource" id="Resource_ylq20"]
+script = ExtResource("2_4ipcg")
+scene = ExtResource("6_7g5mn")
+mode = 2
+metadata/_custom_type_script = "uid://b50kb6ke0c27l"
+
+[sub_resource type="Resource" id="Resource_jyjmh"]
+script = ExtResource("1_jyjmh")
+phase_name = "Gate4"
+spawn_interval = 0.5
+entries = Array[ExtResource("2_4ipcg")]([SubResource("Resource_s600j"), SubResource("Resource_lpt2t"), SubResource("Resource_ylq20")])
+metadata/_custom_type_script = "uid://chglphm85ewn7"
+
+[resource]
+script = ExtResource("2_s600j")
+phases = Array[ExtResource("1_jyjmh")]([SubResource("Resource_3yrp0"), SubResource("Resource_md2rx"), SubResource("Resource_x6meg"), SubResource("Resource_1wk6c"), SubResource("Resource_odlye"), SubResource("Resource_lctot"), SubResource("Resource_a7la5"), SubResource("Resource_jyjmh")])
+metadata/_custom_type_script = "uid://ct7j7u2b66eba"

@@ -2,7 +2,7 @@ class_name Wagon
 extends Node3D
 
 @export_category("Wagon Stats")
-@export var max_health: int = 800
+@export var max_health: int = 600
 @export var current_armor: int = 0
 @onready var current_health: int = max_health
 @export var health_bar_scene: PackedScene

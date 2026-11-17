@@ -62,6 +62,42 @@ corner_detail = 1
 expand_margin_left = 5.0
 expand_margin_right = 5.0
 
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_x4075"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_mawuw"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_mih4c"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_34nxl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e874v"]
+bg_color = Color(0.972549, 0.28235295, 0.14117648, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+corner_detail = 1
+expand_margin_bottom = 20.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_huh2c"]
+content_margin_left = 25.0
+content_margin_top = 0.0
+content_margin_right = 25.0
+content_margin_bottom = 0.0
+bg_color = Color(0.2624, 0.30464, 0.32, 1)
+border_width_top = 15
+border_color = Color(0.47007608, 0.4700758, 0.47007567, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+corner_detail = 1
+expand_margin_top = 15.0
+expand_margin_bottom = 20.0
+shadow_color = Color(0, 0, 0, 0.3372549)
+shadow_size = 5
+shadow_offset = Vector2(0, 10)
+
 [resource]
 default_font_size = 0
 Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
@@ -77,3 +113,10 @@ Label/font_sizes/font_size = 30
 Label/fonts/font = ExtResource("1_h47u3")
 Panel/styles/panel = SubResource("StyleBoxFlat_plqmx")
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_huahg")
+VSlider/icons/grabber = SubResource("PlaceholderTexture2D_x4075")
+VSlider/icons/grabber_disabled = SubResource("PlaceholderTexture2D_mawuw")
+VSlider/icons/grabber_highlight = SubResource("PlaceholderTexture2D_mih4c")
+VSlider/icons/tick = SubResource("PlaceholderTexture2D_34nxl")
+VSlider/styles/grabber_area = SubResource("StyleBoxFlat_e874v")
+VSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_e874v")
+VSlider/styles/slider = SubResource("StyleBoxFlat_huh2c")

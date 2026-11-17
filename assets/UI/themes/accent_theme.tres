@@ -1,5 +1,7 @@
 [gd_resource type="Theme" format=3 uid="uid://u17ymhp7hkpl"]
 
+[ext_resource type="FontFile" uid="uid://dqwk8wrul1clt" path="res://assets/UI/fonts/cnrgn_army/CNRGN-Army.ttf" id="1_hl80t"]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ki3w"]
 content_margin_left = 10.0
 content_margin_top = 15.0
@@ -39,6 +41,7 @@ Button/colors/font_color = Color(0.13325006, 0.16030183, 0.17044482, 1)
 Button/colors/font_disabled_color = Color(0.13333334, 0.16078432, 0.16862746, 1)
 Button/colors/font_hover_color = Color(0.13333334, 0.16078432, 0.16862746, 1)
 Button/colors/font_pressed_color = Color(0.09725248, 0.119569756, 0.12594548, 1)
+Button/fonts/font = ExtResource("1_hl80t")
 Button/styles/disabled = SubResource("StyleBoxFlat_4ki3w")
 Button/styles/hover = SubResource("StyleBoxFlat_iisv4")
 Button/styles/normal = SubResource("StyleBoxFlat_iisv4")

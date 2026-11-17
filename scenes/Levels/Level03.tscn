@@ -2,9 +2,10 @@
 
 [ext_resource type="Script" uid="uid://54trfskcn60v" path="res://scripts/Terrain/Devroom.gd" id="1_3c7s8"]
 [ext_resource type="PackedScene" uid="uid://msr581mrgwu6" path="res://scenes/Enemies/EnemySpawner.tscn" id="2_ap0y6"]
-[ext_resource type="Resource" uid="uid://cqrla766sidlm" path="res://data/spawn_config.tres" id="3_qjw4m"]
+[ext_resource type="Resource" uid="uid://befab05gifky0" path="res://data/factory_spawn_config.tres" id="3_1q17i"]
 [ext_resource type="PackedScene" uid="uid://egwkrxmeo21s" path="res://scenes/Terrain/TerrainManager.tscn" id="4_4fad4"]
 [ext_resource type="PackedScene" uid="uid://b4skynkois6f4" path="res://scenes/Terrain/Gate.tscn" id="4_61vg1"]
+[ext_resource type="PackedScene" uid="uid://ctyvfr2vuoihj" path="res://scenes/Enemies/RangedEnemies/AAA/AAA.tscn" id="5_1q17i"]
 [ext_resource type="PackedScene" uid="uid://dtoiyc323yjph" path="res://scenes/Terrain/Chunks/Desolation/Desolation1.tscn" id="5_6vom8"]
 [ext_resource type="PackedScene" uid="uid://bryue4otwuemu" path="res://scenes/Terrain/Chunks/Desolation/Desolation2.tscn" id="6_l2pxb"]
 [ext_resource type="PackedScene" uid="uid://bhcxxqqp3c2pf" path="res://scenes/Terrain/Chunks/ScrapYard/ScrapYard1.tscn" id="7_6df7p"]
@@ -20,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://csfvqmwgcoymq" path="res://scenes/UI-UX/UI/TrainProgressBar.tscn" id="16_3jeob"]
 [ext_resource type="PackedScene" uid="uid://7vml8gkbdtrb" path="res://scenes/UI-UX/UI/MENUs/BuildMenuUI.tscn" id="17_fcugw"]
 [ext_resource type="PackedScene" uid="uid://drqt5gc0jk617" path="res://scenes/Turrets/MachineGun/MachineGun.tscn" id="18_f21yk"]
+[ext_resource type="Texture2D" uid="uid://ce0a578cfifiq" path="res://assets/Icons/SETTINGS.png" id="19_7emvv"]
 [ext_resource type="PackedScene" uid="uid://dlibrupci2v80" path="res://scenes/Turrets/Incendiary/Incendiary.tscn" id="19_tfhkq"]
 [ext_resource type="PackedScene" uid="uid://d0d2up8nwdif3" path="res://scenes/Turrets/Blast/Blast.tscn" id="20_7hdpp"]
 [ext_resource type="PackedScene" uid="uid://dqcassbdhp1tv" path="res://scenes/Turrets/Artillery/Artillery.tscn" id="21_21tbk"]
@@ -37,10 +39,12 @@
 [ext_resource type="PackedScene" uid="uid://b6kis3qguxedq" path="res://scenes/Player/Wagon/Wagon.tscn" id="31_5g2si"]
 [ext_resource type="PackedScene" uid="uid://bboslj3bs8gj8" path="res://scenes/Player/Skills/Repair/RepairSkillButton.tscn" id="32_6vom8"]
 [ext_resource type="PackedScene" uid="uid://ccxbyhm6vro5u" path="res://scenes/Player/GameCamera.tscn" id="32_qwqw5"]
+[ext_resource type="Theme" uid="uid://cishgontb2yga" path="res://assets/UI/themes/main_theme.tres" id="33_kkqei"]
 [ext_resource type="PackedScene" uid="uid://d2tayfwtb0eco" path="res://scenes/Player/Skills/Repair/RepairSkill.tscn" id="33_l2pxb"]
 [ext_resource type="Script" uid="uid://v4lwcwcnu7dg" path="res://scripts/VFX/VFXPrewarmer.gd" id="34_o25ok"]
 [ext_resource type="PackedScene" uid="uid://x2uj51mwckp5" path="res://scenes/VFX/ExplosionVFX.tscn" id="35_ahxad"]
 [ext_resource type="PackedScene" uid="uid://bmim5hpyj0ca1" path="res://scenes/VFX/ExplosionVFXArtillery.tscn" id="36_3w5m4"]
+[ext_resource type="Theme" uid="uid://u17ymhp7hkpl" path="res://assets/UI/themes/accent_theme.tres" id="37_7emvv"]
 [ext_resource type="PackedScene" uid="uid://ca821bnynwdh4" path="res://scenes/VFX/FlamethrowerVFX.tscn" id="37_t0ajw"]
 [ext_resource type="PackedScene" uid="uid://cg4kvaldnrav4" path="res://scenes/VFX/OverchargeVFX.tscn" id="38_sdbp1"]
 [ext_resource type="PackedScene" uid="uid://be8hg483hedqw" path="res://scenes/VFX/PitchPuddleLeft.tscn" id="39_jjcu5"]
@@ -49,25 +53,25 @@
 [ext_resource type="PackedScene" uid="uid://cbfcat6wbb5fg" path="res://scenes/Player/PreGame.tscn" id="47_6df7p"]
 [ext_resource type="AudioStream" uid="uid://ma7spr0eraxc" path="res://assets/audios/SFX/UI/MetalClick/MetalClick.wav" id="48_61vg1"]
 
-[sub_resource type="Environment" id="Environment_61vg1"]
+[sub_resource type="Environment" id="Environment_7emvv"]
 background_mode = 2
 adjustment_enabled = true
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xyp8h"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1q17i"]
 bg_color = Color(0.16924527, 0.1692453, 0.16924527, 0.627451)
 corner_radius_top_left = 25
 corner_radius_top_right = 25
 corner_radius_bottom_right = 25
 corner_radius_bottom_left = 25
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4t28q"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5m2w3"]
 bg_color = Color(0.16862746, 0.16862746, 0.16862746, 0.627451)
 corner_radius_top_left = 25
 corner_radius_top_right = 25
 corner_radius_bottom_right = 25
 corner_radius_bottom_left = 25
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1s5dl"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_47wbm"]
 corner_radius_top_left = 25
 corner_radius_top_right = 25
 corner_radius_bottom_right = 25
@@ -168,45 +172,89 @@ _bundled = {
 script = ExtResource("1_3c7s8")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1149415259]
-environment = SubResource("Environment_61vg1")
+environment = SubResource("Environment_7emvv")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=125093310]
-transform = Transform3D(0.80948746, 0.486239, -0.3290922, 0, 0.5605031, 0.82815236, 0.5871371, -0.670379, 0.45372027, 0, 6.2298336, 0)
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=900879471]
+transform = Transform3D(0.8094875, 0.486239, -0.32909226, -0.26549438, 0.8030615, 0.5334839, 0.52368194, -0.34447643, 0.77916193, -9.201277, 6.2298336, 7.848317)
 light_color = Color(0.9999998, 0.966808, 0.94644755, 1)
 shadow_enabled = true
 shadow_opacity = 0.4
 shadow_blur = 1.594
 
-[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="." unique_id=186742296]
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="." unique_id=1471538800]
 transform = Transform3D(0.809017, -0.48672166, 0.32953534, 0, 0.560639, 0.8280603, -0.58778524, -0.6699149, 0.4535665, 0, 6.2298336, 0)
-light_color = Color(0.9999998, 0.966808, 0.94644755, 1)
-shadow_enabled = true
-shadow_opacity = 0.4
-shadow_blur = 1.594
+light_energy = 0.2
 
 [node name="EnemySpawner" parent="." unique_id=456115132 node_paths=PackedStringArray("terrain_manager", "main_target") instance=ExtResource("2_ap0y6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6493196, 1.251749, 0.36621284)
 terrain_manager = NodePath("../TerrainManager")
 main_target = NodePath("../Player/TrainHead")
-config = ExtResource("3_qjw4m")
-start_phase = 2
+config = ExtResource("3_1q17i")
 
 [node name="DestinationPoint" type="Marker3D" parent="." unique_id=949491284]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2020)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2620)
 
 [node name="Gates" type="Node3D" parent="." unique_id=551383680]
 
 [node name="Gate1" parent="Gates" unique_id=447877670 groups=["Level Gates"] instance=ExtResource("4_61vg1")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, -500)
 
+[node name="AAA3" parent="Gates/Gate1" unique_id=951588638 instance=ExtResource("5_1q17i")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 3, 0, -4.5000014)
+
+[node name="AAA4" parent="Gates/Gate1" unique_id=1242762453 instance=ExtResource("5_1q17i")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 3, 0, 4.4999986)
+
 [node name="Gate2" parent="Gates" unique_id=743120700 groups=["Level Gates"] instance=ExtResource("4_61vg1")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, -1000)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, -1100)
+
+[node name="AAA3" parent="Gates/Gate2" unique_id=1060082661 instance=ExtResource("5_1q17i")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 3, 0, -4.5000014)
+
+[node name="AAA4" parent="Gates/Gate2" unique_id=1070254199 instance=ExtResource("5_1q17i")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 3, 0, 4.4999986)
+
+[node name="AAA5" parent="Gates/Gate2" unique_id=1376899884 instance=ExtResource("5_1q17i")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 9.408081, 0, -6)
+
+[node name="AAA6" parent="Gates/Gate2" unique_id=93442979 instance=ExtResource("5_1q17i")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 9.408081, 0, 6)
 
 [node name="Gate3" parent="Gates" unique_id=74426919 groups=["Level Gates"] instance=ExtResource("4_61vg1")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, -1500)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, -1800)
+
+[node name="AAA3" parent="Gates/Gate3" unique_id=1995446130 instance=ExtResource("5_1q17i")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 3, 0, -4.5000014)
+
+[node name="AAA4" parent="Gates/Gate3" unique_id=1957221597 instance=ExtResource("5_1q17i")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 3, 0, 4.4999986)
+
+[node name="AAA5" parent="Gates/Gate3" unique_id=2051425905 instance=ExtResource("5_1q17i")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 9.408081, 0, -6)
+
+[node name="AAA6" parent="Gates/Gate3" unique_id=216841008 instance=ExtResource("5_1q17i")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 9.408081, 0, 6)
 
 [node name="Gate4" parent="Gates" unique_id=2146440147 groups=["Level Gates"] instance=ExtResource("4_61vg1")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, -2000)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, -2600)
+
+[node name="AAA3" parent="Gates/Gate4" unique_id=626593291 instance=ExtResource("5_1q17i")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 3, 0, -4.5000014)
+
+[node name="AAA4" parent="Gates/Gate4" unique_id=1779069481 instance=ExtResource("5_1q17i")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 3, 0, 4.4999986)
+
+[node name="AAA5" parent="Gates/Gate4" unique_id=1791596333 instance=ExtResource("5_1q17i")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 9.408203, 0, -6)
+
+[node name="AAA6" parent="Gates/Gate4" unique_id=2040425310 instance=ExtResource("5_1q17i")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 9.408203, 0, 6)
+
+[node name="AAA7" parent="Gates/Gate4" unique_id=1489904098 instance=ExtResource("5_1q17i")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 16.097, 0, -5)
+
+[node name="AAA8" parent="Gates/Gate4" unique_id=296839399 instance=ExtResource("5_1q17i")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 16.097, 0, 5)
 
 [node name="TerrainManager" parent="." unique_id=1209588191 node_paths=PackedStringArray("train", "destination_node") instance=ExtResource("4_4fad4")]
 train = NodePath("../Player/TrainHead")
@@ -227,32 +275,68 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
+[node name="Skills" type="CanvasLayer" parent="." unique_id=799799759 groups=["hide_on_end"]]
+
+[node name="GridContainer2" type="HBoxContainer" parent="Skills" unique_id=110477561]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -230.0
+offset_top = -134.0
+offset_right = 230.0
+offset_bottom = -34.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="BombardmentSkillButton" parent="Skills/GridContainer2" unique_id=246414351 instance=ExtResource("26_782t1")]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+cooldown_time = 15.0
+
+[node name="RepairSkillButton" parent="Skills/GridContainer2" unique_id=1016461185 instance=ExtResource("32_6vom8")]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+repair_skill_scene = ExtResource("33_l2pxb")
+
+[node name="SuperChargeSkillButton" parent="Skills/GridContainer2" unique_id=834700005 node_paths=PackedStringArray("train") instance=ExtResource("27_twluq")]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+supercharge_skill_scene = ExtResource("28_hyrkv")
+train = NodePath("../../../Player/TrainHead")
+
+[node name="BlackPitchSkillButton" parent="Skills/GridContainer2" unique_id=66681180 instance=ExtResource("29_5fequ")]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+
 [node name="HUD" type="CanvasLayer" parent="." unique_id=1368257838 groups=["hide_on_end"]]
 
-[node name="SettingsButton" type="Button" parent="HUD" unique_id=165633768]
+[node name="SettingsButton" type="Button" parent="HUD" unique_id=1957976546]
 custom_minimum_size = Vector2(80, 80)
 anchors_preset = -1
 anchor_left = 0.8625
-anchor_top = 0.0171875
+anchor_top = 0.0140625
 anchor_right = 0.9736111
-anchor_bottom = 0.0796875
+anchor_bottom = 0.0765625
 grow_horizontal = 0
 size_flags_horizontal = 8
-theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_xyp8h")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_4t28q")
-theme_override_styles/hover = SubResource("StyleBoxFlat_1s5dl")
-text = "CFG"
+theme_override_icons/icon = ExtResource("19_7emvv")
+theme_override_styles/normal = SubResource("StyleBoxFlat_1q17i")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_5m2w3")
+theme_override_styles/hover = SubResource("StyleBoxFlat_47wbm")
 expand_icon = true
 script = ExtResource("11_7emvv")
-metadata/_edit_use_anchors_ = true
 
 [node name="MetalAmount" parent="HUD" unique_id=1226120583 node_paths=PackedStringArray("metal_manager") instance=ExtResource("12_1q17i")]
 offset_left = 15.0
 offset_top = 9.0
 offset_right = 118.0
 offset_bottom = 82.0
-alignment = 1
 metal_manager = NodePath(".")
 
 [node name="DefeatMenu" parent="HUD" unique_id=501164214 instance=ExtResource("13_5m2w3")]
@@ -286,22 +370,26 @@ script = ExtResource("23_mg32v")
 indicator_scene = ExtResource("24_bdp45")
 train = NodePath("../../Player/TrainHead")
 
-[node name="LatchCounter" type="Control" parent="HUD" unique_id=1380240331 node_paths=PackedStringArray("content", "count_label")]
+[node name="LatchCounter" type="Control" parent="HUD" unique_id=1650594927 node_paths=PackedStringArray("content", "count_label")]
 layout_mode = 3
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 15.0
-offset_top = -20.0
-offset_right = 55.0
-offset_bottom = 20.0
-grow_vertical = 2
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -104.0
+offset_top = -402.0
+offset_right = -64.0
+offset_bottom = -362.0
+grow_horizontal = 0
+grow_vertical = 0
 mouse_filter = 2
+theme = ExtResource("33_kkqei")
 script = ExtResource("25_cvyrj")
 content = NodePath("Content")
 count_label = NodePath("Content/CountLabel")
 
-[node name="Content" type="HBoxContainer" parent="HUD/LatchCounter" unique_id=1871548910]
+[node name="Content" type="HBoxContainer" parent="HUD/LatchCounter" unique_id=1100881011]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -316,7 +404,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="XLabel" type="Label" parent="HUD/LatchCounter/Content" unique_id=1294614373]
+[node name="XLabel" type="Label" parent="HUD/LatchCounter/Content" unique_id=44847973]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(1, 1, 1, 0)
@@ -325,16 +413,16 @@ theme_override_constants/shadow_offset_x = 3
 theme_override_constants/shadow_offset_y = 3
 theme_override_constants/outline_size = 5
 theme_override_constants/shadow_outline_size = 10
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 60
 text = "x"
 
-[node name="CountLabel" type="Label" parent="HUD/LatchCounter/Content" unique_id=360693644]
+[node name="CountLabel" type="Label" parent="HUD/LatchCounter/Content" unique_id=1293623353]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.6117647, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
-theme_override_font_sizes/font_size = 45
+theme_override_font_sizes/font_size = 60
 text = "1"
 
 [node name="CheckpointIndicator" type="Control" parent="HUD" unique_id=2045259707 node_paths=PackedStringArray("spinner", "label") groups=["hide_on_end"]]
@@ -371,48 +459,24 @@ metadata/_custom_type_script = "uid://dso8mes67pgwk"
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="StartButton" type="Button" parent="HUD" unique_id=288579930 groups=["hide_on_end"]]
-offset_left = 281.0
-offset_top = 1171.0
-offset_right = 499.0
-offset_bottom = 1267.0
+[node name="StartButton" type="Button" parent="HUD" unique_id=2060670148 groups=["hide_on_end"]]
+custom_minimum_size = Vector2(200, 90)
+anchors_preset = -1
+anchor_left = 0.3611111
+anchor_top = 0.8921875
+anchor_right = 0.65416664
+anchor_bottom = 0.97265625
+offset_right = 3.0517578e-05
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("37_7emvv")
 theme_override_font_sizes/font_size = 64
 text = "START"
-
-[node name="Skills" type="CanvasLayer" parent="." unique_id=799799759 groups=["hide_on_end"]]
-
-[node name="BombardmentSkillButton" parent="Skills" unique_id=246414351 instance=ExtResource("26_782t1")]
-offset_left = 32.0
-offset_top = 966.0
-offset_right = 153.0
-offset_bottom = 1058.0
-cooldown_time = 15.0
-
-[node name="SuperChargeSkillButton" parent="Skills" unique_id=834700005 node_paths=PackedStringArray("train") instance=ExtResource("27_twluq")]
-offset_left = 40.0
-offset_top = 1161.0
-offset_right = 148.0
-offset_bottom = 1252.0
-supercharge_skill_scene = ExtResource("28_hyrkv")
-train = NodePath("../../Player/TrainHead")
-
-[node name="BlackPitchSkillButton" parent="Skills" unique_id=66681180 instance=ExtResource("29_5fequ")]
-offset_left = 46.0
-offset_top = 1070.0
-offset_right = 137.0
-offset_bottom = 1148.0
-
-[node name="RepairSkillButton" parent="Skills" unique_id=1016461185 instance=ExtResource("32_6vom8")]
-offset_left = 50.0
-offset_top = 889.0
-offset_right = 138.0
-offset_bottom = 956.0
-repair_skill_scene = ExtResource("33_l2pxb")
+metadata/_edit_use_anchors_ = true
 
 [node name="Player" type="Node3D" parent="." unique_id=163302227]
 
 [node name="TrainHead" parent="Player" unique_id=423923195 node_paths=PackedStringArray("wagons", "checkpoint_indicator", "defeat_menu", "speed_lever", "progress_bar", "destination_node") instance=ExtResource("30_4ss3s")]
-max_health = 300
 wagons = [NodePath("Wagon1"), null]
 checkpoint_indicator = NodePath("../../HUD/CheckpointIndicator")
 defeat_menu = NodePath("../../HUD/DefeatMenu")
@@ -423,7 +487,6 @@ wagon_scene = ExtResource("31_5g2si")
 
 [node name="Wagon1" parent="Player/TrainHead" unique_id=659263558 instance=ExtResource("31_5g2si")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.084, 4.2603464)
-max_health = 200
 
 [node name="GameCamera" parent="Player" unique_id=1770089720 node_paths=PackedStringArray("target") instance=ExtResource("32_qwqw5")]
 transform = Transform3D(0.99991435, 0.013089597, -1.0106151e-05, 0, 0.0007720748, 0.9999997, 0.013089601, -0.99991405, 0.0007720087, 0.048, 22, 4.264)

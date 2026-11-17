@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://bo42gfpujkmpc"]
 
 [ext_resource type="PackedScene" uid="uid://dlk4tve5trsps" path="res://scenes/Player/Skills/SkillBase.tscn" id="1_sb3mo"]
+[ext_resource type="Theme" uid="uid://cishgontb2yga" path="res://assets/UI/themes/main_theme.tres" id="2_o46au"]
 [ext_resource type="Script" uid="uid://bb5k24ln401vo" path="res://scripts/Player/Skills/BlackPitch/BlackPitchSkillButton.gd" id="2_pdwsd"]
+[ext_resource type="Texture2D" uid="uid://cn2nc3d22eth8" path="res://assets/Icons/Piche.png" id="3_4ddpu"]
 [ext_resource type="Script" uid="uid://dpofd1ox42pwy" path="res://scripts/Player/Skills/BlackPitch/PitchSkill.gd" id="3_nqbpf"]
-[ext_resource type="PackedScene" uid="uid://be8hg483hedqw" path="res://scenes/VFX/PitchPuddleLeft.tscn" id="4_3ja3k"]
 [ext_resource type="AudioStream" uid="uid://dwpajlp5hbi5o" path="res://assets/audios/SFX/Skills/BlackPitch/BlackPitchSpillingVariation1.wav" id="5_3ja3k"]
-[ext_resource type="PackedScene" uid="uid://cx516inw5jlsw" path="res://scenes/Player/Skills/BlackPitch/PitchJet.tscn" id="5_o46au"]
 [ext_resource type="AudioStream" uid="uid://c44vusr1tj6qt" path="res://assets/audios/SFX/Skills/BlackPitch/BlackPitchSpillingVariation2.wav" id="6_o46au"]
 [ext_resource type="AudioStream" uid="uid://bebkm1c0425yr" path="res://assets/audios/SFX/Skills/BlackPitch/BlackPitchSpillingVariation3.wav" id="7_4ddpu"]
 
@@ -16,20 +16,22 @@ stream_1/stream = ExtResource("6_o46au")
 stream_2/stream = ExtResource("7_4ddpu")
 
 [node name="BlackPitchSkillButton" unique_id=834700005 node_paths=PackedStringArray("pitch_skill_node") instance=ExtResource("1_sb3mo")]
+custom_minimum_size = Vector2(100, 100)
 offset_left = 32.0
 offset_top = 960.0
-offset_right = 123.0
-offset_bottom = 1038.0
-text = "BlackPitch"
+offset_right = 52.0
+offset_bottom = 975.0
+theme = ExtResource("2_o46au")
+theme_override_font_sizes/font_size = 35
+icon = ExtResource("3_4ddpu")
+icon_alignment = 1
+expand_icon = true
 script = ExtResource("2_pdwsd")
 pitch_skill_node = NodePath("PitchSkill")
 cooldown_duration = 10.0
 
 [node name="PitchSkill" type="Node3D" parent="." index="0" unique_id=92291517]
 script = ExtResource("3_nqbpf")
-left_puddle_scene = ExtResource("4_3ja3k")
-right_puddle_scene = ExtResource("4_3ja3k")
-pitch_jet_scene = ExtResource("5_o46au")
 
 [node name="SkillSound" type="AudioStreamPlayer" parent="." index="1" unique_id=2121972123]
 stream = SubResource("AudioStreamRandomizer_qmg03")

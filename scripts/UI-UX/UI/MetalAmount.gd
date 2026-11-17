@@ -1,7 +1,7 @@
-extends HBoxContainer
+extends Control
 
 @export var metal_manager: MetalManager
-@onready var metal_label: Label = $MetalLabel
+@export var metal_label: Label
 
 func _ready() -> void:
 	if typeof(MetalManager) != TYPE_NIL and not metal_manager:

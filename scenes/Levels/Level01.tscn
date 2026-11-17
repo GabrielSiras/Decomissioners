@@ -43,16 +43,12 @@
 [ext_resource type="PackedScene" uid="uid://d2tayfwtb0eco" path="res://scenes/Player/Skills/Repair/RepairSkill.tscn" id="33_hepgf"]
 [ext_resource type="Script" uid="uid://v4lwcwcnu7dg" path="res://scripts/VFX/VFXPrewarmer.gd" id="34_0hpgq"]
 [ext_resource type="Theme" uid="uid://u17ymhp7hkpl" path="res://assets/UI/themes/accent_theme.tres" id="34_5vti6"]
-[ext_resource type="Texture2D" uid="uid://cjcut5f4o1ps1" path="res://assets/Icons/Bombard.png" id="34_30ag5"]
 [ext_resource type="PackedScene" uid="uid://x2uj51mwckp5" path="res://scenes/VFX/ExplosionVFX.tscn" id="35_rj7dc"]
-[ext_resource type="Texture2D" uid="uid://7p2ewvovp0b4" path="res://assets/Icons/Overcharge.png" id="36_5vti6"]
 [ext_resource type="PackedScene" uid="uid://bmim5hpyj0ca1" path="res://scenes/VFX/ExplosionVFXArtillery.tscn" id="36_d5ctu"]
 [ext_resource type="PackedScene" uid="uid://ca821bnynwdh4" path="res://scenes/VFX/FlamethrowerVFX.tscn" id="37_bd1e1"]
 [ext_resource type="PackedScene" uid="uid://cg4kvaldnrav4" path="res://scenes/VFX/OverchargeVFX.tscn" id="38_tqg33"]
 [ext_resource type="PackedScene" uid="uid://be8hg483hedqw" path="res://scenes/VFX/PitchPuddleLeft.tscn" id="39_atckt"]
-[ext_resource type="Texture2D" uid="uid://cn2nc3d22eth8" path="res://assets/Icons/Piche.png" id="39_onq01"]
 [ext_resource type="ArrayMesh" uid="uid://t3lb1k1uvd30" path="res://assets/VFX Textures/PitchPuddle.obj" id="40_ihxfr"]
-[ext_resource type="Texture2D" uid="uid://bgoag5excn8d5" path="res://assets/Icons/Repair.png" id="41_d40uv"]
 [ext_resource type="PackedScene" uid="uid://c5qxjkarg4st8" path="res://scenes/VFX/PreassureBlastVFX.tscn" id="41_l64dw"]
 [ext_resource type="PackedScene" uid="uid://b4skynkois6f4" path="res://scenes/Terrain/Gate.tscn" id="49_82npn"]
 [ext_resource type="AudioStream" uid="uid://ma7spr0eraxc" path="res://assets/audios/SFX/UI/MetalClick/MetalClick.wav" id="49_gahfb"]
@@ -207,12 +203,6 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0
 [node name="Gate2" parent="Gates" unique_id=1653258142 groups=["Level Gates"] instance=ExtResource("49_82npn")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, -800)
 
-[node name="AAA" parent="Gates/Gate2" unique_id=951588638 instance=ExtResource("4_psyym")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2.5, 0, -4.5)
-
-[node name="AAA2" parent="Gates/Gate2" unique_id=1209603495 instance=ExtResource("4_psyym")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2.5, 0, 4.5)
-
 [node name="Gate3" parent="Gates" unique_id=1062378282 groups=["Level Gates"] instance=ExtResource("49_82npn")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, -1500)
 
@@ -240,20 +230,49 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
+[node name="Skills" type="CanvasLayer" parent="." unique_id=799799759 groups=["hide_on_end"]]
+
+[node name="GridContainer" type="HBoxContainer" parent="Skills" unique_id=1753196942]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -230.0
+offset_top = -134.0
+offset_right = 230.0
+offset_bottom = -34.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 30
+
+[node name="BombardmentSkillButton" parent="Skills/GridContainer" unique_id=246414351 instance=ExtResource("26_6mika")]
+layout_mode = 2
+size_flags_horizontal = 10
+cooldown_time = 15.0
+
+[node name="RepairSkillButton" parent="Skills/GridContainer" unique_id=1594728693 instance=ExtResource("32_isk48")]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 4
+repair_skill_scene = ExtResource("33_hepgf")
+
+[node name="SuperChargeSkillButton" parent="Skills/GridContainer" unique_id=834700005 node_paths=PackedStringArray("train") instance=ExtResource("27_lkv17")]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 6
+supercharge_skill_scene = ExtResource("28_nm60t")
+train = NodePath("../../../Player/TrainHead")
+
+[node name="BlackPitchSkillButton" parent="Skills/GridContainer" unique_id=66681180 instance=ExtResource("29_6srba")]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 6
+
 [node name="HUD" type="CanvasLayer" parent="." unique_id=1368257838 groups=["hide_on_end"]]
 
-[node name="Control" type="Control" parent="HUD" unique_id=1398597010]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("15_fcadh")
-
-[node name="SettingsButton" type="Button" parent="HUD/Control" unique_id=165633768]
+[node name="SettingsButton" type="Button" parent="HUD" unique_id=165633768]
 custom_minimum_size = Vector2(80, 80)
-layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.8625
 anchor_top = 0.0140625
@@ -268,62 +287,64 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_1s5dl")
 expand_icon = true
 script = ExtResource("11_76gdi")
 
-[node name="MetalAmount" parent="HUD/Control" unique_id=1226120583 node_paths=PackedStringArray("metal_manager") instance=ExtResource("12_r4jqy")]
-layout_mode = 0
+[node name="MetalAmount" parent="HUD" unique_id=1226120583 node_paths=PackedStringArray("metal_manager") instance=ExtResource("12_r4jqy")]
 offset_left = 15.0
 offset_top = 9.0
 offset_right = 118.0
 offset_bottom = 82.0
-alignment = 1
 metal_manager = NodePath(".")
 
-[node name="DefeatMenu" parent="HUD/Control" unique_id=501164214 instance=ExtResource("13_katy8")]
+[node name="DefeatMenu" parent="HUD" unique_id=501164214 instance=ExtResource("13_katy8")]
 
-[node name="SpeedLever" parent="HUD/Control" unique_id=425152856 groups=["hide_on_end"] instance=ExtResource("14_2c17n")]
+[node name="SpeedLever" parent="HUD" unique_id=425152856 groups=["hide_on_end"] instance=ExtResource("14_2c17n")]
 ui_brake_vfx_scene = ExtResource("15_gwoqk")
 
-[node name="TrainProgressBar" parent="HUD/Control" unique_id=1161455226 groups=["hide_on_end"] instance=ExtResource("16_tjiw4")]
+[node name="TrainProgressBar" parent="HUD" unique_id=1161455226 groups=["hide_on_end"] instance=ExtResource("16_tjiw4")]
 offset = Vector2(0, -80)
 transform = Transform2D(1, 0, 0, 1, 0, -80)
 
-[node name="BuildMenuUI" parent="HUD/Control" unique_id=1796876524 node_paths=PackedStringArray("train") instance=ExtResource("17_q5vav")]
-layout_mode = 0
+[node name="BuildMenuUI" parent="HUD" unique_id=1796876524 node_paths=PackedStringArray("train") instance=ExtResource("17_q5vav")]
 offset_left = 3.0
 offset_right = 3.0
-train = NodePath("../../../Player/TrainHead")
+train = NodePath("../../Player/TrainHead")
 turret_1_scene = ExtResource("18_07ujr")
 turret_2_scene = ExtResource("19_hgoui")
 turret_3_scene = ExtResource("20_v76hg")
 turret_4_scene = ExtResource("21_xinei")
 
-[node name="DemolishingMenuUI" parent="HUD/Control" unique_id=1660696465 node_paths=PackedStringArray("train") instance=ExtResource("22_hol7q")]
-layout_mode = 0
-train = NodePath("../../../Player/TrainHead")
+[node name="DemolishingMenuUI" parent="HUD" unique_id=1660696465 node_paths=PackedStringArray("train") instance=ExtResource("22_hol7q")]
+train = NodePath("../../Player/TrainHead")
 
-[node name="ThreatIndicators" type="Control" parent="HUD/Control" unique_id=878018071 node_paths=PackedStringArray("train")]
+[node name="ThreatIndicators" type="Control" parent="HUD" unique_id=878018071 node_paths=PackedStringArray("train")]
+layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
 script = ExtResource("23_wp6cn")
 indicator_scene = ExtResource("24_i4rk0")
-train = NodePath("../../../Player/TrainHead")
+train = NodePath("../../Player/TrainHead")
 
-[node name="LatchCounter" type="Control" parent="HUD/Control" unique_id=1380240331 node_paths=PackedStringArray("content", "count_label")]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -20.0
-offset_right = 40.0
-offset_bottom = 20.0
-grow_vertical = 2
+[node name="LatchCounter" type="Control" parent="HUD" unique_id=1380240331 node_paths=PackedStringArray("content", "count_label")]
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -104.0
+offset_top = -402.0
+offset_right = -64.0
+offset_bottom = -362.0
+grow_horizontal = 0
+grow_vertical = 0
 mouse_filter = 2
+theme = ExtResource("15_fcadh")
 script = ExtResource("25_hfpxy")
 content = NodePath("Content")
 count_label = NodePath("Content/CountLabel")
 
-[node name="Content" type="HBoxContainer" parent="HUD/Control/LatchCounter" unique_id=1871548910]
+[node name="Content" type="HBoxContainer" parent="HUD/LatchCounter" unique_id=1871548910]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -338,7 +359,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="XLabel" type="Label" parent="HUD/Control/LatchCounter/Content" unique_id=1294614373]
+[node name="XLabel" type="Label" parent="HUD/LatchCounter/Content" unique_id=1294614373]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(1, 1, 1, 0)
@@ -350,7 +371,7 @@ theme_override_constants/shadow_outline_size = 10
 theme_override_font_sizes/font_size = 60
 text = "x"
 
-[node name="CountLabel" type="Label" parent="HUD/Control/LatchCounter/Content" unique_id=360693644]
+[node name="CountLabel" type="Label" parent="HUD/LatchCounter/Content" unique_id=360693644]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.6117647, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0)
@@ -359,8 +380,8 @@ theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 60
 text = "1"
 
-[node name="CheckpointIndicator" type="Control" parent="HUD/Control" unique_id=1331524780 node_paths=PackedStringArray("spinner", "label") groups=["hide_on_end"]]
-layout_mode = 1
+[node name="CheckpointIndicator" type="Control" parent="HUD" unique_id=1331524780 node_paths=PackedStringArray("spinner", "label") groups=["hide_on_end"]]
+layout_mode = 3
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -377,119 +398,47 @@ script = ExtResource("26_wdl3e")
 spinner = NodePath("VBoxContainer/LoadingSpinner")
 label = NodePath("VBoxContainer/Label")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HUD/Control/CheckpointIndicator" unique_id=2007604860]
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/CheckpointIndicator" unique_id=2007604860]
 layout_mode = 0
 offset_left = -120.0
 offset_top = -20.0
 offset_right = -80.0
 offset_bottom = 20.0
 
-[node name="LoadingSpinner" type="Control" parent="HUD/Control/CheckpointIndicator/VBoxContainer" unique_id=855045030]
+[node name="LoadingSpinner" type="Control" parent="HUD/CheckpointIndicator/VBoxContainer" unique_id=855045030]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("26_dmijq")
 metadata/_custom_type_script = "uid://dso8mes67pgwk"
 
-[node name="Label" type="Label" parent="HUD/Control/CheckpointIndicator/VBoxContainer" unique_id=154687865]
+[node name="Label" type="Label" parent="HUD/CheckpointIndicator/VBoxContainer" unique_id=154687865]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="StartButton" type="Button" parent="HUD/Control" unique_id=102632989 groups=["hide_on_end"]]
+[node name="StartButton" type="Button" parent="HUD" unique_id=102632989 groups=["hide_on_end"]]
 custom_minimum_size = Vector2(200, 90)
-layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.3611111
-anchor_top = 0.8695313
-anchor_right = 0.6388889
-anchor_bottom = 0.9398438
-offset_right = 11.0
-offset_bottom = 13.0
+anchor_top = 0.8921875
+anchor_right = 0.65416664
+anchor_bottom = 0.97265625
+offset_right = 3.0517578e-05
 grow_horizontal = 2
 grow_vertical = 0
 theme = ExtResource("34_5vti6")
 theme_override_font_sizes/font_size = 64
 text = "START"
-
-[node name="Skills" type="CanvasLayer" parent="." unique_id=799799759 groups=["hide_on_end"]]
-
-[node name="Control" type="Control" parent="Skills" unique_id=1122782662]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 874.0
-offset_right = -495.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme = ExtResource("15_fcadh")
-
-[node name="GridContainer" type="GridContainer" parent="Skills/Control" unique_id=1484538521]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -110.0
-offset_top = -110.0
-offset_right = 110.0
-offset_bottom = 110.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/h_separation = 20
-theme_override_constants/v_separation = 20
-columns = 2
-
-[node name="BombardmentSkillButton" parent="Skills/Control/GridContainer" unique_id=246414351 instance=ExtResource("26_6mika")]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-text = ""
-icon = ExtResource("34_30ag5")
-icon_alignment = 1
-expand_icon = true
-cooldown_time = 15.0
-
-[node name="SuperChargeSkillButton" parent="Skills/Control/GridContainer" unique_id=834700005 node_paths=PackedStringArray("train") instance=ExtResource("27_lkv17")]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-text = ""
-icon = ExtResource("36_5vti6")
-icon_alignment = 1
-expand_icon = true
-supercharge_skill_scene = ExtResource("28_nm60t")
-train = NodePath("../../../../Player/TrainHead")
-
-[node name="BlackPitchSkillButton" parent="Skills/Control/GridContainer" unique_id=66681180 instance=ExtResource("29_6srba")]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-text = ""
-icon = ExtResource("39_onq01")
-icon_alignment = 1
-expand_icon = true
-
-[node name="RepairSkillButton" parent="Skills/Control/GridContainer" unique_id=1594728693 instance=ExtResource("32_isk48")]
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-text = ""
-icon = ExtResource("41_d40uv")
-icon_alignment = 1
-expand_icon = true
-repair_skill_scene = ExtResource("33_hepgf")
+metadata/_edit_use_anchors_ = true
 
 [node name="Player" type="Node3D" parent="." unique_id=163302227]
 
 [node name="TrainHead" parent="Player" unique_id=423923195 node_paths=PackedStringArray("checkpoint_indicator", "defeat_menu", "speed_lever", "progress_bar", "destination_node", "level_spawner") instance=ExtResource("30_rxryt")]
-max_health = 1000
-checkpoint_indicator = NodePath("../../HUD/Control/CheckpointIndicator")
+checkpoint_indicator = NodePath("../../HUD/CheckpointIndicator")
 gate_wait_time = 30.0
-defeat_menu = NodePath("../../HUD/Control/DefeatMenu")
-speed_lever = NodePath("../../HUD/Control/SpeedLever")
-progress_bar = NodePath("../../HUD/Control/TrainProgressBar")
+defeat_menu = NodePath("../../HUD/DefeatMenu")
+speed_lever = NodePath("../../HUD/SpeedLever")
+progress_bar = NodePath("../../HUD/TrainProgressBar")
 destination_node = NodePath("../../DestinationPoint")
 metal_capacity = 5000
 starting_metal = 150
@@ -498,7 +447,6 @@ wagon_scene = ExtResource("31_jys65")
 
 [node name="Wagon1" parent="Player/TrainHead" unique_id=659263558 instance=ExtResource("31_jys65")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.084, 4.2603464)
-max_health = 200
 
 [node name="GameCamera" parent="Player" unique_id=1770089720 node_paths=PackedStringArray("target") instance=ExtResource("32_arkqm")]
 transform = Transform3D(0.99991435, 0.013089597, -1.0106151e-05, 0, 0.0007720748, 0.9999997, 0.013089601, -0.99991405, 0.0007720087, 0.048, 22, 4.264)
@@ -515,9 +463,9 @@ stream = ExtResource("49_gahfb")
 [node name="PreGame" parent="." unique_id=493743797 node_paths=PackedStringArray("train", "spawner", "speed_lever", "start_button", "click_sound") instance=ExtResource("49_psyym")]
 train = NodePath("../Player/TrainHead")
 spawner = NodePath("../EnemySpawner")
-speed_lever = NodePath("../HUD/Control/SpeedLever")
-start_button = NodePath("../HUD/Control/StartButton")
+speed_lever = NodePath("../HUD/SpeedLever")
+start_button = NodePath("../HUD/StartButton")
 click_sound = NodePath("../MetalClick")
 skip_if_checkpoint = false
 
-[connection signal="pressed" from="HUD/Control/SettingsButton" to="HUD/Control/SettingsButton" method="_on_button_pressed"]
+[connection signal="pressed" from="HUD/SettingsButton" to="HUD/SettingsButton" method="_on_button_pressed"]

@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://rbte6nqh348f"]
 
 [ext_resource type="PackedScene" uid="uid://dlk4tve5trsps" path="res://scenes/Player/Skills/SkillBase.tscn" id="1_5uwgk"]
+[ext_resource type="Theme" uid="uid://cishgontb2yga" path="res://assets/UI/themes/main_theme.tres" id="2_n86lb"]
 [ext_resource type="Script" uid="uid://ccpfov3xs4314" path="res://scripts/Player/Skills/Bombardment/BombardmentSkillButton.gd" id="2_u5j7m"]
 [ext_resource type="PackedScene" uid="uid://bc2jkojs684ns" path="res://scenes/Player/Skills/Bombardment/Bombardment.tscn" id="3_8my35"]
+[ext_resource type="Texture2D" uid="uid://cjcut5f4o1ps1" path="res://assets/Icons/Bombard.png" id="3_vnwdo"]
 [ext_resource type="AudioStream" uid="uid://c2n3dn564sbmb" path="res://assets/audios/SFX/Skills/Bombardment/DistantExplosionVariation1.wav" id="4_51kuq"]
 [ext_resource type="AudioStream" uid="uid://b7vuoycbd1s0n" path="res://assets/audios/SFX/Skills/Bombardment/DistantExplosionVariation2.wav" id="5_640q7"]
 [ext_resource type="AudioStream" uid="uid://b3q0dk5cx5cke" path="res://assets/audios/SFX/Skills/Bombardment/DistantExplosionVariation3.wav" id="6_n86lb"]
@@ -14,11 +16,16 @@ stream_1/stream = ExtResource("5_640q7")
 stream_2/stream = ExtResource("6_n86lb")
 
 [node name="BombardmentSkillButton" unique_id=834700005 instance=ExtResource("1_5uwgk")]
-offset_left = 156.0
-offset_top = 1231.0
-offset_right = 277.0
-offset_bottom = 1262.0
-text = "Bombardment"
+custom_minimum_size = Vector2(100, 100)
+offset_left = 14.0
+offset_top = 1050.0
+offset_right = 114.0
+offset_bottom = 1150.0
+theme = ExtResource("2_n86lb")
+theme_override_font_sizes/font_size = 35
+icon = ExtResource("3_vnwdo")
+icon_alignment = 1
+expand_icon = true
 script = ExtResource("2_u5j7m")
 bombardment_scene = ExtResource("3_8my35")
 

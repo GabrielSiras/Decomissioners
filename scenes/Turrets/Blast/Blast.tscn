@@ -7,9 +7,12 @@
 [ext_resource type="PackedScene" uid="uid://7mup1olhom7h" path="res://assets/models/Turrets/BLA2.glb" id="5_33o2o"]
 [ext_resource type="PackedScene" uid="uid://clkyvsr6tmr4q" path="res://assets/models/Turrets/BLA3.glb" id="6_n5bte"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_33o2o"]
+size = Vector3(3.5, 2, 5)
+
 [node name="Blast" unique_id=90108018 node_paths=PackedStringArray("level_models") instance=ExtResource("1_3hars")]
 script = ExtResource("2_6d5vp")
-push_force = 25.0
+push_force = 4.0
 arc_angle_degrees = 180.0
 push_straight_forward = true
 blast_vfx_scene = ExtResource("3_juufq")
@@ -17,17 +20,20 @@ stun_chance = 0.3
 stun_duration = 1.0
 stun_chance_per_level = Array[float]([0.3, 0.4, 0.5])
 stun_duration_per_level = Array[float]([1.0, 1.5, 2.0])
-push_force_per_level = Array[float]([10.0, 14.0, 18.0])
-fire_rate = 5.0
+push_force_per_level = Array[float]([2.0, 3.0, 4.0])
 projectile_scene = null
 upgrade_key = "Blast"
 level_models = [NodePath("ModelT1"), NodePath("ModelT2"), NodePath("ModelT3")]
 damage_per_level = Array[int]([25, 32, 36])
-fire_rate_per_level = Array[float]([5.0, 4.0, 3.0])
+fire_rate_per_level = Array[float]([7.0, 6.0, 5.0])
 cost_per_level = Array[int]([70, 100, 150])
+
+[node name="CollisionShape3D" parent="RangeArea" parent_id_path=PackedInt32Array(615499785) index="0" unique_id=1991760536]
+shape = SubResource("BoxShape3D_33o2o")
 
 [node name="ModelT1" type="Node3D" parent="." index="3" unique_id=2047316272]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+visible = false
 
 [node name="BLA1" parent="ModelT1" index="0" unique_id=670711382 instance=ExtResource("4_ert8d")]
 

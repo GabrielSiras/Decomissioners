@@ -1,6 +1,6 @@
 extends Node
 
-var research_points: int = 30
+var research_points: int = 6
 
 var upgrades: Dictionary = {
 	
@@ -51,7 +51,7 @@ const PREVIEW := {
 
 # do train
 const ARMOR_PEN_REDUCTION := [0.0, 0.1, 0.2, 0.3]
-const MAGNETISM_BONUS     := [0.0, 0.15, 0.30, 0.45]
+const MAGNETISM_BONUS     := [0.0, 0.10, 0.20, 0.30]
 const TRANSMISSION_POWER  := [5, 6, 7, 8, 9]
 const WAGON_LIMIT         := [1, 2, 3, 4, 5]
 
@@ -59,14 +59,14 @@ const WAGON_LIMIT         := [1, 2, 3, 4, 5]
 const BOMB_DAMAGE_MULT := [1.0, 1.25, 1.5, 1.75]
 const BOMB_RADIUS_MULT := [1.0, 1.15, 1.3, 1.45]
 
-const PITCH_SLOW       := [0.4, 0.5, 0.6, 0.7]
+const PITCH_SLOW       := [0.2, 0.3, 0.4, 0.5]
 
-const SUPER_DURATION   := [5.0, 6.5, 8.0, 10.0]
-const SUPER_ATK_SPEED  := [1.3, 1.45, 1.6, 1.8]
-const SUPER_DAMAGE_MULT := [1.2, 1.5, 1.75, 2.0]
+const SUPER_DURATION   := [5.0, 6.0, 7.0, 8.0]
+const SUPER_ATK_SPEED  := [1.2, 1.3, 1.4, 1.5]
+const SUPER_DAMAGE_MULT := [1.15, 1.2, 1.25, 1.3]
 
-const REPAIR_HEAL     := [300, 0, 0, 0]
-const REPAIR_COST     := [25, 0, 0, 0]
+const REPAIR_HEAL     := [350, 400, 450, 500]
+const REPAIR_COST     := [35, 30, 25, 20]
 const REPAIR_COOLDOWN := [10.0, 0, 0, 0]
 
 func level(key: String) -> int:

@@ -1,9 +1,16 @@
 [gd_scene format=3 uid="uid://bboslj3bs8gj8"]
 
+[ext_resource type="Theme" uid="uid://cishgontb2yga" path="res://assets/UI/themes/main_theme.tres" id="1_djhqt"]
 [ext_resource type="Script" uid="uid://bapjkqhdsjy81" path="res://scripts/Player/Skills/Repair/RepairSkillButton.gd" id="1_kpy8o"]
+[ext_resource type="Texture2D" uid="uid://bgoag5excn8d5" path="res://assets/Icons/Repair.png" id="2_k3gle"]
 
 [node name="RepairSkillButton" type="Button" unique_id=834700005]
+custom_minimum_size = Vector2(100, 100)
 offset_right = 88.0
 offset_bottom = 67.0
-text = "Repair"
+theme = ExtResource("1_djhqt")
+theme_override_font_sizes/font_size = 35
+icon = ExtResource("2_k3gle")
+icon_alignment = 1
+expand_icon = true
 script = ExtResource("1_kpy8o")

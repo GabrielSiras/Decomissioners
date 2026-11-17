@@ -87,9 +87,9 @@ func _update_button_text() -> void:
 		return
 	var turret = train.slots_status.get(current_slot)
 	if is_instance_valid(turret) and "build_cost" in turret:
-		btn_demolish.text = "Demolish turret? Refund: $" + str(int(turret.build_cost * 0.3))
-	else:
-		btn_demolish.text = "Demolish turret?"
+		btn_demolish.text = str(int(turret.build_cost * 0.3)) + " metal"
+	#else:
+		#btn_demolish.text = "Demolish turret?"
 
 	var st: Dictionary = train.get_upgrade_status(current_slot)
 	btn_upgrade.disabled = not st["can"]

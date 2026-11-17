@@ -5,7 +5,7 @@ extends Node3D
 @onready var turret_slots_container: Node3D = $TurretSlots
 @export var max_speed: float = 8.0
 var health_bar: HealthBarUI = null
-@export var max_health: int = 1500
+@export var max_health: int = 1000
 @onready var current_health: int = max_health
 @export var current_armor: int = 10
 @export var wagons: Array[Wagon] = []

@@ -19,9 +19,13 @@ extends Control
 var is_changing: bool = false
 
 func _ready() -> void:
-	factory_button.toggled.connect(_on_biome_button_toggled.bind(factory_panel))
-	junkyard_button.toggled.connect(_on_biome_button_toggled.bind(junkyard_panel))
-	wastes_button.toggled.connect(_on_biome_button_toggled.bind(wastes_panel))
+	#factory_button.toggled.connect(_on_biome_button_toggled.bind(factory_panel))
+	#junkyard_button.toggled.connect(_on_biome_button_toggled.bind(junkyard_panel))
+	#wastes_button.toggled.connect(_on_biome_button_toggled.bind(wastes_panel))
+	
+	factory_button.pressed.connect(_on_factory_button_pressed)
+	junkyard_button.pressed.connect(_on_junkyard_button_pressed)
+	wastes_button.pressed.connect(_on_wastes_button_pressed)
 	
 	get_tree().paused = false
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
@@ -62,11 +66,11 @@ func _set_buttons_disabled(value: bool) -> void:
 	for b in find_children("*", "BaseButton", true, false):
 		b.disabled = value
 		
-func _on_biome_button_toggled(toggled_state: bool, biome_panel: PanelContainer) -> void:
-	if toggled_state == false:
-		biome_panel.visible = false
-	else:
-		biome_panel.visible = true
+#func _on_biome_button_toggled(toggled_state: bool, biome_panel: PanelContainer) -> void:
+	#if toggled_state == false:
+		#biome_panel.visible = false
+	#else:
+		#biome_panel.visible = true
 	
 func _on_return_button_pressed() -> void:
 	_go_to("res://scenes/UI-UX/UI/MENUs/MainMenu.tscn")
@@ -74,11 +78,11 @@ func _on_return_button_pressed() -> void:
 func _on_research_button_pressed() -> void:
 	_go_to("res://scenes/UI-UX/UI/MENUs/ResearchMenu.tscn")
 
-#func _on_wastes_button_pressed() -> void:
-	#_go_to(GameProgress.LEVELS["level01"])
-#
-#func _on_junkyard_button_pressed() -> void:
-	#_go_to(GameProgress.LEVELS["level02"])
-#
-#func _on_factory_button_pressed() -> void:
-	#_go_to(GameProgress.LEVELS["level03"])
+func _on_wastes_button_pressed() -> void:
+	_go_to(GameProgress.LEVELS["level01"])
+
+func _on_junkyard_button_pressed() -> void:
+	_go_to(GameProgress.LEVELS["level02"])
+
+func _on_factory_button_pressed() -> void:
+	_go_to(GameProgress.LEVELS["level03"])

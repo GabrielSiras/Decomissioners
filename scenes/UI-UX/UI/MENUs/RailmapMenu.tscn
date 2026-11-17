@@ -58,9 +58,6 @@ corner_radius_bottom_left = 15
 corner_detail = 1
 shadow_color = Color(0, 0, 0, 0.49411765)
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_kbsot"]
-allow_unpress = true
-
 [node name="RailmapMenu" type="Control" unique_id=785803109 node_paths=PackedStringArray("factory_button", "junkyard_button", "wastes_button", "factory_panel", "junkyard_panel", "wastes_panel")]
 layout_mode = 3
 anchors_preset = 15
@@ -160,8 +157,6 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_v4qmk")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_nc0ha")
 theme_override_styles/hover = SubResource("StyleBoxFlat_v4qmk")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_am2aq")
-toggle_mode = true
-button_group = SubResource("ButtonGroup_kbsot")
 text = "Factory"
 
 [node name="JunkyardButton" type="Button" parent="ColorRect/MarginContainer/VBoxContainer2/PanelContainer/BiomeButtons" unique_id=1078319801]
@@ -173,8 +168,6 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_v4qmk")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_nc0ha")
 theme_override_styles/hover = SubResource("StyleBoxFlat_v4qmk")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_am2aq")
-toggle_mode = true
-button_group = SubResource("ButtonGroup_kbsot")
 text = "Junkyard"
 
 [node name="WastesButton" type="Button" parent="ColorRect/MarginContainer/VBoxContainer2/PanelContainer/BiomeButtons" unique_id=472258507]
@@ -186,8 +179,6 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_v4qmk")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_nc0ha")
 theme_override_styles/hover = SubResource("StyleBoxFlat_v4qmk")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_am2aq")
-toggle_mode = true
-button_group = SubResource("ButtonGroup_kbsot")
 text = "Wastes"
 
 [node name="FactoryPanel" type="PanelContainer" parent="ColorRect/MarginContainer/VBoxContainer2/PanelContainer" unique_id=91686635 groups=["Biome Panels"]]
