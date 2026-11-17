@@ -12,7 +12,7 @@ var original_button_text: String = ""
 func _ready() -> void:
 	super._ready()
 	
-	original_button_text = text if text != "" else "BlackPitch"
+	original_button_text = text
 	
 	if not is_instance_valid(cooldown_timer):
 		cooldown_timer = Timer.new()

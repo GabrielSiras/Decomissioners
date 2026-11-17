@@ -15,6 +15,7 @@ extends Control
 @export var turret_4_cost: int = 100
 
 @export var menu_radius: float = 90.0
+@export var turret_names: Array[String] = ["Machinegun", "Artillery", "Blast", "Incendiary"]
 
 @export_category("SFX")
 @export var random_pitch: bool = true
@@ -88,13 +89,37 @@ func _organize_radial_buttons() -> void:
 		
 		btn.position = offset - (btn.custom_minimum_size / 2.0)
 
+func _update_button_labels() -> void:
+	var scenes: Array[PackedScene] = [turret_1_scene, turret_2_scene, turret_3_scene, turret_4_scene]
+	var buttons: Array[Button] = [btn_turret_1, btn_turret_2, btn_turret_3, btn_turret_4]
+
+	for i in buttons.size():
+		var scene: PackedScene = scenes[i]
+		if scene == null:
+			continue
+
+		var t = scene.instantiate()
+		var idx: int = clampi(selected_level - 1, 0, t.cost_per_level.size() - 1)
+		var cost: int = t.cost_per_level[idx]
+		var unlocked: bool = selected_level <= UpgradeManager.level(t.upgrade_key)
+		t.free()
+
+		var name_text: String = turret_names[i] if i < turret_names.size() else "Turret"
+		var label: Label = buttons[i].get_node_or_null("CostLabel")
+		if label:
+			label.text = "$%d" % cost
+		buttons[i].text = "" % [name_text, cost]
+		buttons[i].disabled = not unlocked or MetalManager.get_metal() < cost
+
 func _on_slot_clicked(slot_node: Node3D) -> void:
 	if train.slots_status.get(slot_node) == null:
 		current_slot = slot_node
+		_update_button_labels()
 		show()
 
 func _on_level_selected(lvl: int) -> void:
 	selected_level = lvl
+	_update_button_labels()
 
 func _try_build(scene: PackedScene) -> void:
 	if not is_instance_valid(current_slot):

@@ -3,9 +3,12 @@ extends RangedEnemy
 
 @export_group("Slot & Posicionamento")
 @export var shoulder_x_offset: float = 4.5
-@export var catch_up_speed_bonus: float = 6.0
+@export var catch_up_speed_bonus: float = 3.0
+@export var catch_up_min_bonus: float = 0.0
+@export var full_speed_reference: float = 8.0
 @export var x_follow_smoothness: float = 6.0
 @export var z_follow_smoothness: float = 4.0
+@export var chase_speed_factor_at_max: float = 0.85
 
 @export_group("Combate & Mira")
 @export var attack_distance_threshold: float = 2.5
@@ -13,21 +16,30 @@ extends RangedEnemy
 @export var rotation_speed: float = 12.0
 @export var mesh_y_offset_deg: float = 0.0
 
+@export var ground_y: float = 0.5
 var current_target_node: Node3D = null
 var assigned_slot_index: int = -1
 var slot_z_offset: float = 0.0
+
 
 func _ready() -> void:
 	super._ready()
 
 func setup_target(train_node: Node3D) -> void:
 	target = train_node
+	set_meta("side_pending", true)
 	_find_available_slot()
 
 func _physics_process(delta: float) -> void:
+	global_position.y = ground_y
 	if not is_instance_valid(target):
 		return
 
+	if get_meta("side_pending", false):
+		var side: float = sign(global_position.x - target.global_position.x)
+		shoulder_x_offset = abs(shoulder_x_offset) * (side if side != 0.0 else 1.0)
+		set_meta("side_pending", false)
+	
 	_ensure_valid_slot()
 	var active_target = _get_active_target()
 
@@ -35,6 +47,10 @@ func _physics_process(delta: float) -> void:
 	_update_rotation(active_target, delta)
 	_update_attack_state(active_target)
 	_apply_physics(delta)
+
+func _current_catch_up_bonus(train_spd: float) -> float:
+	var t: float = clampf(train_spd / full_speed_reference, 0.0, 1.0)
+	return lerpf(catch_up_speed_bonus, catch_up_min_bonus, t)
 
 func _ensure_valid_slot() -> void:
 	if not is_instance_valid(current_target_node):
@@ -71,9 +87,13 @@ func _update_movement(active_target: Node3D) -> void:
 	var x_diff = target_x - global_position.x
 	var x_vel = clamp(x_diff * x_follow_smoothness, -speed, speed)
 
+	var speed_ratio: float = clampf(train_spd / full_speed_reference, 0.0, 1.0)
+	var follow_factor: float = lerpf(1.0, chase_speed_factor_at_max, speed_ratio)
+
 	var z_diff = target_z - global_position.z
-	var z_correction = clamp(z_diff * z_follow_smoothness, -catch_up_speed_bonus, catch_up_speed_bonus)
-	var z_vel = -train_spd + z_correction
+	var bonus: float = _current_catch_up_bonus(train_spd)
+	var z_correction: float = clamp(z_diff * 4.0, -bonus, bonus)
+	var z_vel: float = -train_spd * follow_factor + z_correction
 
 	velocity = Vector3(x_vel, 0.0, z_vel)
 

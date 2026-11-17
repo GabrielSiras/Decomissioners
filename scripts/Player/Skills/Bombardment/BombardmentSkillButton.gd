@@ -9,7 +9,7 @@ var original_button_text: String = ""
 
 func _ready() -> void:
 	super._ready()
-	original_button_text = text if text != "" else "Bombardment"
+	original_button_text = text
 	cooldown_timer.wait_time = cooldown_time
 	cooldown_timer.one_shot = true
 

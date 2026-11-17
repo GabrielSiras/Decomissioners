@@ -36,6 +36,24 @@ icon = ExtResource("3_yw612")
 vertical_icon_alignment = 0
 expand_icon = true
 
+[node name="CostLabel" type="Label" parent="RadialPanel/ButtonTurret1" unique_id=1811080740]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = 2.0
+offset_right = 20.0
+offset_bottom = 31.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 5
+horizontal_alignment = 1
+
 [node name="ButtonTurret2" type="Button" parent="RadialPanel" unique_id=861224002]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 0
@@ -45,6 +63,24 @@ offset_bottom = 411.0
 theme_override_font_sizes/font_size = 30
 icon = ExtResource("4_k5mlk")
 expand_icon = true
+
+[node name="CostLabel" type="Label" parent="RadialPanel/ButtonTurret2" unique_id=1104438107]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = 2.0
+offset_right = 20.0
+offset_bottom = 31.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 5
+horizontal_alignment = 1
 
 [node name="ButtonTurret3" type="Button" parent="RadialPanel" unique_id=337346439]
 custom_minimum_size = Vector2(80, 80)
@@ -56,6 +92,24 @@ theme_override_font_sizes/font_size = 30
 icon = ExtResource("5_i2qot")
 expand_icon = true
 
+[node name="CostLabel" type="Label" parent="RadialPanel/ButtonTurret3" unique_id=934632526]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = 2.0
+offset_right = 20.0
+offset_bottom = 31.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 5
+horizontal_alignment = 1
+
 [node name="ButtonTurret4" type="Button" parent="RadialPanel" unique_id=290782043]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 0
@@ -65,6 +119,24 @@ offset_bottom = 293.0
 theme_override_font_sizes/font_size = 30
 icon = ExtResource("6_b8pjo")
 expand_icon = true
+
+[node name="CostLabel" type="Label" parent="RadialPanel/ButtonTurret4" unique_id=415847400]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = 2.0
+offset_right = 20.0
+offset_bottom = 31.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 5
+horizontal_alignment = 1
 
 [node name="CloseButton" type="Button" parent="RadialPanel" unique_id=1689192879]
 visible = false

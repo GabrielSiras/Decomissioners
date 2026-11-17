@@ -83,6 +83,7 @@ func _spawn(entry: SpawnEntry) -> void:
 	var t: Transform3D
 	match entry.mode:
 		SpawnEntry.Mode.SHOULDER_BEHIND:
+			var side_sign: float = [-1.0, 1.0].pick_random()
 			t = Transform3D(Basis(), Vector3(
 				main_target.global_position.x + shoulder_x_offset,
 				0.0,

@@ -4,10 +4,10 @@ extends SkillBase
 @export var supercharge_skill_scene: PackedScene
 
 var supercharge_skill: SuperchargeSkill
-
+var original_button_text: String = ""
 func _ready() -> void:
 	super._ready()
-	
+	original_button_text = text
 	if supercharge_skill_scene:
 		supercharge_skill = supercharge_skill_scene.instantiate() as SuperchargeSkill
 		add_child(supercharge_skill)
