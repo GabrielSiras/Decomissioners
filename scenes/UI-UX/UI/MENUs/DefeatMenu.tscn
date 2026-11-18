@@ -2,6 +2,31 @@
 
 [ext_resource type="Script" uid="uid://c2ucr5o2gewwk" path="res://scripts/UI-UX/UI/DefeatMenu.gd" id="1_e6ufj"]
 [ext_resource type="AudioStream" uid="uid://ma7spr0eraxc" path="res://assets/audios/SFX/UI/MetalClick/MetalClick.wav" id="2_bxqvk"]
+[ext_resource type="Theme" uid="uid://cishgontb2yga" path="res://assets/UI/themes/main_theme.tres" id="2_m6uyx"]
+[ext_resource type="LabelSettings" uid="uid://6t6h7iy5achu" path="res://assets/UI/labels/title_label.tres" id="3_obe5l"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0yycy"]
+content_margin_top = 10.0
+bg_color = Color(0.16470589, 0.19607843, 0.20784314, 1)
+border_width_left = 15
+border_width_top = 15
+border_width_right = 15
+border_width_bottom = 15
+border_color = Color(0.2627451, 0.30588236, 0.32156864, 1)
+border_blend = true
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+corner_detail = 1
+expand_margin_left = 5.0
+expand_margin_right = 5.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_42pu1"]
+font_size = 50
+font_color = Color(0.8745098, 0.8745098, 0.8745098, 1)
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(4, 4)
 
 [node name="DefeatMenu" type="CanvasLayer" unique_id=501164214]
 process_mode = 3
@@ -13,7 +38,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.27022192, 0.27022192, 0.2702219, 1)
+color = Color(0, 0, 0, 0.19607843)
 
 [node name="CenterContainer" type="CenterContainer" parent="." unique_id=1428995238]
 anchors_preset = 15
@@ -21,25 +46,54 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_m6uyx")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=1604656681]
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer" unique_id=1018088852]
+custom_minimum_size = Vector2(600, 550)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0yycy")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer" unique_id=1604656681]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 50
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=139206088]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer" unique_id=2060262318]
+[node name="Label2" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer/VBoxContainer2" unique_id=1991323554]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "YOU WERE"
+label_settings = SubResource("LabelSettings_42pu1")
+
+[node name="Label" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer/VBoxContainer2" unique_id=2060262318]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "DESTROYED!"
+label_settings = ExtResource("3_obe5l")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/VBoxContainer" unique_id=155916907]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_constants/separation = 20
+
+[node name="RestartButton" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer/VBoxContainer" unique_id=1624649614]
+custom_minimum_size = Vector2(300, 90)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 64
-text = "You died!"
+text = "TRY AGAIN"
 
-[node name="RestartButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1624649614]
+[node name="MainMenuButton" type="Button" parent="CenterContainer/PanelContainer/VBoxContainer/VBoxContainer" unique_id=136625840]
+custom_minimum_size = Vector2(300, 90)
 layout_mode = 2
+size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 64
-text = "Restart?"
-
-[node name="MainMenuButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=136625840]
-layout_mode = 2
-theme_override_font_sizes/font_size = 64
-text = "MainMenu"
+text = "QUIT"
 
 [node name="MetalClick" type="AudioStreamPlayer" parent="." unique_id=1373154973]
 stream = ExtResource("2_bxqvk")

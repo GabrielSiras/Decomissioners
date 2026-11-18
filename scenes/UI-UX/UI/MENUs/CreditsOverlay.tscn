@@ -15,10 +15,10 @@ border_width_right = 15
 border_width_bottom = 15
 border_color = Color(0.2627451, 0.30588236, 0.32156864, 1)
 border_blend = true
-corner_radius_top_left = 30
-corner_radius_top_right = 30
-corner_radius_bottom_right = 30
-corner_radius_bottom_left = 30
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
 corner_detail = 1
 expand_margin_left = 5.0
 expand_margin_right = 5.0
@@ -35,9 +35,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.25882354)
+color = Color(0, 0, 0, 0.19607843)
 
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1001812267]
+[node name="MarginContainer" type="CenterContainer" parent="." unique_id=1405721425]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -46,12 +46,9 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource("2_4g25d")
-theme_override_constants/margin_left = 60
-theme_override_constants/margin_top = 60
-theme_override_constants/margin_right = 60
-theme_override_constants/margin_bottom = 60
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer" unique_id=1527240351]
+custom_minimum_size = Vector2(600, 1100)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_jw2xf")
 

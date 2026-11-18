@@ -36,7 +36,6 @@ expand_margin_top = 10.0
 [node name="SettingsOverlay" type="CanvasLayer" unique_id=2106756084 node_paths=PackedStringArray("close_button", "exit_box")]
 process_mode = 3
 layer = 2
-visible = false
 script = ExtResource("1_3vgu1")
 close_button = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/CloseButton")
 exit_box = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/ExitBox")
@@ -47,7 +46,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.25882354)
+color = Color(0, 0, 0, 0.19607843)
 
 [node name="MarginContainer" type="CenterContainer" parent="." unique_id=1964236544]
 anchors_preset = 15
@@ -171,17 +170,18 @@ layout_mode = 2
 theme_override_constants/separation = 100
 
 [node name="RailmapButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/ExitBox" unique_id=13020477]
+custom_minimum_size = Vector2(0, 90)
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 60
 text = "RAILMAP"
 script = ExtResource("3_7ixq3")
 
 [node name="QuitButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/ExitBox" unique_id=324483676]
-custom_minimum_size = Vector2(0, 100)
+custom_minimum_size = Vector2(0, 90)
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 60
 text = "QUIT"
 script = ExtResource("3_7ixq3")
 
