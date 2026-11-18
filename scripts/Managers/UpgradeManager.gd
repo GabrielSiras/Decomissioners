@@ -65,9 +65,9 @@ const SUPER_DURATION   := [5.0, 6.0, 7.0, 8.0]
 const SUPER_ATK_SPEED  := [1.2, 1.3, 1.4, 1.5]
 const SUPER_DAMAGE_MULT := [1.15, 1.2, 1.25, 1.3]
 
-const REPAIR_HEAL     := [350, 400, 450, 500]
-const REPAIR_COST     := [35, 30, 25, 20]
-const REPAIR_COOLDOWN := [10.0, 0, 0, 0]
+const REPAIR_HEAL     := [400, 450, 500, 550]
+const REPAIR_COST     := [45, 40, 45, 30]
+const REPAIR_COOLDOWN := [21.0, 20.0 , 19.0, 18.0]
 
 func level(key: String) -> int:
 	return upgrades[key]["Level"]

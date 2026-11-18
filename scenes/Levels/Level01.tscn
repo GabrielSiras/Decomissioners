@@ -40,7 +40,6 @@
 [ext_resource type="PackedScene" uid="uid://b6kis3qguxedq" path="res://scenes/Player/Wagon/Wagon.tscn" id="31_jys65"]
 [ext_resource type="PackedScene" uid="uid://ccxbyhm6vro5u" path="res://scenes/Player/GameCamera.tscn" id="32_arkqm"]
 [ext_resource type="PackedScene" uid="uid://bboslj3bs8gj8" path="res://scenes/Player/Skills/Repair/RepairSkillButton.tscn" id="32_isk48"]
-[ext_resource type="PackedScene" uid="uid://d2tayfwtb0eco" path="res://scenes/Player/Skills/Repair/RepairSkill.tscn" id="33_hepgf"]
 [ext_resource type="Script" uid="uid://v4lwcwcnu7dg" path="res://scripts/VFX/VFXPrewarmer.gd" id="34_0hpgq"]
 [ext_resource type="Theme" uid="uid://u17ymhp7hkpl" path="res://assets/UI/themes/accent_theme.tres" id="34_5vti6"]
 [ext_resource type="PackedScene" uid="uid://x2uj51mwckp5" path="res://scenes/VFX/ExplosionVFX.tscn" id="35_rj7dc"]
@@ -48,6 +47,7 @@
 [ext_resource type="PackedScene" uid="uid://ca821bnynwdh4" path="res://scenes/VFX/FlamethrowerVFX.tscn" id="37_bd1e1"]
 [ext_resource type="PackedScene" uid="uid://cg4kvaldnrav4" path="res://scenes/VFX/OverchargeVFX.tscn" id="38_tqg33"]
 [ext_resource type="PackedScene" uid="uid://be8hg483hedqw" path="res://scenes/VFX/PitchPuddleLeft.tscn" id="39_atckt"]
+[ext_resource type="FontFile" uid="uid://bn5sgha2ekqid" path="res://assets/UI/fonts/roboto/Roboto-Bold.ttf" id="39_v5esl"]
 [ext_resource type="ArrayMesh" uid="uid://t3lb1k1uvd30" path="res://assets/VFX Textures/PitchPuddle.obj" id="40_ihxfr"]
 [ext_resource type="PackedScene" uid="uid://c5qxjkarg4st8" path="res://scenes/VFX/PreassureBlastVFX.tscn" id="41_l64dw"]
 [ext_resource type="PackedScene" uid="uid://b4skynkois6f4" path="res://scenes/Terrain/Gate.tscn" id="49_82npn"]
@@ -250,13 +250,11 @@ theme_override_constants/separation = 30
 [node name="BombardmentSkillButton" parent="Skills/GridContainer" unique_id=246414351 instance=ExtResource("26_6mika")]
 layout_mode = 2
 size_flags_horizontal = 10
-cooldown_time = 15.0
 
 [node name="RepairSkillButton" parent="Skills/GridContainer" unique_id=1594728693 instance=ExtResource("32_isk48")]
 layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 4
-repair_skill_scene = ExtResource("33_hepgf")
 
 [node name="SuperChargeSkillButton" parent="Skills/GridContainer" unique_id=834700005 node_paths=PackedStringArray("train") instance=ExtResource("27_lkv17")]
 visible = false
@@ -386,14 +384,13 @@ text = "1"
 
 [node name="CheckpointIndicator" type="Control" parent="HUD" unique_id=1331524780 node_paths=PackedStringArray("spinner", "label") groups=["hide_on_end"]]
 layout_mode = 3
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -84.0
-offset_top = 113.0
-offset_right = -44.0
-offset_bottom = 153.0
-grow_horizontal = 0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
 mouse_filter = 2
 script = ExtResource("26_wdl3e")
 spinner = NodePath("VBoxContainer/LoadingSpinner")
@@ -406,14 +403,15 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -35.0
+offset_top = 67.0
+offset_right = 35.0
+offset_bottom = 168.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="LoadingSpinner" type="Control" parent="HUD/CheckpointIndicator/VBoxContainer" unique_id=855045030]
+custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -423,6 +421,9 @@ metadata/_custom_type_script = "uid://dso8mes67pgwk"
 [node name="Label" type="Label" parent="HUD/CheckpointIndicator/VBoxContainer" unique_id=154687865]
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("39_v5esl")
+theme_override_font_sizes/font_size = 36
+horizontal_alignment = 1
 
 [node name="StartButton" type="Button" parent="HUD" unique_id=102632989 groups=["hide_on_end"]]
 custom_minimum_size = Vector2(200, 90)

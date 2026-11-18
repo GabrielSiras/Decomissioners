@@ -40,12 +40,12 @@
 [ext_resource type="PackedScene" uid="uid://bboslj3bs8gj8" path="res://scenes/Player/Skills/Repair/RepairSkillButton.tscn" id="32_0b68w"]
 [ext_resource type="PackedScene" uid="uid://ccxbyhm6vro5u" path="res://scenes/Player/GameCamera.tscn" id="32_1qny7"]
 [ext_resource type="Theme" uid="uid://cishgontb2yga" path="res://assets/UI/themes/main_theme.tres" id="33_4eeij"]
-[ext_resource type="PackedScene" uid="uid://d2tayfwtb0eco" path="res://scenes/Player/Skills/Repair/RepairSkill.tscn" id="33_ihiu8"]
 [ext_resource type="Script" uid="uid://v4lwcwcnu7dg" path="res://scripts/VFX/VFXPrewarmer.gd" id="34_c8eai"]
 [ext_resource type="PackedScene" uid="uid://x2uj51mwckp5" path="res://scenes/VFX/ExplosionVFX.tscn" id="35_7jwx1"]
 [ext_resource type="PackedScene" uid="uid://bmim5hpyj0ca1" path="res://scenes/VFX/ExplosionVFXArtillery.tscn" id="36_srqex"]
 [ext_resource type="PackedScene" uid="uid://ca821bnynwdh4" path="res://scenes/VFX/FlamethrowerVFX.tscn" id="37_fjqcg"]
 [ext_resource type="PackedScene" uid="uid://cg4kvaldnrav4" path="res://scenes/VFX/OverchargeVFX.tscn" id="38_06mqd"]
+[ext_resource type="FontFile" uid="uid://bn5sgha2ekqid" path="res://assets/UI/fonts/roboto/Roboto-Bold.ttf" id="38_tgc2u"]
 [ext_resource type="PackedScene" uid="uid://be8hg483hedqw" path="res://scenes/VFX/PitchPuddleLeft.tscn" id="39_gbj78"]
 [ext_resource type="ArrayMesh" uid="uid://t3lb1k1uvd30" path="res://assets/VFX Textures/PitchPuddle.obj" id="40_imbjm"]
 [ext_resource type="PackedScene" uid="uid://c5qxjkarg4st8" path="res://scenes/VFX/PreassureBlastVFX.tscn" id="41_dkme7"]
@@ -274,7 +274,6 @@ cooldown_time = 15.0
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
-repair_skill_scene = ExtResource("33_ihiu8")
 
 [node name="SuperChargeSkillButton" parent="Skills/GridContainer2" unique_id=834700005 node_paths=PackedStringArray("train") instance=ExtResource("27_rk435")]
 layout_mode = 2
@@ -403,38 +402,48 @@ theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 60
 text = "1"
 
-[node name="CheckpointIndicator" type="Control" parent="HUD" unique_id=611174343 node_paths=PackedStringArray("spinner", "label") groups=["hide_on_end"]]
+[node name="CheckpointIndicator" type="Control" parent="HUD" unique_id=1549845688 node_paths=PackedStringArray("spinner", "label") groups=["hide_on_end"]]
 layout_mode = 3
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -84.0
-offset_top = 113.0
-offset_right = -44.0
-offset_bottom = 153.0
-grow_horizontal = 0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
 mouse_filter = 2
 script = ExtResource("26_f84fw")
 spinner = NodePath("VBoxContainer/LoadingSpinner")
 label = NodePath("VBoxContainer/Label")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HUD/CheckpointIndicator" unique_id=49023829]
-layout_mode = 0
-offset_left = -120.0
-offset_top = -20.0
-offset_right = -80.0
-offset_bottom = 20.0
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/CheckpointIndicator" unique_id=1047306317]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.0
+offset_top = 67.0
+offset_right = 35.0
+offset_bottom = 168.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="LoadingSpinner" type="Control" parent="HUD/CheckpointIndicator/VBoxContainer" unique_id=1256441167]
+[node name="LoadingSpinner" type="Control" parent="HUD/CheckpointIndicator/VBoxContainer" unique_id=408766687]
+custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("27_b5lsf")
 metadata/_custom_type_script = "uid://dso8mes67pgwk"
 
-[node name="Label" type="Label" parent="HUD/CheckpointIndicator/VBoxContainer" unique_id=1866161918]
+[node name="Label" type="Label" parent="HUD/CheckpointIndicator/VBoxContainer" unique_id=230905487]
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("38_tgc2u")
+theme_override_font_sizes/font_size = 36
+horizontal_alignment = 1
 
 [node name="StartButton" type="Button" parent="HUD" unique_id=1498256379 groups=["hide_on_end"]]
 custom_minimum_size = Vector2(200, 90)
@@ -453,14 +462,14 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Player" type="Node3D" parent="." unique_id=163302227]
 
-[node name="TrainHead" parent="Player" unique_id=423923195 node_paths=PackedStringArray("wagons", "checkpoint_indicator", "defeat_menu", "speed_lever", "progress_bar", "destination_node") instance=ExtResource("30_06yrh")]
+[node name="TrainHead" parent="Player" unique_id=423923195 node_paths=PackedStringArray("wagons", "defeat_menu", "speed_lever", "progress_bar", "destination_node") instance=ExtResource("30_06yrh")]
 current_armor = 0
 wagons = [NodePath("Wagon1"), null]
-checkpoint_indicator = NodePath("../../HUD/CheckpointIndicator")
 defeat_menu = NodePath("../../HUD/DefeatMenu")
 speed_lever = NodePath("../../HUD/SpeedLever")
 progress_bar = NodePath("../../HUD/TrainProgressBar")
 destination_node = NodePath("../../DestinationPoint")
+starting_metal = 400
 wagon_scene = ExtResource("31_1ytg8")
 
 [node name="Wagon1" parent="Player/TrainHead" unique_id=659263558 instance=ExtResource("31_1ytg8")]

@@ -28,6 +28,7 @@ icon_alignment = 1
 expand_icon = true
 script = ExtResource("2_u5j7m")
 bombardment_scene = ExtResource("3_8my35")
+cooldown_time = 30.0
 
 [node name="CooldownTimer" type="Timer" parent="." index="0" unique_id=946769539]
 

@@ -7,6 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://byumskak131gf" path="res://assets/models/Turrets/INC2.glb" id="5_2emrk"]
 [ext_resource type="PackedScene" uid="uid://dpa4btawpqyab" path="res://assets/models/Turrets/INC3.glb" id="6_p7xn5"]
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_2emrk"]
+radius = 5.5
+
 [node name="Incendiary" unique_id=90108018 node_paths=PackedStringArray("flame_vfx", "level_models") instance=ExtResource("1_jcsav")]
 script = ExtResource("2_34g8i")
 cone_angle_degrees = 60.0
@@ -14,18 +17,19 @@ flame_vfx = NodePath("FlamethrowerVFX")
 debuff_duration = 2.0
 cone_angle_per_level = Array[float]([60.0, 70.0, 80.0])
 debuff_duration_per_level = Array[float]([2.0, 2.5, 3.0])
-fire_rate = 0.2
-damage = 1
 projectile_scene = null
 upgrade_key = "Incendiary"
 level_models = [NodePath("ModelT1"), NodePath("ModelT2"), NodePath("ModelT3")]
 damage_per_level = Array[int]([1, 2, 3])
-fire_rate_per_level = Array[float]([0.0, 0.0, 0.0])
-cost_per_level = Array[int]([80, 130, 180])
+fire_rate_per_level = Array[float]([0.15, 0.15, 0.15])
+cost_per_level = Array[int]([80, 145, 260])
 penetration_per_level = Array[float]([1.0, 1.0, 1.0])
 
+[node name="CollisionShape3D" parent="RangeArea" parent_id_path=PackedInt32Array(615499785) index="0" unique_id=1991760536]
+shape = SubResource("SphereShape3D_2emrk")
+
 [node name="FlamethrowerVFX" parent="." index="3" unique_id=134806838 instance=ExtResource("3_fs2uq")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+transform = Transform3D(-0.9999998, 0, -3.0520718e-07, 0, 1, 0, 1.5099577e-07, 0, -2.021296, 0, 0, 0)
 
 [node name="ModelT1" type="Node3D" parent="." index="4" unique_id=1398170845]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)

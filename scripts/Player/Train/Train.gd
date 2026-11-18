@@ -433,7 +433,7 @@ func demolish_turret_at_slot(target_slot: Node3D) -> void:
 	var turret_instance = slots_status[target_slot]
 	var refund_amount: int = 0
 	if "build_cost" in turret_instance:
-		refund_amount = int(turret_instance.build_cost * 0.3)
+		refund_amount = int(turret_instance.build_cost * 0.7)
 	
 	if MetalManager.has_method("add_metal"):
 		MetalManager.add_metal(refund_amount)
@@ -533,9 +533,9 @@ func brake_at_gate() -> void:
 			return
 
 		if is_instance_valid(checkpoint_indicator):
-			checkpoint_indicator.show_done_then_reward("+1 Research Point")
+			checkpoint_indicator.show_done_then_reward("+3 Research Point")
 		
-		UpgradeManager.add_research_points(1)
+		UpgradeManager.add_research_points(3)
 
 		current_gate.switch_to_destroyed()
 

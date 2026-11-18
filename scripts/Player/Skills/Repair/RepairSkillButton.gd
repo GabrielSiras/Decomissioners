@@ -2,6 +2,7 @@ class_name RepairSkillButton
 extends SkillBase
 
 @export var repair_skill_scene: PackedScene
+@export var cost_label: Label
 var repair_skill: RepairSkill
 var original_button_text: String = ""
 
@@ -14,8 +15,15 @@ func _ready() -> void:
 	cooldown_timer.wait_time = cooldown_time
 	cooldown_timer.one_shot = true
 	repair_skill.skill_executed.connect(_on_skill_executed)
+	
+	cost_label.text = str(repair_skill.get_cost())
 
 func _process(_delta: float) -> void:
+	#if repair_skill.get_cost() > MetalManager.total_metal:
+		#disabled = true
+	#elif cooldown_timer.paused == true:
+		#disabled = false
+		
 	if not cooldown_timer.is_stopped():
 		text = "%.1fs" % cooldown_timer.time_left
 

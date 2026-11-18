@@ -3,8 +3,27 @@
 [ext_resource type="Theme" uid="uid://cishgontb2yga" path="res://assets/UI/themes/main_theme.tres" id="1_djhqt"]
 [ext_resource type="Script" uid="uid://bapjkqhdsjy81" path="res://scripts/Player/Skills/Repair/RepairSkillButton.gd" id="1_kpy8o"]
 [ext_resource type="Texture2D" uid="uid://bgoag5excn8d5" path="res://assets/Icons/Repair.png" id="2_k3gle"]
+[ext_resource type="PackedScene" uid="uid://d2tayfwtb0eco" path="res://scenes/Player/Skills/Repair/RepairSkill.tscn" id="4_k3gle"]
+[ext_resource type="Texture2D" uid="uid://bcggj18vg8wbj" path="res://assets/Icons/ScrapMetal.png" id="5_jqjhf"]
 
-[node name="RepairSkillButton" type="Button" unique_id=834700005]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jqjhf"]
+content_margin_top = 10.0
+bg_color = Color(0.16470589, 0.19607843, 0.20784314, 1)
+border_width_left = 7
+border_width_top = 7
+border_width_right = 7
+border_width_bottom = 7
+border_color = Color(0.2627451, 0.30588236, 0.32156864, 1)
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 1
+expand_margin_left = 5.0
+expand_margin_right = 5.0
+
+[node name="RepairSkillButton" type="Button" unique_id=834700005 node_paths=PackedStringArray("cost_label")]
 custom_minimum_size = Vector2(100, 100)
 offset_right = 88.0
 offset_bottom = 67.0
@@ -14,4 +33,33 @@ icon = ExtResource("2_k3gle")
 icon_alignment = 1
 expand_icon = true
 script = ExtResource("1_kpy8o")
-cooldown_time = 10.0
+repair_skill_scene = ExtResource("4_k3gle")
+cost_label = NodePath("PanelContainer/HBoxContainer/CostLabel")
+cooldown_time = 20.0
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1992461204]
+layout_mode = 0
+offset_left = 6.0
+offset_top = -59.0
+offset_right = 91.0
+offset_bottom = -6.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_jqjhf")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer" unique_id=11486181]
+layout_mode = 2
+
+[node name="CostLabel" type="Label" parent="PanelContainer/HBoxContainer" unique_id=1456905862]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 38
+text = "30"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/HBoxContainer" unique_id=1874328004]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("5_jqjhf")
+expand_mode = 3

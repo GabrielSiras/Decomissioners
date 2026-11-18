@@ -140,7 +140,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 30
-theme_override_constants/margin_top = 50
+theme_override_constants/margin_top = 90
 theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 250
 
@@ -573,61 +573,61 @@ script = ExtResource("2_7buhx")
 upgrade_key = "Bombardment"
 sample_socket = NodePath("../VBoxContainer/HBoxContainer/BombardmentSocket1")
 
-[node name="Pitch" type="PanelContainer" parent="MarginContainer/VBoxContainer/SkillUpgrades/Panel/GridContainer" unique_id=774342520]
+[node name="Repair" type="PanelContainer" parent="MarginContainer/VBoxContainer/SkillUpgrades/Panel/GridContainer" unique_id=102948291]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_7th88")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/SkillUpgrades/Panel/GridContainer/Pitch" unique_id=1897017644]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/SkillUpgrades/Panel/GridContainer/Repair" unique_id=49186307]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="PitchIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/SkillUpgrades/Panel/GridContainer/Pitch/VBoxContainer" unique_id=2060586050]
+[node name="RepairIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/SkillUpgrades/Panel/GridContainer/Repair/VBoxContainer" unique_id=566850377]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 10
 size_flags_stretch_ratio = 4.0
-texture = ExtResource("11_hv1uh")
+texture = ExtResource("13_gs8m0")
 expand_mode = 1
 stretch_mode = 6
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/SkillUpgrades/Panel/GridContainer/Pitch/VBoxContainer" unique_id=1874697712]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/SkillUpgrades/Panel/GridContainer/Repair/VBoxContainer" unique_id=681405249]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
 
-[node name="PitchSocket1" type="Button" parent="MarginContainer/VBoxContainer/SkillUpgrades/Panel/GridContainer/Pitch/VBoxContainer/HBoxContainer" unique_id=1809860836 groups=["PitchSockets"]]
+[node name="RepairSocket1" type="Button" parent="MarginContainer/VBoxContainer/SkillUpgrades/Panel/GridContainer/Repair/VBoxContainer/HBoxContainer" unique_id=928922466 groups=["RepairSockets"]]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 0
 theme = ExtResource("4_ja1no")
 toggle_mode = true
 
-[node name="PitchSocket2" type="Button" parent="MarginContainer/VBoxContainer/SkillUpgrades/Panel/GridContainer/Pitch/VBoxContainer/HBoxContainer" unique_id=361982460 groups=["PitchSockets"]]
+[node name="RepairSocket2" type="Button" parent="MarginContainer/VBoxContainer/SkillUpgrades/Panel/GridContainer/Repair/VBoxContainer/HBoxContainer" unique_id=623166520 groups=["RepairSockets"]]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 0
 theme = ExtResource("4_ja1no")
 toggle_mode = true
 
-[node name="PitchSocket3" type="Button" parent="MarginContainer/VBoxContainer/SkillUpgrades/Panel/GridContainer/Pitch/VBoxContainer/HBoxContainer" unique_id=372797777 groups=["PitchSockets"]]
+[node name="RepairSocket3" type="Button" parent="MarginContainer/VBoxContainer/SkillUpgrades/Panel/GridContainer/Repair/VBoxContainer/HBoxContainer" unique_id=2007855909 groups=["RepairSockets"]]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 0
 theme = ExtResource("4_ja1no")
 toggle_mode = true
 
-[node name="PitchLabel" type="Label" parent="MarginContainer/VBoxContainer/SkillUpgrades/Panel/GridContainer/Pitch/VBoxContainer" unique_id=1234884862]
+[node name="RepairLabel" type="Label" parent="MarginContainer/VBoxContainer/SkillUpgrades/Panel/GridContainer/Repair/VBoxContainer" unique_id=1729187945]
 layout_mode = 2
 size_flags_vertical = 2
 size_flags_stretch_ratio = 1.4
-text = "Pitch"
+text = "Repair"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PitchButton" type="Button" parent="MarginContainer/VBoxContainer/SkillUpgrades/Panel/GridContainer/Pitch" unique_id=1743948858 node_paths=PackedStringArray("sample_socket") groups=["UpgradeButtons"]]
+[node name="RepairButton" type="Button" parent="MarginContainer/VBoxContainer/SkillUpgrades/Panel/GridContainer/Repair" unique_id=1694881229 node_paths=PackedStringArray("sample_socket") groups=["UpgradeButtons"]]
 custom_minimum_size = Vector2(155, 0)
 layout_mode = 2
 size_flags_horizontal = 6
@@ -637,8 +637,8 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_ja1no")
 theme_override_styles/hover = SubResource("StyleBoxFlat_gpmvo")
 toggle_mode = true
 script = ExtResource("2_7buhx")
-upgrade_key = "Pitch"
-sample_socket = NodePath("../VBoxContainer/HBoxContainer/PitchSocket1")
+upgrade_key = "Repair"
+sample_socket = NodePath("../VBoxContainer/HBoxContainer/RepairSocket1")
 
 [node name="Supercharge" type="PanelContainer" parent="MarginContainer/VBoxContainer/SkillUpgrades/Panel/GridContainer" unique_id=350973084]
 custom_minimum_size = Vector2(100, 0)
@@ -707,61 +707,61 @@ script = ExtResource("2_7buhx")
 upgrade_key = "Supercharge"
 sample_socket = NodePath("../VBoxContainer/HBoxContainer/SuperchargeSocket1")
 
-[node name="Repair" type="PanelContainer" parent="MarginContainer/VBoxContainer/SkillUpgrades/Panel/GridContainer" unique_id=102948291]
+[node name="Pitch" type="PanelContainer" parent="MarginContainer/VBoxContainer/SkillUpgrades/Panel/GridContainer" unique_id=774342520]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_7th88")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/SkillUpgrades/Panel/GridContainer/Repair" unique_id=49186307]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/SkillUpgrades/Panel/GridContainer/Pitch" unique_id=1897017644]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="RepairIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/SkillUpgrades/Panel/GridContainer/Repair/VBoxContainer" unique_id=566850377]
+[node name="PitchIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/SkillUpgrades/Panel/GridContainer/Pitch/VBoxContainer" unique_id=2060586050]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 10
 size_flags_stretch_ratio = 4.0
-texture = ExtResource("13_gs8m0")
+texture = ExtResource("11_hv1uh")
 expand_mode = 1
 stretch_mode = 6
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/SkillUpgrades/Panel/GridContainer/Repair/VBoxContainer" unique_id=681405249]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/SkillUpgrades/Panel/GridContainer/Pitch/VBoxContainer" unique_id=1874697712]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
 
-[node name="RepairSocket1" type="Button" parent="MarginContainer/VBoxContainer/SkillUpgrades/Panel/GridContainer/Repair/VBoxContainer/HBoxContainer" unique_id=928922466 groups=["RepairSockets"]]
+[node name="PitchSocket1" type="Button" parent="MarginContainer/VBoxContainer/SkillUpgrades/Panel/GridContainer/Pitch/VBoxContainer/HBoxContainer" unique_id=1809860836 groups=["PitchSockets"]]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 0
 theme = ExtResource("4_ja1no")
 toggle_mode = true
 
-[node name="RepairSocket2" type="Button" parent="MarginContainer/VBoxContainer/SkillUpgrades/Panel/GridContainer/Repair/VBoxContainer/HBoxContainer" unique_id=623166520 groups=["RepairSockets"]]
+[node name="PitchSocket2" type="Button" parent="MarginContainer/VBoxContainer/SkillUpgrades/Panel/GridContainer/Pitch/VBoxContainer/HBoxContainer" unique_id=361982460 groups=["PitchSockets"]]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 0
 theme = ExtResource("4_ja1no")
 toggle_mode = true
 
-[node name="RepairSocket3" type="Button" parent="MarginContainer/VBoxContainer/SkillUpgrades/Panel/GridContainer/Repair/VBoxContainer/HBoxContainer" unique_id=2007855909 groups=["RepairSockets"]]
+[node name="PitchSocket3" type="Button" parent="MarginContainer/VBoxContainer/SkillUpgrades/Panel/GridContainer/Pitch/VBoxContainer/HBoxContainer" unique_id=372797777 groups=["PitchSockets"]]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 0
 theme = ExtResource("4_ja1no")
 toggle_mode = true
 
-[node name="RepairLabel" type="Label" parent="MarginContainer/VBoxContainer/SkillUpgrades/Panel/GridContainer/Repair/VBoxContainer" unique_id=1729187945]
+[node name="PitchLabel" type="Label" parent="MarginContainer/VBoxContainer/SkillUpgrades/Panel/GridContainer/Pitch/VBoxContainer" unique_id=1234884862]
 layout_mode = 2
 size_flags_vertical = 2
 size_flags_stretch_ratio = 1.4
-text = "Repair"
+text = "Pitch"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="RepairButton" type="Button" parent="MarginContainer/VBoxContainer/SkillUpgrades/Panel/GridContainer/Repair" unique_id=1694881229 node_paths=PackedStringArray("sample_socket") groups=["UpgradeButtons"]]
+[node name="PitchButton" type="Button" parent="MarginContainer/VBoxContainer/SkillUpgrades/Panel/GridContainer/Pitch" unique_id=1743948858 node_paths=PackedStringArray("sample_socket") groups=["UpgradeButtons"]]
 custom_minimum_size = Vector2(155, 0)
 layout_mode = 2
 size_flags_horizontal = 6
@@ -769,10 +769,30 @@ theme = ExtResource("1_gh26t")
 theme_override_styles/normal = SubResource("StyleBoxFlat_gpmvo")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_ja1no")
 theme_override_styles/hover = SubResource("StyleBoxFlat_gpmvo")
+disabled = true
 toggle_mode = true
 script = ExtResource("2_7buhx")
-upgrade_key = "Repair"
-sample_socket = NodePath("../VBoxContainer/HBoxContainer/RepairSocket1")
+upgrade_key = "Pitch"
+sample_socket = NodePath("../VBoxContainer/HBoxContainer/PitchSocket1")
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/SkillUpgrades/Panel/GridContainer/Pitch/PitchButton" unique_id=464992779]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -45.0
+offset_top = -30.5
+offset_right = 45.0
+offset_bottom = 30.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+text = "OUT
+OF ORDER"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="TurretUpgrades" type="PanelContainer" parent="MarginContainer/VBoxContainer" unique_id=1960962126]
 custom_minimum_size = Vector2(0, 260)

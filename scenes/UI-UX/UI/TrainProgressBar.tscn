@@ -3,13 +3,11 @@
 [node name="TrainProgressBar" type="CanvasLayer" unique_id=1161455226]
 
 [node name="ProgressBar" type="ProgressBar" parent="." unique_id=1385115664]
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 142.0
-offset_top = -518.0
-offset_right = 589.0
-offset_bottom = -483.0
-grow_vertical = 2
+anchors_preset = -1
+anchor_left = 0.19722222
+anchor_top = 0.0953125
+anchor_right = 0.81805557
+anchor_bottom = 0.12265625
+grow_horizontal = 2
 step = 0.1
 show_percentage = false

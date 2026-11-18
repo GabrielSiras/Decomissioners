@@ -88,7 +88,7 @@ func _update_button_text() -> void:
 		
 	var turret = train.slots_status.get(current_slot)
 	if is_instance_valid(turret) and "build_cost" in turret:
-		var refund_amount: int = int(turret.build_cost * 0.3)
+		var refund_amount: int = int(turret.build_cost * 0.7)
 		if is_instance_valid(demolish_label):
 			demolish_label.text = "$%d" % refund_amount
 		btn_demolish.text = ""

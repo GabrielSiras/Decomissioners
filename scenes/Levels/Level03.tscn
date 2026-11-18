@@ -40,12 +40,12 @@
 [ext_resource type="PackedScene" uid="uid://bboslj3bs8gj8" path="res://scenes/Player/Skills/Repair/RepairSkillButton.tscn" id="32_6vom8"]
 [ext_resource type="PackedScene" uid="uid://ccxbyhm6vro5u" path="res://scenes/Player/GameCamera.tscn" id="32_qwqw5"]
 [ext_resource type="Theme" uid="uid://cishgontb2yga" path="res://assets/UI/themes/main_theme.tres" id="33_kkqei"]
-[ext_resource type="PackedScene" uid="uid://d2tayfwtb0eco" path="res://scenes/Player/Skills/Repair/RepairSkill.tscn" id="33_l2pxb"]
 [ext_resource type="Script" uid="uid://v4lwcwcnu7dg" path="res://scripts/VFX/VFXPrewarmer.gd" id="34_o25ok"]
 [ext_resource type="PackedScene" uid="uid://x2uj51mwckp5" path="res://scenes/VFX/ExplosionVFX.tscn" id="35_ahxad"]
 [ext_resource type="PackedScene" uid="uid://bmim5hpyj0ca1" path="res://scenes/VFX/ExplosionVFXArtillery.tscn" id="36_3w5m4"]
 [ext_resource type="Theme" uid="uid://u17ymhp7hkpl" path="res://assets/UI/themes/accent_theme.tres" id="37_7emvv"]
 [ext_resource type="PackedScene" uid="uid://ca821bnynwdh4" path="res://scenes/VFX/FlamethrowerVFX.tscn" id="37_t0ajw"]
+[ext_resource type="FontFile" uid="uid://bn5sgha2ekqid" path="res://assets/UI/fonts/roboto/Roboto-Bold.ttf" id="38_1q17i"]
 [ext_resource type="PackedScene" uid="uid://cg4kvaldnrav4" path="res://scenes/VFX/OverchargeVFX.tscn" id="38_sdbp1"]
 [ext_resource type="PackedScene" uid="uid://be8hg483hedqw" path="res://scenes/VFX/PitchPuddleLeft.tscn" id="39_jjcu5"]
 [ext_resource type="ArrayMesh" uid="uid://t3lb1k1uvd30" path="res://assets/VFX Textures/PitchPuddle.obj" id="40_ll0wg"]
@@ -293,7 +293,7 @@ grow_vertical = 0
 
 [node name="BombardmentSkillButton" parent="Skills/GridContainer2" unique_id=246414351 instance=ExtResource("26_782t1")]
 layout_mode = 2
-size_flags_horizontal = 6
+size_flags_horizontal = 10
 size_flags_vertical = 4
 cooldown_time = 15.0
 
@@ -301,16 +301,16 @@ cooldown_time = 15.0
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
-repair_skill_scene = ExtResource("33_l2pxb")
 
 [node name="SuperChargeSkillButton" parent="Skills/GridContainer2" unique_id=834700005 node_paths=PackedStringArray("train") instance=ExtResource("27_twluq")]
 layout_mode = 2
-size_flags_horizontal = 6
+size_flags_horizontal = 2
 size_flags_vertical = 4
 supercharge_skill_scene = ExtResource("28_hyrkv")
 train = NodePath("../../../Player/TrainHead")
 
 [node name="BlackPitchSkillButton" parent="Skills/GridContainer2" unique_id=66681180 instance=ExtResource("29_5fequ")]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
@@ -429,38 +429,48 @@ theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 60
 text = "1"
 
-[node name="CheckpointIndicator" type="Control" parent="HUD" unique_id=2045259707 node_paths=PackedStringArray("spinner", "label") groups=["hide_on_end"]]
+[node name="CheckpointIndicator" type="Control" parent="HUD" unique_id=529892917 node_paths=PackedStringArray("spinner", "label") groups=["hide_on_end"]]
 layout_mode = 3
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -84.0
-offset_top = 113.0
-offset_right = -44.0
-offset_bottom = 153.0
-grow_horizontal = 0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
 mouse_filter = 2
 script = ExtResource("26_qjw4m")
 spinner = NodePath("VBoxContainer/LoadingSpinner")
 label = NodePath("VBoxContainer/Label")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HUD/CheckpointIndicator" unique_id=323339781]
-layout_mode = 0
-offset_left = -120.0
-offset_top = -20.0
-offset_right = -80.0
-offset_bottom = 20.0
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/CheckpointIndicator" unique_id=2022902389]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.0
+offset_top = 67.0
+offset_right = 35.0
+offset_bottom = 168.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="LoadingSpinner" type="Control" parent="HUD/CheckpointIndicator/VBoxContainer" unique_id=143873201]
+[node name="LoadingSpinner" type="Control" parent="HUD/CheckpointIndicator/VBoxContainer" unique_id=830312430]
+custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("27_4fad4")
 metadata/_custom_type_script = "uid://dso8mes67pgwk"
 
-[node name="Label" type="Label" parent="HUD/CheckpointIndicator/VBoxContainer" unique_id=627907958]
+[node name="Label" type="Label" parent="HUD/CheckpointIndicator/VBoxContainer" unique_id=545242050]
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("38_1q17i")
+theme_override_font_sizes/font_size = 36
+horizontal_alignment = 1
 
 [node name="StartButton" type="Button" parent="HUD" unique_id=2060670148 groups=["hide_on_end"]]
 custom_minimum_size = Vector2(200, 90)
@@ -481,11 +491,12 @@ metadata/_edit_use_anchors_ = true
 
 [node name="TrainHead" parent="Player" unique_id=423923195 node_paths=PackedStringArray("wagons", "checkpoint_indicator", "defeat_menu", "speed_lever", "progress_bar", "destination_node") instance=ExtResource("30_4ss3s")]
 wagons = [NodePath("Wagon1"), null]
-checkpoint_indicator = NodePath("../../HUD/CheckpointIndicator")
+checkpoint_indicator = NodePath("")
 defeat_menu = NodePath("../../HUD/DefeatMenu")
 speed_lever = NodePath("../../HUD/SpeedLever")
 progress_bar = NodePath("../../HUD/TrainProgressBar")
 destination_node = NodePath("../../DestinationPoint")
+starting_metal = 800
 wagon_scene = ExtResource("31_5g2si")
 
 [node name="Wagon1" parent="Player/TrainHead" unique_id=659263558 instance=ExtResource("31_5g2si")]
