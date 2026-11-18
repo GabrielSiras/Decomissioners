@@ -57,25 +57,26 @@
 background_mode = 2
 adjustment_enabled = true
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1q17i"]
-bg_color = Color(0.16924527, 0.1692453, 0.16924527, 0.627451)
-corner_radius_top_left = 25
-corner_radius_top_right = 25
-corner_radius_bottom_right = 25
-corner_radius_bottom_left = 25
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5m2w3"]
-bg_color = Color(0.16862746, 0.16862746, 0.16862746, 0.627451)
-corner_radius_top_left = 25
-corner_radius_top_right = 25
-corner_radius_bottom_right = 25
-corner_radius_bottom_left = 25
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_47wbm"]
-corner_radius_top_left = 25
-corner_radius_top_right = 25
-corner_radius_bottom_right = 25
-corner_radius_bottom_left = 25
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i5cg6"]
+content_margin_left = 10.0
+content_margin_top = 15.0
+content_margin_right = 10.0
+content_margin_bottom = 0.0
+bg_color = Color(0.16606972, 0.19702041, 0.20826784, 1)
+border_width_top = 8
+border_color = Color(0.3665946, 0.3665946, 0.36659458, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+corner_detail = 1
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+shadow_color = Color(0, 0, 0, 0.49411765)
+shadow_size = 10
+shadow_offset = Vector2(0, 5.01)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_7th88"]
 
@@ -316,19 +317,22 @@ size_flags_vertical = 4
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=1368257838 groups=["hide_on_end"]]
 
-[node name="SettingsButton" type="Button" parent="HUD" unique_id=1957976546]
+[node name="SettingsButton" type="Button" parent="HUD" unique_id=1873687466]
 custom_minimum_size = Vector2(80, 80)
 anchors_preset = -1
-anchor_left = 0.8625
-anchor_top = 0.0140625
-anchor_right = 0.9736111
-anchor_bottom = 0.0765625
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -105.0
+offset_top = 20.0
+offset_right = -25.0
+offset_bottom = 100.0
 grow_horizontal = 0
 size_flags_horizontal = 8
-theme_override_icons/icon = ExtResource("19_7emvv")
-theme_override_styles/normal = SubResource("StyleBoxFlat_1q17i")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_5m2w3")
-theme_override_styles/hover = SubResource("StyleBoxFlat_47wbm")
+size_flags_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_i5cg6")
+icon = ExtResource("19_7emvv")
+icon_alignment = 1
+vertical_icon_alignment = 0
 expand_icon = true
 script = ExtResource("11_7emvv")
 
@@ -427,15 +431,14 @@ text = "1"
 
 [node name="CheckpointIndicator" type="Control" parent="HUD" unique_id=2045259707 node_paths=PackedStringArray("spinner", "label") groups=["hide_on_end"]]
 layout_mode = 3
-anchors_preset = 3
+anchors_preset = 1
 anchor_left = 1.0
-anchor_top = 1.0
 anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -40.0
-offset_top = -40.0
+offset_left = -84.0
+offset_top = 113.0
+offset_right = -44.0
+offset_bottom = 153.0
 grow_horizontal = 0
-grow_vertical = 0
 mouse_filter = 2
 script = ExtResource("26_qjw4m")
 spinner = NodePath("VBoxContainer/LoadingSpinner")

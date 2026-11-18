@@ -1,6 +1,6 @@
 extends Node
 
-var research_points: int = 6
+var research_points: int = 0
 
 var upgrades: Dictionary = {
 	

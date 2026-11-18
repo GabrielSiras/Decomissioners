@@ -36,6 +36,7 @@ expand_margin_top = 10.0
 [node name="SettingsOverlay" type="CanvasLayer" unique_id=2106756084 node_paths=PackedStringArray("close_button", "exit_box")]
 process_mode = 3
 layer = 2
+visible = false
 script = ExtResource("1_3vgu1")
 close_button = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/CloseButton")
 exit_box = NodePath("MarginContainer/PanelContainer/MarginContainer/VBoxContainer/ExitBox")

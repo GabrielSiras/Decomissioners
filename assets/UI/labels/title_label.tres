@@ -2,7 +2,7 @@
 
 [resource]
 font_size = 110
-font_color = Color(0.972549, 0.28235295, 0.14117648, 1)
+font_color = Color(0.8745098, 0.8745098, 0.8745098, 1)
 shadow_size = 20
 shadow_color = Color(0, 0, 0, 0.5254902)
 shadow_offset = Vector2(0, 7)

@@ -5,8 +5,8 @@ extends CanvasLayer
 @export var random_pitch: bool = true
 @export_file("*.tscn") var main_menu_path: String = "res://scenes/UI-UX/UI/MENUs/MainMenu.tscn"
 
-@onready var restart_button: Button = $CenterContainer/VBoxContainer/RestartButton
-@onready var main_menu_button: Button = $CenterContainer/VBoxContainer/MainMenuButton
+@export var restart_button: Button
+@export var main_menu_button: Button
 @onready var metal_click: AudioStreamPlayer = $MetalClick
 
 var is_changing: bool = false

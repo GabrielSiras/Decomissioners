@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://c17h6xvrchaof" path="res://assets/Icons/Inc.png" id="4_k5mlk"]
 [ext_resource type="Texture2D" uid="uid://ct4xfmlm2dtrr" path="res://assets/Icons/Blast.png" id="5_i2qot"]
 [ext_resource type="Texture2D" uid="uid://bhqn54f6qg577" path="res://assets/Icons/Art.png" id="6_b8pjo"]
-[ext_resource type="Texture2D" uid="uid://cqknnfy04gu0b" path="res://assets/Icons/X.png" id="7_k5mlk"]
+[ext_resource type="FontFile" uid="uid://c34b66ybs5sm4" path="res://assets/UI/fonts/roboto/Roboto-Black.ttf" id="7_k5mlk"]
 
 [node name="BuildMenuUI" type="Control" unique_id=1796876524]
 z_index = 1
@@ -29,9 +29,9 @@ grow_vertical = 2
 [node name="ButtonTurret1" type="Button" parent="RadialPanel" unique_id=2013880621]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 0
-offset_top = 441.0
+offset_top = 522.0
 offset_right = 100.0
-offset_bottom = 541.0
+offset_bottom = 622.0
 theme_override_font_sizes/font_size = 30
 icon = ExtResource("3_yw612")
 vertical_icon_alignment = 0
@@ -45,22 +45,24 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -20.0
-offset_top = -125.0
+offset_top = -142.0
 offset_right = 20.0
-offset_bottom = -96.0
+offset_bottom = -106.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_constants/outline_size = 5
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 38
 horizontal_alignment = 1
+uppercase = true
 
 [node name="ButtonTurret2" type="Button" parent="RadialPanel" unique_id=861224002]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 0
-offset_top = 311.0
+offset_top = 369.0
 offset_right = 100.0
-offset_bottom = 411.0
+offset_bottom = 469.0
 theme_override_font_sizes/font_size = 30
 icon = ExtResource("4_k5mlk")
 expand_icon = true
@@ -73,15 +75,17 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -20.0
-offset_top = 2.0
+offset_top = 12.0
 offset_right = 20.0
-offset_bottom = 31.0
+offset_bottom = 48.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_constants/outline_size = 5
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 38
 horizontal_alignment = 1
+uppercase = true
 
 [node name="ButtonTurret3" type="Button" parent="RadialPanel" unique_id=337346439]
 custom_minimum_size = Vector2(80, 80)
@@ -101,22 +105,24 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -20.0
-offset_top = 2.0
+offset_top = 14.0
 offset_right = 20.0
-offset_bottom = 31.0
+offset_bottom = 50.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_constants/outline_size = 5
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 38
 horizontal_alignment = 1
+uppercase = true
 
 [node name="ButtonTurret4" type="Button" parent="RadialPanel" unique_id=290782043]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 0
-offset_top = 193.0
+offset_top = 222.0
 offset_right = 100.0
-offset_bottom = 293.0
+offset_bottom = 322.0
 theme_override_font_sizes/font_size = 30
 icon = ExtResource("6_b8pjo")
 expand_icon = true
@@ -129,34 +135,33 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -20.0
-offset_top = 2.0
+offset_top = 14.0
 offset_right = 20.0
-offset_bottom = 31.0
+offset_bottom = 50.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_constants/outline_size = 5
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 38
 horizontal_alignment = 1
+uppercase = true
 
-[node name="CloseButton" type="Button" parent="RadialPanel" unique_id=1689192879]
+[node name="CloseButton2" type="Button" parent="RadialPanel" unique_id=27422325]
 custom_minimum_size = Vector2(70, 70)
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
+layout_mode = 0
 offset_left = -30.0
-offset_top = -9.0
+offset_top = -8.0
 offset_right = 40.0
-offset_bottom = 61.0
-grow_horizontal = 2
-icon = ExtResource("7_k5mlk")
-icon_alignment = 1
-vertical_icon_alignment = 0
-expand_icon = true
+offset_bottom = 62.0
+size_flags_horizontal = 6
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("7_k5mlk")
+theme_override_font_sizes/font_size = 40
+text = "X"
 
 [node name="BuildSound" type="AudioStreamPlayer" parent="." unique_id=826047351]
 stream = ExtResource("2_ofgi3")
 volume_db = -4.0
 
-[connection signal="pressed" from="RadialPanel/CloseButton" to="." method="_on_close_button_pressed"]
+[connection signal="pressed" from="RadialPanel/CloseButton2" to="." method="_on_close_button_pressed"]
