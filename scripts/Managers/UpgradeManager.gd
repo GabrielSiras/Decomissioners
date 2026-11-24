@@ -77,7 +77,6 @@ func pick(arr: Array, key: String) -> float:
 
 func add_research_points(n: int) -> void:
 	research_points += n
-	print("PONTOS DE PESQUISA: ", research_points)
 
 func armor_penetration_after_upgrade(pen: float) -> float:
 	return maxf(0.0, pen - pick(ARMOR_PEN_REDUCTION, "Armor"))

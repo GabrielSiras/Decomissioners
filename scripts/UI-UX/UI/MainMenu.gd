@@ -8,12 +8,33 @@ extends Control
 
 @onready var metal_click: AudioStreamPlayer = $MetalClick
 @onready var start_timer: Timer = $StartTimer
+@export var default_level_path: String = "res://scenes/Levels/Level01.tscn"
+@export var level_scenes: Dictionary = {
+	"level01": "res://scenes/Levels/Level01.tscn",
+	"level02": "res://scenes/Levels/Level02.tscn",
+	"level03": "res://scenes/Levels/Level03.tscn",
+}
 
 var is_changing: bool = false
 
 func _ready() -> void:
 	get_tree().paused = false
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	_refresh_continue_button()
+
+func _refresh_continue_button() -> void:
+	var has_cp := CheckpointManager.has_any_checkpoint()
+	start_button.text = "CONTINUE" if has_cp else "START"
+
+func _resolve_start_scene() -> String:
+	if CheckpointManager.has_any_checkpoint():
+		var id: String = String(CheckpointManager.get_level_id())
+		if level_scenes.has(id):
+			var path: String = String(level_scenes[id])
+			if ResourceLoader.exists(path):
+				return path
+		push_warning("MainMenu: checkpoint aponta para fase desconhecida: " + id)
+	return default_level_path
 
 func _play_click() -> void:
 	if random_pitch:
@@ -42,7 +63,11 @@ func _set_buttons_disabled(value: bool) -> void:
 		b.disabled = value
 
 func _on_start_button_pressed() -> void:
-	_go_to("res://scenes/Levels/Level01.tscn") # depois colocar a cena do tutors
+	if CheckpointManager.has_any_checkpoint() and Input.is_key_pressed(KEY_SHIFT):
+		CheckpointManager.clear()
+		_go_to(default_level_path)
+		return
+	_go_to(_resolve_start_scene())
 
 func _on_research_button_pressed() -> void:
 	_go_to("res://scenes/UI-UX/UI/MENUs/ResearchMenu.tscn")

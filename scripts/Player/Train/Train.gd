@@ -69,6 +69,7 @@ var energy_bar: HealthBarUI = null
 
 func _ready() -> void:
 	GameProgress.current_level_id = level_id
+	
 	base_max_speed = max_speed
 	stored_metal = min(starting_metal, metal_capacity)
 	MetalManager.register_storage(self)
@@ -95,40 +96,50 @@ func _ready() -> void:
 	_register_all_slots()
 	_apply_checkpoint()
 	
+	if not CheckpointManager.has_checkpoint_for_level(level_id):
+		CheckpointManager.save_checkpoint(self)
+	
 	for turret in current_gate.get_children():
 		turret.add_to_group("spawned_enemies")
 
 func _apply_checkpoint() -> void:
-	if not CheckpointManager.has_checkpoint(level_id):
+	# Garante que o checkpoint corresponde à fase corrente
+	if not CheckpointManager.has_checkpoint_for_level(level_id):
 		return
+
 	var d: Dictionary = CheckpointManager.data
 
-	global_position = d["position"]
-	health = d["health"]
+	# Não sobrescreve o nível salvo – ele já está correto em `d["level_id"]`
+	global_position = CheckpointManager.string_to_vec3(str(d["position"]))
+	health          = float(d["health"])
+	stored_metal    = int(d.get("head_metal", stored_metal))
 
-	var saved: Dictionary = {}
-	for w in d["wagons"]:
-		saved[w["name"]] = w
+	# ----- restaurar vagões -------------------------------------------------
+	var saved_wagons: Dictionary = {}
+	var parsed_wagons = JSON.parse_string(str(d.get("wagons", "[]")))
+	if parsed_wagons is Array:
+		for w_dict in parsed_wagons:
+			saved_wagons[String(w_dict["name"])] = w_dict
+
 	for w in wagons.duplicate():
-		if saved.has(String(w.name)):
-			w.health = saved[String(w.name)]["health"]
-			w.stored_metal = saved[String(w.name)]["metal"]
+		if saved_wagons.has(String(w.name)):
+			w.health = saved_wagons[String(w.name)]["health"]
+			w.stored_metal = saved_wagons[String(w.name)]["metal"]
 		else:
 			remove_child(w)
 			w.queue_free()
+
 	_update_wagons_list()
 	rearrange_wagons()
-	
-	health = d["health"]
-	stored_metal = d.get("head_metal", stored_metal)
-	
+
+	# ----- restaurar fase (spawner) ---------------------------------------
 	if is_instance_valid(level_spawner) and d.has("spawner_phase_index"):
-		level_spawner.current_phase_index = d["spawner_phase_index"]
+		level_spawner.current_phase_index = int(d["spawner_phase_index"])
 		if level_spawner.has_method("set_phase"):
 			level_spawner.set_phase(level_spawner.current_phase_index)
 
-	if d.has("current_gate_index"):
-		current_gate_index = d["current_gate_index"]
+	# ----- atualizar o índice do portão ------------------------------------
+	current_gate_index = int(d.get("current_gate_index", 0))
 
 	for i in range(current_gate_index):
 		if i < level_gates.size() and is_instance_valid(level_gates[i]):
@@ -138,15 +149,23 @@ func _apply_checkpoint() -> void:
 		current_gate = level_gates[current_gate_index]
 		if is_instance_valid(current_gate):
 			current_gate.visible = true
-	
+
 	approaching_gate = true
 
-	_restore_turrets(self, d.get("head_turrets", []))
+	# ----- restaurar turrets do cabeçalho ---------------------------------
+	var head_turrets: Array = []
+	var parsed_head = JSON.parse_string(str(d.get("head_turrets", "[]")))
+	if parsed_head is Array:
+		head_turrets = parsed_head
+
+	_restore_turrets(self, head_turrets)
+
+	# ----- restaurar turrets de cada wagão -------------------------------
 	for w in wagons:
-		var info = saved.get(String(w.name))
+		var info = saved_wagons.get(String(w.name))
 		if info:
 			_restore_turrets(w, info.get("turrets", []))
-	
+
 	MetalManager.refresh()
 
 func _restore_turrets(owner_node: Node, list: Array) -> void:
@@ -349,7 +368,7 @@ func _on_destination_reached() -> void:
 	if level_finished:
 		return
 	level_finished = true
-	
+
 	GameProgress.complete_level(level_id)
 	CheckpointManager.clear()
 
@@ -560,9 +579,8 @@ func brake_at_gate() -> void:
 			var camera = get_viewport().get_camera_3d()
 			camera.target = null
 			
-		speed_lever.v_slider.editable = true
-
 		CheckpointManager.save_checkpoint(self)
+		speed_lever.v_slider.editable = true
 
 func energy_capacity() -> int:
 	return UpgradeManager.transmission_power()

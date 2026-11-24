@@ -1,0 +1,178 @@
+[gd_scene format=3 uid="uid://hq81bv8t86gt"]
+
+[ext_resource type="Theme" uid="uid://cishgontb2yga" path="res://assets/UI/themes/main_theme.tres" id="1_2qtn0"]
+[ext_resource type="Script" uid="uid://5sx4ttr6a5ve" path="res://scripts/UI-UX/UI/MainMenu.gd" id="1_vnlg1"]
+[ext_resource type="AudioStream" uid="uid://ma7spr0eraxc" path="res://assets/audios/SFX/UI/MetalClick/MetalClick.wav" id="2_6sobg"]
+[ext_resource type="Script" uid="uid://bqljmeua3bmn" path="res://scripts/UI-UX/UI/OverlayButton.gd" id="2_bbtx1"]
+[ext_resource type="PackedScene" uid="uid://dlfa75dgt8t8i" path="res://scenes/UI-UX/UI/MENUs/CreditsOverlay.tscn" id="4_2qtn0"]
+[ext_resource type="Texture2D" uid="uid://b5plf5wn62k04" path="res://assets/UI/menu/titlescreentest.png" id="4_i5cg6"]
+[ext_resource type="Texture2D" uid="uid://ce0a578cfifiq" path="res://assets/Icons/SETTINGS.png" id="4_vg3fa"]
+[ext_resource type="FontFile" uid="uid://dqwk8wrul1clt" path="res://assets/UI/fonts/cnrgn_army/CNRGN-Army.ttf" id="5_3v7yo"]
+[ext_resource type="LabelSettings" uid="uid://6t6h7iy5achu" path="res://assets/UI/labels/title_label.tres" id="6_mrldo"]
+[ext_resource type="Theme" uid="uid://u17ymhp7hkpl" path="res://assets/UI/themes/accent_theme.tres" id="7_huahg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i5cg6"]
+content_margin_left = 10.0
+content_margin_top = 15.0
+content_margin_right = 10.0
+content_margin_bottom = 0.0
+bg_color = Color(0.16606972, 0.19702041, 0.20826784, 1)
+border_width_top = 8
+border_color = Color(0.3665946, 0.3665946, 0.36659458, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+corner_detail = 1
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+shadow_color = Color(0, 0, 0, 0.49411765)
+shadow_size = 10
+shadow_offset = Vector2(0, 5.01)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mrldo"]
+bg_color = Color(0.16470589, 0.19607843, 0.20784314, 1)
+border_color = Color(0.6313726, 0.6313726, 0.6313726, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+corner_detail = 1
+shadow_size = 23
+anti_aliasing_size = 10.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_huahg"]
+font_size = 50
+font_color = Color(0.972549, 0.28235295, 0.14117648, 1)
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(4, 4)
+
+[node name="MainMenu" type="Control" unique_id=1744628461 node_paths=PackedStringArray("start_button")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_2qtn0")
+script = ExtResource("1_vnlg1")
+start_button = NodePath("VBoxContainer/VBoxContainer/ContinueButton")
+credits_overlay = ExtResource("4_2qtn0")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=744933551]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_i5cg6")
+expand_mode = 1
+
+[node name="BG" type="Panel" parent="." unique_id=506043037]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1437860578]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.03046875
+anchor_right = 0.5
+anchor_bottom = 0.96953124
+offset_left = -310.0
+offset_right = 310.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 30
+metadata/_edit_use_anchors_ = true
+
+[node name="SettingsButton" type="Button" parent="VBoxContainer" unique_id=1208816841]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_i5cg6")
+icon = ExtResource("4_vg3fa")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
+script = ExtResource("2_bbtx1")
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer" unique_id=1257683586]
+custom_minimum_size = Vector2(620, 260)
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_styles/panel = SubResource("StyleBoxFlat_mrldo")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/PanelContainer" unique_id=449946956]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="MainTitle" type="Label" parent="VBoxContainer/PanelContainer/VBoxContainer" unique_id=1632104544]
+layout_mode = 2
+size_flags_stretch_ratio = 2.52
+theme_override_fonts/font = ExtResource("5_3v7yo")
+theme_override_font_sizes/font_size = 120
+text = "DECOMISSIONERS"
+label_settings = ExtResource("6_mrldo")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SubTitle" type="Label" parent="VBoxContainer/PanelContainer/VBoxContainer" unique_id=976368943]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+text = "AGAINST THE MACHINES"
+label_settings = SubResource("LabelSettings_huahg")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer" unique_id=1705911663]
+layout_mode = 2
+size_flags_vertical = 6
+size_flags_stretch_ratio = 6.56
+theme_override_constants/separation = 20
+
+[node name="ContinueButton" type="Button" parent="VBoxContainer/VBoxContainer" unique_id=2031048237]
+custom_minimum_size = Vector2(450, 120)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("7_huahg")
+text = "CONTINUE"
+
+[node name="RailmapButton" type="Button" parent="VBoxContainer/VBoxContainer" unique_id=1531250187]
+custom_minimum_size = Vector2(450, 120)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "RAILMAP"
+
+[node name="ResearchButton" type="Button" parent="VBoxContainer/VBoxContainer" unique_id=1523753206]
+custom_minimum_size = Vector2(450, 120)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "RESEARCH"
+
+[node name="CreditsButton" type="Button" parent="VBoxContainer/VBoxContainer" unique_id=554847561]
+custom_minimum_size = Vector2(450, 120)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "CREDITS"
+
+[node name="MetalClick" type="AudioStreamPlayer" parent="." unique_id=1811167691]
+stream = ExtResource("2_6sobg")
+bus = &"SFX"
+
+[node name="StartTimer" type="Timer" parent="." unique_id=1129727915]
+wait_time = 0.3
+
+[connection signal="pressed" from="VBoxContainer/SettingsButton" to="VBoxContainer/SettingsButton" method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/ContinueButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/RailmapButton" to="." method="_on_railmap_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/ResearchButton" to="." method="_on_research_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]

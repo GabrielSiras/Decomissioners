@@ -18,6 +18,7 @@ var last_result: Dictionary = {}
 var current_level_id: String = ""
 
 func _ready() -> void:
+	current_level_id = ""
 	load_progress()
 
 func is_unlocked(id: String) -> bool:

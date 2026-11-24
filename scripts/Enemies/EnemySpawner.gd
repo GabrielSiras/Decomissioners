@@ -48,7 +48,6 @@ func set_phase(index: int) -> void:
 		active_entries.append_array(config.phases[i].entries)
 
 	spawn_timer.wait_time = config.phases[current_phase_index].spawn_interval
-	print("EnemySpawner: fase ", current_phase_index + 1, " | inimigos: ", active_entries.size(), " | intervalo: ", spawn_timer.wait_time)
 
 func _on_spawn_timer_timeout() -> void:
 	var entry := _pick_weighted()

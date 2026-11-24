@@ -20,7 +20,7 @@ var pulse_tween: Tween
 func _ready() -> void:
 	await get_tree().process_frame
 
-	if skip_if_checkpoint and CheckpointManager.has_checkpoint(train.level_id):
+	if skip_if_checkpoint and CheckpointManager.has_checkpoint_for_level(train.level_id):
 		_begin(false)
 		return
 	

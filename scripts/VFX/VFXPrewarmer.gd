@@ -30,8 +30,6 @@ func prewarm_vfx() -> void:
 		if is_instance_valid(instance):
 			instance.queue_free()
 			
-	print("✅ Shaders e VFX pré-compilados com sucesso!")
-
 func _trigger_particles(parent: Node) -> void:
 	if parent is GPUParticles3D or parent is CPUParticles3D:
 		parent.emitting = true
