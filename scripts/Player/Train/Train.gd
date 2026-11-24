@@ -42,6 +42,7 @@ var stored_metal: int = 0
 @export_category("Level")
 @export var level_id: String = "level01"
 @export var level_spawner: Node3D
+@export var pre_game_controller: Node
 var level_finished: bool = false
 
 @onready var level_gates: Array = get_tree().get_nodes_in_group("Level Gates")
@@ -546,10 +547,12 @@ func brake_at_gate() -> void:
 		if current_gate_index < level_gates.size():
 			current_gate = level_gates[current_gate_index]
 			approaching_gate = true
-			
+			pre_game_controller._pregame_on()
+		else:
+			speed_lever.v_slider.visible = true
+		
 		speed_lever.v_slider.value = 0.2
 		speed_lever.v_slider.editable = true
-		speed_lever.visible = true
 
 		CheckpointManager.save_checkpoint(self)
 

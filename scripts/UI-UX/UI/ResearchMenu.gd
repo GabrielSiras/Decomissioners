@@ -5,6 +5,7 @@ extends Control
 @export var upgrade_description: Label
 @export var upgrade_name: Label
 @export var research_button: Button
+@export var refund_button: Button
 @export var points_label: Label
 
 @export_category("Transição")
@@ -64,6 +65,8 @@ func _restore_sockets() -> void:
 		var lvl: int = UpgradeManager.upgrades[key]["Level"]
 		if sockets.size() < lvl:
 			push_warning("ResearchMenu: grupo '%s' tem %d sockets, mas o nível é %d" % [group_name, sockets.size(), lvl])
+		for s in sockets.size():
+			sockets[s].button_pressed = false
 		for s in mini(lvl, sockets.size()):
 			sockets[s].button_pressed = true
 
@@ -126,6 +129,22 @@ func _on_main_menu_button_pressed() -> void:
 
 func _on_railmap_button_pressed() -> void:
 	_go_to("res://scenes/UI-UX/UI/MENUs/RailmapMenu.tscn")
+
+func _on_refund_button_pressed() -> void:
+	var i = 0
+	for key in UpgradeManager.upgrades:
+		var upgrade: Dictionary = UpgradeManager.upgrades[key]
+		if i >= 4:
+			UpgradeManager.add_research_points(upgrade["Level"]-1) 
+			UpgradeManager.upgrades[key]["Level"] = 1
+		else:
+			UpgradeManager.add_research_points(upgrade["Level"]) 
+			UpgradeManager.upgrades[key]["Level"] = 0
+		i += 1
+		
+	_restore_sockets()
+	_refresh_selected()
+	points_label.text = str(UpgradeManager.research_points)
 
 func _turn_off_hud() -> void:
 	selected_upgrade_hud.visible = false

@@ -99,7 +99,7 @@ shadow_color = Color(0, 0, 0, 0.50980395)
 shadow_offset = Vector2(0, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6jw50"]
-content_margin_top = 10.0
+content_margin_top = 50.0
 bg_color = Color(0.16470589, 0.19607843, 0.20784314, 1)
 corner_radius_top_left = 30
 corner_radius_top_right = 30
@@ -108,7 +108,7 @@ shadow_color = Color(0, 0, 0, 0.54901963)
 shadow_size = 20
 shadow_offset = Vector2(0, -10)
 
-[node name="ResearchMenu" type="Control" unique_id=974220128 node_paths=PackedStringArray("selected_upgrade_hud", "upgrade_description", "upgrade_name", "research_button", "points_label")]
+[node name="ResearchMenu" type="Control" unique_id=974220128 node_paths=PackedStringArray("selected_upgrade_hud", "upgrade_description", "upgrade_name", "research_button", "refund_button", "points_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -121,6 +121,7 @@ selected_upgrade_hud = NodePath("SelectedUpgradeHUD")
 upgrade_description = NodePath("SelectedUpgradeHUD/DescriptionBoxBG/CenterContainer/DescriptionBox/VBoxContainer/UpgradeDescription")
 upgrade_name = NodePath("SelectedUpgradeHUD/DescriptionBoxBG/CenterContainer/DescriptionBox/VBoxContainer/UpgradeName")
 research_button = NodePath("SelectedUpgradeHUD/DescriptionBoxBG/CenterContainer/DescriptionBox/ResearchButton")
+refund_button = NodePath("MarginContainer/VBoxContainer/RefundButton")
 points_label = NodePath("MarginContainer/PointsLabel")
 
 [node name="BG" type="Panel" parent="." unique_id=2022266626]
@@ -1084,6 +1085,14 @@ script = ExtResource("2_7buhx")
 upgrade_key = "Incendiary"
 sample_socket = NodePath("../VBoxContainer/HBoxContainer/IncendiarySocket1")
 
+[node name="RefundButton" type="Button" parent="MarginContainer/VBoxContainer" unique_id=2014632315]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 53
+text = "REFUND"
+
 [node name="PointsLabel" type="Label" parent="MarginContainer" unique_id=2105493557]
 custom_minimum_size = Vector2(90, 70)
 layout_mode = 2
@@ -1101,7 +1110,7 @@ visible = false
 
 [node name="DescriptionBoxBG" type="PanelContainer" parent="SelectedUpgradeHUD" unique_id=1738657044]
 anchors_preset = -1
-anchor_top = 0.8078125
+anchor_top = 0.784375
 anchor_right = 1.0
 anchor_bottom = 1.0015625
 grow_horizontal = 2
@@ -1114,7 +1123,7 @@ metadata/_edit_use_anchors_ = true
 [node name="CenterContainer" type="CenterContainer" parent="SelectedUpgradeHUD/DescriptionBoxBG" unique_id=1378108887]
 custom_minimum_size = Vector2(0, 2.5)
 layout_mode = 2
-size_flags_vertical = 3
+size_flags_vertical = 2
 
 [node name="DescriptionBox" type="HBoxContainer" parent="SelectedUpgradeHUD/DescriptionBoxBG/CenterContainer" unique_id=1741472986]
 custom_minimum_size = Vector2(630, 0)
@@ -1172,9 +1181,9 @@ wait_time = 0.3
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.029166667
-anchor_top = 0.8070313
+anchor_top = 0.79078126
 anchor_right = 0.97083336
-anchor_bottom = 0.94453126
+anchor_bottom = 0.92828125
 offset_left = 20.5
 offset_right = -20.5
 grow_horizontal = 2
@@ -1188,4 +1197,5 @@ metadata/_edit_use_anchors_ = true
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/RailmapButton" to="." method="_on_railmap_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/RefundButton" to="." method="_on_refund_button_pressed"]
 [connection signal="pressed" from="SelectedUpgradeHUD/DescriptionBoxBG/CenterContainer/DescriptionBox/ResearchButton" to="SelectedUpgradeHUD/DescriptionBoxBG/CenterContainer/DescriptionBox/ResearchButton" method="_on_button_pressed"]

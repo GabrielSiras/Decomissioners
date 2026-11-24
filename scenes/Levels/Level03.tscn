@@ -285,9 +285,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -230.0
-offset_top = -134.0
+offset_top = -200.0
 offset_right = 230.0
-offset_bottom = -34.0
+offset_bottom = -100.0
 grow_horizontal = 2
 grow_vertical = 0
 
@@ -382,9 +382,9 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -104.0
-offset_top = -402.0
+offset_top = -460.0
 offset_right = -64.0
-offset_bottom = -362.0
+offset_bottom = -420.0
 grow_horizontal = 0
 grow_vertical = 0
 mouse_filter = 2
@@ -472,26 +472,43 @@ theme_override_fonts/font = ExtResource("38_1q17i")
 theme_override_font_sizes/font_size = 36
 horizontal_alignment = 1
 
-[node name="StartButton" type="Button" parent="HUD" unique_id=2060670148 groups=["hide_on_end"]]
-custom_minimum_size = Vector2(200, 90)
-anchors_preset = -1
-anchor_left = 0.3611111
-anchor_top = 0.8921875
-anchor_right = 0.65416664
-anchor_bottom = 0.97265625
-offset_right = 3.0517578e-05
+[node name="PregameButtons" type="VBoxContainer" parent="HUD" unique_id=634457150]
+z_index = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -125.0
+offset_top = -365.0
+offset_right = 125.0
+offset_bottom = -105.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_constants/separation = 30
+
+[node name="StartButton" type="Button" parent="HUD/PregameButtons" unique_id=1576074633 groups=["hide_on_end"]]
+custom_minimum_size = Vector2(250, 140)
+layout_mode = 2
+size_flags_horizontal = 6
 theme = ExtResource("37_7emvv")
-theme_override_font_sizes/font_size = 64
+theme_override_font_sizes/font_size = 80
 text = "START"
+metadata/_edit_use_anchors_ = true
+
+[node name="ResearchButton" type="Button" parent="HUD/PregameButtons" unique_id=1770733547 groups=["hide_on_end"]]
+custom_minimum_size = Vector2(200, 90)
+layout_mode = 2
+size_flags_horizontal = 6
+theme = ExtResource("33_kkqei")
+theme_override_font_sizes/font_size = 50
+text = "RESEARCH"
 metadata/_edit_use_anchors_ = true
 
 [node name="Player" type="Node3D" parent="." unique_id=163302227]
 
-[node name="TrainHead" parent="Player" unique_id=423923195 node_paths=PackedStringArray("wagons", "checkpoint_indicator", "defeat_menu", "speed_lever", "progress_bar", "destination_node") instance=ExtResource("30_4ss3s")]
+[node name="TrainHead" parent="Player" unique_id=423923195 node_paths=PackedStringArray("wagons", "defeat_menu", "speed_lever", "progress_bar", "destination_node") instance=ExtResource("30_4ss3s")]
 wagons = [NodePath("Wagon1"), null]
-checkpoint_indicator = NodePath("")
 defeat_menu = NodePath("../../HUD/DefeatMenu")
 speed_lever = NodePath("../../HUD/SpeedLever")
 progress_bar = NodePath("../../HUD/TrainProgressBar")
@@ -511,11 +528,13 @@ target = NodePath("../TrainHead")
 script = ExtResource("34_o25ok")
 vfx_scenes = Array[PackedScene]([ExtResource("15_cqygm"), ExtResource("35_ahxad"), ExtResource("36_3w5m4"), ExtResource("37_t0ajw"), ExtResource("38_sdbp1"), ExtResource("39_jjcu5"), SubResource("PackedScene_00cxa"), ExtResource("41_2etq5")])
 
-[node name="PreGame" parent="." unique_id=493743797 node_paths=PackedStringArray("train", "spawner", "speed_lever", "start_button", "click_sound") instance=ExtResource("47_6df7p")]
+[node name="PreGame" parent="." unique_id=493743797 node_paths=PackedStringArray("train", "spawner", "speed_lever", "start_button", "research_button", "pregame_buttons_box", "click_sound") instance=ExtResource("47_6df7p")]
 train = NodePath("../Player/TrainHead")
 spawner = NodePath("../EnemySpawner")
 speed_lever = NodePath("../HUD/SpeedLever")
-start_button = NodePath("../HUD/StartButton")
+start_button = NodePath("../HUD/PregameButtons/StartButton")
+research_button = NodePath("../HUD/PregameButtons/ResearchButton")
+pregame_buttons_box = NodePath("../HUD/PregameButtons")
 click_sound = NodePath("../MetalClick")
 skip_if_checkpoint = false
 

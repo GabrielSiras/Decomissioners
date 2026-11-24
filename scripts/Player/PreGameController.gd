@@ -7,6 +7,8 @@ signal game_started
 @export var spawner: EnemySpawner
 @export var speed_lever: SpeedLever
 @export var start_button: Button
+@export var research_button: Button
+@export var pregame_buttons_box: VBoxContainer
 @export var click_sound: AudioStreamPlayer
 @export var initial_speed_factor: float = 0.2
 @export var skip_if_checkpoint: bool = true
@@ -21,34 +23,33 @@ func _ready() -> void:
 	if skip_if_checkpoint and CheckpointManager.has_checkpoint(train.level_id):
 		_begin(false)
 		return
-
-	train.pregame = true
-	spawner.stop_spawning()
-	speed_lever.visible = false
-	_set_skills_locked(true)
-
-	start_button.visible = true
-	_start_pulse()
+	
+	_pregame_on()
+	
 	start_button.pressed.connect(_on_start_pressed)
+	research_button.pressed.connect(_on_research_pressed)
 
 func _on_start_pressed() -> void:
 	if started:
 		return
 	started = true
 	start_button.disabled = true
+	research_button.disabled = true
 	if is_instance_valid(click_sound):
 		click_sound.pitch_scale = randf_range(0.9, 1.1)
 		click_sound.play()
 
 	var tw := create_tween()
-	tw.tween_property(start_button, "modulate:a", 0.0, fade_time)
+	tw.tween_property(pregame_buttons_box, "modulate:a", 0.0, fade_time)
 	await tw.finished
-	start_button.visible = false
+	pregame_buttons_box.visible = false
 	_begin(true)
+
+func _on_research_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/UI-UX/UI/MENUs/ResearchMenu.tscn")
 
 func _begin(from_pregame: bool) -> void:
 	started = true
-	start_button.visible = false
 	train.pregame = false
 	_set_skills_locked(false)
 	speed_lever.visible = true
@@ -81,3 +82,17 @@ func _stop_pulse() -> void:
 	if pulse_tween and pulse_tween.is_valid():
 		pulse_tween.kill()
 	start_button.scale = Vector2.ONE
+
+func _pregame_on() -> void:
+	started = false
+	train.pregame = true
+	spawner.stop_spawning()
+	speed_lever.visible = false
+	_set_skills_locked(true)
+
+	pregame_buttons_box.visible = true
+	pregame_buttons_box.modulate.a = 1
+	start_button.disabled = false
+	research_button.disabled = false
+	
+	_start_pulse()
