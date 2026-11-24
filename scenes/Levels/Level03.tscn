@@ -516,6 +516,7 @@ speed_lever = NodePath("../../HUD/SpeedLever")
 progress_bar = NodePath("../../HUD/TrainProgressBar")
 destination_node = NodePath("../../DestinationPoint")
 starting_metal = 800
+level_id = "level03"
 level_spawner = NodePath("../../EnemySpawner")
 pre_game_controller = NodePath("../../PreGame")
 wagon_scene = ExtResource("31_5g2si")
