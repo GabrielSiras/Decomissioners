@@ -461,6 +461,7 @@ metadata/_edit_use_anchors_ = true
 [node name="Player" type="Node3D" parent="." unique_id=163302227]
 
 [node name="TrainHead" parent="Player" unique_id=423923195 node_paths=PackedStringArray("checkpoint_indicator", "defeat_menu", "speed_lever", "progress_bar", "destination_node", "level_spawner", "pre_game_controller") instance=ExtResource("30_rxryt")]
+current_armor = 0
 checkpoint_indicator = NodePath("../../HUD/CheckpointIndicator")
 gate_wait_time = 5.0
 defeat_menu = NodePath("../../HUD/DefeatMenu")
@@ -496,6 +497,7 @@ start_button = NodePath("../HUD/PregameButtons/StartButton")
 research_button = NodePath("../HUD/PregameButtons/ResearchButton")
 pregame_buttons_box = NodePath("../HUD/PregameButtons")
 click_sound = NodePath("../MetalClick")
+initial_speed_factor = 0.5
 skip_if_checkpoint = false
 
 [connection signal="pressed" from="HUD/SettingsButton" to="HUD/SettingsButton" method="_on_button_pressed"]

@@ -4,3 +4,4 @@
 
 [node name="PreGame" type="Node" unique_id=493743797]
 script = ExtResource("1_206ms")
+initial_speed_factor = 0.4

@@ -74,6 +74,7 @@ func _spawn(entry: SpawnEntry) -> void:
 		return
 
 	var enemy: Node = entry.scene.instantiate()
+	enemy.add_to_group("spawned_enemies")
 
 	if enemy.has_method("setup_target"):
 		enemy.setup_target(main_target)

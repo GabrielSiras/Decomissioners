@@ -94,6 +94,9 @@ func _ready() -> void:
 	
 	_register_all_slots()
 	_apply_checkpoint()
+	
+	for turret in current_gate.get_children():
+		turret.add_to_group("spawned_enemies")
 
 func _apply_checkpoint() -> void:
 	if not CheckpointManager.has_checkpoint(level_id):
@@ -539,6 +542,7 @@ func brake_at_gate() -> void:
 		UpgradeManager.add_research_points(3)
 
 		current_gate.switch_to_destroyed()
+		get_tree().call_group("spawned_enemies", "die")
 
 		current_gate_index += 1
 		level_spawner.current_phase_index += 1
@@ -548,10 +552,14 @@ func brake_at_gate() -> void:
 			current_gate = level_gates[current_gate_index]
 			approaching_gate = true
 			pre_game_controller._pregame_on()
+			for turret in current_gate.get_children():
+				turret.add_to_group("spawned_enemies")
 		else:
 			speed_lever.v_slider.visible = true
-		
-		speed_lever.v_slider.value = 0.2
+			level_spawner.stop_spawning()
+			var camera = get_viewport().get_camera_3d()
+			camera.target = null
+			
 		speed_lever.v_slider.editable = true
 
 		CheckpointManager.save_checkpoint(self)

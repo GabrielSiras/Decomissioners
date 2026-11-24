@@ -480,14 +480,18 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Player" type="Node3D" parent="." unique_id=163302227]
 
-[node name="TrainHead" parent="Player" unique_id=423923195 node_paths=PackedStringArray("wagons", "defeat_menu", "speed_lever", "progress_bar", "destination_node") instance=ExtResource("30_06yrh")]
+[node name="TrainHead" parent="Player" unique_id=423923195 node_paths=PackedStringArray("wagons", "checkpoint_indicator", "defeat_menu", "speed_lever", "progress_bar", "destination_node", "level_spawner", "pre_game_controller") instance=ExtResource("30_06yrh")]
 current_armor = 0
 wagons = [NodePath("Wagon1"), null]
+checkpoint_indicator = NodePath("../../HUD/CheckpointIndicator")
+gate_wait_time = 30.0
 defeat_menu = NodePath("../../HUD/DefeatMenu")
 speed_lever = NodePath("../../HUD/SpeedLever")
 progress_bar = NodePath("../../HUD/TrainProgressBar")
 destination_node = NodePath("../../DestinationPoint")
 starting_metal = 400
+level_spawner = NodePath("../../EnemySpawner")
+pre_game_controller = NodePath("../../PreGame")
 wagon_scene = ExtResource("31_1ytg8")
 
 [node name="Wagon1" parent="Player/TrainHead" unique_id=659263558 instance=ExtResource("31_1ytg8")]
