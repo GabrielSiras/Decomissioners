@@ -57,6 +57,7 @@ var velocity: Vector3 = Vector3.ZERO
 var start_position: Vector3
 var total_distance: float = 0.0
 var approaching_gate: bool = true
+var is_dead: bool = false
 @export var health: float = 200.0:
 	set(value):
 		health = clamp(value, 0.0, float(max_health))
@@ -105,6 +106,10 @@ func _ready() -> void:
 	for turret in current_gate.get_children():
 		turret.add_to_group("spawned_enemies")
 
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventKey and event.pressed and event.keycode == KEY_K:
+		take_damage(99999)
+
 func _apply_checkpoint() -> void:
 	if not CheckpointManager.has_checkpoint_for_level(level_id):
 		return
@@ -112,7 +117,7 @@ func _apply_checkpoint() -> void:
 	var d: Dictionary = CheckpointManager.data
 
 	global_position = CheckpointManager.string_to_vec3(str(d["position"]))
-	#health          = float(d["health"])
+	health          = float(d["health"])
 	stored_metal    = int(d.get("head_metal", stored_metal))
 
 	var saved_wagons: Dictionary = {}
@@ -124,7 +129,7 @@ func _apply_checkpoint() -> void:
 	var limit_changed: bool = int(d.get("wagon_limit", "-1")) != UpgradeManager.wagon_limit()
 	for w in wagons.duplicate():
 		if saved_wagons.has(String(w.name)):
-			#w.health = float(saved_wagons[String(w.name)]["health"])
+			w.health = float(saved_wagons[String(w.name)]["health"])
 			w.stored_metal = int(saved_wagons[String(w.name)]["metal"])
 		elif not limit_changed:
 			remove_child(w)
@@ -497,7 +502,12 @@ func take_damage(amount: int, penetration: float = 1.0) -> void:
 		die()
 
 func die() -> void:
-	if(defeat_menu):
+	if is_dead:
+		return
+	is_dead = true
+	if is_instance_valid(checkpoint_indicator):
+		checkpoint_indicator.hide_now()
+	if defeat_menu:
 		defeat_menu.show_defeat()
 
 func trigger_emp() -> void:
@@ -536,6 +546,8 @@ func has_any_turret() -> bool:
 	return false
 
 func brake_at_gate() -> void:
+	if is_dead:
+		return
 	speed_lever.v_slider.editable = false
 	speed_lever.v_slider.value -= 0.05
 	speed_lever.visible = false
@@ -552,7 +564,7 @@ func brake_at_gate() -> void:
 			checkpoint_indicator.show_waiting()
 
 		await get_tree().create_timer(gate_wait_time).timeout
-		if not is_inside_tree():
+		if not is_inside_tree() or is_dead:
 			return
 
 		if is_instance_valid(checkpoint_indicator):

@@ -40,6 +40,12 @@ func show_done_then_reward(reward_text: String = "") -> void:
 	tween.tween_property(self, "modulate:a", 0.0, fade_time)
 	tween.tween_callback(func(): visible = false)
 
+func hide_now() -> void:
+	if tween and tween.is_valid():
+		tween.kill()
+	visible = false
+	modulate.a = 0.0
+
 func _fade_in() -> void:
 	if tween and tween.is_valid():
 		tween.kill()
