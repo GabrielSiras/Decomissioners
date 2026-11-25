@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://54trfskcn60v" path="res://scripts/Terrain/Devroom.gd" id="1_pq7t0"]
 [ext_resource type="PackedScene" uid="uid://msr581mrgwu6" path="res://scenes/Enemies/EnemySpawner.tscn" id="2_jbkpq"]
-[ext_resource type="Resource" uid="uid://c24uua5pijwxy" path="res://data/desolation_spawn_config.tres" id="3_gahfb"]
 [ext_resource type="PackedScene" uid="uid://egwkrxmeo21s" path="res://scenes/Terrain/TerrainManager.tscn" id="4_lk5vo"]
 [ext_resource type="PackedScene" uid="uid://ctyvfr2vuoihj" path="res://scenes/Enemies/RangedEnemies/AAA/AAA.tscn" id="4_psyym"]
 [ext_resource type="PackedScene" uid="uid://dtoiyc323yjph" path="res://scenes/Terrain/Chunks/Desolation/Desolation1.tscn" id="5_c2utl"]
@@ -191,7 +190,6 @@ light_energy = 0.2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6493196, 1.251749, 0.36621284)
 terrain_manager = NodePath("../TerrainManager")
 main_target = NodePath("../Player/TrainHead")
-config = ExtResource("3_gahfb")
 
 [node name="DestinationPoint" type="Marker3D" parent="." unique_id=949491284]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1520)
@@ -415,7 +413,7 @@ theme_override_font_sizes/font_size = 50
 text = "RESEARCH"
 metadata/_edit_use_anchors_ = true
 
-[node name="CheckpointIndicator" type="Control" parent="HUD" unique_id=2071716272 node_paths=PackedStringArray("spinner", "label") groups=["hide_on_end"]]
+[node name="CheckpointIndicator" type="Control" parent="HUD" unique_id=1861604919 node_paths=PackedStringArray("spinner", "label") groups=["hide_on_end"]]
 layout_mode = 3
 anchors_preset = 5
 anchor_left = 0.5
@@ -429,7 +427,7 @@ script = ExtResource("26_wdl3e")
 spinner = NodePath("VBoxContainer/LoadingSpinner")
 label = NodePath("VBoxContainer/Label")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HUD/CheckpointIndicator" unique_id=998139785]
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/CheckpointIndicator" unique_id=2138982772]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -443,7 +441,7 @@ offset_bottom = 245.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="LoadingSpinner" type="Control" parent="HUD/CheckpointIndicator/VBoxContainer" unique_id=630234577]
+[node name="LoadingSpinner" type="Control" parent="HUD/CheckpointIndicator/VBoxContainer" unique_id=1165705186]
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -451,7 +449,7 @@ size_flags_vertical = 4
 script = ExtResource("26_dmijq")
 metadata/_custom_type_script = "uid://dso8mes67pgwk"
 
-[node name="Label" type="Label" parent="HUD/CheckpointIndicator/VBoxContainer" unique_id=951289530]
+[node name="Label" type="Label" parent="HUD/CheckpointIndicator/VBoxContainer" unique_id=258314849]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("39_v5esl")
@@ -460,8 +458,9 @@ horizontal_alignment = 1
 
 [node name="Player" type="Node3D" parent="." unique_id=163302227]
 
-[node name="TrainHead" parent="Player" unique_id=423923195 node_paths=PackedStringArray("defeat_menu", "speed_lever", "progress_bar", "destination_node", "level_spawner", "pre_game_controller") instance=ExtResource("30_rxryt")]
+[node name="TrainHead" parent="Player" unique_id=423923195 node_paths=PackedStringArray("checkpoint_indicator", "defeat_menu", "speed_lever", "progress_bar", "destination_node", "level_spawner", "pre_game_controller") instance=ExtResource("30_rxryt")]
 current_armor = 0
+checkpoint_indicator = NodePath("../../HUD/CheckpointIndicator")
 gate_wait_time = 5.0
 defeat_menu = NodePath("../../HUD/DefeatMenu")
 speed_lever = NodePath("../../HUD/SpeedLever")

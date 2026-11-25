@@ -36,6 +36,9 @@ var energy_bar: HealthBarUI = null
 var slots_status: Dictionary = {}
 @onready var slot_owners: Array = _make_slots()
 
+@onready var wagon_whole: Node3D = $WagonWhole
+@onready var wagon_broken: Node3D = $WagonBroken
+
 func _ready() -> void:
 	slot_owners.resize(max_slots)
 	stored_metal = min(starting_metal, metal_capacity)
@@ -137,14 +140,16 @@ func demolish_turret_at_slot(target_slot: Node3D) -> void:
 		return
 		
 	var turret_instance = slots_status[target_slot]
-	var refund_amount: int = 0
-	if "build_cost" in turret_instance:
-		refund_amount = int(turret_instance.build_cost * 0.3)
 	
-	if MetalManager.has_method("add_metal"):
-		MetalManager.add_metal(refund_amount)
-	elif MetalManager.has_method("gain_metal"):
-		MetalManager.gain_metal(refund_amount)
+	if health > 0:
+		var refund_amount: int = 0
+		if "build_cost" in turret_instance:
+			refund_amount = int(turret_instance.build_cost * 0.3)
+		
+		if MetalManager.has_method("add_metal"):
+			MetalManager.add_metal(refund_amount)
+		elif MetalManager.has_method("gain_metal"):
+			MetalManager.gain_metal(refund_amount)
 	
 	turret_instance.queue_free()
 	slots_status[target_slot] = null
@@ -184,11 +189,19 @@ func take_damage(amount: int, penetration: float = 1.0) -> void:
 		destroy_wagon()
 
 func destroy_wagon() -> void:	
-	if is_instance_valid(train_head):
-		train_head.wagons.erase(self)
-		train_head.call_deferred("rearrange_wagons")
-		
-	queue_free()
+	wagon_broken.visible = true
+	wagon_whole.visible = false
+	
+	var slots = get_tree().get_nodes_in_group("slots")
+	for slot in slots:
+		demolish_turret_at_slot(slot)
+		slot.visible = false
+	
+	#if is_instance_valid(train_head):
+		#train_head.wagons.erase(self)
+		#train_head.call_deferred("rearrange_wagons")
+		#
+	#queue_free()
 
 func apply_supercharge_to_turrets(damage_mult: float, speed_mult: float, duration: float) -> void:
 	if not is_instance_valid(turret_slots_container):

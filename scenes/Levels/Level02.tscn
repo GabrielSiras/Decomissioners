@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://54trfskcn60v" path="res://scripts/Terrain/Devroom.gd" id="1_0433l"]
 [ext_resource type="PackedScene" uid="uid://msr581mrgwu6" path="res://scenes/Enemies/EnemySpawner.tscn" id="2_ws2j5"]
-[ext_resource type="Resource" uid="uid://bx4e1yi0tarrf" path="res://data/scrapyard_spawn_config.tres" id="3_s2cw1"]
 [ext_resource type="PackedScene" uid="uid://egwkrxmeo21s" path="res://scenes/Terrain/TerrainManager.tscn" id="4_b5lsf"]
 [ext_resource type="PackedScene" uid="uid://b4skynkois6f4" path="res://scenes/Terrain/Gate.tscn" id="4_lbboi"]
 [ext_resource type="PackedScene" uid="uid://dtoiyc323yjph" path="res://scenes/Terrain/Chunks/Desolation/Desolation1.tscn" id="5_0b68w"]
@@ -190,7 +189,6 @@ light_energy = 0.2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6493196, 1.251749, 0.36621284)
 terrain_manager = NodePath("../TerrainManager")
 main_target = NodePath("../Player/TrainHead")
-config = ExtResource("3_s2cw1")
 
 [node name="DestinationPoint" type="Marker3D" parent="." unique_id=949491284]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1620)

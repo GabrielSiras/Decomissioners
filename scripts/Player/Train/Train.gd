@@ -95,6 +95,9 @@ func _ready() -> void:
 	
 	_register_all_slots()
 	_apply_checkpoint()
+	var start_gate_artilleries = level_gates[current_gate_index-1].get_children()
+	for artillery in start_gate_artilleries:
+		artillery.queue_free()
 	
 	if not CheckpointManager.has_checkpoint_for_level(level_id):
 		CheckpointManager.save_checkpoint(self)
@@ -109,7 +112,7 @@ func _apply_checkpoint() -> void:
 	var d: Dictionary = CheckpointManager.data
 
 	global_position = CheckpointManager.string_to_vec3(str(d["position"]))
-	health          = float(d["health"])
+	#health          = float(d["health"])
 	stored_metal    = int(d.get("head_metal", stored_metal))
 
 	var saved_wagons: Dictionary = {}
@@ -121,7 +124,7 @@ func _apply_checkpoint() -> void:
 	var limit_changed: bool = int(d.get("wagon_limit", "-1")) != UpgradeManager.wagon_limit()
 	for w in wagons.duplicate():
 		if saved_wagons.has(String(w.name)):
-			w.health = float(saved_wagons[String(w.name)]["health"])
+			#w.health = float(saved_wagons[String(w.name)]["health"])
 			w.stored_metal = int(saved_wagons[String(w.name)]["metal"])
 		elif not limit_changed:
 			remove_child(w)
@@ -569,11 +572,16 @@ func brake_at_gate() -> void:
 			pre_game_controller._pregame_on()
 			for turret in current_gate.get_children():
 				turret.add_to_group("spawned_enemies")
+			health = max_health
+			for wagon in wagons:
+				wagon.health = wagon.max_health
+
 		else:
 			speed_lever.v_slider.visible = true
 			level_spawner.stop_spawning()
 			var camera = get_viewport().get_camera_3d()
 			camera.target = null
+			speed_lever.v_slider.value = 0.5
 			
 		CheckpointManager.save_checkpoint(self)
 		speed_lever.v_slider.editable = true

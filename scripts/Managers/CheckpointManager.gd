@@ -22,7 +22,7 @@ func save_checkpoint(train: TrainHead) -> void:
 
 	data["level_id"] = str(train.level_id)
 	data["position"] = vec3_to_string(train.global_position)
-	data["health"] = str(train.health)
+	#data["health"] = str(train.health)
 	data["head_metal"] = str(train.stored_metal)
 	data["head_turrets"] = JSON.stringify(_collect_turrets(train.turret_slots_container))
 	data["wagons"] = JSON.stringify(_collect_wagons(train.wagons))

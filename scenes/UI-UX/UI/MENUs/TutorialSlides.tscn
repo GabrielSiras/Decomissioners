@@ -1,0 +1,108 @@
+[gd_scene format=3 uid="uid://cngnee2sqsd5e"]
+
+[ext_resource type="Theme" uid="uid://cishgontb2yga" path="res://assets/UI/themes/main_theme.tres" id="1_41lby"]
+[ext_resource type="LabelSettings" uid="uid://d0yf8g7u342ts" path="res://assets/UI/labels/header_label.tres" id="2_vj27c"]
+[ext_resource type="FontFile" uid="uid://doiekhxatgbyw" path="res://assets/UI/fonts/roboto/Roboto-Regular.ttf" id="3_su3sx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gf20i"]
+content_margin_top = 10.0
+bg_color = Color(0.16470589, 0.19607843, 0.20784314, 1)
+border_width_left = 15
+border_width_top = 15
+border_width_right = 15
+border_width_bottom = 15
+border_color = Color(0.2627451, 0.30588236, 0.32156864, 1)
+border_blend = true
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+corner_detail = 1
+expand_margin_left = 5.0
+expand_margin_right = 5.0
+
+[node name="TutorialSlides" type="Control" unique_id=1376760720]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_41lby")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1824967088]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.25490198)
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=252569876]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 83.0
+offset_bottom = -270.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer" unique_id=2074932196]
+custom_minimum_size = Vector2(600, 1000)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_gf20i")
+
+[node name="CenterContainer" type="MarginContainer" parent="CenterContainer/PanelContainer" unique_id=2023777433]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="BasicsSlide" type="VBoxContainer" parent="CenterContainer/PanelContainer/CenterContainer" unique_id=622538945]
+custom_minimum_size = Vector2(500, 900)
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="SlideTitle" type="Label" parent="CenterContainer/PanelContainer/CenterContainer/BasicsSlide" unique_id=1164586394]
+layout_mode = 2
+text = "HOW TO PLAY"
+label_settings = ExtResource("2_vj27c")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="CenterContainer/PanelContainer/CenterContainer/BasicsSlide" unique_id=932971380]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("3_su3sx")
+text = "Your objective is to reach the end of the level.
+
+Select the slots on top of the train in order to open the construction menu and build turrets to defend it.
+ 
+In order to build them, you need to destroy enemy machines, collecting their metal.
+
+This is the speed lever. Use it to control the train's speed. Speeding up allows you to reach the next gate faster, while slowing down allows you to better engage enemies.
+
+Careful not to reach the next gate underprepared!"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="NextButton" type="Button" parent="." unique_id=1938908626]
+custom_minimum_size = Vector2(180, 100)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -90.0
+offset_top = -350.0
+offset_right = 90.0
+offset_bottom = -250.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 60
+text = "NEXT"
