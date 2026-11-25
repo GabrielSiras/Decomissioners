@@ -4,13 +4,14 @@ extends Area3D
 @export var fire_duration: float = 5.0
 @export var burn_damage_per_sec: float = 20.0
 
+@onready var area_visual: Node3D = find_child("AreaVisual", true, false)
+@onready var fire_vfx: Node3D = get_node_or_null("FireVFX")
+
 var active: bool = false
 var slow_ratio: float = 0.5
 var inside: Array[Node3D] = []
 var fire_timer: float = 0.0
 var _burn_acc: float = 0.0
-
-@onready var fire_vfx: Node3D = get_node_or_null("FireVFX")
 
 func _ready() -> void:
 	add_to_group("pitch_puddles")
@@ -23,6 +24,9 @@ func _ready() -> void:
 func set_active(value: bool) -> void:
 	active = value
 	monitoring = value
+	if area_visual:
+		area_visual.visible = value
+
 	if value:
 		slow_ratio = UpgradeManager.pick(UpgradeManager.PITCH_SLOW, "Pitch")
 		for b in get_overlapping_bodies():
@@ -37,6 +41,7 @@ func set_active(value: bool) -> void:
 			fire_vfx.hide()
 
 func _on_body_entered(body: Node3D) -> void:
+	print("zona viu: ", body.name, " | ativa: ", active)
 	if not active or inside.has(body):
 		return
 	if not body.is_in_group("enemies") or body.is_in_group("flying"):

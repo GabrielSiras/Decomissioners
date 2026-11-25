@@ -76,6 +76,7 @@ func _get_active_target() -> Node3D:
 	return current_target_node if is_instance_valid(current_target_node) else target
 
 func _update_movement(active_target: Node3D) -> void:
+	velocity = Vector3.ZERO
 	if knockback_velocity.length() >= 2.0:
 		return
 
@@ -98,8 +99,7 @@ func _update_movement(active_target: Node3D) -> void:
 	velocity = Vector3(x_vel, 0.0, z_vel)
 
 func _apply_physics(delta: float) -> void:
-	var final_velocity = velocity + knockback_velocity
-	velocity = final_velocity
+	velocity = velocity * slow_mult + knockback_velocity
 	move_and_slide()
 
 	if knockback_velocity.length() > 0.01:

@@ -281,7 +281,6 @@ supercharge_skill_scene = ExtResource("28_fa6ml")
 train = NodePath("../../../Player/TrainHead")
 
 [node name="BlackPitchSkillButton" parent="Skills/GridContainer2" unique_id=66681180 instance=ExtResource("29_tubrp")]
-visible = false
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 4

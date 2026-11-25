@@ -134,7 +134,7 @@ func _physics_process(delta: float) -> void:
 		State.WINDUP:
 			var target_z = active_target.global_position.z + slot_z_offset
 			var z_diff = target_z - global_position.z
-			velocity = Vector3(0, 0, -train_spd + clamp(z_diff * 4.0, -catch_up_speed_bonus, catch_up_speed_bonus))
+			velocity = Vector3(0, 0, -train_spd + clamp(z_diff * 4.0, -catch_up_speed_bonus, catch_up_speed_bonus)) * slow_mult
 			move_and_slide()
 
 		State.LUNGE:
@@ -181,7 +181,7 @@ func _process_chasing(active_target: Node3D, train_spd: float) -> void:
 	var z_correction = clamp(z_diff * 4.0, -catch_up_speed_bonus, catch_up_speed_bonus)
 	var z_vel = -train_spd + z_correction
 
-	velocity = Vector3(x_vel, 0, z_vel)
+	velocity = Vector3(x_vel, 0, z_vel) * slow_mult
 	move_and_slide()
 
 	if abs(z_diff) < 2.0 and abs(x_diff) < 1.5:
@@ -193,7 +193,7 @@ func _process_lunge(active_target: Node3D, train_spd: float, delta: float) -> vo
 	var x_vel = dir_to_wagon_x * lunge_speed
 	var z_vel = -train_spd
 
-	velocity = Vector3(x_vel, 0, z_vel)
+	velocity = Vector3(x_vel, 0, z_vel) * slow_mult
 	move_and_slide()
 
 	var a := Vector2(global_position.x, global_position.z)
@@ -217,7 +217,7 @@ func _process_cooldown(active_target: Node3D, train_spd: float) -> void:
 	var z_diff = target_z - global_position.z
 	var z_vel = -train_spd + clamp(z_diff * 2.0, -catch_up_speed_bonus * 0.5, catch_up_speed_bonus * 0.5)
 
-	velocity = Vector3(x_vel, 0, z_vel)
+	velocity = Vector3(x_vel, 0, z_vel) * slow_mult
 	move_and_slide()
 
 func _on_state_timer_timeout() -> void:
