@@ -103,42 +103,38 @@ func _ready() -> void:
 		turret.add_to_group("spawned_enemies")
 
 func _apply_checkpoint() -> void:
-	# Garante que o checkpoint corresponde à fase corrente
 	if not CheckpointManager.has_checkpoint_for_level(level_id):
 		return
 
 	var d: Dictionary = CheckpointManager.data
 
-	# Não sobrescreve o nível salvo – ele já está correto em `d["level_id"]`
 	global_position = CheckpointManager.string_to_vec3(str(d["position"]))
 	health          = float(d["health"])
 	stored_metal    = int(d.get("head_metal", stored_metal))
 
-	# ----- restaurar vagões -------------------------------------------------
 	var saved_wagons: Dictionary = {}
 	var parsed_wagons = JSON.parse_string(str(d.get("wagons", "[]")))
 	if parsed_wagons is Array:
 		for w_dict in parsed_wagons:
 			saved_wagons[String(w_dict["name"])] = w_dict
 
+	var limit_changed: bool = int(d.get("wagon_limit", "-1")) != UpgradeManager.wagon_limit()
 	for w in wagons.duplicate():
 		if saved_wagons.has(String(w.name)):
-			w.health = saved_wagons[String(w.name)]["health"]
-			w.stored_metal = saved_wagons[String(w.name)]["metal"]
-		else:
+			w.health = float(saved_wagons[String(w.name)]["health"])
+			w.stored_metal = int(saved_wagons[String(w.name)]["metal"])
+		elif not limit_changed:
 			remove_child(w)
 			w.queue_free()
 
 	_update_wagons_list()
 	rearrange_wagons()
 
-	# ----- restaurar fase (spawner) ---------------------------------------
 	if is_instance_valid(level_spawner) and d.has("spawner_phase_index"):
 		level_spawner.current_phase_index = int(d["spawner_phase_index"])
 		if level_spawner.has_method("set_phase"):
 			level_spawner.set_phase(level_spawner.current_phase_index)
 
-	# ----- atualizar o índice do portão ------------------------------------
 	current_gate_index = int(d.get("current_gate_index", 0))
 
 	for i in range(current_gate_index):
@@ -152,7 +148,6 @@ func _apply_checkpoint() -> void:
 
 	approaching_gate = true
 
-	# ----- restaurar turrets do cabeçalho ---------------------------------
 	var head_turrets: Array = []
 	var parsed_head = JSON.parse_string(str(d.get("head_turrets", "[]")))
 	if parsed_head is Array:
@@ -160,7 +155,6 @@ func _apply_checkpoint() -> void:
 
 	_restore_turrets(self, head_turrets)
 
-	# ----- restaurar turrets de cada wagão -------------------------------
 	for w in wagons:
 		var info = saved_wagons.get(String(w.name))
 		if info:

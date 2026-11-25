@@ -26,6 +26,7 @@ func save_checkpoint(train: TrainHead) -> void:
 	data["head_metal"] = str(train.stored_metal)
 	data["head_turrets"] = JSON.stringify(_collect_turrets(train.turret_slots_container))
 	data["wagons"] = JSON.stringify(_collect_wagons(train.wagons))
+	data["wagon_limit"] = str(UpgradeManager.wagon_limit())
 	data["current_gate_index"] = str(train.current_gate_index)
 	data["spawner_phase_index"] = str(train.spawner_phase_index + 1)
 
