@@ -382,49 +382,6 @@ theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 60
 text = "1"
 
-[node name="CheckpointIndicator" type="Control" parent="HUD" unique_id=1331524780 node_paths=PackedStringArray("spinner", "label") groups=["hide_on_end"]]
-layout_mode = 3
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -20.0
-offset_right = 20.0
-offset_bottom = 40.0
-grow_horizontal = 2
-mouse_filter = 2
-script = ExtResource("26_wdl3e")
-spinner = NodePath("VBoxContainer/LoadingSpinner")
-label = NodePath("VBoxContainer/Label")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="HUD/CheckpointIndicator" unique_id=2007604860]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -35.0
-offset_top = 67.0
-offset_right = 35.0
-offset_bottom = 168.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="LoadingSpinner" type="Control" parent="HUD/CheckpointIndicator/VBoxContainer" unique_id=855045030]
-custom_minimum_size = Vector2(70, 70)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-script = ExtResource("26_dmijq")
-metadata/_custom_type_script = "uid://dso8mes67pgwk"
-
-[node name="Label" type="Label" parent="HUD/CheckpointIndicator/VBoxContainer" unique_id=154687865]
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_fonts/font = ExtResource("39_v5esl")
-theme_override_font_sizes/font_size = 36
-horizontal_alignment = 1
-
 [node name="PregameButtons" type="VBoxContainer" parent="HUD" unique_id=1211917317]
 z_index = 1
 anchors_preset = 7
@@ -458,11 +415,53 @@ theme_override_font_sizes/font_size = 50
 text = "RESEARCH"
 metadata/_edit_use_anchors_ = true
 
+[node name="CheckpointIndicator" type="Control" parent="HUD" unique_id=2071716272 node_paths=PackedStringArray("spinner", "label") groups=["hide_on_end"]]
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+mouse_filter = 2
+script = ExtResource("26_wdl3e")
+spinner = NodePath("VBoxContainer/LoadingSpinner")
+label = NodePath("VBoxContainer/Label")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/CheckpointIndicator" unique_id=998139785]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.0
+offset_top = 128.0
+offset_right = 35.0
+offset_bottom = 245.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LoadingSpinner" type="Control" parent="HUD/CheckpointIndicator/VBoxContainer" unique_id=630234577]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("26_dmijq")
+metadata/_custom_type_script = "uid://dso8mes67pgwk"
+
+[node name="Label" type="Label" parent="HUD/CheckpointIndicator/VBoxContainer" unique_id=951289530]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("39_v5esl")
+theme_override_font_sizes/font_size = 36
+horizontal_alignment = 1
+
 [node name="Player" type="Node3D" parent="." unique_id=163302227]
 
-[node name="TrainHead" parent="Player" unique_id=423923195 node_paths=PackedStringArray("checkpoint_indicator", "defeat_menu", "speed_lever", "progress_bar", "destination_node", "level_spawner", "pre_game_controller") instance=ExtResource("30_rxryt")]
+[node name="TrainHead" parent="Player" unique_id=423923195 node_paths=PackedStringArray("defeat_menu", "speed_lever", "progress_bar", "destination_node", "level_spawner", "pre_game_controller") instance=ExtResource("30_rxryt")]
 current_armor = 0
-checkpoint_indicator = NodePath("../../HUD/CheckpointIndicator")
 gate_wait_time = 5.0
 defeat_menu = NodePath("../../HUD/DefeatMenu")
 speed_lever = NodePath("../../HUD/SpeedLever")

@@ -15,7 +15,7 @@ func _ready() -> void:
 
 func show_waiting() -> void:
 	spinner.visible = true
-	label.text = "Checkpoint..."
+	label.text = "Saving..."
 	_fade_in()
 
 func show_done_then_reward(reward_text: String = "") -> void:

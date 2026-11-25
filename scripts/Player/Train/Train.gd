@@ -544,13 +544,16 @@ func brake_at_gate() -> void:
 		
 		if is_instance_valid(level_spawner):
 			spawner_phase_index = level_spawner.current_phase_index
+		
+		if is_instance_valid(checkpoint_indicator):
+			checkpoint_indicator.show_waiting()
 
 		await get_tree().create_timer(gate_wait_time).timeout
 		if not is_inside_tree():
 			return
 
 		if is_instance_valid(checkpoint_indicator):
-			checkpoint_indicator.show_done_then_reward("+3 Research Point")
+			checkpoint_indicator.show_done_then_reward("+3 Researchs Points")
 		
 		UpgradeManager.add_research_points(3)
 
@@ -558,7 +561,6 @@ func brake_at_gate() -> void:
 		get_tree().call_group("spawned_enemies", "die")
 
 		current_gate_index += 1
-		level_spawner.current_phase_index += 1
 		level_spawner.set_phase(level_spawner.current_phase_index)
 		
 		if current_gate_index < level_gates.size():
