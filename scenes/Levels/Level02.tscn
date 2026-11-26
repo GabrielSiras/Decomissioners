@@ -266,17 +266,20 @@ grow_vertical = 0
 layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 4
+toggle_mode = true
 cooldown_time = 15.0
 
 [node name="RepairSkillButton" parent="Skills/GridContainer2" unique_id=489350858 instance=ExtResource("32_0b68w")]
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
+toggle_mode = true
 
 [node name="SuperChargeSkillButton" parent="Skills/GridContainer2" unique_id=834700005 node_paths=PackedStringArray("train") instance=ExtResource("27_rk435")]
 layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 4
+toggle_mode = true
 supercharge_skill_scene = ExtResource("28_fa6ml")
 train = NodePath("../../../Player/TrainHead")
 

@@ -13,7 +13,6 @@ func has_any_checkpoint() -> bool:
 
 func has_checkpoint_for_level(level_id: String) -> bool:
 	return has_any_checkpoint() and str(data.get("level_id", "")) == level_id
-
 func get_level_id() -> String:
 	return str(data.get("level_id", ""))
 

@@ -45,8 +45,8 @@
 [ext_resource type="PackedScene" uid="uid://bmim5hpyj0ca1" path="res://scenes/VFX/ExplosionVFXArtillery.tscn" id="36_d5ctu"]
 [ext_resource type="PackedScene" uid="uid://ca821bnynwdh4" path="res://scenes/VFX/FlamethrowerVFX.tscn" id="37_bd1e1"]
 [ext_resource type="PackedScene" uid="uid://cg4kvaldnrav4" path="res://scenes/VFX/OverchargeVFX.tscn" id="38_tqg33"]
+[ext_resource type="FontFile" uid="uid://dqwk8wrul1clt" path="res://assets/UI/fonts/cnrgn_army/CNRGN-Army.ttf" id="39_82npn"]
 [ext_resource type="PackedScene" uid="uid://be8hg483hedqw" path="res://scenes/VFX/PitchPuddleLeft.tscn" id="39_atckt"]
-[ext_resource type="FontFile" uid="uid://bn5sgha2ekqid" path="res://assets/UI/fonts/roboto/Roboto-Bold.ttf" id="39_v5esl"]
 [ext_resource type="PackedScene" uid="uid://c5qxjkarg4st8" path="res://scenes/VFX/PreassureBlastVFX.tscn" id="41_l64dw"]
 [ext_resource type="PackedScene" uid="uid://b4skynkois6f4" path="res://scenes/Terrain/Gate.tscn" id="49_82npn"]
 [ext_resource type="AudioStream" uid="uid://ma7spr0eraxc" path="res://assets/audios/SFX/UI/MetalClick/MetalClick.wav" id="49_gahfb"]
@@ -156,16 +156,19 @@ theme_override_constants/separation = 30
 [node name="BombardmentSkillButton" parent="Skills/GridContainer" unique_id=246414351 instance=ExtResource("26_6mika")]
 layout_mode = 2
 size_flags_horizontal = 10
+toggle_mode = true
 
 [node name="RepairSkillButton" parent="Skills/GridContainer" unique_id=1594728693 instance=ExtResource("32_isk48")]
 layout_mode = 2
 size_flags_horizontal = 2
 size_flags_vertical = 4
+toggle_mode = true
 
 [node name="SuperChargeSkillButton" parent="Skills/GridContainer" unique_id=834700005 node_paths=PackedStringArray("train") instance=ExtResource("27_lkv17")]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 6
+toggle_mode = true
 supercharge_skill_scene = ExtResource("28_nm60t")
 train = NodePath("../../../Player/TrainHead")
 
@@ -360,8 +363,11 @@ metadata/_custom_type_script = "uid://dso8mes67pgwk"
 [node name="Label" type="Label" parent="HUD/CheckpointIndicator/VBoxContainer" unique_id=258314849]
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_fonts/font = ExtResource("39_v5esl")
-theme_override_font_sizes/font_size = 36
+theme_override_colors/font_color = Color(0.972549, 0.28235295, 0.14117648, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("39_82npn")
+theme_override_font_sizes/font_size = 80
 horizontal_alignment = 1
 
 [node name="Player" type="Node3D" parent="." unique_id=163302227]
