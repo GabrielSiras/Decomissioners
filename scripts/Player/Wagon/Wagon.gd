@@ -203,6 +203,15 @@ func destroy_wagon() -> void:
 		#
 	#queue_free()
 
+func restore_wagon() -> void:
+	if wagon_broken.visible == true:
+		wagon_whole.visible = true
+		wagon_broken.visible = false
+	
+	var slots = get_tree().get_nodes_in_group("slots")
+	for slot in slots:
+		slot.visible = true
+
 func apply_supercharge_to_turrets(damage_mult: float, speed_mult: float, duration: float) -> void:
 	if not is_instance_valid(turret_slots_container):
 		return

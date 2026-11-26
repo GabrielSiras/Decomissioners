@@ -3,8 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://be8hg483hedqw" path="res://scenes/VFX/PitchPuddleLeft.tscn" id="2_i61di"]
 
 [sub_resource type="GDScript" id="GDScript_2efxe"]
-script/source = "class_name PitchPuddle
-extends Area3D
+script/source = "extends Area3D
 
 @export_category(\"Configurações do Piche\")
 @export var puddle_duration: float = 4.0

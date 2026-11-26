@@ -5,6 +5,26 @@
 [ext_resource type="Theme" uid="uid://cishgontb2yga" path="res://assets/UI/themes/main_theme.tres" id="2_x2b0x"]
 [ext_resource type="Texture2D" uid="uid://7p2ewvovp0b4" path="res://assets/Icons/Overcharge.png" id="3_aqu65"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x2b0x"]
+content_margin_left = 10.0
+content_margin_top = 15.0
+content_margin_right = 10.0
+content_margin_bottom = 0.0
+bg_color = Color(0.16649756, 0.19640416, 0.21136045, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.972549, 0.28235295, 0.14117648, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+corner_detail = 1
+shadow_color = Color(0, 0, 0, 0.49411765)
+shadow_size = 10
+shadow_offset = Vector2(0, 5.01)
+
 [node name="SuperChargeSkillButton" unique_id=834700005 instance=ExtResource("1_ii401")]
 custom_minimum_size = Vector2(100, 100)
 offset_left = 23.0
@@ -13,6 +33,7 @@ offset_right = 131.0
 offset_bottom = 1166.0
 theme = ExtResource("2_x2b0x")
 theme_override_font_sizes/font_size = 35
+theme_override_styles/pressed = SubResource("StyleBoxFlat_x2b0x")
 text = " "
 icon = ExtResource("3_aqu65")
 icon_alignment = 1

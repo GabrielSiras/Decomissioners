@@ -6,6 +6,26 @@
 [ext_resource type="PackedScene" uid="uid://d2tayfwtb0eco" path="res://scenes/Player/Skills/Repair/RepairSkill.tscn" id="4_k3gle"]
 [ext_resource type="Texture2D" uid="uid://bcggj18vg8wbj" path="res://assets/Icons/ScrapMetal.png" id="5_jqjhf"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vurv8"]
+content_margin_left = 10.0
+content_margin_top = 15.0
+content_margin_right = 10.0
+content_margin_bottom = 0.0
+bg_color = Color(0.16649756, 0.19640416, 0.21136045, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.972549, 0.28235295, 0.14117648, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+corner_detail = 1
+shadow_color = Color(0, 0, 0, 0.49411765)
+shadow_size = 10
+shadow_offset = Vector2(0, 5.01)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jqjhf"]
 content_margin_top = 10.0
 bg_color = Color(0.16470589, 0.19607843, 0.20784314, 1)
@@ -29,6 +49,7 @@ offset_right = 88.0
 offset_bottom = 67.0
 theme = ExtResource("1_djhqt")
 theme_override_font_sizes/font_size = 35
+theme_override_styles/pressed = SubResource("StyleBoxFlat_vurv8")
 icon = ExtResource("2_k3gle")
 icon_alignment = 1
 expand_icon = true

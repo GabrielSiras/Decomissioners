@@ -96,9 +96,12 @@ func _ready() -> void:
 	
 	_register_all_slots()
 	_apply_checkpoint()
-	var start_gate_artilleries = level_gates[current_gate_index-1].get_children()
-	for artillery in start_gate_artilleries:
-		artillery.queue_free()
+	 
+	if current_gate_index > 0:
+		var start_gate_children = level_gates[current_gate_index-1].get_children()
+		for child in start_gate_children:
+			if child.get_class() == "CharacterBody3D":
+				child.queue_free()
 	
 	if not CheckpointManager.has_checkpoint_for_level(level_id):
 		CheckpointManager.save_checkpoint(self)
@@ -587,6 +590,7 @@ func brake_at_gate() -> void:
 			health = max_health
 			for wagon in wagons:
 				wagon.health = wagon.max_health
+				wagon.restore_wagon()
 
 		else:
 			speed_lever.v_slider.visible = true

@@ -9,6 +9,26 @@
 [ext_resource type="AudioStream" uid="uid://c44vusr1tj6qt" path="res://assets/audios/SFX/Skills/BlackPitch/BlackPitchSpillingVariation2.wav" id="6_o46au"]
 [ext_resource type="AudioStream" uid="uid://bebkm1c0425yr" path="res://assets/audios/SFX/Skills/BlackPitch/BlackPitchSpillingVariation3.wav" id="7_4ddpu"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o46au"]
+content_margin_left = 10.0
+content_margin_top = 15.0
+content_margin_right = 10.0
+content_margin_bottom = 0.0
+bg_color = Color(0.16649756, 0.19640416, 0.21136045, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.972549, 0.28235295, 0.14117648, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+corner_detail = 1
+shadow_color = Color(0, 0, 0, 0.49411765)
+shadow_size = 10
+shadow_offset = Vector2(0, 5.01)
+
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_qmg03"]
 streams_count = 3
 stream_0/stream = ExtResource("5_3ja3k")
@@ -23,6 +43,7 @@ offset_right = 52.0
 offset_bottom = 975.0
 theme = ExtResource("2_o46au")
 theme_override_font_sizes/font_size = 35
+theme_override_styles/pressed = SubResource("StyleBoxFlat_o46au")
 icon = ExtResource("3_4ddpu")
 icon_alignment = 1
 expand_icon = true

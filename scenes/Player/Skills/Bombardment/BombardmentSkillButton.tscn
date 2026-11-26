@@ -9,6 +9,26 @@
 [ext_resource type="AudioStream" uid="uid://b7vuoycbd1s0n" path="res://assets/audios/SFX/Skills/Bombardment/DistantExplosionVariation2.wav" id="5_640q7"]
 [ext_resource type="AudioStream" uid="uid://b3q0dk5cx5cke" path="res://assets/audios/SFX/Skills/Bombardment/DistantExplosionVariation3.wav" id="6_n86lb"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n86lb"]
+content_margin_left = 10.0
+content_margin_top = 15.0
+content_margin_right = 10.0
+content_margin_bottom = 0.0
+bg_color = Color(0.16649756, 0.19640416, 0.21136045, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.972549, 0.28235295, 0.14117648, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+corner_detail = 1
+shadow_color = Color(0, 0, 0, 0.49411765)
+shadow_size = 10
+shadow_offset = Vector2(0, 5.01)
+
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_3ja3k"]
 streams_count = 3
 stream_0/stream = ExtResource("4_51kuq")
@@ -23,6 +43,7 @@ offset_right = 114.0
 offset_bottom = 1150.0
 theme = ExtResource("2_n86lb")
 theme_override_font_sizes/font_size = 35
+theme_override_styles/pressed = SubResource("StyleBoxFlat_n86lb")
 icon = ExtResource("3_vnwdo")
 icon_alignment = 1
 expand_icon = true
