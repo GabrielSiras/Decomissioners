@@ -25,16 +25,17 @@ extends Control
 @onready var build_sound: AudioStreamPlayer = $BuildSound
 
 @onready var radial_panel: Control = $RadialPanel
-@onready var btn_turret_1: Button = $RadialPanel/ButtonTurret1
-@onready var btn_turret_2: Button = $RadialPanel/ButtonTurret2
-@onready var btn_turret_3: Button = $RadialPanel/ButtonTurret3
-@onready var btn_turret_4: Button = $RadialPanel/ButtonTurret4
+@onready var btn_turret_1: Button = $RadialPanel/MachinegunButton
+@onready var btn_turret_2: Button = $RadialPanel/IncendiaryButton
+@onready var btn_turret_3: Button = $RadialPanel/BlastButton
+@onready var btn_turret_4: Button = $RadialPanel/ArtilleryButton
 
 var current_slot: Node3D = null
 var selected_level: int = 1
 
 func _ready() -> void:
 	hide()
+	_unlock_turrets()
 	
 	btn_turret_1.pressed.connect(_on_turret_1_selected)
 	btn_turret_2.pressed.connect(_on_turret_2_selected)
@@ -139,6 +140,13 @@ func _on_turret_3_selected() -> void:
 
 func _on_turret_4_selected() -> void:
 	_try_build(turret_4_scene)
+
+func _unlock_turrets() -> void:
+	if GameProgress.is_unlocked("level02"):
+		btn_turret_3.visible = true
+	if GameProgress.is_unlocked("level03"):
+		btn_turret_2.visible = true
+
 
 func _unhandled_input(event: InputEvent) -> void:
 	if visible and event is InputEventMouseButton and event.pressed:

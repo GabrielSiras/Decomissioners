@@ -3,14 +3,13 @@ extends Node
 const SAVE_PATH := "user://progress.cfg"
 
 const LEVELS := {
-	"tutorial": "res://scenes/Levels/Tutorial.tscn",   # ajuste quando criar o tutorial
 	"level01": "res://scenes/Levels/Level01.tscn",
 	"level02": "res://scenes/Levels/Level02.tscn",
 	"level03": "res://scenes/Levels/Level03.tscn",
 }
 
 const ORDER := ["level01", "level02", "level03"]
-const ALWAYS_UNLOCKED := ["tutorial", "level01"]
+const ALWAYS_UNLOCKED := ["level01"]
 const LEVEL_SELECT_PATH := "res://scenes/UI-UX/UI/MENUs/RailmapMenu.tscn"
 
 var completed: Array = []
@@ -36,8 +35,6 @@ func complete_level(id: String) -> void:
 	save_progress()
 
 func get_next_level_path(id: String) -> String:
-	if id == "tutorial":
-		return LEVELS["level01"]
 	var idx := ORDER.find(id)
 	if idx == -1 or idx + 1 >= ORDER.size():
 		return ""

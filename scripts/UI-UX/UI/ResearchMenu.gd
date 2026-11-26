@@ -7,6 +7,11 @@ extends Control
 @export var research_button: Button
 @export var refund_button: Button
 @export var points_label: Label
+@export_subgroup("Unlockable Buttons")
+@export var supercharge_button: Button
+@export var blast_button: Button
+@export var pitch_button: Button
+@export var incendiary_button: Button
 
 @export_category("Transição")
 @export var click_delay: float = 0.55
@@ -52,6 +57,14 @@ const UPGRADE_INFO := {
 
 func _ready() -> void:
 	points_label.text = str(UpgradeManager.research_points)
+	
+	if GameProgress.is_unlocked("level02"):
+		supercharge_button.disabled = false
+		blast_button.disabled = false
+	if GameProgress.is_unlocked("level03"):
+		pitch_button.disabled = false
+		incendiary_button.disabled = false
+		
 
 	get_tree().paused = false
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE

@@ -108,7 +108,7 @@ shadow_color = Color(0, 0, 0, 0.54901963)
 shadow_size = 20
 shadow_offset = Vector2(0, -10)
 
-[node name="ResearchMenu" type="Control" unique_id=974220128 node_paths=PackedStringArray("selected_upgrade_hud", "upgrade_description", "upgrade_name", "research_button", "refund_button", "points_label")]
+[node name="ResearchMenu" type="Control" unique_id=974220128 node_paths=PackedStringArray("selected_upgrade_hud", "upgrade_description", "upgrade_name", "research_button", "refund_button", "points_label", "supercharge_button", "blast_button", "pitch_button", "incendiary_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -123,6 +123,10 @@ upgrade_name = NodePath("SelectedUpgradeHUD/DescriptionBoxBG/CenterContainer/Des
 research_button = NodePath("SelectedUpgradeHUD/DescriptionBoxBG/CenterContainer/DescriptionBox/ResearchButton")
 refund_button = NodePath("MarginContainer/VBoxContainer/RefundButton")
 points_label = NodePath("MarginContainer/PointsLabel")
+supercharge_button = NodePath("MarginContainer/VBoxContainer/SkillUpgrades/Panel/GridContainer/Supercharge/SuperchargeButton")
+blast_button = NodePath("MarginContainer/VBoxContainer/TurretUpgrades/Panel/GridContainer/Blast/BlastButton")
+pitch_button = NodePath("MarginContainer/VBoxContainer/SkillUpgrades/Panel/GridContainer/Pitch/PitchButton")
+incendiary_button = NodePath("MarginContainer/VBoxContainer/TurretUpgrades/Panel/GridContainer/Incendiary/IncendiaryButton")
 
 [node name="BG" type="Panel" parent="." unique_id=2022266626]
 layout_mode = 1
@@ -703,10 +707,31 @@ theme = ExtResource("1_gh26t")
 theme_override_styles/normal = SubResource("StyleBoxFlat_gpmvo")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_ja1no")
 theme_override_styles/hover = SubResource("StyleBoxFlat_gpmvo")
+disabled = true
 toggle_mode = true
 script = ExtResource("2_7buhx")
 upgrade_key = "Supercharge"
 sample_socket = NodePath("../VBoxContainer/HBoxContainer/SuperchargeSocket1")
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/SkillUpgrades/Panel/GridContainer/Supercharge/SuperchargeButton" unique_id=76758367]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -45.0
+offset_top = -30.5
+offset_right = 45.0
+offset_bottom = 30.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+text = "OUT
+OF ORDER"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Pitch" type="PanelContainer" parent="MarginContainer/VBoxContainer/SkillUpgrades/Panel/GridContainer" unique_id=774342520]
 custom_minimum_size = Vector2(100, 0)
@@ -777,6 +802,7 @@ upgrade_key = "Pitch"
 sample_socket = NodePath("../VBoxContainer/HBoxContainer/PitchSocket1")
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/SkillUpgrades/Panel/GridContainer/Pitch/PitchButton" unique_id=464992779]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -1013,10 +1039,31 @@ theme = ExtResource("1_gh26t")
 theme_override_styles/normal = SubResource("StyleBoxFlat_gpmvo")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_ja1no")
 theme_override_styles/hover = SubResource("StyleBoxFlat_gpmvo")
+disabled = true
 toggle_mode = true
 script = ExtResource("2_7buhx")
 upgrade_key = "Blast"
 sample_socket = NodePath("../VBoxContainer/HBoxContainer/BlastSocket1")
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/TurretUpgrades/Panel/GridContainer/Blast/BlastButton" unique_id=106529718]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -45.0
+offset_top = -30.5
+offset_right = 45.0
+offset_bottom = 30.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+text = "OUT
+OF ORDER"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Incendiary" type="PanelContainer" parent="MarginContainer/VBoxContainer/TurretUpgrades/Panel/GridContainer" unique_id=210748847]
 custom_minimum_size = Vector2(100, 0)
@@ -1080,10 +1127,31 @@ theme = ExtResource("1_gh26t")
 theme_override_styles/normal = SubResource("StyleBoxFlat_gpmvo")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_ja1no")
 theme_override_styles/hover = SubResource("StyleBoxFlat_gpmvo")
+disabled = true
 toggle_mode = true
 script = ExtResource("2_7buhx")
 upgrade_key = "Incendiary"
 sample_socket = NodePath("../VBoxContainer/HBoxContainer/IncendiarySocket1")
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/TurretUpgrades/Panel/GridContainer/Incendiary/IncendiaryButton" unique_id=1005123189]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -45.0
+offset_top = -30.5
+offset_right = 45.0
+offset_bottom = 30.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+text = "OUT
+OF ORDER"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="RefundButton" type="Button" parent="MarginContainer/VBoxContainer" unique_id=2014632315]
 custom_minimum_size = Vector2(200, 100)

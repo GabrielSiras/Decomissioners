@@ -3,9 +3,13 @@
 [ext_resource type="Theme" uid="uid://cishgontb2yga" path="res://assets/UI/themes/main_theme.tres" id="1_1vjus"]
 [ext_resource type="Script" uid="uid://c7vrl3svytbsm" path="res://scripts/UI-UX/UI/BuildMenuUI.gd" id="1_ly6h3"]
 [ext_resource type="AudioStream" uid="uid://b0iaa8x4estti" path="res://assets/audios/SFX/Turrets/Building/metal-hitting'n-building.wav" id="2_ofgi3"]
+[ext_resource type="PackedScene" uid="uid://drqt5gc0jk617" path="res://scenes/Turrets/MachineGun/MachineGun.tscn" id="3_pn53n"]
 [ext_resource type="Texture2D" uid="uid://d4h6x21lr5u3s" path="res://assets/Icons/Gun.png" id="3_yw612"]
+[ext_resource type="PackedScene" uid="uid://dlibrupci2v80" path="res://scenes/Turrets/Incendiary/Incendiary.tscn" id="4_dbw17"]
 [ext_resource type="Texture2D" uid="uid://c17h6xvrchaof" path="res://assets/Icons/Inc.png" id="4_k5mlk"]
+[ext_resource type="PackedScene" uid="uid://d0d2up8nwdif3" path="res://scenes/Turrets/Blast/Blast.tscn" id="5_80vsk"]
 [ext_resource type="Texture2D" uid="uid://ct4xfmlm2dtrr" path="res://assets/Icons/Blast.png" id="5_i2qot"]
+[ext_resource type="PackedScene" uid="uid://dqcassbdhp1tv" path="res://scenes/Turrets/Artillery/Artillery.tscn" id="6_6vtxv"]
 [ext_resource type="Texture2D" uid="uid://bhqn54f6qg577" path="res://assets/Icons/Art.png" id="6_b8pjo"]
 [ext_resource type="FontFile" uid="uid://c34b66ybs5sm4" path="res://assets/UI/fonts/roboto/Roboto-Black.ttf" id="7_k5mlk"]
 
@@ -15,6 +19,10 @@ layout_mode = 3
 anchors_preset = 0
 theme = ExtResource("1_1vjus")
 script = ExtResource("1_ly6h3")
+turret_1_scene = ExtResource("3_pn53n")
+turret_2_scene = ExtResource("4_dbw17")
+turret_3_scene = ExtResource("5_80vsk")
+turret_4_scene = ExtResource("6_6vtxv")
 
 [node name="RadialPanel" type="Control" parent="." unique_id=961902928]
 layout_mode = 1
@@ -26,7 +34,7 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ButtonTurret1" type="Button" parent="RadialPanel" unique_id=2013880621]
+[node name="MachinegunButton" type="Button" parent="RadialPanel" unique_id=2013880621]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 0
 offset_top = 522.0
@@ -37,7 +45,7 @@ icon = ExtResource("3_yw612")
 vertical_icon_alignment = 0
 expand_icon = true
 
-[node name="CostLabel" type="Label" parent="RadialPanel/ButtonTurret1" unique_id=1811080740]
+[node name="CostLabel" type="Label" parent="RadialPanel/MachinegunButton" unique_id=1811080740]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -57,7 +65,8 @@ theme_override_font_sizes/font_size = 38
 horizontal_alignment = 1
 uppercase = true
 
-[node name="ButtonTurret2" type="Button" parent="RadialPanel" unique_id=861224002]
+[node name="IncendiaryButton" type="Button" parent="RadialPanel" unique_id=861224002]
+visible = false
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 0
 offset_top = 369.0
@@ -67,7 +76,7 @@ theme_override_font_sizes/font_size = 30
 icon = ExtResource("4_k5mlk")
 expand_icon = true
 
-[node name="CostLabel" type="Label" parent="RadialPanel/ButtonTurret2" unique_id=1104438107]
+[node name="CostLabel" type="Label" parent="RadialPanel/IncendiaryButton" unique_id=1104438107]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -87,7 +96,8 @@ theme_override_font_sizes/font_size = 38
 horizontal_alignment = 1
 uppercase = true
 
-[node name="ButtonTurret3" type="Button" parent="RadialPanel" unique_id=337346439]
+[node name="BlastButton" type="Button" parent="RadialPanel" unique_id=337346439]
+visible = false
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 0
 offset_top = 80.0
@@ -97,7 +107,7 @@ theme_override_font_sizes/font_size = 30
 icon = ExtResource("5_i2qot")
 expand_icon = true
 
-[node name="CostLabel" type="Label" parent="RadialPanel/ButtonTurret3" unique_id=934632526]
+[node name="CostLabel" type="Label" parent="RadialPanel/BlastButton" unique_id=934632526]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -117,7 +127,7 @@ theme_override_font_sizes/font_size = 38
 horizontal_alignment = 1
 uppercase = true
 
-[node name="ButtonTurret4" type="Button" parent="RadialPanel" unique_id=290782043]
+[node name="ArtilleryButton" type="Button" parent="RadialPanel" unique_id=290782043]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 0
 offset_top = 222.0
@@ -127,7 +137,7 @@ theme_override_font_sizes/font_size = 30
 icon = ExtResource("6_b8pjo")
 expand_icon = true
 
-[node name="CostLabel" type="Label" parent="RadialPanel/ButtonTurret4" unique_id=415847400]
+[node name="CostLabel" type="Label" parent="RadialPanel/ArtilleryButton" unique_id=415847400]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
